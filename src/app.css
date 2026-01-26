@@ -1,8 +1,129 @@
-a.btn-primary {
-  display: inline-block;
-  margin: 0.5rem;
+@import "tailwindcss";
+
+@theme {
+  /* Gruvbox Dark Theme Colors */
+  --color-bg-dark: #282828;
+  --color-bg-dark-soft: #32302f;
+  --color-bg-dark-hard: #1d2021;
+  --color-fg-dark: #ebdbb2;
+  --color-fg-dark-soft: #d5c4a1;
+  --color-fg-dark-muted: #bdae93;
+  --color-gray-dark-0: #928374;
+  --color-gray-dark-1: #a89984;
+  --color-red-dark: #fb4934;
+  --color-green-dark: #b8bb26;
+  --color-yellow-dark: #fabd2f;
+  --color-blue-dark: #83a598;
+  --color-purple-dark: #d3869b;
+  --color-aqua-dark: #8ec07c;
+  --color-orange-dark: #fe8019;
+
+  /* Gruvbox Light Theme Colors */
+  --color-bg-light: #fbf1c7;
+  --color-bg-light-soft: #f2e5bc;
+  --color-bg-light-hard: #f9f5d7;
+  --color-fg-light: #3c3836;
+  --color-fg-light-soft: #504945;
+  --color-fg-light-muted: #665c54;
+  --color-gray-light-0: #928374;
+  --color-gray-light-1: #a89984;
+  --color-red-light: #cc241d;
+  --color-green-light: #98971a;
+  --color-yellow-light: #d79921;
+  --color-blue-light: #458588;
+  --color-purple-light: #b16286;
+  --color-aqua-light: #689d6a;
+  --color-orange-light: #d65d0e;
+
+  /* Semantic Colors - Dark by default */
+  --color-background: var(--color-bg-dark);
+  --color-surface: var(--color-bg-dark-soft);
+  --color-text-primary: var(--color-fg-dark);
+  --color-text-secondary: var(--color-fg-dark-soft);
+  --color-text-muted: var(--color-fg-dark-muted);
+  --color-border: var(--color-gray-dark-1);
+  --color-accent: var(--color-orange-dark);
+  --color-link: var(--color-blue-dark);
+  --color-highlight: var(--color-yellow-dark);
+
+  /* Typography */
+  --font-display: "JetBrains Mono", "Fira Code", monospace;
+  --font-body: "iA Writer Quattro", "IBM Plex Sans", -apple-system, sans-serif;
+  --font-mono: "Cascadia Code", "Fira Code", "JetBrains Mono", monospace;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+
+  /* Light theme overrides */
+  @media (prefers-color-scheme: light) {
+    --color-background: var(--color-bg-light);
+    --color-surface: var(--color-bg-light-soft);
+    --color-text-primary: var(--color-fg-light);
+    --color-text-secondary: var(--color-fg-light-soft);
+    --color-text-muted: var(--color-fg-light-muted);
+    --color-border: var(--color-gray-light-1);
+    --color-accent: var(--color-orange-light);
+    --color-link: var(--color-blue-light);
+    --color-highlight: var(--color-yellow-light);
+  }
 }
 
-a.btn-secondary::before {
-  content: "← ";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+@layer utilities {
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 250ms ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 350ms ease-out;
+  }
+
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  .stagger-children > * {
+    animation: slide-up 350ms ease-out;
+  }
+
+  .stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+  .stagger-children > *:nth-child(2) { animation-delay: 100ms; }
+  .stagger-children > *:nth-child(3) { animation-delay: 200ms; }
+  .stagger-children > *:nth-child(4) { animation-delay: 300ms; }
+  .stagger-children > *:nth-child(5) { animation-delay: 400ms; }
 }
