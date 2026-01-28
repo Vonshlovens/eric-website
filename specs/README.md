@@ -66,6 +66,12 @@ This directory contains comprehensive specifications for the portfolio website b
 - Technical architecture
 - Performance and accessibility
 
+#### [Skills Marquee](./skills-marquee.md)
+- Animated technology showcase component
+- Current implementation details
+- Planned: Technology logos integration
+- Planned: Interactive click-through to project details
+
 ## Quick Reference
 
 ### Color Palette
