@@ -36,9 +36,9 @@ Visual polish and interaction features, separate from core portfolio content.
 - [ ] Ensure font loading is optimized and doesn't impact performance
 
 ### 7. Implement Dark Mode & Light Mode
-- [ ] Dark mode: preserve current styling as the dark theme
-- [ ] Light mode: use RGB(249, 241, 203) as the background colour
-- [ ] Create a light mode variant following the style guide
-- [ ] Add a theme toggle component in the navigation
-- [ ] Persist theme preference (localStorage + respect system preference)
-- [ ] Ensure all colours, shadows, and UI elements adapt appropriately to each mode
+- [x] Dark mode: preserve current styling as the dark theme
+- [x] Light mode: use RGB(249, 241, 203) as the background colour
+- [x] Create a light mode variant following the style guide
+- [x] Add a theme toggle component in the navigation
+- [x] Persist theme preference (localStorage + respect system preference)
+- [x] Ensure all colours, shadows, and UI elements adapt appropriately to each mode

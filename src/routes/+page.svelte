@@ -5,6 +5,7 @@
   import { interests } from '$lib/data/interests';
   import ProjectCard from '$lib/components/ProjectCard.svelte';
   import SkillsMarquee from '$lib/components/SkillsMarquee.svelte';
+  import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 
   // Lucide Icons
   import {
@@ -89,18 +90,21 @@
       </a>
 
       <!-- Desktop Nav -->
-      <ul class="hidden md:flex items-center gap-8">
-        {#each navLinks as link}
-          <li>
-            <a
-              href={link.href}
-              class="font-mono text-sm text-fg-muted hover:text-accent transition-colors duration-200"
-            >
-              {link.label}
-            </a>
-          </li>
-        {/each}
-      </ul>
+      <div class="hidden md:flex items-center gap-6">
+        <ul class="flex items-center gap-8">
+          {#each navLinks as link}
+            <li>
+              <a
+                href={link.href}
+                class="font-mono text-sm text-fg-muted hover:text-accent transition-colors duration-200"
+              >
+                {link.label}
+              </a>
+            </li>
+          {/each}
+        </ul>
+        <ThemeToggle />
+      </div>
 
       <!-- Mobile Menu Button -->
       <button
@@ -132,6 +136,10 @@
             </a>
           </li>
         {/each}
+        <li class="pt-4 border-t border-border-muted flex items-center justify-between">
+          <span class="font-mono text-sm text-fg-muted">Theme</span>
+          <ThemeToggle />
+        </li>
       </ul>
     </div>
   {/if}
