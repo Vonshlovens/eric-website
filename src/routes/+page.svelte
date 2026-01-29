@@ -6,6 +6,7 @@
   import ProjectCard from '$lib/components/ProjectCard.svelte';
   import SkillsMarquee from '$lib/components/SkillsMarquee.svelte';
   import ThemeToggle from '$lib/components/ThemeToggle.svelte';
+  import SEO from '$lib/components/SEO.svelte';
 
   // Lucide Icons
   import {
@@ -34,6 +35,18 @@
   } from 'svelte-lucide';
 
   let mobileMenuOpen = $state(false);
+
+  // Cursor proximity reveal state
+  let mouseX = $state(0);
+  let mouseY = $state(0);
+  let heroElement: HTMLElement | null = null;
+
+  function handleMouseMove(e: MouseEvent) {
+    if (!heroElement) return;
+    const rect = heroElement.getBoundingClientRect();
+    mouseX = e.clientX - rect.left;
+    mouseY = e.clientY - rect.top;
+  }
 
   function scrollTo(id: string) {
     const element = document.getElementById(id);
@@ -75,10 +88,29 @@
   };
 </script>
 
-<svelte:head>
-  <title>Eric Evans - Full-Stack Developer</title>
-  <meta name="description" content="Portfolio of Eric Evans, full-stack developer specializing in modern web technologies." />
-</svelte:head>
+<SEO
+  title="Eric Evans - Full-Stack Developer"
+  description="Building elegant solutions with modern web technologies. Portfolio showcasing projects in TypeScript, Svelte, SvelteKit, and more."
+  url="https://example.com"
+  image="/og-image.png"
+  imageAlt="Eric Evans - Full-Stack Developer Portfolio"
+  type="profile"
+  author="Eric Evans"
+  siteName="Eric Evans Portfolio"
+  twitterHandle="@ericevans"
+  keywords={[
+    'full-stack developer',
+    'web development',
+    'TypeScript',
+    'Svelte',
+    'SvelteKit',
+    'Deno',
+    'React',
+    'software engineer',
+    'portfolio',
+    'open source'
+  ]}
+/>
 
 <!-- Navigation -->
 <nav class="fixed top-0 left-0 right-0 z-50 bg-bg/95 backdrop-blur-sm border-b border-border-muted">
@@ -150,18 +182,60 @@
   <!-- Hero Section -->
   <section id="about" class="min-h-[calc(100vh-4rem)] flex items-center py-16 md:py-24 bg-bg">
     <div class="max-w-4xl mx-auto px-6 w-full">
-      <div class="loom-frame max-w-2xl mx-auto text-center">
-        <!-- Avatar -->
-        <div class="mb-8">
-          <div class="w-28 h-28 mx-auto rounded-lg bg-bg-muted border-2 border-thread-muted flex items-center justify-center">
-            <User size="56" class="text-accent" strokeWidth="1.5" />
+      <div
+        class="loom-frame max-w-2xl mx-auto text-center"
+        bind:this={heroElement}
+        onmousemove={handleMouseMove}
+      >
+        <!-- Avatar with cursor-proximity reveal -->
+        <div class="mb-8 relative inline-block">
+          <div class="w-28 h-28 mx-auto rounded-lg bg-bg-muted border-2 border-thread-muted flex items-center justify-center overflow-hidden relative group cursor-crosshair">
+            <!-- Default avatar -->
+            <div class="absolute inset-0 flex items-center justify-center z-10 transition-opacity duration-300">
+              <User size="56" class="text-accent" strokeWidth="1.5" />
+            </div>
+
+            <!-- GitHub avatar (revealed on hover) -->
+            <div class="absolute inset-0 z-20 pointer-events-none">
+              <div
+                class="absolute inset-0 bg-bg-muted flex items-center justify-center overflow-hidden"
+                style="
+                  clip-path: circle(80px at {mouseX}px {mouseY}px);
+                "
+              >
+                <img
+                  src="https://github.com/Vonshlovens.png"
+                  alt="Vonshlovens GitHub avatar"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Name -->
-        <h1 class="font-mono text-2xl md:text-3xl font-bold text-fg tracking-tight mb-3">
-          Eric Evans<span class="animate-pulse text-accent">_</span>
-        </h1>
+        <!-- Name with cursor-proximity reveal -->
+        <div class="relative inline-block mb-3 cursor-crosshair">
+          <h1 class="font-mono text-2xl md:text-3xl font-bold text-fg tracking-tight">
+            <span class="relative inline-block">
+              <!-- Default name -->
+              <span class="relative z-10">
+                Eric Evans<span class="animate-pulse text-accent">_</span>
+              </span>
+
+              <!-- GitHub username (revealed on hover) -->
+              <span
+                class="absolute inset-0 z-20 pointer-events-none overflow-hidden"
+                style="
+                  clip-path: circle(120px at {mouseX}px {mouseY - 120}px);
+                "
+              >
+                <span class="text-accent font-bold">
+                  Vonshlovens<span class="animate-pulse">_</span>
+                </span>
+              </span>
+            </span>
+          </h1>
+        </div>
 
         <!-- Tagline -->
         <p class="font-mono text-accent font-bold uppercase tracking-wide text-sm mb-6">

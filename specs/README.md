@@ -171,17 +171,17 @@ deno fmt
 
 ### Phase 2: Core Sections
 - [x] Build Hero/About section
-- [ ] Implement Projects portfolio
-- [ ] Create Work Experience timeline
-- [ ] Add Education section
-- [ ] Build Interests section
-- [ ] Implement Contact section
+- [x] Implement Projects portfolio
+- [x] Create Work Experience timeline
+- [x] Add Education section
+- [x] Build Interests section
+- [x] Implement Contact section
 
 ### Phase 3: Polish
 - [ ] Add animations and transitions
-- [ ] Implement dark/light mode toggle
+- [x] Implement dark/light mode toggle
 - [ ] Optimize images and assets
-- [ ] Add SEO metadata
+- [x] Add SEO metadata
 - [ ] Test accessibility
 - [ ] Performance optimization
 

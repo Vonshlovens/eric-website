@@ -1,0 +1,8 @@
+# Eric Evans Portfolio - Robots.txt
+# Allow all crawlers
+
+User-agent: *
+Allow: /
+
+# Sitemaps (update with actual domain when deployed)
+Sitemap: https://example.com/sitemap.xml
