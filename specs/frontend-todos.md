@@ -25,3 +25,20 @@ Visual polish and interaction features, separate from core portfolio content.
 
 ### 4. Fix Work Experience Timeline
 - [ ] Review and fix the timeline layout in the Work Experience section (alignment, connector lines, spacing)
+
+### 5. Fix Font Colours on Dark Background
+- [ ] Review and adjust font colours to ensure proper contrast and readability on the current dark background
+- [ ] Verify all text elements are legible and meet accessibility standards
+
+### 6. Add Google Sans Code Font
+- [ ] Integrate Google Sans Code font into the project
+- [ ] Apply it tastefully to select sections (e.g., code snippets, technical details, or specific headings)
+- [ ] Ensure font loading is optimized and doesn't impact performance
+
+### 7. Implement Dark Mode & Light Mode
+- [ ] Dark mode: preserve current styling as the dark theme
+- [ ] Light mode: use RGB(249, 241, 203) as the background colour
+- [ ] Create a light mode variant following the style guide
+- [ ] Add a theme toggle component in the navigation
+- [ ] Persist theme preference (localStorage + respect system preference)
+- [ ] Ensure all colours, shadows, and UI elements adapt appropriately to each mode
