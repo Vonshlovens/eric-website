@@ -13,12 +13,6 @@
       "spec": "specs/contact-cta.md"
     },
     {
-      "id": "skills-marquee",
-      "title": "Implement Skills Marquee",
-      "description": "Build the dual-row animated skills marquee per specs/skills-marquee.md — two rows of tech skill chips scrolling in opposite directions with accent dots, hover effects, edge fades, and reduced-motion fallback.",
-      "spec": "specs/skills-marquee.md"
-    },
-    {
       "id": "interests",
       "title": "Implement Interests / Beyond Code Section",
       "description": "Build the personal interests card grid per specs/interests.md — 3-column responsive grid of interest cards with Material Symbols icons, descriptions, optional links, and Threadwork design system styling.",
@@ -99,6 +93,12 @@
   ],
   "in_progress": [],
   "done": [
+    {
+      "id": "skills-marquee",
+      "title": "Implement Skills Marquee",
+      "description": "Built dual-row animated skills marquee per specs/skills-marquee.md — rewrote from V1 to V2 Stitch design system. Two rows of 10 skill chips each scrolling in opposite directions (30s linear infinite), accent dots (#B80C09), bg-surface cards with border-dim borders, hover effects (border-accent/30, bg-surface-highlight, -translate-y-0.5), left/right edge fade gradients, GPU-accelerated translate3d, will-change-transform, group-hover pause, and prefers-reduced-motion fallback (static wrapped grid). Uses Fira Code mono uppercase tracking-wider typography per V2 spec.",
+      "spec": "specs/skills-marquee.md"
+    },
     {
       "id": "hero-section",
       "title": "Implement Hero Section",
