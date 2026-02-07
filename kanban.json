@@ -31,12 +31,6 @@
       "spec": "specs/skill-radar.md"
     },
     {
-      "id": "404-page",
-      "title": "Implement Custom 404 Page",
-      "description": "Build a system-monitor themed 404 error page per specs/404-page.md — large Fira Code '404' in accent color, terminal-style error block with dynamic path, 'Return to Index' CTA button, dot-grid texture, responsive layout, accessible headings and focus-visible ring.",
-      "spec": "specs/404-page.md"
-    },
-    {
       "id": "page-transitions",
       "title": "Implement Page Transitions",
       "description": "Add smooth cross-fade transitions between routes per specs/page-transitions.md — use SvelteKit onNavigate hook with View Transitions API (progressive enhancement), CSS cross-fade fallback with {#key} block, 200ms ease-out opacity transition, prefers-reduced-motion skip, compositor-friendly opacity-only animation.",
@@ -206,6 +200,12 @@
       "title": "Implement Accessibility Standards",
       "description": "Implemented WCAG 2.1 AA accessibility standards per specs/accessibility.md. Moved skip-to-main-content link to +layout.svelte (before <header>, first focusable element). Added mobile menu focus trap (Tab trapped within menu while open, focus moves to menu on open, Escape returns focus to hamburger button). Fixed SkillsMarquee: replaced section-level aria-hidden with aria-label='Technical Skills' and aria-hidden only on cloned duplicates. Added (opens in new tab) sr-only text to all external links (Navigation, Hero, WorkExperience, Education, Interests, ContactCTA). Converted all sections from aria-label to aria-labelledby with IDs on <h2>/<h1> headings (Hero, CoreCompetencies, WorkExperience, Education, Interests). Added aria-label='Status: active' to nav status indicator. Added aria-hidden to decorative elements (dot-grid textures, scan lines, terminal prompt, accent dots, icon spans). Global focus-visible styles (accent ring) already in app.css. Reduced motion support already implemented via animation toggle + prefers-reduced-motion.",
       "spec": "specs/accessibility.md"
+    },
+    {
+      "id": "404-page",
+      "title": "Implement Custom 404 Page",
+      "description": "Built system-monitor themed +error.svelte per specs/404-page.md — large Fira Code '404' in accent color, terminal-style error block with dynamic $page.url.pathname, 'Return to Index' CTA button (bg-accent, hover swap to white), dot-grid texture and scan-line overlay, generic error fallback for non-404 status codes, responsive text scaling (text-5xl to text-8xl), accessible <title>, aria-label on CTA, focus-visible ring.",
+      "spec": "specs/404-page.md"
     }
   ]
 }
