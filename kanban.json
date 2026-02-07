@@ -35,6 +35,12 @@
       "title": "Implement Footer",
       "description": "Build the minimal dark footer per specs-v2/footer.md — branding block, dynamic copyright year, version string, and decorative latency/status indicator using Threadwork design system.",
       "spec": "specs-v2/footer.md"
+    },
+    {
+      "id": "work-experience",
+      "title": "Implement Work Experience Section",
+      "description": "Build the vertical timeline work history section per specs-v2/work-experience.md — timeline rail with accent dots, experience cards with job title, company, duration, duties list, and tech tags.",
+      "spec": "specs-v2/work-experience.md"
     }
   ],
   "in_progress": [],
