@@ -83,6 +83,12 @@
       "title": "Implement Robots.txt",
       "description": "Create static/robots.txt per specs/robots-txt.md — User-agent * Allow /, Sitemap directive pointing to /sitemap.xml, plain text served automatically by SvelteKit static directory.",
       "spec": "specs/robots-txt.md"
+    },
+    {
+      "id": "analytics",
+      "title": "Integrate Privacy-Respecting Analytics",
+      "description": "Add lightweight, cookie-free analytics per specs/analytics.md — async script in +layout.svelte <svelte:head>, environment-gated loading, SPA route tracking via afterNavigate, GDPR-compliant with no consent banner, < 5 KB gzipped, no Lighthouse impact.",
+      "spec": "specs/analytics.md"
     }
   ],
   "in_progress": [],
