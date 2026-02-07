@@ -13,12 +13,6 @@
       "spec": "specs/contact-cta.md"
     },
     {
-      "id": "education",
-      "title": "Implement Education & Certifications Section",
-      "description": "Build the education and certifications grid per specs/education.md — 2-column responsive grid of degree and certification cards with category badges, credential links, and Threadwork design system styling.",
-      "spec": "specs/education.md"
-    },
-    {
       "id": "skills-marquee",
       "title": "Implement Skills Marquee",
       "description": "Build the dual-row animated skills marquee per specs/skills-marquee.md — two rows of tech skill chips scrolling in opposite directions with accent dots, hover effects, edge fades, and reduced-motion fallback.",
@@ -140,6 +134,12 @@
       "title": "Implement Work Experience Section",
       "description": "Built vertical timeline work history section per specs/work-experience.md — timeline rail (2px border-dim line) with 12px accent dots on desktop, top accent border on mobile. Experience cards with mono uppercase job title, accent company name, tiny mono duration/location metadata, left-bordered duty list items (sans-serif), and uppercase tech tag pills. Uses V2 Stitch design tokens (bg-surface, border-border-dim, text-text-main). Hover border transitions to accent/50. Data cleaned to V2 WorkExperience interface. Extracted as src/lib/components/sections/WorkExperience.svelte.",
       "spec": "specs/work-experience.md"
+    },
+    {
+      "id": "education",
+      "title": "Implement Education & Certifications Section",
+      "description": "Built 2-column education grid per specs/education.md — degree and certification cards with Material Symbols school icon header, category badges (DEGREE/CERTIFICATION), mono typography, credential links with arrow icons, accent hover borders. Uses V2 Stitch design tokens (bg-surface, border-border-dim, text-text-main, text-accent). Responsive: single-column mobile, 2-col on md+. Extracted as src/lib/components/sections/Education.svelte.",
+      "spec": "specs/education.md"
     }
   ]
 }

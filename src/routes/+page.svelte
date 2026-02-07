@@ -1,6 +1,5 @@
 <script lang="ts">
   import { projects } from '$lib/data/projects';
-  import { education } from '$lib/data/education';
   import { interests } from '$lib/data/interests';
   import ProjectCard from '$lib/components/ProjectCard.svelte';
   import SkillsMarquee from '$lib/components/SkillsMarquee.svelte';
@@ -8,6 +7,7 @@
   import Hero from '$lib/components/sections/Hero.svelte';
   import CoreCompetencies from '$lib/components/sections/CoreCompetencies.svelte';
   import WorkExperience from '$lib/components/sections/WorkExperience.svelte';
+  import Education from '$lib/components/sections/Education.svelte';
 
   // Lucide Icons
   import {
@@ -15,11 +15,7 @@
     Linkedin,
     Twitter,
     Mail,
-    FileDown,
     ArrowRight,
-    ExternalLink,
-    GraduationCap,
-    Award,
     LockOpen,
     Footprints,
     Camera,
@@ -135,69 +131,8 @@
   <!-- Work Experience Section -->
   <WorkExperience />
 
-  <!-- Education Section -->
-  <section id="education" class="py-12 md:py-16 bg-bg-muted">
-    <div class="max-w-4xl mx-auto px-6">
-      <!-- Section Header -->
-      <div class="text-center mb-12">
-        <span class="font-mono text-accent font-bold uppercase tracking-wide text-sm">
-          Learning
-        </span>
-        <h2 class="font-mono text-xl font-bold text-fg mt-2">
-          Education & Certifications
-        </h2>
-        <div class="thread-divider max-w-xs mx-auto"></div>
-        <p class="font-mono text-base text-fg-muted leading-relaxed max-w-xl mx-auto">
-          Academic foundation and continuous learning.
-        </p>
-      </div>
-
-      <!-- Education Grid -->
-      <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {#each education as item (item.id)}
-          <article class="bg-bg rounded-lg p-6 border border-border-muted transition-all duration-200 hover:border-thread-muted text-center">
-            <!-- Icon -->
-            <div class="w-14 h-14 mx-auto mb-4 rounded-md bg-accent-soft border border-thread-muted flex items-center justify-center">
-              {#if item.type === 'degree'}
-                <GraduationCap size="28" class="text-accent" />
-              {:else}
-                <Award size="28" class="text-accent" />
-              {/if}
-            </div>
-
-            <!-- Content -->
-            <h3 class="font-mono text-base font-bold text-fg mb-1">
-              {item.name}
-            </h3>
-            <p class="font-mono text-sm text-fg-muted mb-2">
-              {item.institution}
-            </p>
-            <p class="font-mono text-xs text-fg-subtle mb-2">
-              {item.year}
-            </p>
-
-            {#if item.honors}
-              <span class="inline-block font-mono text-xs font-bold text-accent bg-accent-soft px-2 py-1 rounded-sm border border-thread-muted">
-                {item.honors}
-              </span>
-            {/if}
-
-            {#if item.credentialUrl}
-              <a
-                href={item.credentialUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-1 mt-4 font-mono font-bold text-sm text-accent underline underline-offset-4 decoration-1 hover:text-accent-hover transition-colors duration-200"
-              >
-                <span>View Credential</span>
-                <ExternalLink size="12" />
-              </a>
-            {/if}
-          </article>
-        {/each}
-      </div>
-    </div>
-  </section>
+  <!-- Education & Certifications -->
+  <Education />
 
   <!-- Interests Section -->
   <section id="interests" class="py-12 md:py-16 bg-bg">
