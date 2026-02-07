@@ -19,12 +19,6 @@
       "spec": "specs/contact-cta.md"
     },
     {
-      "id": "footer",
-      "title": "Implement Footer",
-      "description": "Build the minimal dark footer per specs/footer.md — branding block, dynamic copyright year, version string, and decorative latency/status indicator using Threadwork design system.",
-      "spec": "specs/footer.md"
-    },
-    {
       "id": "work-experience",
       "title": "Implement Work Experience Section",
       "description": "Build the vertical timeline work history section per specs/work-experience.md — timeline rail with accent dots, experience cards with job title, company, duration, duties list, and tech tags.",
@@ -140,6 +134,12 @@
       "title": "Implement Navigation",
       "description": "Built sticky nav bar per specs/navigation.md — EE_SYS brand, live-status ping indicator, desktop nav links, View Source CTA, mobile hamburger menu with slide-down animation, skip-to-content link, ARIA attributes, Escape-to-close, V2 Stitch design tokens.",
       "spec": "specs/navigation.md"
+    },
+    {
+      "id": "footer",
+      "title": "Implement Footer",
+      "description": "Built minimal dark footer per specs/footer.md — three-column layout (branding, copyright, status indicator), dynamic copyright year, v2.0_STABLE version string, decorative latency readout with green status dot, #0A0A0A background, responsive stacking on mobile. Extracted as src/lib/components/layout/Footer.svelte.",
+      "spec": "specs/footer.md"
     }
   ]
 }

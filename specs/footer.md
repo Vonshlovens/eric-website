@@ -69,7 +69,7 @@ Three-column on desktop, stacked and centered on mobile.
 | `text-white` (name) | `text-fg` |
 | `text-text-muted` (tagline, latency) | `text-fg-subtle` / `text-fg-muted` |
 | `text-border-dim` (copyright) | `text-border` |
-| `bg-green-500` (status dot) | `bg-lichen` (`--weaver-lichen: #4A7C59`) |
+| `bg-green-500` (status dot) | `bg-status-ok` (`--color-status-ok: #22C55E`) |
 
 ---
 
@@ -91,9 +91,13 @@ Three-column on desktop, stacked and centered on mobile.
 
 ---
 
+## Implementation Status
+
+**Completed.** Extracted as `src/lib/components/layout/Footer.svelte`, rendered via `src/routes/+layout.svelte`.
+
 ## Files
 
 | File | Purpose |
 |------|---------|
-| `src/routes/+layout.svelte` | Footer markup (inline at bottom of layout) |
-| `src/lib/components/layout/Footer.svelte` | Optional extracted component |
+| `src/lib/components/layout/Footer.svelte` | Footer component |
+| `src/routes/+layout.svelte` | Renders Footer below main content |
