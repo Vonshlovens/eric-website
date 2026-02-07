@@ -1,6 +1,5 @@
 <script lang="ts">
   import { projects } from '$lib/data/projects';
-  import { interests } from '$lib/data/interests';
   import ProjectCard from '$lib/components/ProjectCard.svelte';
   import SkillsMarquee from '$lib/components/SkillsMarquee.svelte';
   import SEO from '$lib/components/SEO.svelte';
@@ -8,6 +7,7 @@
   import CoreCompetencies from '$lib/components/sections/CoreCompetencies.svelte';
   import WorkExperience from '$lib/components/sections/WorkExperience.svelte';
   import Education from '$lib/components/sections/Education.svelte';
+  import Interests from '$lib/components/sections/Interests.svelte';
 
   // Lucide Icons
   import {
@@ -15,11 +15,7 @@
     Linkedin,
     Twitter,
     Mail,
-    ArrowRight,
-    LockOpen,
-    Footprints,
-    Camera,
-    Coffee
+    ArrowRight
   } from 'svelte-lucide';
 
   function scrollTo(id: string) {
@@ -31,14 +27,6 @@
 
   const featuredProjects = projects.filter(p => p.featured);
   const otherProjects = projects.filter(p => !p.featured);
-
-  // Icon mapping for interests
-  const interestIcons: Record<string, typeof LockOpen> = {
-    'lock-open': LockOpen,
-    'footprints': Footprints,
-    'camera': Camera,
-    'coffee': Coffee
-  };
 </script>
 
 <SEO
@@ -134,64 +122,8 @@
   <!-- Education & Certifications -->
   <Education />
 
-  <!-- Interests Section -->
-  <section id="interests" class="py-12 md:py-16 bg-bg">
-    <div class="max-w-4xl mx-auto px-6">
-      <!-- Section Header -->
-      <div class="text-center mb-12">
-        <span class="font-mono text-accent font-bold uppercase tracking-wide text-sm">
-          Personal
-        </span>
-        <h2 class="font-mono text-xl font-bold text-fg mt-2">
-          Beyond Code
-        </h2>
-        <div class="thread-divider max-w-xs mx-auto"></div>
-        <p class="font-mono text-base text-fg-muted leading-relaxed max-w-xl mx-auto">
-          What keeps me curious and inspired outside of work.
-        </p>
-      </div>
-
-      <!-- Interests Grid -->
-      <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-        {#each interests as interest (interest.id)}
-          {@const IconComponent = interestIcons[interest.icon]}
-          <article class="bg-bg-muted rounded-lg p-6 border border-border-muted transition-all duration-200 hover:border-thread-muted">
-            <!-- Icon and Title -->
-            <div class="flex items-center gap-4 mb-4">
-              <div class="w-10 h-10 rounded-md bg-accent-soft border border-thread-muted flex items-center justify-center">
-                <IconComponent size="20" class="text-accent" />
-              </div>
-              <h3 class="font-mono text-lg font-bold text-fg">
-                {interest.title}
-              </h3>
-            </div>
-
-            <!-- Description -->
-            <p class="font-mono text-sm text-fg-muted leading-relaxed mb-4">
-              {interest.description}
-            </p>
-
-            <!-- Links -->
-            {#if interest.links}
-              <div class="flex flex-wrap gap-4">
-                {#each interest.links as link}
-                  <a
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center gap-1 font-mono font-bold text-sm text-accent underline underline-offset-4 decoration-1 hover:text-accent-hover transition-colors duration-200"
-                  >
-                    <span>{link.label}</span>
-                    <ArrowRight size="12" />
-                  </a>
-                {/each}
-              </div>
-            {/if}
-          </article>
-        {/each}
-      </div>
-    </div>
-  </section>
+  <!-- Interests / Beyond Code -->
+  <Interests />
 
   <!-- Contact Section -->
   <section id="contact" class="py-12 md:py-16 bg-bg-subtle">
