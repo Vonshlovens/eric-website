@@ -77,6 +77,12 @@
       "title": "Implement XML Sitemap",
       "description": "Create a /sitemap.xml SvelteKit server route per specs/sitemap.md — prerendered XML Sitemap 0.9, lists all public routes with lastmod/changefreq/priority, application/xml content-type, update robots.txt with Sitemap directive.",
       "spec": "specs/sitemap.md"
+    },
+    {
+      "id": "robots-txt",
+      "title": "Implement Robots.txt",
+      "description": "Create static/robots.txt per specs/robots-txt.md — User-agent * Allow /, Sitemap directive pointing to /sitemap.xml, plain text served automatically by SvelteKit static directory.",
+      "spec": "specs/robots-txt.md"
     }
   ],
   "in_progress": [],

@@ -47,6 +47,7 @@ Quick-reference list of every specification file in this directory.
 - [SEO & Meta](./seo-meta.md)
 - [Sitemap](./sitemap.md)
 - [Responsive Breakpoints](./responsive-breakpoints.md)
+- [Robots.txt](./robots-txt.md)
 
 ## Transitions & Loading
 - [Page Transitions](./page-transitions.md)
