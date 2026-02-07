@@ -43,5 +43,8 @@ Quick-reference list of every specification file in this directory.
 - [Resume Download](./resume-download.md)
 - [SEO & Meta](./seo-meta.md)
 
+## Transitions & Loading
+- [Loading Screen](./loading-screen.md)
+
 ## Error Pages
 - [404 Page](./404-page.md)
