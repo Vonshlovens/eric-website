@@ -13,6 +13,19 @@
       </h2>
     </div>
 
+    <!-- Resume download link -->
+    <div class="mb-8" use:scrollReveal>
+      <a
+        href="/resume.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        download="Eric_Evans_Resume.pdf"
+        class="text-xs font-mono text-accent hover:text-text-white transition-colors uppercase tracking-widest"
+      >
+        Download Full Resume →
+      </a>
+    </div>
+
     <!-- Timeline -->
     <div class="max-w-3xl">
       {#each experiences as exp, i (exp.id)}

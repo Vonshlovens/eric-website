@@ -107,6 +107,20 @@ No new tokens or visual patterns needed — uses existing CTA button styles from
 
 | File | Purpose |
 |------|---------|
-| `static/resume.pdf` | The resume PDF asset |
-| `src/lib/components/sections/Hero.svelte` | Update primary CTA to link to resume |
-| `src/lib/components/sections/WorkExperience.svelte` | Optional "Download Resume" link |
+| `static/resume.pdf` | The resume PDF asset (placeholder — replace with actual resume) |
+| `src/lib/components/sections/Hero.svelte` | Primary CTA links to `/resume.pdf` with `download` attribute |
+| `src/lib/components/sections/WorkExperience.svelte` | "Download Full Resume →" link at top of section |
+
+---
+
+## Implementation Status
+
+**Status**: Complete (placeholder PDF)
+
+**What was implemented**:
+- Placeholder PDF at `static/resume.pdf` (708 bytes) — replace with actual resume
+- Hero "View Resume" CTA: `target="_blank"`, `rel="noopener noreferrer"`, `download="Eric_Evans_Resume.pdf"`
+- Work Experience section: "Download Full Resume →" link with accent mono styling and scroll-reveal animation
+- Both links use identical href/target/rel/download attributes for consistency
+
+**TODO**: Replace `static/resume.pdf` with the real resume PDF (keep under 500 KB).

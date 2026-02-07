@@ -142,6 +142,7 @@
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
+            download="Eric_Evans_Resume.pdf"
             class="
               inline-flex items-center gap-2
               px-6 py-2.5
