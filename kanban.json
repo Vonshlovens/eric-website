@@ -19,12 +19,6 @@
       "spec": "specs/theme-toggle.md"
     },
     {
-      "id": "performance",
-      "title": "Apply Performance Optimizations",
-      "description": "Enable static prerendering, configure image lazy loading and WebP formats, add font preconnect/preload, set caching headers for Deno Deploy, and validate against Lighthouse 90+ target per specs/performance.md.",
-      "spec": "specs/performance.md"
-    },
-    {
       "id": "contact-form",
       "title": "Implement Contact Form Modal",
       "description": "Build a modal contact form triggered by the Contact CTA button — name/email/message fields, SvelteKit form action backend, client-side validation, success/error states, focus trapping, and system-monitor aesthetic per specs/contact-form.md.",
@@ -134,6 +128,12 @@
       "title": "Integrate Live GitHub Stats",
       "description": "Created src/routes/+page.server.ts to fetch live GitHub data (repo count, commit count, account age) from the public GitHub REST API with 10-minute in-memory cache, optional GITHUB_TOKEN auth, and static fallbacks. Updated +page.svelte to pass githubStats prop to Hero. Refactored Hero.svelte stat cards (Repos, Commits, Status, Tier) and terminal panel (repos, age dynamically populated) with aria-label on stat cards and aria-hidden on the decorative terminal panel. Terminal lines updated to match spec (user, role, notes, repos, age, 100m, 200m).",
       "spec": "specs/github-stats.md"
+    },
+    {
+      "id": "performance",
+      "title": "Apply Performance Optimizations",
+      "description": "Enabled static prerendering via src/routes/+layout.ts (export const prerender = true). Added decoding='async' to hero avatar and engineering log images. Engineering log images already had loading='lazy'. Added preconnect hints for github.com and avatars.githubusercontent.com (hero avatar). Created src/hooks.server.ts with Cache-Control headers: immutable for hashed JS/CSS bundles, 7-day for images, must-revalidate for HTML. Configured svelte.config.js prerender.handleHttpError to ignore missing project placeholder images. Fixed broken #projects anchor links in nav and hero to point to #engineering-log.",
+      "spec": "specs/performance.md"
     },
     {
       "id": "accessibility",

@@ -1,10 +1,21 @@
 # Performance Optimization
 
+> **Status: Implemented**
+
 ## Overview
 
 Performance guidelines and implementation patterns for the portfolio site. Covers image handling, font loading strategy, code splitting, static prerendering, and caching headers. The goal is a sub-2-second First Contentful Paint on a 3G connection and a Lighthouse Performance score of 90+.
 
 Derived from the "Performance Optimizations" section in `specs/features.md` (lines 670–686), adapted for the V2 SvelteKit + Deno Deploy stack.
+
+## Implementation Summary
+
+- **Static prerendering** enabled via `src/routes/+layout.ts` (`export const prerender = true`). GitHub stats are fetched at build time and baked into static HTML.
+- **Image lazy loading**: Engineering log project images use `loading="lazy"` and `decoding="async"`. Hero avatar uses default eager loading with `decoding="async"`.
+- **Preconnect hints** added in `src/app.html` for `github.com` and `avatars.githubusercontent.com` (hero avatar origin). Google Fonts preconnect was already present.
+- **Caching headers** set via `src/hooks.server.ts`: immutable for hashed JS/CSS bundles, 7-day cache for images, must-revalidate for HTML pages, immutable for self-hosted fonts.
+- **Prerender config** in `svelte.config.js`: `handleHttpError` ignores missing placeholder project images.
+- **Broken anchor fix**: `#projects` links in nav and hero CTA corrected to `#engineering-log`.
 
 ---
 
@@ -155,6 +166,8 @@ Run `npx lighthouse http://localhost:4321 --only-categories=performance` during 
 | File | Purpose |
 |------|---------|
 | `src/routes/+layout.ts` | `export const prerender = true` |
-| `src/app.html` | Preconnect links, preload hero image |
+| `src/app.html` | Preconnect links (Google Fonts, GitHub avatar) |
+| `src/hooks.server.ts` | Cache-Control headers for asset types |
+| `svelte.config.js` | Prerender error handling for missing images |
 | `src/app.css` | Font-display rules (via Google Fonts URL) |
 | `static/images/` | Optimized WebP images |

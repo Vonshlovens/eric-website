@@ -83,6 +83,7 @@
               <img
                 src="https://github.com/Vonshlovens.png"
                 alt="Eric Evans — Software Developer"
+                decoding="async"
                 class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
               />
 
@@ -158,7 +159,7 @@
             <span class="sr-only">(opens in new tab)</span>
           </a>
           <a
-            href="#projects"
+            href="#engineering-log"
             class="
               inline-flex items-center gap-2
               px-6 py-2.5

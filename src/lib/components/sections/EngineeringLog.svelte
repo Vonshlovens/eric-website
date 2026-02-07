@@ -44,6 +44,7 @@
                 alt="{entry.name} project screenshot"
                 class="w-full h-full object-cover aspect-video lg:aspect-auto lg:absolute lg:inset-0 grayscale group-hover:grayscale-0 transition-all duration-500"
                 loading="lazy"
+                decoding="async"
                 onerror={(e: Event) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
               />
               <!-- Placeholder when no image -->
