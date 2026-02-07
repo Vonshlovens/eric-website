@@ -4,6 +4,7 @@
 	import Navigation from '$lib/components/layout/Navigation.svelte';
 	import Footer from '$lib/components/layout/Footer.svelte';
 	import BackToTop from '$lib/components/ui/BackToTop.svelte';
+	import LoadingScreen from '$lib/components/ui/LoadingScreen.svelte';
 
 	let { children } = $props();
 
@@ -74,6 +75,7 @@
 	Skip to main content
 </a>
 
+<LoadingScreen />
 <Navigation />
 {@render children()}
 <Footer />

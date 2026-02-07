@@ -43,11 +43,16 @@ On initial page load, display a brief system-boot splash screen before revealing
 ## Implementation
 
 - **File:** `src/lib/components/ui/LoadingScreen.svelte`
-- Rendered in `+layout.svelte`, conditionally shown via a `visible` state
-- Uses `onMount` to start the boot sequence on client-side hydration
-- Sets `visible = false` after the sequence completes (~1.5s total)
-- Uses CSS transitions for fade-out; Svelte `{#if}` or `transition:fade` for mount/unmount
-- **Session-only:** show once per session using `sessionStorage` flag so refreshes within the same tab skip the animation
+- **Status:** Implemented
+- Rendered in `+layout.svelte` (before `<Navigation />`), conditionally shown via `visible` $state rune
+- Uses `onMount` to start the async boot sequence on client-side hydration
+- `runBootSequence()` reveals lines sequentially with ~200ms stagger, marks dots complete (showing "OK"), then triggers fade-out
+- Sets `visible = false` after 400ms CSS fade-out transition completes; Svelte `{#if}` unmounts the overlay from DOM
+- `fadeOut` $state triggers CSS `opacity: 0` transition (400ms ease-out) on the overlay
+- Each boot line uses a CSS `line-appear` keyframe animation (150ms ease-out, opacity + translateY)
+- Progress bar width driven reactively by `currentLine / lines.length * 100` percentage with 300ms CSS transition
+- **Session-only:** `sessionStorage.getItem('boot-shown')` checked on mount — skips entirely if flag is set; flag set to `'1'` after sequence completes
+- **Reduced motion:** checks both `data-reduce-motion` attribute and `prefers-reduced-motion: reduce` media query — sets `visible = false` immediately and sets sessionStorage flag
 
 ## Accessibility
 

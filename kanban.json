@@ -31,12 +31,6 @@
       "spec": "specs/skill-radar.md"
     },
     {
-      "id": "loading-screen",
-      "title": "Implement Loading / Splash Screen",
-      "description": "Build a system-boot themed splash overlay per specs/loading-screen.md — sequential terminal boot lines with staggered reveal, accent-colored 'OK' and 'SYSTEM READY' text, fade-out exit, sessionStorage once-per-session flag, reduced-motion skip, non-blocking ~1.5s total duration.",
-      "spec": "specs/loading-screen.md"
-    },
-    {
       "id": "responsive-breakpoints",
       "title": "Audit & Enforce Responsive Breakpoints",
       "description": "Audit all sections against specs/responsive-breakpoints.md — verify canonical breakpoint tiers (sm/md/lg/xl), container max-width and padding, grid column counts per breakpoint, typography scaling, 44px minimum touch targets, 320px minimum viewport support, and no horizontal scroll at any breakpoint.",
@@ -206,6 +200,12 @@
       "title": "Implement Back to Top Button",
       "description": "Built fixed-position scroll-to-top button per specs/back-to-top.md — appears after 400px scroll, smooth scroll to top, fade+translate entry/exit animations (200ms ease-out in, 150ms ease-in out), RAF-throttled scroll listener, system-monitor styled (bg-surface, border-dim, Material Symbols keyboard_arrow_up icon), hover effects (border-accent/50, bg-surface-highlight, text-text-main), active scale(0.95), aria-label='Scroll to top', dynamic tabindex, focus-visible accent ring, reduced-motion support (instant opacity, no translate, behavior:'auto'), responsive positioning (bottom-4 right-4 mobile, bottom-6 right-6 desktop). Component: src/lib/components/ui/BackToTop.svelte, mounted in +layout.svelte.",
       "spec": "specs/back-to-top.md"
+    },
+    {
+      "id": "loading-screen",
+      "title": "Implement Loading / Splash Screen",
+      "description": "Built system-boot themed splash overlay per specs/loading-screen.md — sequential terminal boot lines (EE_SYS v2.0_STABLE, loading modules, initializing interface, establishing connection, SYSTEM READY) with staggered 200ms reveal and line-appear animation. Accent-colored 'OK' status and 'SYSTEM READY' text. Accent progress bar fills in sync with boot lines. 400ms ease-out fade-out exit. sessionStorage 'boot-shown' flag for once-per-session display. Reduced-motion and prefers-reduced-motion skip (instant content reveal). aria-live='polite' on terminal block, aria-hidden on dismissed overlay. Responsive max-w-md centered terminal block with text-sm/text-base scaling. Non-blocking ~1.5s total duration. Component: src/lib/components/ui/LoadingScreen.svelte, mounted in +layout.svelte.",
+      "spec": "specs/loading-screen.md"
     }
   ]
 }
