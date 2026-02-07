@@ -1,12 +1,6 @@
 {
   "todo": [
     {
-      "id": "core-competencies",
-      "title": "Implement Core Competencies Section",
-      "description": "Build the 3-column competency grid per specs/core-competencies.md — icon boxes, titles, descriptions with hover effects using Threadwork design system.",
-      "spec": "specs/core-competencies.md"
-    },
-    {
       "id": "engineering-log",
       "title": "Implement Engineering Log Section",
       "description": "Build the vertically stacked project portfolio per specs/engineering-log.md — horizontal project cards with image (grayscale-to-color on hover), structured narrative sections (Problem, Key Learnings, Tech Stack), category badges, and section header with active project count and status indicator.",
@@ -140,6 +134,12 @@
       "title": "Implement Footer",
       "description": "Built minimal dark footer per specs/footer.md — three-column layout (branding, copyright, status indicator), dynamic copyright year, v2.0_STABLE version string, decorative latency readout with green status dot, #0A0A0A background, responsive stacking on mobile. Extracted as src/lib/components/layout/Footer.svelte.",
       "spec": "specs/footer.md"
+    },
+    {
+      "id": "core-competencies",
+      "title": "Implement Core Competencies Section",
+      "description": "Built 3-column competency grid per specs/core-competencies.md — icon boxes (Material Symbols), titles, descriptions with hover effects (border-accent, icon color shift, bg-surface-highlight). Uses V2 Stitch design tokens. Responsive: stacks single-column on mobile, 3-col on md+. Extracted as src/lib/components/sections/CoreCompetencies.svelte.",
+      "spec": "specs/core-competencies.md"
     }
   ]
 }

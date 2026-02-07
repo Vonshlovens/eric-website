@@ -167,5 +167,13 @@ The titles, icons, and descriptions should be customized with real data.
 
 | File | Purpose |
 |------|---------|
-| `src/routes/+page.svelte` | Core competencies markup (or extracted component) |
-| `src/lib/components/sections/CoreCompetencies.svelte` | Optional extracted component |
+| `src/routes/+page.svelte` | Imports and renders `<CoreCompetencies />` after Hero |
+| `src/lib/components/sections/CoreCompetencies.svelte` | Extracted section component |
+
+## Implementation Notes
+
+- **Status**: Implemented
+- Uses V2 Stitch design tokens (`surface`, `surface-highlight`, `border-dim`, `text-white`, `text-muted`, `accent`) to match the Hero section pattern.
+- The spec originally referenced Threadwork tokens (`bg-bg-muted`, `text-fg`), but the codebase uses the stitch.html tokens — implementation follows codebase convention.
+- Icons use `aria-hidden="true"` since text labels provide meaning.
+- `prefers-reduced-motion` handled globally in `app.css`.

@@ -7,6 +7,7 @@
   import SkillsMarquee from '$lib/components/SkillsMarquee.svelte';
   import SEO from '$lib/components/SEO.svelte';
   import Hero from '$lib/components/sections/Hero.svelte';
+  import CoreCompetencies from '$lib/components/sections/CoreCompetencies.svelte';
 
   // Lucide Icons
   import {
@@ -86,6 +87,9 @@
 <main class="pt-16" id="main-content">
   <!-- Hero Section -->
   <Hero />
+
+  <!-- Core Competencies -->
+  <CoreCompetencies />
 
   <!-- Skills Marquee -->
   <SkillsMarquee />
