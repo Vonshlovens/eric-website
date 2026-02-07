@@ -144,6 +144,13 @@ Comprehensive specifications for the portfolio website built with SvelteKit 2, S
 - Open Graph, Twitter Cards, favicon
 - JSON-LD structured data
 
+## Error Pages
+
+#### [404 Page](./404-page.md)
+- Custom system-monitor themed 404 page
+- Terminal-style error message with dynamic path
+- "Return to Index" CTA, dot-grid texture
+
 ## Quick Reference
 
 ### Key Technologies
