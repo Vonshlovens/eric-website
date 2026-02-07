@@ -7,12 +7,6 @@
       "spec": "specs/engineering-log.md"
     },
     {
-      "id": "contact-cta",
-      "title": "Implement Contact CTA Section",
-      "description": "Build the full-width contact call-to-action banner per specs/contact-cta.md — headline, description, status badge, primary CTA button, and social icon links with dot-grid texture using Threadwork design system.",
-      "spec": "specs/contact-cta.md"
-    },
-    {
       "id": "seo-meta",
       "title": "Configure SEO & Meta Tags",
       "description": "Add Open Graph, Twitter Card, favicon, and JSON-LD structured data to the layout per specs/seo-meta.md. Create OG image and favicon assets.",
@@ -140,6 +134,12 @@
       "title": "Implement Interests / Beyond Code Section",
       "description": "Built 3-column interests card grid per specs/interests.md — Material Symbols icons in icon boxes (bg-primary/50, group-hover accent transitions), mono titles, muted descriptions, optional link arrows with accent color. Uses V2 Stitch design tokens (bg-surface, border-border-dim, hover:border-accent, bg-surface-highlight). Responsive: single-column mobile, 2-col md, 3-col lg. Data imported from src/lib/data/interests.ts with updated Material Symbols icon names. Extracted as src/lib/components/sections/Interests.svelte.",
       "spec": "specs/interests.md"
+    },
+    {
+      "id": "contact-cta",
+      "title": "Implement Contact CTA Section",
+      "description": "Built full-width 'Initialize Protocol?' CTA banner per specs/contact-cta.md — two-column layout (text+status left, CTA+icons right) with dot-grid texture overlay, 'Connect.exe' accent button (hover: bg swap to white), status badge (STATUS: READY_TO_COLLABORATE in status-ok green), Material Symbols social icon links (mail, terminal, hub) with accent hover. Uses V2 Stitch design tokens (bg-surface, border-border-dim, text-text-white, text-text-muted, bg-accent). Responsive: stacks centered on mobile, side-by-side on md+. Section has aria-labelledby, icons have aria-label. Extracted as src/lib/components/sections/ContactCTA.svelte, replaced old V1 contact section.",
+      "spec": "specs/contact-cta.md"
     }
   ]
 }

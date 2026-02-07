@@ -8,13 +8,10 @@
   import WorkExperience from '$lib/components/sections/WorkExperience.svelte';
   import Education from '$lib/components/sections/Education.svelte';
   import Interests from '$lib/components/sections/Interests.svelte';
+  import ContactCTA from '$lib/components/sections/ContactCTA.svelte';
 
   // Lucide Icons
   import {
-    Github,
-    Linkedin,
-    Twitter,
-    Mail,
     ArrowRight
   } from 'svelte-lucide';
 
@@ -125,105 +122,8 @@
   <!-- Interests / Beyond Code -->
   <Interests />
 
-  <!-- Contact Section -->
-  <section id="contact" class="py-12 md:py-16 bg-bg-subtle">
-    <div class="max-w-4xl mx-auto px-6">
-      <div class="loom-frame max-w-xl mx-auto text-center">
-        <!-- Section Header -->
-        <span class="font-mono text-accent font-bold uppercase tracking-wide text-sm">
-          Connect
-        </span>
-        <h2 class="font-mono text-xl font-bold text-fg mt-2 mb-2">
-          Let's Connect
-        </h2>
-        <div class="thread-divider-knot max-w-xs mx-auto"></div>
-        <p class="font-mono text-base text-fg-muted leading-relaxed mt-6 mb-10">
-          Have a project in mind or just want to chat? I'd love to hear from you.
-        </p>
-
-        <!-- Contact Methods -->
-        <div class="flex flex-wrap items-center justify-center gap-4 mb-10">
-          <a
-            href="mailto:eric@example.com"
-            class="
-              flex items-center gap-2
-              px-4 py-2
-              font-mono font-bold
-              bg-accent text-bg
-              rounded-md
-              transition-colors duration-200
-              hover:bg-accent-hover
-            "
-          >
-            <Mail size="18" />
-            Send Email
-          </a>
-
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="
-              flex items-center gap-2
-              px-4 py-2
-              font-mono font-bold
-              bg-transparent text-fg
-              border border-border
-              rounded-md
-              transition-colors duration-200
-              hover:bg-bg-muted
-            "
-          >
-            <Linkedin size="18" />
-            LinkedIn
-          </a>
-        </div>
-
-        <!-- Availability Status -->
-        <div class="flex items-center justify-center gap-3">
-          <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-success"></span>
-          </span>
-          <p class="font-mono text-sm text-fg-muted">
-            Currently available for freelance work
-          </p>
-        </div>
-
-        <!-- Social Links -->
-        <div class="thread-divider mt-10"></div>
-        <div class="flex items-center justify-center gap-6 mt-6">
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center gap-2 font-mono text-sm text-fg-subtle hover:text-accent transition-colors duration-200"
-          >
-            <Github size="16" />
-            <span>GitHub</span>
-          </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center gap-2 font-mono text-sm text-fg-subtle hover:text-accent transition-colors duration-200"
-          >
-            <Linkedin size="16" />
-            <span>LinkedIn</span>
-          </a>
-          <a
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center gap-2 font-mono text-sm text-fg-subtle hover:text-accent transition-colors duration-200"
-          >
-            <Twitter size="16" />
-            <span>Twitter</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Contact CTA -->
+  <ContactCTA />
 </main>
 
 <!-- Footer -->
