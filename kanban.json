@@ -23,6 +23,12 @@
       "title": "Implement Contact CTA Section",
       "description": "Build the full-width contact call-to-action banner per specs-v2/contact-cta.md — headline, description, status badge, primary CTA button, and social icon links with dot-grid texture using Threadwork design system.",
       "spec": "specs-v2/contact-cta.md"
+    },
+    {
+      "id": "footer",
+      "title": "Implement Footer",
+      "description": "Build the minimal dark footer per specs-v2/footer.md — branding block, dynamic copyright year, version string, and decorative latency/status indicator using Threadwork design system.",
+      "spec": "specs-v2/footer.md"
     }
   ],
   "in_progress": [],
