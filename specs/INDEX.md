@@ -50,6 +50,9 @@ Quick-reference list of every specification file in this directory.
 - [Robots.txt](./robots-txt.md)
 - [Analytics](./analytics.md)
 
+## Print & Export
+- [Print Stylesheet](./print-stylesheet.md)
+
 ## Transitions & Loading
 - [Page Transitions](./page-transitions.md)
 - [Loading Screen](./loading-screen.md)

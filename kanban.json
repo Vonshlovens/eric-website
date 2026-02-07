@@ -89,6 +89,12 @@
       "title": "Integrate Privacy-Respecting Analytics",
       "description": "Add lightweight, cookie-free analytics per specs/analytics.md — async script in +layout.svelte <svelte:head>, environment-gated loading, SPA route tracking via afterNavigate, GDPR-compliant with no consent banner, < 5 KB gzipped, no Lighthouse impact.",
       "spec": "specs/analytics.md"
+    },
+    {
+      "id": "print-stylesheet",
+      "title": "Implement Print Stylesheet",
+      "description": "Add @media print CSS block per specs/print-stylesheet.md — hide nav/footer chrome/decorative overlays, force black-on-white, append URLs after links, break-inside:avoid on cards, greyscale images, @page margins, system serif body font for readability, no JS required.",
+      "spec": "specs/print-stylesheet.md"
     }
   ],
   "in_progress": [],
