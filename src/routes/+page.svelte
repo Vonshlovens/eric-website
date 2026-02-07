@@ -6,13 +6,13 @@
   import ProjectCard from '$lib/components/ProjectCard.svelte';
   import SkillsMarquee from '$lib/components/SkillsMarquee.svelte';
   import SEO from '$lib/components/SEO.svelte';
+  import Hero from '$lib/components/sections/Hero.svelte';
 
   // Lucide Icons
   import {
     Github,
     Linkedin,
     Twitter,
-    User,
     Mail,
     FileDown,
     ArrowRight,
@@ -30,18 +30,6 @@
     Coffee,
     Check
   } from 'svelte-lucide';
-
-  // Cursor proximity reveal state
-  let mouseX = $state(0);
-  let mouseY = $state(0);
-  let heroElement: HTMLElement | null = null;
-
-  function handleMouseMove(e: MouseEvent) {
-    if (!heroElement) return;
-    const rect = heroElement.getBoundingClientRect();
-    mouseX = e.clientX - rect.left;
-    mouseY = e.clientY - rect.top;
-  }
 
   function scrollTo(id: string) {
     const element = document.getElementById(id);
@@ -95,141 +83,9 @@
 />
 
 <!-- Main Content -->
-<main class="pt-16">
+<main class="pt-16" id="main-content">
   <!-- Hero Section -->
-  <section id="about" class="min-h-[calc(100vh-4rem)] flex items-center py-16 md:py-24 bg-bg">
-    <div class="max-w-4xl mx-auto px-6 w-full">
-      <div
-        class="loom-frame max-w-2xl mx-auto text-center"
-        bind:this={heroElement}
-        onmousemove={handleMouseMove}
-      >
-        <!-- Avatar with cursor-proximity reveal -->
-        <div class="mb-8 relative inline-block">
-          <div class="w-28 h-28 mx-auto rounded-lg bg-bg-muted border-2 border-thread-muted flex items-center justify-center overflow-hidden relative group cursor-crosshair">
-            <!-- Default avatar -->
-            <div class="absolute inset-0 flex items-center justify-center z-10 transition-opacity duration-300">
-              <User size="56" class="text-accent" strokeWidth="1.5" />
-            </div>
-
-            <!-- GitHub avatar (revealed on hover) -->
-            <div class="absolute inset-0 z-20 pointer-events-none">
-              <div
-                class="absolute inset-0 bg-bg-muted flex items-center justify-center overflow-hidden"
-                style="
-                  clip-path: circle(80px at {mouseX}px {mouseY}px);
-                "
-              >
-                <img
-                  src="https://github.com/Vonshlovens.png"
-                  alt="Vonshlovens GitHub avatar"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Name with cursor-proximity reveal -->
-        <div class="relative inline-block mb-3 cursor-crosshair">
-          <h1 class="font-mono text-2xl md:text-3xl font-bold text-fg tracking-tight">
-            <span class="relative inline-block">
-              <!-- Default name -->
-              <span class="relative z-10">
-                Eric Evans<span class="animate-pulse text-accent">_</span>
-              </span>
-
-              <!-- GitHub username (revealed on hover) -->
-              <span
-                class="absolute inset-0 z-20 pointer-events-none overflow-hidden"
-                style="
-                  clip-path: circle(120px at {mouseX}px {mouseY - 120}px);
-                "
-              >
-                <span class="text-accent font-bold">
-                  Vonshlovens<span class="animate-pulse">_</span>
-                </span>
-              </span>
-            </span>
-          </h1>
-        </div>
-
-        <!-- Tagline -->
-        <p class="font-mono text-accent font-bold uppercase tracking-wide text-sm mb-6">
-          Full-Stack Developer & Open Source Enthusiast
-        </p>
-
-        <!-- Bio -->
-        <p class="font-mono text-base text-fg-muted leading-relaxed max-w-xl mx-auto mb-10">
-          Building elegant solutions with modern web technologies.
-          Passionate about developer experience and clean code.
-        </p>
-
-        <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
-          <button
-            onclick={() => scrollTo('projects')}
-            class="
-              px-4 py-2
-              font-mono font-bold
-              bg-accent text-bg
-              rounded-md
-              transition-colors duration-200
-              hover:bg-accent-hover
-            "
-          >
-            View Projects
-          </button>
-
-          <button
-            onclick={() => scrollTo('contact')}
-            class="
-              px-4 py-2
-              font-mono font-bold
-              bg-transparent text-fg
-              border border-border
-              rounded-md
-              transition-colors duration-200
-              hover:bg-bg-muted
-            "
-          >
-            Get in Touch
-          </button>
-        </div>
-
-        <!-- Social Links -->
-        <div class="flex items-center justify-center gap-6">
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="font-mono font-bold text-accent underline underline-offset-4 decoration-1 transition-colors duration-200 hover:text-accent-hover flex items-center gap-2"
-          >
-            <Github size="18" />
-            <span>GitHub</span>
-          </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="font-mono font-bold text-accent underline underline-offset-4 decoration-1 transition-colors duration-200 hover:text-accent-hover flex items-center gap-2"
-          >
-            <Linkedin size="18" />
-            <span>LinkedIn</span>
-          </a>
-          <a
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="font-mono font-bold text-accent underline underline-offset-4 decoration-1 transition-colors duration-200 hover:text-accent-hover flex items-center gap-2"
-          >
-            <Twitter size="18" />
-            <span>Twitter</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <Hero />
 
   <!-- Skills Marquee -->
   <SkillsMarquee />

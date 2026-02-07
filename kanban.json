@@ -1,12 +1,6 @@
 {
   "todo": [
     {
-      "id": "hero-section",
-      "title": "Implement Hero Section",
-      "description": "Build the hero section per specs/hero-section.md — two-column layout with avatar, terminal stats panel, stat cards, and CTAs using Threadwork design system.",
-      "spec": "specs/hero-section.md"
-    },
-    {
       "id": "core-competencies",
       "title": "Implement Core Competencies Section",
       "description": "Build the 3-column competency grid per specs/core-competencies.md — icon boxes, titles, descriptions with hover effects using Threadwork design system.",
@@ -129,6 +123,12 @@
   ],
   "in_progress": [],
   "done": [
+    {
+      "id": "hero-section",
+      "title": "Implement Hero Section",
+      "description": "Built hero section per specs/hero-section.md — two-column layout (2/3 + 1/3) with avatar (grayscale-to-color hover, verified badge, glow), name/title/tags, bio quote, 4-column stat cards, dual CTA buttons, and terminal stats panel with decorative key-value pairs and status indicator. Uses V2 Stitch design tokens, Material Symbols, dot-grid and scan-line textures. Responsive (stacks on mobile, 2-col on lg). Extracted as src/lib/components/sections/Hero.svelte.",
+      "spec": "specs/hero-section.md"
+    },
     {
       "id": "design-system",
       "title": "Configure Design System & Global Theme",

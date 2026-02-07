@@ -2,7 +2,7 @@
 
 ## Overview
 
-The hero section is the first thing visitors see. It combines a professional introduction with a terminal/system-monitor aesthetic drawn from stitch.html, adapted to use the Threadwork design system (dark-first, CommitMono, natural dye palette).
+The hero section is the first thing visitors see. It combines a professional introduction with a terminal/system-monitor aesthetic drawn from stitch.html, using the V2 Stitch design system (dark-only, Inter + Fira Code, red accent #B80C09).
 
 ---
 
@@ -113,7 +113,7 @@ A decorative terminal window showing personal/fun stats.
 
 ## Design System Mapping
 
-All colors, fonts, and spacing follow the Threadwork design system from `specs/style-guide.md`:
+All colors, fonts, and spacing follow the V2 Stitch design system from `specs/design-system.md`:
 
 | stitch.html token | Threadwork equivalent |
 |---|---|
@@ -123,7 +123,7 @@ All colors, fonts, and spacing follow the Threadwork design system from `specs/s
 | `#888888` (text-muted) | `--color-fg-muted-value: #9C9590` |
 | `#1E1E1E` (surface) | `--color-bg-muted-value: #1A1816` |
 | `#333333` (border-dim) | `--color-border-value: #3D3632` |
-| Inter / Fira Code | CommitMono throughout |
+| Inter / Fira Code | Inter (sans) + Fira Code (mono) |
 
 ---
 
@@ -151,6 +151,5 @@ All colors, fonts, and spacing follow the Threadwork design system from `specs/s
 
 | File | Purpose |
 |------|---------|
-| `src/routes/+page.svelte` | Hero section markup (or extracted component) |
-| `src/lib/components/sections/Hero.svelte` | Optional extracted component |
-| `static/avatar.jpg` | Profile photo |
+| `src/lib/components/sections/Hero.svelte` | Extracted hero section component |
+| `src/routes/+page.svelte` | Imports and renders `<Hero />` |
