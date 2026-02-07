@@ -71,6 +71,12 @@
       "title": "Implement Back to Top Button",
       "description": "Build a fixed-position scroll-to-top button per specs/back-to-top.md — appears after 400px scroll, smooth scroll to top, fade+translate entry/exit animations, RAF-throttled scroll listener, system-monitor styled (bg-surface, border-dim, Material Symbols arrow icon), aria-label, focus-visible ring, reduced-motion support, responsive positioning.",
       "spec": "specs/back-to-top.md"
+    },
+    {
+      "id": "sitemap",
+      "title": "Implement XML Sitemap",
+      "description": "Create a /sitemap.xml SvelteKit server route per specs/sitemap.md — prerendered XML Sitemap 0.9, lists all public routes with lastmod/changefreq/priority, application/xml content-type, update robots.txt with Sitemap directive.",
+      "spec": "specs/sitemap.md"
     }
   ],
   "in_progress": [],

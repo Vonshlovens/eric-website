@@ -45,6 +45,7 @@ Quick-reference list of every specification file in this directory.
 - [GitHub Stats](./github-stats.md)
 - [Resume Download](./resume-download.md)
 - [SEO & Meta](./seo-meta.md)
+- [Sitemap](./sitemap.md)
 - [Responsive Breakpoints](./responsive-breakpoints.md)
 
 ## Transitions & Loading
