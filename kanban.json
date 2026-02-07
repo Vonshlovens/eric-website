@@ -1,0 +1,12 @@
+{
+  "todo": [
+    {
+      "id": "hero-section",
+      "title": "Implement Hero Section",
+      "description": "Build the hero section per specs-v2/hero-section.md — two-column layout with avatar, terminal stats panel, stat cards, and CTAs using Threadwork design system.",
+      "spec": "specs-v2/hero-section.md"
+    }
+  ],
+  "in_progress": [],
+  "done": []
+}
