@@ -65,6 +65,12 @@
       "title": "Implement Keyboard Shortcuts",
       "description": "Build global keyboard shortcuts with help modal per specs/keyboard-shortcuts.md — ? key opens terminal-styled shortcut reference modal, number keys 1-7 for section navigation, t/m for theme/motion toggle, focus trap, backdrop blur overlay, kbd element styling, form-field suppression, reduced-motion support, desktop-only behavior.",
       "spec": "specs/keyboard-shortcuts.md"
+    },
+    {
+      "id": "back-to-top",
+      "title": "Implement Back to Top Button",
+      "description": "Build a fixed-position scroll-to-top button per specs/back-to-top.md — appears after 400px scroll, smooth scroll to top, fade+translate entry/exit animations, RAF-throttled scroll listener, system-monitor styled (bg-surface, border-dim, Material Symbols arrow icon), aria-label, focus-visible ring, reduced-motion support, responsive positioning.",
+      "spec": "specs/back-to-top.md"
     }
   ],
   "in_progress": [],

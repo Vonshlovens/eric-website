@@ -38,6 +38,7 @@ Quick-reference list of every specification file in this directory.
 - [Theme Toggle](./theme-toggle.md)
 - [Scroll Animations](./scroll-animations.md)
 - [Keyboard Shortcuts](./keyboard-shortcuts.md)
+- [Back to Top](./back-to-top.md)
 
 ## Technical & SEO
 - [Performance](./performance.md)
