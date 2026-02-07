@@ -47,6 +47,12 @@
       "title": "Implement Loading / Splash Screen",
       "description": "Build a system-boot themed splash overlay per specs/loading-screen.md — sequential terminal boot lines with staggered reveal, accent-colored 'OK' and 'SYSTEM READY' text, fade-out exit, sessionStorage once-per-session flag, reduced-motion skip, non-blocking ~1.5s total duration.",
       "spec": "specs/loading-screen.md"
+    },
+    {
+      "id": "responsive-breakpoints",
+      "title": "Audit & Enforce Responsive Breakpoints",
+      "description": "Audit all sections against specs/responsive-breakpoints.md — verify canonical breakpoint tiers (sm/md/lg/xl), container max-width and padding, grid column counts per breakpoint, typography scaling, 44px minimum touch targets, 320px minimum viewport support, and no horizontal scroll at any breakpoint.",
+      "spec": "specs/responsive-breakpoints.md"
     }
   ],
   "in_progress": [],
