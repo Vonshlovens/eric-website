@@ -5,6 +5,12 @@
       "title": "Implement Hero Section",
       "description": "Build the hero section per specs-v2/hero-section.md — two-column layout with avatar, terminal stats panel, stat cards, and CTAs using Threadwork design system.",
       "spec": "specs-v2/hero-section.md"
+    },
+    {
+      "id": "navigation",
+      "title": "Implement Navigation",
+      "description": "Build the sticky navigation bar per specs-v2/navigation.md — system-style branding, live-status indicator, desktop nav links, CTA button, and mobile hamburger menu using Threadwork design system.",
+      "spec": "specs-v2/navigation.md"
     }
   ],
   "in_progress": [],
