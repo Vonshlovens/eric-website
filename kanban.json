@@ -47,6 +47,12 @@
       "title": "Implement Education & Certifications Section",
       "description": "Build the education and certifications grid per specs-v2/education.md — 2-column responsive grid of degree and certification cards with category badges, credential links, and Threadwork design system styling.",
       "spec": "specs-v2/education.md"
+    },
+    {
+      "id": "skills-marquee",
+      "title": "Implement Skills Marquee",
+      "description": "Build the dual-row animated skills marquee per specs-v2/skills-marquee.md — two rows of tech skill chips scrolling in opposite directions with accent dots, hover effects, edge fades, and reduced-motion fallback.",
+      "spec": "specs-v2/skills-marquee.md"
     }
   ],
   "in_progress": [],
