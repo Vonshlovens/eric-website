@@ -58,7 +58,7 @@
               href="https://github.com/Vonshlovens"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="GitHub"
+              aria-label="GitHub (opens in new tab)"
             >
               <span class="material-symbols-outlined text-2xl" aria-hidden="true">terminal</span>
             </a>
@@ -67,7 +67,7 @@
               href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="LinkedIn"
+              aria-label="LinkedIn (opens in new tab)"
             >
               <span class="material-symbols-outlined text-2xl" aria-hidden="true">hub</span>
             </a>

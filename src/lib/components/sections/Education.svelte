@@ -3,12 +3,12 @@
   import { scrollReveal } from '$lib/actions/scrollReveal';
 </script>
 
-<section class="py-16 md:py-20" aria-label="Education & Certifications">
+<section class="py-16 md:py-20" id="education" aria-labelledby="education-heading">
   <div class="max-w-7xl mx-auto px-6 md:px-12">
     <!-- Section Header -->
     <div class="flex items-center gap-2 mb-8" use:scrollReveal>
       <span class="material-symbols-outlined text-accent" aria-hidden="true">school</span>
-      <h2 class="text-white text-xl font-mono font-bold uppercase tracking-[0.2em]">
+      <h2 id="education-heading" class="text-white text-xl font-mono font-bold uppercase tracking-[0.2em]">
         Education & Certifications
       </h2>
     </div>
@@ -47,6 +47,7 @@
               class="text-text-muted text-xs font-mono uppercase hover:text-accent transition-colors duration-200 inline-flex items-center gap-1"
             >
               View Credential
+              <span class="sr-only">(opens in new tab)</span>
               <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
             </a>
           {/if}

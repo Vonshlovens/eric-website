@@ -33,12 +33,12 @@
   ];
 </script>
 
-<section class="py-16 md:py-20" aria-label="Core Competencies">
+<section class="py-16 md:py-20" aria-labelledby="core-competencies-heading">
   <div class="max-w-7xl mx-auto px-6 md:px-12">
     <!-- Section Header -->
     <div class="flex items-center gap-2 mb-8" use:scrollReveal>
       <span class="material-symbols-outlined text-accent" aria-hidden="true">hub</span>
-      <h2 class="text-text-white text-xl font-mono font-bold uppercase tracking-[0.2em]">
+      <h2 id="core-competencies-heading" class="text-text-white text-xl font-mono font-bold uppercase tracking-[0.2em]">
         Core Competencies
       </h2>
     </div>

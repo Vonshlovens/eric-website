@@ -3,12 +3,12 @@
   import { scrollReveal } from '$lib/actions/scrollReveal';
 </script>
 
-<section class="py-16 md:py-20" id="experience" aria-label="Work Experience">
+<section class="py-16 md:py-20" id="experience" aria-labelledby="work-experience-heading">
   <div class="max-w-7xl mx-auto px-6 md:px-12">
     <!-- Section Header -->
     <div class="flex items-center gap-2 mb-8" use:scrollReveal>
       <span class="material-symbols-outlined text-accent" aria-hidden="true">work</span>
-      <h2 class="text-text-white text-xl font-mono font-bold uppercase tracking-[0.2em]">
+      <h2 id="work-experience-heading" class="text-text-white text-xl font-mono font-bold uppercase tracking-[0.2em]">
         Work Experience
       </h2>
     </div>
@@ -23,6 +23,7 @@
         class="text-xs font-mono text-accent hover:text-text-white transition-colors uppercase tracking-widest"
       >
         Download Full Resume →
+        <span class="sr-only">(opens in new tab)</span>
       </a>
     </div>
 

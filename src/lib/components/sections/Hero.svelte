@@ -34,16 +34,16 @@
 <section
   id="about"
   class="relative min-h-[calc(100vh-4rem)] flex items-center py-16 md:py-24 overflow-hidden"
-  aria-label="About Eric Evans"
+  aria-labelledby="hero-heading"
 >
   <!-- Subtle dot grid background texture -->
-  <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="
+  <div class="absolute inset-0 opacity-[0.03] pointer-events-none" aria-hidden="true" style="
     background-image: radial-gradient(circle, var(--color-text-main) 1px, transparent 1px);
     background-size: 24px 24px;
   "></div>
 
   <!-- Scan line effect -->
-  <div class="absolute inset-0 pointer-events-none opacity-[0.02]" style="
+  <div class="absolute inset-0 pointer-events-none opacity-[0.02]" aria-hidden="true" style="
     background: repeating-linear-gradient(
       0deg,
       transparent,
@@ -55,7 +55,7 @@
 
   <div class="max-w-7xl mx-auto px-6 md:px-12 w-full">
     <!-- Terminal prompt line -->
-    <div class="font-mono text-accent text-sm mb-10 flex items-center gap-2">
+    <div class="font-mono text-accent text-sm mb-10 flex items-center gap-2" aria-hidden="true">
       <span class="text-text-muted">~</span>
       <span class="text-accent">&gt;</span>
       <span class="text-text-main">init_portfolio.sh</span>
@@ -95,7 +95,7 @@
 
           <!-- Name block -->
           <div class="text-center sm:text-left">
-            <h1 class="font-mono text-4xl md:text-6xl font-bold text-text-white tracking-tighter leading-none mb-2">
+            <h1 id="hero-heading" class="font-mono text-4xl md:text-6xl font-bold text-text-white tracking-tighter leading-none mb-2">
               Eric Evans<span class="animate-pulse text-accent">_</span>
             </h1>
             <p class="font-mono text-lg text-accent tracking-wide mb-4">
@@ -153,8 +153,9 @@
               hover:bg-accent/90 hover:shadow-lg hover:shadow-accent/20
             "
           >
-            <span class="material-symbols-outlined text-base">description</span>
+            <span class="material-symbols-outlined text-base" aria-hidden="true">description</span>
             View Resume
+            <span class="sr-only">(opens in new tab)</span>
           </a>
           <a
             href="#projects"
@@ -169,7 +170,7 @@
               hover:border-accent/40 hover:text-text-white
             "
           >
-            <span class="material-symbols-outlined text-base">folder_open</span>
+            <span class="material-symbols-outlined text-base" aria-hidden="true">folder_open</span>
             View Projects
           </a>
         </div>

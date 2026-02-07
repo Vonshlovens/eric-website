@@ -1,7 +1,10 @@
 <script lang="ts">
   import { motionStore } from '$lib/stores/motion.svelte';
+  import { tick } from 'svelte';
 
   let mobileMenuOpen = $state(false);
+  let menuToggleBtn = $state<HTMLButtonElement>();
+  let mobileMenuEl = $state<HTMLElement>();
 
   const navLinks = [
     { label: 'Dashboard', href: '#about' },
@@ -17,9 +20,43 @@
     mobileMenuOpen = false;
   }
 
+  async function toggleMenu() {
+    mobileMenuOpen = !mobileMenuOpen;
+    if (mobileMenuOpen) {
+      await tick();
+      const firstLink = mobileMenuEl?.querySelector('a, button') as HTMLElement | null;
+      firstLink?.focus();
+    }
+  }
+
+  function closeMenu() {
+    mobileMenuOpen = false;
+    menuToggleBtn?.focus();
+  }
+
   function handleKeydown(e: KeyboardEvent) {
     if (e.key === 'Escape' && mobileMenuOpen) {
-      mobileMenuOpen = false;
+      closeMenu();
+      return;
+    }
+
+    // Focus trap for mobile menu
+    if (e.key === 'Tab' && mobileMenuOpen && mobileMenuEl) {
+      const focusable = mobileMenuEl.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled])'
+      );
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     }
   }
 </script>
@@ -27,14 +64,6 @@
 <svelte:window onkeydown={handleKeydown} />
 
 <header class="sticky top-0 z-50 h-16 bg-surface/95 backdrop-blur-sm border-b border-border-dim">
-  <!-- Skip to content -->
-  <a
-    href="#main-content"
-    class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] focus:px-4 focus:py-2 focus:bg-accent focus:text-text-white focus:font-mono focus:text-xs focus:rounded"
-  >
-    Skip to content
-  </a>
-
   <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
     <!-- Left: Brand + Divider + Status -->
     <div class="flex items-center gap-4">
@@ -47,8 +76,8 @@
       <div class="h-4 w-px bg-border-dim hidden sm:block"></div>
 
       <!-- Live Status Indicator -->
-      <div class="hidden sm:flex items-center gap-2">
-        <span class="relative flex h-2 w-2">
+      <div class="hidden sm:flex items-center gap-2" aria-label="Status: active">
+        <span class="relative flex h-2 w-2" aria-hidden="true">
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-status-ok opacity-75"></span>
           <span class="relative inline-flex rounded-full h-2 w-2 bg-status-ok"></span>
         </span>
@@ -94,12 +123,14 @@
         class="border border-accent text-accent px-4 py-1.5 rounded text-xs font-mono font-bold hover:bg-accent hover:text-primary transition-all duration-200 uppercase bg-accent/10"
       >
         View Source
+        <span class="sr-only">(opens in new tab)</span>
       </a>
     </div>
 
     <!-- Mobile Menu Toggle -->
     <button
-      onclick={() => mobileMenuOpen = !mobileMenuOpen}
+      bind:this={menuToggleBtn}
+      onclick={toggleMenu}
       class="md:hidden text-text-muted hover:text-text-white transition-colors p-2"
       aria-label="Toggle menu"
       aria-expanded={mobileMenuOpen}
@@ -116,6 +147,7 @@
   <!-- Mobile Menu -->
   {#if mobileMenuOpen}
     <nav
+      bind:this={mobileMenuEl}
       id="mobile-menu"
       class="md:hidden bg-surface border-b border-border-dim animate-slide-down"
       aria-label="Mobile navigation"
@@ -156,6 +188,7 @@
             class="inline-block border border-accent text-accent px-4 py-1.5 rounded text-xs font-mono font-bold hover:bg-accent hover:text-primary transition-all duration-200 uppercase bg-accent/10"
           >
             View Source
+            <span class="sr-only">(opens in new tab)</span>
           </a>
         </li>
       </ul>

@@ -184,3 +184,40 @@ Before marking any section spec as implementation-complete, verify:
 - Focus ring styles can be added as a Tailwind component/utility in `src/app.css`
 - Color contrast issues should be resolved during design-system implementation; if `text-muted` is used on `surface` backgrounds, bump it to a slightly lighter shade or ensure the text size qualifies as "large"
 - The testing checklist should be run as part of the implementation verification for every section
+
+---
+
+## Implementation Status
+
+**Status: IMPLEMENTED**
+
+### What was done
+
+1. **Skip link**: Moved to `+layout.svelte` before `<Navigation />` as the first focusable element. Text: "Skip to main content". Visible on focus with `sr-only focus:not-sr-only` pattern, styled with accent bg, fixed positioning, z-100.
+
+2. **Focus indicators**: Global `focus-visible` style in `app.css` with accent double-ring (`box-shadow: 0 0 0 2px accent, 0 0 0 4px primary`). Applies to all interactive elements.
+
+3. **Mobile menu focus trap**: Added to `Navigation.svelte` — on open, focus moves to first link in menu; Tab is trapped within focusable elements; Shift+Tab wraps to last element; Escape closes menu and returns focus to hamburger button.
+
+4. **aria-labelledby on sections**: All sections now use `aria-labelledby` pointing to their heading element IDs:
+   - Hero: `aria-labelledby="hero-heading"` → `<h1 id="hero-heading">`
+   - Core Competencies: `aria-labelledby="core-competencies-heading"` → `<h2 id="core-competencies-heading">`
+   - Engineering Log: `aria-labelledby="engineering-log-heading"` (already existed)
+   - Work Experience: `aria-labelledby="work-experience-heading"` → `<h2 id="work-experience-heading">`
+   - Education: `aria-labelledby="education-heading"` → `<h2 id="education-heading">`
+   - Interests: `aria-labelledby="interests-heading"` → `<h2 id="interests-heading">`
+   - Contact CTA: `aria-labelledby="contact-heading"` (already existed)
+
+5. **Skills marquee**: Removed `aria-hidden="true"` from the entire `<section>`. Added `aria-label="Technical Skills"`. Cloned content (iterations 2-4) wrapped in `<div class="contents" aria-hidden="true">`. Decorative accent dots marked `aria-hidden="true"`.
+
+6. **External links**: All `target="_blank"` links now include `<span class="sr-only">(opens in new tab)</span>` or equivalent text in `aria-label`. Affected components: Navigation, Hero, WorkExperience, Education, Interests, ContactCTA.
+
+7. **Decorative elements**: Added `aria-hidden="true"` to dot-grid textures, scan-line overlays, terminal prompt line, Material Symbol icons next to text, nav status ping dot, fade gradients, timeline rails/dots.
+
+8. **Status indicator**: Nav status indicator has `aria-label="Status: active"`.
+
+9. **Reduced motion**: Already implemented via animation toggle store + CSS overrides in `app.css` (both `data-reduce-motion` attribute and `prefers-reduced-motion` media query).
+
+### Color contrast notes
+
+Per audit, `text-muted` (#888888) on `surface` (#1E1E1E) is 3.7:1 — passes for large text only. This is acceptable because `text-muted` on `surface` is only used for labels/metadata in large or bold sizes, or supplementary text that is also conveyed elsewhere. No action needed beyond awareness.

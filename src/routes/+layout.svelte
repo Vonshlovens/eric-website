@@ -50,8 +50,14 @@
 	{@html `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`}
 </svelte:head>
 
+<!-- Skip to content (first focusable element) -->
+<a
+	href="#main-content"
+	class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-accent focus:text-white focus:px-4 focus:py-2 focus:rounded focus:font-mono focus:text-sm"
+>
+	Skip to main content
+</a>
+
 <Navigation />
-<div id="main-content">
-	{@render children()}
-</div>
+{@render children()}
 <Footer />

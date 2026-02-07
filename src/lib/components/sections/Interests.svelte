@@ -3,12 +3,12 @@
   import { scrollReveal } from '$lib/actions/scrollReveal';
 </script>
 
-<section class="py-16 md:py-20" aria-label="Beyond Code">
+<section class="py-16 md:py-20" aria-labelledby="interests-heading">
   <div class="max-w-7xl mx-auto px-6 md:px-12">
     <!-- Section Header -->
     <div class="flex items-center gap-2 mb-8" use:scrollReveal>
       <span class="material-symbols-outlined text-accent" aria-hidden="true">interests</span>
-      <h2 class="text-text-white text-xl font-mono font-bold uppercase tracking-[0.2em]">
+      <h2 id="interests-heading" class="text-text-white text-xl font-mono font-bold uppercase tracking-[0.2em]">
         Beyond Code
       </h2>
     </div>
@@ -46,7 +46,8 @@
                   rel="noopener noreferrer"
                   class="text-accent text-xs font-mono hover:underline transition-colors duration-200"
                 >
-                  {link.label} →
+                  {link.label}
+                  <span class="sr-only">(opens in new tab)</span> →
                 </a>
               {/each}
             </div>
