@@ -153,10 +153,24 @@ main section {
    Reduced Motion
    ============================================ */
 
-[data-reduce-motion="true"] .scroll-reveal {
+/* Toggle-driven: suppress ALL animations site-wide */
+html[data-reduce-motion] *,
+html[data-reduce-motion] *::before,
+html[data-reduce-motion] *::after {
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+  scroll-behavior: auto !important;
+}
+
+html[data-reduce-motion] {
+  scroll-behavior: auto !important;
+}
+
+html[data-reduce-motion] .scroll-reveal {
   opacity: 1 !important;
   transform: none !important;
-  transition: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

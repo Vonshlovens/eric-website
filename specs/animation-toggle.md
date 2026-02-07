@@ -137,3 +137,23 @@ function createMotionStore() {
 - Global CSS rule: added to `app.css` or the root layout
 - The `init()` call should happen in the root `+layout.svelte` `onMount` to avoid SSR mismatch
 - For the card-stack scroll and skills marquee, check `$animationsDisabled` in JS to skip `requestAnimationFrame` loops or `IntersectionObserver` pin logic entirely
+
+---
+
+## Implementation Record
+
+**Status: COMPLETE**
+
+### Files Created
+- `src/lib/stores/motion.svelte.ts` — Svelte 5 rune-based MotionStore class with `$state(disabled)`, `toggle()`, localStorage persistence, OS preference listener
+
+### Files Modified
+- `src/lib/components/layout/Navigation.svelte` — Desktop icon button (between nav links and CTA), mobile menu item with "Animations" label and On/Off indicator
+- `src/app.css` — Global `html[data-reduce-motion]` override suppressing all animation-duration, transition-duration, animation-delay, transition-delay, scroll-behavior
+
+### Architecture Decisions
+- Used Svelte 5 class-based store pattern (matching existing `theme.svelte.ts`) instead of the writable-based spec example
+- Store auto-initializes on import via constructor (no separate `init()` call needed)
+- Sets both `data-reduce-motion` attribute and `dataset.reduceMotion` for CSS and JS consumers
+- Existing `scrollReveal.ts` already checked `dataset.reduceMotion` — no changes needed there
+- Nav's own `animate-slide-down` also gated with `:global(html[data-reduce-motion])` scoped rule

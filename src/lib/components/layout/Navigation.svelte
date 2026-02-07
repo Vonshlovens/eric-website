@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { motionStore } from '$lib/stores/motion.svelte';
+
   let mobileMenuOpen = $state(false);
 
   const navLinks = [
@@ -71,6 +73,19 @@
         </ul>
       </nav>
 
+      <!-- Animation Toggle -->
+      <button
+        onclick={() => motionStore.toggle()}
+        class="p-2 text-text-muted hover:text-accent border border-border-dim hover:border-accent/50 rounded transition-colors duration-200"
+        aria-label={motionStore.disabled ? 'Enable animations' : 'Disable animations'}
+        aria-pressed={motionStore.disabled}
+        title={motionStore.disabled ? 'Animations off' : 'Animations on'}
+      >
+        <span class="material-symbols-outlined text-lg leading-none">
+          {motionStore.disabled ? 'motion_photos_paused' : 'animation'}
+        </span>
+      </button>
+
       <!-- CTA Button -->
       <a
         href="https://github.com/Vonshlovens"
@@ -118,6 +133,22 @@
           </li>
         {/each}
         <li class="pt-3 mt-3 border-t border-border-dim">
+          <button
+            onclick={() => motionStore.toggle()}
+            class="flex items-center gap-3 py-2 w-full text-left"
+            aria-label={motionStore.disabled ? 'Enable animations' : 'Disable animations'}
+            aria-pressed={motionStore.disabled}
+          >
+            <span class="material-symbols-outlined text-lg text-text-muted">
+              {motionStore.disabled ? 'motion_photos_paused' : 'animation'}
+            </span>
+            <span class="text-xs font-mono text-text-muted tracking-widest uppercase">Animations</span>
+            <span class="ml-auto text-[10px] font-mono uppercase tracking-widest {motionStore.disabled ? 'text-accent' : 'text-status-ok'}">
+              {motionStore.disabled ? 'Off' : 'On'}
+            </span>
+          </button>
+        </li>
+        <li class="pt-3 mt-3 border-t border-border-dim">
           <a
             href="https://github.com/Vonshlovens"
             target="_blank"
@@ -152,5 +183,9 @@
     .animate-slide-down {
       animation: none;
     }
+  }
+
+  :global(html[data-reduce-motion]) .animate-slide-down {
+    animation: none;
   }
 </style>

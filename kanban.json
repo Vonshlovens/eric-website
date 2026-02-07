@@ -19,12 +19,6 @@
       "spec": "specs/avatar-hover-reveal.md"
     },
     {
-      "id": "animation-toggle",
-      "title": "Implement Animation Toggle",
-      "description": "Add a nav-bar toggle that disables all page animations and transitions. Respects prefers-reduced-motion as default, persists to localStorage, applies a global CSS override via data-reduce-motion attribute, and exposes a Svelte store for JS-driven animations.",
-      "spec": "specs/animation-toggle.md"
-    },
-    {
       "id": "resume-download",
       "title": "Add Resume PDF Download",
       "description": "Serve a static resume PDF from static/resume.pdf. Update the hero primary CTA to link to the resume (opens in new tab with download fallback). Optionally add a 'Download Full Resume' link in the work experience section.",
@@ -69,6 +63,12 @@
   ],
   "in_progress": [],
   "done": [
+    {
+      "id": "animation-toggle",
+      "title": "Implement Animation Toggle",
+      "description": "Built nav-bar animation toggle per specs/animation-toggle.md — icon button in desktop nav (animation/motion_photos_paused Material Symbols), labeled menu item in mobile menu with on/off indicator. Svelte 5 rune-based MotionStore (src/lib/stores/motion.svelte.ts) with $state, localStorage persistence (reduce-motion key), prefers-reduced-motion detection as default, OS preference change listener. Sets data-reduce-motion attribute on <html>. Global CSS override in app.css suppresses all animation-duration, transition-duration, scroll-behavior site-wide. Existing scrollReveal action already checks data-reduce-motion. aria-label, aria-pressed, title tooltip for accessibility.",
+      "spec": "specs/animation-toggle.md"
+    },
     {
       "id": "skills-marquee",
       "title": "Implement Skills Marquee",
