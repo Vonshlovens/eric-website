@@ -101,6 +101,12 @@
       "title": "Implement Scroll-Triggered Entrance Animations",
       "description": "Build a reusable Svelte action (use:scrollReveal) using Intersection Observer to fade-up sections and stagger grid children on scroll. Respects animation toggle and prefers-reduced-motion. CSS-only transitions on opacity/transform for performance.",
       "spec": "specs-v2/scroll-animations.md"
+    },
+    {
+      "id": "github-stats",
+      "title": "Integrate Live GitHub Stats",
+      "description": "Fetch live data from the GitHub API via +page.server.ts to populate the hero stat cards and terminal panel with real repo count, commit count, and account age. Includes static fallbacks and optional GITHUB_TOKEN for higher rate limits.",
+      "spec": "specs-v2/github-stats.md"
     }
   ],
   "in_progress": [],
