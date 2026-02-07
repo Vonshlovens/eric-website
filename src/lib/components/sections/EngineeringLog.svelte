@@ -1,11 +1,12 @@
 <script lang="ts">
   import { engineeringLog } from '$lib/data/engineering-log';
+  import { scrollReveal } from '$lib/actions/scrollReveal';
 </script>
 
 <section class="py-16 md:py-20" id="engineering-log" aria-labelledby="engineering-log-heading">
   <div class="max-w-7xl mx-auto px-6 md:px-12">
     <!-- Section Header -->
-    <div class="flex items-center justify-between mb-8 border-b border-border-dim pb-4">
+    <div class="flex items-center justify-between mb-8 border-b border-border-dim pb-4" use:scrollReveal>
       <div class="flex items-center gap-2">
         <span class="material-symbols-outlined text-accent" aria-hidden="true">terminal</span>
         <h2
@@ -32,6 +33,7 @@
     <div class="space-y-6">
       {#each engineeringLog as entry (entry.id)}
         <article
+          use:scrollReveal
           class="group bg-surface border border-border-dim rounded hover:border-accent/50 transition-all duration-300 overflow-hidden flex flex-col lg:flex-row"
         >
           <!-- Image -->

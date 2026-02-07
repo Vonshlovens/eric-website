@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { scrollReveal } from '$lib/actions/scrollReveal';
+
   interface Competency {
     id: string;
     icon: string;
@@ -34,7 +36,7 @@
 <section class="py-16 md:py-20" aria-label="Core Competencies">
   <div class="max-w-7xl mx-auto px-6 md:px-12">
     <!-- Section Header -->
-    <div class="flex items-center gap-2 mb-8">
+    <div class="flex items-center gap-2 mb-8" use:scrollReveal>
       <span class="material-symbols-outlined text-accent" aria-hidden="true">hub</span>
       <h2 class="text-text-white text-xl font-mono font-bold uppercase tracking-[0.2em]">
         Core Competencies
@@ -42,10 +44,10 @@
     </div>
 
     <!-- 3-Column Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6" use:scrollReveal={{ stagger: true }}>
       {#each competencies as comp (comp.id)}
         <div
-          class="group bg-surface hover:bg-surface-highlight p-8 rounded border border-border-dim transition-all duration-300 hover:border-accent"
+          class="scroll-reveal group bg-surface hover:bg-surface-highlight p-8 rounded border border-border-dim transition-all duration-300 hover:border-accent"
         >
           <!-- Icon Box -->
           <div

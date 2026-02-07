@@ -31,12 +31,6 @@
       "spec": "specs/resume-download.md"
     },
     {
-      "id": "scroll-animations",
-      "title": "Implement Scroll-Triggered Entrance Animations",
-      "description": "Build a reusable Svelte action (use:scrollReveal) using Intersection Observer to fade-up sections and stagger grid children on scroll. Respects animation toggle and prefers-reduced-motion. CSS-only transitions on opacity/transform for performance.",
-      "spec": "specs/scroll-animations.md"
-    },
-    {
       "id": "github-stats",
       "title": "Integrate Live GitHub Stats",
       "description": "Fetch live data from the GitHub API via +page.server.ts to populate the hero stat cards and terminal panel with real repo count, commit count, and account age. Includes static fallbacks and optional GITHUB_TOKEN for higher rate limits.",
@@ -140,6 +134,12 @@
       "title": "Implement Engineering Log Section",
       "description": "Built vertically stacked engineering log per specs/engineering-log.md — replaced V1 grid project cards with horizontal project cards (image 1/3, content 2/3 on lg, stacked on mobile). Grayscale-to-color image on card hover, structured narrative sections ([The Problem], [Key Learnings], [Tech Stack]) with accent-colored uppercase mono labels, category badges (bg-accent/20 text-accent), tech tag pills (bg-primary border-border-dim), section header with active project count and pulsing status-ok indicator. Uses V2 Stitch design tokens (bg-surface, border-border-dim, hover:border-accent/50). Data file src/lib/data/engineering-log.ts with EngineeringLogEntry interface. Component extracted as src/lib/components/sections/EngineeringLog.svelte.",
       "spec": "specs/engineering-log.md"
+    },
+    {
+      "id": "scroll-animations",
+      "title": "Implement Scroll-Triggered Entrance Animations",
+      "description": "Built reusable Svelte action (use:scrollReveal) using a shared IntersectionObserver per specs/scroll-animations.md. Fade-up entrance (opacity 0→1, translateY 24px→0, 600ms ease-out) with stagger support for grid children (100ms delay per child, capped at 500ms). Applied to CoreCompetencies (heading + staggered cards), EngineeringLog (heading + sequential cards), SkillsMarquee (whole section), WorkExperience (heading + sequential entries), Education (heading + staggered cards), Interests (heading + staggered cards), ContactCTA (whole banner). Hero and Footer excluded per spec. CSS in app.css with scroll-reveal/revealed classes. Respects prefers-reduced-motion and data-reduce-motion attribute (shows all elements immediately). Single shared observer, unobserve after reveal, compositor-friendly opacity+transform only. Action file: src/lib/actions/scrollReveal.ts.",
+      "spec": "specs/scroll-animations.md"
     }
   ]
 }

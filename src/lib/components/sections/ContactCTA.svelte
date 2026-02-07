@@ -1,7 +1,12 @@
+<script lang="ts">
+  import { scrollReveal } from '$lib/actions/scrollReveal';
+</script>
+
 <section
   id="contact"
   class="py-16 md:py-20"
   aria-labelledby="contact-heading"
+  use:scrollReveal
 >
   <div class="max-w-7xl mx-auto px-6 md:px-12">
     <div class="bg-surface rounded border border-border-dim relative overflow-hidden">

@@ -1,11 +1,12 @@
 <script lang="ts">
   import { experiences } from '$lib/data/experience';
+  import { scrollReveal } from '$lib/actions/scrollReveal';
 </script>
 
 <section class="py-16 md:py-20" id="experience" aria-label="Work Experience">
   <div class="max-w-7xl mx-auto px-6 md:px-12">
     <!-- Section Header -->
-    <div class="flex items-center gap-2 mb-8">
+    <div class="flex items-center gap-2 mb-8" use:scrollReveal>
       <span class="material-symbols-outlined text-accent" aria-hidden="true">work</span>
       <h2 class="text-text-white text-xl font-mono font-bold uppercase tracking-[0.2em]">
         Work Experience
@@ -15,7 +16,7 @@
     <!-- Timeline -->
     <div class="max-w-3xl">
       {#each experiences as exp, i (exp.id)}
-        <div class="relative pb-10 last:pb-0 pl-0 md:pl-8">
+        <div use:scrollReveal class="relative pb-10 last:pb-0 pl-0 md:pl-8">
           <!-- Timeline Rail (desktop only) -->
           {#if i < experiences.length - 1}
             <div

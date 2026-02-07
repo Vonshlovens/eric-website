@@ -1,11 +1,12 @@
 <script lang="ts">
   import { education } from '$lib/data/education';
+  import { scrollReveal } from '$lib/actions/scrollReveal';
 </script>
 
 <section class="py-16 md:py-20" aria-label="Education & Certifications">
   <div class="max-w-7xl mx-auto px-6 md:px-12">
     <!-- Section Header -->
-    <div class="flex items-center gap-2 mb-8">
+    <div class="flex items-center gap-2 mb-8" use:scrollReveal>
       <span class="material-symbols-outlined text-accent" aria-hidden="true">school</span>
       <h2 class="text-white text-xl font-mono font-bold uppercase tracking-[0.2em]">
         Education & Certifications
@@ -13,9 +14,9 @@
     </div>
 
     <!-- 2-Column Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6" use:scrollReveal={{ stagger: true }}>
       {#each education as item (item.id)}
-        <div class="relative bg-surface p-6 md:p-8 rounded border border-border-dim hover:border-accent/30 transition-colors duration-300">
+        <div class="scroll-reveal relative bg-surface p-6 md:p-8 rounded border border-border-dim hover:border-accent/30 transition-colors duration-300">
           <!-- Category Badge -->
           <span class="absolute top-4 right-4 text-[10px] font-mono bg-accent/20 text-accent px-2 py-1 rounded uppercase">
             {item.type}

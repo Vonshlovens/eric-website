@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { scrollReveal } from '$lib/actions/scrollReveal';
+
   const skills = [
     'Python', 'JavaScript', 'TypeScript', 'Svelte', 'Deno',
     'Node', 'Go', 'Azure', 'GCP', 'Terraform',
@@ -10,7 +12,7 @@
   const row2 = skills.slice(10);
 </script>
 
-<section aria-hidden="true" class="relative overflow-hidden bg-primary py-8 group">
+<section aria-hidden="true" class="relative overflow-hidden bg-primary py-8 group" use:scrollReveal>
   <!-- Fade edges -->
   <div class="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 md:w-24 bg-gradient-to-r from-primary to-transparent"></div>
   <div class="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 md:w-24 bg-gradient-to-l from-primary to-transparent"></div>
