@@ -148,6 +148,12 @@ Comprehensive specifications for the portfolio website built with SvelteKit 2, S
 - Static `robots.txt` with `User-agent: *` Allow all
 - Sitemap directive pointing to `/sitemap.xml`
 
+#### [Print Stylesheet](./print-stylesheet.md)
+- `@media print` block in `app.css` — no JS required
+- Black-on-white, system serif body, Fira Code headings
+- Hides nav, footer chrome, decorative overlays, CTA button
+- Appends URLs after external links, greyscale images, `break-inside: avoid`
+
 ## Error Pages
 
 #### [404 Page](./404-page.md)

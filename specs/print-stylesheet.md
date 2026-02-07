@@ -1,6 +1,8 @@
-# Print Stylesheet
+# Print Stylesheet ✅
 
 Clean, ink-friendly print layout for the portfolio so it reads well on paper or as a saved PDF.
+
+> **Status:** Implemented — `@media print` block added at end of `src/app.css`.
 
 ## Overview
 

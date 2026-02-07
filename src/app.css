@@ -192,3 +192,175 @@ html[data-reduce-motion] .scroll-reveal {
     transition: none !important;
   }
 }
+
+/* ============================================
+   Print Stylesheet
+   Source of truth: specs/print-stylesheet.md
+   ============================================ */
+
+@page {
+  margin: 1.5cm;
+}
+
+@media print {
+  /* --- Reset colors: black on white --- */
+  *,
+  *::before,
+  *::after {
+    color: #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  html, body {
+    background: #fff !important;
+  }
+
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  /* Keep Fira Code for headings */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fira Code', ui-monospace, monospace;
+  }
+
+  /* --- Hidden elements --- */
+  header,
+  footer .flex.items-center.gap-2,
+  nav,
+  [data-print-hide],
+  .animate-marquee,
+  .animate-marquee-reverse {
+    display: none !important;
+  }
+
+  /* Hide decorative texture overlays (dot-grid, scan-lines) */
+  div[aria-hidden="true"].pointer-events-none {
+    display: none !important;
+  }
+
+  /* Hide Contact CTA button (keep the section text/links) */
+  #contact a.bg-accent {
+    display: none !important;
+  }
+
+  /* Hide status badge in Contact CTA */
+  #contact span.bg-primary\/50 {
+    display: none !important;
+  }
+
+  /* Hide footer status indicator & latency readout, keep branding & copyright */
+  footer .flex.items-center.gap-2 {
+    display: none !important;
+  }
+
+  /* Hide icon-only links (material symbols in contact) */
+  #contact .material-symbols-outlined {
+    display: none !important;
+  }
+
+  /* --- Remove max-width constraints --- */
+  main, main section, .max-w-7xl {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* --- Skills marquee: show as static wrapped grid --- */
+  section[aria-label="Technical Skills"] {
+    overflow: visible !important;
+  }
+
+  section[aria-label="Technical Skills"] .flex {
+    animation: none !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    gap: 0.5rem !important;
+  }
+
+  /* Hide duplicated marquee clones */
+  section[aria-label="Technical Skills"] div[aria-hidden="true"] {
+    display: none !important;
+  }
+
+  /* Hide marquee fade edges */
+  section[aria-label="Technical Skills"] > .pointer-events-none {
+    display: none !important;
+  }
+
+  /* Skill chip print styling */
+  section[aria-label="Technical Skills"] .rounded {
+    border: 1px solid #999 !important;
+    padding: 2px 8px !important;
+  }
+
+  /* --- Append URLs after external links --- */
+  a[href^="http"]::after,
+  a[href^="mailto:"]::after {
+    content: " (" attr(href) ")" !important;
+    font-size: 0.8em;
+    font-weight: normal;
+    font-style: italic;
+    word-break: break-all;
+  }
+
+  /* Don't append URLs for internal/anchor links */
+  a[href^="#"]::after,
+  a[href^="/"]::after {
+    content: "" !important;
+  }
+
+  /* --- Page breaks --- */
+  section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Avoid breaks inside cards, experience entries, education items */
+  .bg-surface,
+  .border-border-dim,
+  article {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* --- Images: greyscale --- */
+  img {
+    filter: grayscale(100%) !important;
+    max-width: 100% !important;
+  }
+
+  /* --- Borders: use grey instead of invisible dark borders --- */
+  .border-border-dim,
+  .border {
+    border-color: #ccc !important;
+  }
+
+  /* --- Accent color → dark grey for contrast --- */
+  .text-accent,
+  .bg-accent {
+    color: #333 !important;
+  }
+
+  /* Ensure scroll-reveal elements are visible */
+  .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Remove sticky positioning */
+  .sticky {
+    position: static !important;
+  }
+
+  /* Remove overflow hidden that can clip content */
+  .overflow-hidden {
+    overflow: visible !important;
+  }
+}

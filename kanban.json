@@ -78,12 +78,6 @@
       "description": "Add lightweight, cookie-free analytics per specs/analytics.md — async script in +layout.svelte <svelte:head>, environment-gated loading, SPA route tracking via afterNavigate, GDPR-compliant with no consent banner, < 5 KB gzipped, no Lighthouse impact.",
       "spec": "specs/analytics.md"
     },
-    {
-      "id": "print-stylesheet",
-      "title": "Implement Print Stylesheet",
-      "description": "Add @media print CSS block per specs/print-stylesheet.md — hide nav/footer chrome/decorative overlays, force black-on-white, append URLs after links, break-inside:avoid on cards, greyscale images, @page margins, system serif body font for readability, no JS required.",
-      "spec": "specs/print-stylesheet.md"
-    }
   ],
   "in_progress": [],
   "done": [
@@ -206,6 +200,12 @@
       "title": "Implement Robots.txt",
       "description": "Cleaned up static/robots.txt to match spec exactly — User-agent * Allow /, Sitemap directive pointing to https://ericevans.dev/sitemap.xml, plain text served automatically by SvelteKit static directory. Removed extraneous comments for a clean, spec-compliant file.",
       "spec": "specs/robots-txt.md"
+    },
+    {
+      "id": "print-stylesheet",
+      "title": "Implement Print Stylesheet",
+      "description": "Added @media print block at end of src/app.css per specs/print-stylesheet.md — @page 1.5cm margins, hides nav/footer status/decorative overlays/CTA button/marquee animation, forces black-on-white with system serif body font (Fira Code headings), appends URLs after external links, break-inside:avoid on cards and sections, greyscale images, shows skills marquee as static wrapped grid, accent color mapped to dark grey. Pure CSS, no JS required.",
+      "spec": "specs/print-stylesheet.md"
     }
   ]
 }
