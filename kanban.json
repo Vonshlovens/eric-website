@@ -67,12 +67,6 @@
       "spec": "specs/back-to-top.md"
     },
     {
-      "id": "sitemap",
-      "title": "Implement XML Sitemap",
-      "description": "Create a /sitemap.xml SvelteKit server route per specs/sitemap.md — prerendered XML Sitemap 0.9, lists all public routes with lastmod/changefreq/priority, application/xml content-type, update robots.txt with Sitemap directive.",
-      "spec": "specs/sitemap.md"
-    },
-    {
       "id": "analytics",
       "title": "Integrate Privacy-Respecting Analytics",
       "description": "Add lightweight, cookie-free analytics per specs/analytics.md — async script in +layout.svelte <svelte:head>, environment-gated loading, SPA route tracking via afterNavigate, GDPR-compliant with no consent banner, < 5 KB gzipped, no Lighthouse impact.",
@@ -206,6 +200,12 @@
       "title": "Implement Print Stylesheet",
       "description": "Added @media print block at end of src/app.css per specs/print-stylesheet.md — @page 1.5cm margins, hides nav/footer status/decorative overlays/CTA button/marquee animation, forces black-on-white with system serif body font (Fira Code headings), appends URLs after external links, break-inside:avoid on cards and sections, greyscale images, shows skills marquee as static wrapped grid, accent color mapped to dark grey. Pure CSS, no JS required.",
       "spec": "specs/print-stylesheet.md"
+    },
+    {
+      "id": "sitemap",
+      "title": "Implement XML Sitemap",
+      "description": "Implemented /sitemap.xml SvelteKit server route per specs/sitemap.md — prerendered XML Sitemap 0.9 at build time, lists homepage with lastmod (build date), monthly changefreq, priority 1.0. Correct domain (ericevans.dev), application/xml content-type. Routes array ready for future pages. robots.txt already had Sitemap directive.",
+      "spec": "specs/sitemap.md"
     }
   ]
 }
