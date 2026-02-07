@@ -65,6 +65,12 @@
       "title": "Configure SEO & Meta Tags",
       "description": "Add Open Graph, Twitter Card, favicon, and JSON-LD structured data to the layout per specs-v2/seo-meta.md. Create OG image and favicon assets.",
       "spec": "specs-v2/seo-meta.md"
+    },
+    {
+      "id": "card-stack-scroll",
+      "title": "Implement Card-Stack Scroll Animation",
+      "description": "Build the full-viewport card-stack scroll interaction per specs-v2/card-stack-scroll.md — pin a section (Engineering Log or Work Experience) and stack cards on scroll, with reduced-motion fallback and mobile-disabled behavior.",
+      "spec": "specs-v2/card-stack-scroll.md"
     }
   ],
   "in_progress": [],
