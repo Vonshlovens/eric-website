@@ -89,6 +89,12 @@
       "title": "Implement Animation Toggle",
       "description": "Add a nav-bar toggle that disables all page animations and transitions. Respects prefers-reduced-motion as default, persists to localStorage, applies a global CSS override via data-reduce-motion attribute, and exposes a Svelte store for JS-driven animations.",
       "spec": "specs-v2/animation-toggle.md"
+    },
+    {
+      "id": "resume-download",
+      "title": "Add Resume PDF Download",
+      "description": "Serve a static resume PDF from static/resume.pdf. Update the hero primary CTA to link to the resume (opens in new tab with download fallback). Optionally add a 'Download Full Resume' link in the work experience section.",
+      "spec": "specs-v2/resume-download.md"
     }
   ],
   "in_progress": [],
