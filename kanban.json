@@ -41,6 +41,12 @@
       "title": "Implement Work Experience Section",
       "description": "Build the vertical timeline work history section per specs-v2/work-experience.md — timeline rail with accent dots, experience cards with job title, company, duration, duties list, and tech tags.",
       "spec": "specs-v2/work-experience.md"
+    },
+    {
+      "id": "education",
+      "title": "Implement Education & Certifications Section",
+      "description": "Build the education and certifications grid per specs-v2/education.md — 2-column responsive grid of degree and certification cards with category badges, credential links, and Threadwork design system styling.",
+      "spec": "specs-v2/education.md"
     }
   ],
   "in_progress": [],
