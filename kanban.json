@@ -1,6 +1,12 @@
 {
   "todo": [
     {
+      "id": "design-system",
+      "title": "Configure Design System & Global Theme",
+      "description": "Set up the V2 color palette, typography (Inter + Fira Code), Material Symbols icons, custom scrollbar, selection styles, and Tailwind v4 @theme tokens per specs-v2/design-system.md. This is a prerequisite for all other section implementations.",
+      "spec": "specs-v2/design-system.md"
+    },
+    {
       "id": "hero-section",
       "title": "Implement Hero Section",
       "description": "Build the hero section per specs-v2/hero-section.md — two-column layout with avatar, terminal stats panel, stat cards, and CTAs using Threadwork design system.",
