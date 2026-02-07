@@ -1,9 +1,21 @@
 <script lang="ts">
+  import type { GitHubStats } from '../../routes/+page.server';
+
+  interface Props {
+    githubStats: GitHubStats;
+  }
+
+  let { githubStats }: Props = $props();
+
+  const formattedCommits = githubStats.commits.toLocaleString();
+  const formattedRepos = githubStats.repos.toLocaleString();
+  const formattedAge = githubStats.accountAgeSec.toLocaleString() + ' s';
+
   const stats = [
-    { label: 'Status', value: 'Available', icon: 'radio_button_checked' },
-    { label: 'Commits', value: '2,400+', icon: 'commit' },
-    { label: 'Uptime', value: '99.9%', icon: 'speed' },
-    { label: 'Experience', value: '5+ yrs', icon: 'timeline' }
+    { label: 'Repos', value: formattedRepos, icon: 'folder_open', ariaLabel: `${githubStats.repos} public repositories` },
+    { label: 'Commits', value: formattedCommits, icon: 'commit', ariaLabel: `${githubStats.commits} commits` },
+    { label: 'Status', value: 'Production', icon: 'radio_button_checked', ariaLabel: 'Status: Production' },
+    { label: 'Tier', value: 'Intermediate', icon: 'timeline', ariaLabel: 'Tier: Intermediate' }
   ];
 
   const tags = ['Full-Stack', 'Cloud', 'DevOps', 'Open Source'];
@@ -11,11 +23,11 @@
   const terminalLines = [
     { key: 'user', value: 'eric.evans' },
     { key: 'role', value: 'software_engineer' },
-    { key: 'os', value: 'arch_linux' },
-    { key: 'editor', value: 'neovim' },
-    { key: 'shell', value: 'zsh + tmux' },
-    { key: 'coffee', value: '████████░░ 82%' },
-    { key: 'focus', value: '██████████ 100%' }
+    { key: 'notes', value: '1337' },
+    { key: 'repos', value: formattedRepos },
+    { key: 'age', value: formattedAge },
+    { key: '100m', value: '10.56s' },
+    { key: '200m', value: '21.64s' }
   ];
 </script>
 
@@ -110,7 +122,7 @@
         <!-- Stat Cards -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
           {#each stats as stat}
-            <div class="group/card bg-surface p-4 rounded border border-border-dim hover:border-accent/30 transition-colors duration-300">
+            <div class="group/card bg-surface p-4 rounded border border-border-dim hover:border-accent/30 transition-colors duration-300" aria-label={stat.ariaLabel}>
               <div class="flex items-center gap-1.5 mb-2">
                 <span class="material-symbols-outlined text-text-muted text-sm">{stat.icon}</span>
                 <span class="text-[10px] text-text-muted font-mono uppercase tracking-widest">
@@ -163,7 +175,7 @@
       </div>
 
       <!-- Right Column (1/3) — Terminal Stats Panel -->
-      <div class="lg:col-span-1">
+      <div class="lg:col-span-1" aria-hidden="true">
         <div class="bg-surface border border-border-dim rounded-lg overflow-hidden">
           <!-- Title bar -->
           <div class="flex items-center gap-2 px-4 py-2.5 bg-surface-highlight border-b border-border-dim">

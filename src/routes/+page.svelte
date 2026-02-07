@@ -8,6 +8,8 @@
   import Education from '$lib/components/sections/Education.svelte';
   import Interests from '$lib/components/sections/Interests.svelte';
   import ContactCTA from '$lib/components/sections/ContactCTA.svelte';
+
+  let { data } = $props();
 </script>
 
 <SEO
@@ -37,7 +39,7 @@
 <!-- Main Content -->
 <main class="pt-16" id="main-content">
   <!-- Hero Section -->
-  <Hero />
+  <Hero githubStats={data.githubStats} />
 
   <!-- Core Competencies -->
   <CoreCompetencies />

@@ -1,5 +1,7 @@
 # GitHub Stats Integration
 
+> **Status: IMPLEMENTED** — See `src/routes/+page.server.ts`, `src/routes/+page.svelte`, `src/lib/components/sections/Hero.svelte`.
+
 ## Summary
 
 Fetch live data from the GitHub API to populate the hero section's terminal stats panel and stat cards with real numbers instead of hardcoded values. The terminal panel (right column of the hero) and the four stat cards (left column) both display metrics that can be sourced from Eric's public GitHub profile.
