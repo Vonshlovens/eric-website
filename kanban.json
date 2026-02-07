@@ -25,6 +25,12 @@
       "spec": "specs-v2/core-competencies.md"
     },
     {
+      "id": "engineering-log",
+      "title": "Implement Engineering Log Section",
+      "description": "Build the vertically stacked project portfolio per specs-v2/engineering-log.md — horizontal project cards with image (grayscale-to-color on hover), structured narrative sections (Problem, Key Learnings, Tech Stack), category badges, and section header with active project count and status indicator.",
+      "spec": "specs-v2/engineering-log.md"
+    },
+    {
       "id": "contact-cta",
       "title": "Implement Contact CTA Section",
       "description": "Build the full-width contact call-to-action banner per specs-v2/contact-cta.md — headline, description, status badge, primary CTA button, and social icon links with dot-grid texture using Threadwork design system.",
