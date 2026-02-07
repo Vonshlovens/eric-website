@@ -1,5 +1,7 @@
 # Robots.txt
 
+> **Status:** Done — `static/robots.txt` implemented per spec.
+
 Static robots.txt file for search-engine crawler directives.
 
 ## Overview

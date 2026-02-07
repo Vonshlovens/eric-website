@@ -144,6 +144,10 @@ Comprehensive specifications for the portfolio website built with SvelteKit 2, S
 - Open Graph, Twitter Cards, favicon
 - JSON-LD structured data
 
+#### [Robots.txt](./robots-txt.md)
+- Static `robots.txt` with `User-agent: *` Allow all
+- Sitemap directive pointing to `/sitemap.xml`
+
 ## Error Pages
 
 #### [404 Page](./404-page.md)

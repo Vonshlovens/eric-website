@@ -73,12 +73,6 @@
       "spec": "specs/sitemap.md"
     },
     {
-      "id": "robots-txt",
-      "title": "Implement Robots.txt",
-      "description": "Create static/robots.txt per specs/robots-txt.md — User-agent * Allow /, Sitemap directive pointing to /sitemap.xml, plain text served automatically by SvelteKit static directory.",
-      "spec": "specs/robots-txt.md"
-    },
-    {
       "id": "analytics",
       "title": "Integrate Privacy-Respecting Analytics",
       "description": "Add lightweight, cookie-free analytics per specs/analytics.md — async script in +layout.svelte <svelte:head>, environment-gated loading, SPA route tracking via afterNavigate, GDPR-compliant with no consent banner, < 5 KB gzipped, no Lighthouse impact.",
@@ -206,6 +200,12 @@
       "title": "Implement Custom 404 Page",
       "description": "Built system-monitor themed +error.svelte per specs/404-page.md — large Fira Code '404' in accent color, terminal-style error block with dynamic $page.url.pathname, 'Return to Index' CTA button (bg-accent, hover swap to white), dot-grid texture and scan-line overlay, generic error fallback for non-404 status codes, responsive text scaling (text-5xl to text-8xl), accessible <title>, aria-label on CTA, focus-visible ring.",
       "spec": "specs/404-page.md"
+    },
+    {
+      "id": "robots-txt",
+      "title": "Implement Robots.txt",
+      "description": "Cleaned up static/robots.txt to match spec exactly — User-agent * Allow /, Sitemap directive pointing to https://ericevans.dev/sitemap.xml, plain text served automatically by SvelteKit static directory. Removed extraneous comments for a clean, spec-compliant file.",
+      "spec": "specs/robots-txt.md"
     }
   ]
 }
