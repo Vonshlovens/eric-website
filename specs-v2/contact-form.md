@@ -1,0 +1,272 @@
+# Contact Form
+
+## Overview
+
+A lightweight contact form triggered by the Contact CTA button ("Connect.exe"). Opens as a modal overlay on top of the page. Visitors fill out name, email, and message fields, which are submitted via a SvelteKit form action. On success the modal shows a confirmation state; on error it shows a retry prompt.
+
+This feature extends the Contact CTA section (specs-v2/contact-cta.md) by giving the primary CTA button something to open, rather than just linking to a mailto.
+
+Derived from the contact form described in `specs/features.md` (Section 6: Contact Info), adapted to the Threadwork design system and the system-monitor aesthetic.
+
+---
+
+## Layout
+
+```
+┌──────────────────────────────────────────┐
+│  ░░░░░ page content (dimmed) ░░░░░░░░░░  │
+│                                          │
+│     ┌──────────────────────────────┐     │
+│     │  [X]                close    │     │
+│     │                              │     │
+│     │  > init_contact.sh           │     │
+│     │                              │     │
+│     │  Name ___________________    │     │
+│     │  Email __________________    │     │
+│     │  Message                     │     │
+│     │  ┌──────────────────────┐    │     │
+│     │  │                      │    │     │
+│     │  │                      │    │     │
+│     │  └──────────────────────┘    │     │
+│     │                              │     │
+│     │  [ Send Transmission ]       │     │
+│     │                              │     │
+│     └──────────────────────────────┘     │
+│                                          │
+└──────────────────────────────────────────┘
+```
+
+---
+
+## Elements
+
+### 1. Modal Backdrop
+
+A semi-transparent overlay that dims the page content.
+
+- `fixed inset-0 z-50 bg-bg/80 backdrop-blur-sm`
+- Clicking the backdrop closes the modal.
+
+### 2. Modal Panel
+
+A centered card containing the form.
+
+- `bg-bg-muted border border-border-muted rounded-lg max-w-lg w-full mx-4 p-8`
+- Vertically and horizontally centered using flex.
+- Entrance animation: fade + scale up from 95% (respects `prefers-reduced-motion`).
+
+### 3. Terminal Prompt Line
+
+A small decorative shell-command line above the form fields.
+
+```svelte
+<div class="font-mono text-accent text-sm mb-6"> &gt; init_contact.sh</div>
+```
+
+### 4. Close Button
+
+Top-right corner of the modal panel. Uses a Material Symbols `close` icon.
+
+```svelte
+<button
+  onclick={closeModal}
+  class="absolute top-4 right-4 text-fg-muted hover:text-fg transition-colors"
+  aria-label="Close contact form"
+>
+  <span class="material-symbols-outlined">close</span>
+</button>
+```
+
+### 5. Form Fields
+
+Three fields, each styled to match the system-monitor aesthetic:
+
+| Field   | Type       | Required | Validation                    |
+|---------|------------|----------|-------------------------------|
+| Name    | `text`     | Yes      | Non-empty, max 100 chars      |
+| Email   | `email`    | Yes      | Valid email format             |
+| Message | `textarea` | Yes      | Non-empty, max 2000 chars     |
+
+Field styling:
+
+```svelte
+<label class="block mb-4">
+  <span class="text-fg-muted text-xs font-mono uppercase tracking-widest mb-1 block">Name</span>
+  <input
+    type="text"
+    name="name"
+    required
+    maxlength="100"
+    class="w-full bg-bg border border-border-muted rounded px-4 py-3 font-mono text-sm text-fg placeholder:text-fg-subtle focus:border-accent focus:outline-none transition-colors"
+    placeholder="Jane Doe"
+  />
+</label>
+```
+
+- Labels are small, uppercase, mono, muted — matching the section-label style from the Engineering Log.
+- Inputs use `bg-bg` (darkest background), `border-border-muted`, with accent border on focus.
+- Textarea uses `rows="5"` and `resize-none`.
+
+### 6. Submit Button
+
+Full-width accent button at the bottom of the form.
+
+```svelte
+<button
+  type="submit"
+  disabled={submitting}
+  class="w-full flex items-center justify-center rounded bg-accent text-bg h-12 text-xs font-mono font-bold tracking-[0.2em] transition-all hover:bg-fg hover:text-bg uppercase disabled:opacity-50 disabled:cursor-not-allowed"
+>
+  {submitting ? 'Transmitting...' : 'Send Transmission'}
+</button>
+```
+
+- Matches the CTA button style from contact-cta.md.
+- Shows a loading state while submitting.
+
+### 7. Validation Errors
+
+Inline error messages below each field.
+
+```svelte
+{#if errors.email}
+  <p class="text-error text-xs font-mono mt-1">{errors.email}</p>
+{/if}
+```
+
+- Uses `text-error` (Madder Red / `#A0522D` or similar warm error color from Threadwork palette).
+- Only shown after first submission attempt or on blur.
+
+### 8. Success State
+
+After successful submission, the form is replaced by a confirmation message:
+
+```svelte
+<div class="text-center py-8">
+  <span class="material-symbols-outlined text-success text-5xl mb-4">check_circle</span>
+  <h3 class="text-fg font-mono font-bold text-xl mb-2">Transmission Received</h3>
+  <p class="text-fg-muted font-mono text-sm">Response time: &lt; 24h</p>
+</div>
+```
+
+### 9. Error State
+
+If the server returns an error, show a message with a retry option:
+
+```svelte
+<div class="text-center py-4">
+  <p class="text-error font-mono text-sm mb-4">Transmission failed. Please try again.</p>
+  <button onclick={retry} class="text-accent font-mono text-sm underline">Retry</button>
+</div>
+```
+
+---
+
+## Server-Side Handling
+
+### Form Action
+
+A SvelteKit form action at `src/routes/+page.server.ts` (or a dedicated API route) handles form submissions.
+
+```typescript
+// src/routes/+page.server.ts
+import type { Actions } from './$types';
+import { fail } from '@sveltejs/kit';
+
+export const actions: Actions = {
+  contact: async ({ request }) => {
+    const data = await request.formData();
+    const name = data.get('name')?.toString().trim();
+    const email = data.get('email')?.toString().trim();
+    const message = data.get('message')?.toString().trim();
+
+    // Server-side validation
+    if (!name || !email || !message) {
+      return fail(400, { error: 'All fields are required.' });
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return fail(400, { error: 'Invalid email address.' });
+    }
+
+    // Send email via service (Resend, SendGrid, etc.)
+    // For MVP: log to console or store in a simple backend
+    try {
+      // await sendEmail({ name, email, message });
+      return { success: true };
+    } catch {
+      return fail(500, { error: 'Failed to send message.' });
+    }
+  }
+};
+```
+
+### Email Service
+
+The actual email delivery is pluggable. Options:
+- **Resend** (recommended for simplicity)
+- **SendGrid**
+- **Simple webhook** (e.g., Discord webhook, Slack webhook)
+- **Console log** for local development
+
+The email service integration is configured via environment variables (`CONTACT_EMAIL_TO`, `RESEND_API_KEY`, etc.) and is not part of this spec — it will be a separate configuration step during deployment.
+
+---
+
+## Interaction Flow
+
+1. User clicks "Connect.exe" button in the Contact CTA section.
+2. Modal fades in with backdrop.
+3. Focus is trapped inside the modal (keyboard accessibility).
+4. User fills out form and clicks "Send Transmission."
+5. Client-side validation runs first; errors shown inline.
+6. On valid submission, form is submitted via SvelteKit `use:enhance`.
+7. Loading state shown on button.
+8. On success: form replaced with confirmation message; modal auto-closes after 3 seconds (or user clicks close).
+9. On error: error message shown with retry option.
+10. User can close modal at any time via X button, Escape key, or backdrop click.
+
+---
+
+## Responsive Behavior
+
+| Breakpoint | Behavior |
+|------------|----------|
+| Mobile (`< sm`) | Modal takes near-full width (`mx-4`), slightly reduced padding |
+| Tablet+ (`sm+`) | Modal centered at `max-w-lg` |
+
+The modal is always vertically centered in the viewport.
+
+---
+
+## Accessibility
+
+- Modal uses `role="dialog"` and `aria-modal="true"`.
+- `aria-labelledby` points to the terminal prompt line or a visually hidden heading.
+- Focus is trapped within the modal while open (tab cycling).
+- Escape key closes the modal.
+- Focus returns to the CTA button when modal closes.
+- All form fields have associated `<label>` elements.
+- Error messages are linked via `aria-describedby`.
+- Submit button has `aria-disabled` when in loading state.
+- Success/error announcements use `aria-live="polite"`.
+
+---
+
+## Tech Stack
+
+- **SvelteKit 2** form actions (`use:enhance` for progressive enhancement)
+- **Svelte 5** runes for modal open state, form state, errors
+- **Tailwind v4** utility classes
+- **Material Symbols** for icons (close, check_circle)
+- No additional dependencies for the form itself
+
+---
+
+## Files
+
+| File | Purpose |
+|------|---------|
+| `src/lib/components/ContactForm.svelte` | Modal + form component |
+| `src/routes/+page.server.ts` | SvelteKit form action for handling submission |
+| `src/routes/+page.svelte` | Imports ContactForm, passes open state from CTA click |

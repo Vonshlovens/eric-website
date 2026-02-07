@@ -125,6 +125,12 @@
       "title": "Apply Performance Optimizations",
       "description": "Enable static prerendering, configure image lazy loading and WebP formats, add font preconnect/preload, set caching headers for Deno Deploy, and validate against Lighthouse 90+ target per specs-v2/performance.md.",
       "spec": "specs-v2/performance.md"
+    },
+    {
+      "id": "contact-form",
+      "title": "Implement Contact Form Modal",
+      "description": "Build a modal contact form triggered by the Contact CTA button — name/email/message fields, SvelteKit form action backend, client-side validation, success/error states, focus trapping, and system-monitor aesthetic per specs-v2/contact-form.md.",
+      "spec": "specs-v2/contact-form.md"
     }
   ],
   "in_progress": [],
