@@ -77,6 +77,12 @@
       "title": "Implement Name & Avatar Hover Reveal",
       "description": "Add cursor-proximity reveal effect to the hero avatar and name — a circular mask around the cursor exposes the GitHub identity (Vonshlovens + GitHub PFP) underneath the display identity, with soft feathered edge, mobile-disabled, and reduced-motion fallback.",
       "spec": "specs-v2/avatar-hover-reveal.md"
+    },
+    {
+      "id": "animation-toggle",
+      "title": "Implement Animation Toggle",
+      "description": "Add a nav-bar toggle that disables all page animations and transitions. Respects prefers-reduced-motion as default, persists to localStorage, applies a global CSS override via data-reduce-motion attribute, and exposes a Svelte store for JS-driven animations.",
+      "spec": "specs-v2/animation-toggle.md"
     }
   ],
   "in_progress": [],
