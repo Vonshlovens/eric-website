@@ -1,6 +1,5 @@
 <script lang="ts">
   import { projects } from '$lib/data/projects';
-  import { experiences } from '$lib/data/experience';
   import { education } from '$lib/data/education';
   import { interests } from '$lib/data/interests';
   import ProjectCard from '$lib/components/ProjectCard.svelte';
@@ -8,6 +7,7 @@
   import SEO from '$lib/components/SEO.svelte';
   import Hero from '$lib/components/sections/Hero.svelte';
   import CoreCompetencies from '$lib/components/sections/CoreCompetencies.svelte';
+  import WorkExperience from '$lib/components/sections/WorkExperience.svelte';
 
   // Lucide Icons
   import {
@@ -17,19 +17,13 @@
     Mail,
     FileDown,
     ArrowRight,
-    ChevronRight,
     ExternalLink,
-    Building2,
-    Rocket,
-    Palette,
-    Briefcase,
     GraduationCap,
     Award,
     LockOpen,
     Footprints,
     Camera,
-    Coffee,
-    Check
+    Coffee
   } from 'svelte-lucide';
 
   function scrollTo(id: string) {
@@ -41,14 +35,6 @@
 
   const featuredProjects = projects.filter(p => p.featured);
   const otherProjects = projects.filter(p => !p.featured);
-
-  // Icon mapping for experience
-  const expIcons: Record<string, typeof Building2> = {
-    building: Building2,
-    rocket: Rocket,
-    palette: Palette,
-    briefcase: Briefcase
-  };
 
   // Icon mapping for interests
   const interestIcons: Record<string, typeof LockOpen> = {
@@ -147,122 +133,7 @@
   </section>
 
   <!-- Work Experience Section -->
-  <section id="experience" class="py-12 md:py-16 bg-bg">
-    <div class="max-w-4xl mx-auto px-6">
-      <!-- Section Header -->
-      <div class="text-center mb-12">
-        <span class="font-mono text-accent font-bold uppercase tracking-wide text-sm">
-          Career
-        </span>
-        <h2 class="font-mono text-xl font-bold text-fg mt-2">
-          Work Experience
-        </h2>
-        <div class="thread-divider max-w-xs mx-auto"></div>
-        <p class="font-mono text-base text-fg-muted leading-relaxed max-w-xl mx-auto">
-          My professional journey building software and leading teams.
-        </p>
-      </div>
-
-      <!-- Timeline -->
-      <div class="max-w-2xl mx-auto">
-        {#each experiences as exp, i (exp.id)}
-          {@const IconComponent = expIcons[exp.icon]}
-          <div class="relative pl-8 md:pl-12 pb-10 last:pb-0 group">
-            <!-- Timeline Line -->
-            {#if i < experiences.length - 1}
-              <div class="absolute left-[11px] md:left-[15px] top-8 bottom-0 w-px bg-thread-muted group-hover:bg-thread transition-colors duration-300"></div>
-            {/if}
-
-            <!-- Timeline Dot -->
-            <div class="absolute left-0 top-1 w-6 h-6 md:w-8 md:h-8 rounded-md bg-bg-muted border border-border-muted group-hover:border-thread flex items-center justify-center transition-colors duration-300">
-              <IconComponent size="14" class="text-fg-muted" />
-            </div>
-
-            <!-- Experience Card -->
-            <article class="bg-bg-muted rounded-lg p-6 border border-border-muted transition-all duration-200 hover:border-thread-muted">
-              <!-- Header -->
-              <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
-                <div>
-                  <h3 class="font-mono text-lg font-bold text-fg">
-                    {exp.title}
-                  </h3>
-                  <h4 class="font-mono text-base text-accent">
-                    {exp.company}
-                  </h4>
-                </div>
-                <div class="font-mono text-sm text-fg-subtle">
-                  <div>{exp.duration}</div>
-                  <div>{exp.location}</div>
-                </div>
-              </div>
-
-              <!-- Duties -->
-              <ul class="space-y-2 mb-4">
-                {#each exp.duties as duty}
-                  <li class="font-mono text-fg-muted text-sm flex items-start gap-2">
-                    <ChevronRight size="14" class="text-thread mt-0.5 shrink-0" />
-                    <span>{duty}</span>
-                  </li>
-                {/each}
-              </ul>
-
-              <!-- Achievements -->
-              {#if exp.achievements && exp.achievements.length > 0}
-                <div class="mb-4 p-4 bg-accent-soft rounded-md border border-thread-muted">
-                  <p class="font-mono text-xs uppercase tracking-wide text-accent font-bold mb-2">Key Achievements</p>
-                  <ul class="space-y-1">
-                    {#each exp.achievements as achievement}
-                      <li class="font-mono text-sm text-fg-muted flex items-start gap-2">
-                        <Check size="14" class="text-success mt-0.5 shrink-0" />
-                        <span>{achievement}</span>
-                      </li>
-                    {/each}
-                  </ul>
-                </div>
-              {/if}
-
-              <!-- Technologies -->
-              <div class="flex flex-wrap gap-2">
-                {#each exp.technologies as tech}
-                  <span class="
-                    px-2 py-1
-                    font-mono text-xs
-                    bg-bg-subtle
-                    text-fg-muted
-                    rounded-sm
-                    border border-border-muted
-                  ">
-                    {tech}
-                  </span>
-                {/each}
-              </div>
-            </article>
-          </div>
-        {/each}
-      </div>
-
-      <!-- Resume Download -->
-      <div class="text-center mt-12">
-        <a
-          href="/resume.pdf"
-          download
-          class="
-            inline-flex items-center gap-2
-            px-4 py-2
-            font-mono font-bold
-            bg-transparent text-fg
-            border border-border
-            rounded-md
-            transition-colors duration-200
-            hover:bg-bg-muted hover:border-thread-muted
-          "
-        >
-          <FileDown size="18" />
-          Download Resume
-        </a>
-      </div>
-    </div>
-  </section>
+  <WorkExperience />
 
   <!-- Education Section -->
   <section id="education" class="py-12 md:py-16 bg-bg-muted">

@@ -13,12 +13,6 @@
       "spec": "specs/contact-cta.md"
     },
     {
-      "id": "work-experience",
-      "title": "Implement Work Experience Section",
-      "description": "Build the vertical timeline work history section per specs/work-experience.md — timeline rail with accent dots, experience cards with job title, company, duration, duties list, and tech tags.",
-      "spec": "specs/work-experience.md"
-    },
-    {
       "id": "education",
       "title": "Implement Education & Certifications Section",
       "description": "Build the education and certifications grid per specs/education.md — 2-column responsive grid of degree and certification cards with category badges, credential links, and Threadwork design system styling.",
@@ -140,6 +134,12 @@
       "title": "Implement Core Competencies Section",
       "description": "Built 3-column competency grid per specs/core-competencies.md — icon boxes (Material Symbols), titles, descriptions with hover effects (border-accent, icon color shift, bg-surface-highlight). Uses V2 Stitch design tokens. Responsive: stacks single-column on mobile, 3-col on md+. Extracted as src/lib/components/sections/CoreCompetencies.svelte.",
       "spec": "specs/core-competencies.md"
+    },
+    {
+      "id": "work-experience",
+      "title": "Implement Work Experience Section",
+      "description": "Built vertical timeline work history section per specs/work-experience.md — timeline rail (2px border-dim line) with 12px accent dots on desktop, top accent border on mobile. Experience cards with mono uppercase job title, accent company name, tiny mono duration/location metadata, left-bordered duty list items (sans-serif), and uppercase tech tag pills. Uses V2 Stitch design tokens (bg-surface, border-border-dim, text-text-main). Hover border transitions to accent/50. Data cleaned to V2 WorkExperience interface. Extracted as src/lib/components/sections/WorkExperience.svelte.",
+      "spec": "specs/work-experience.md"
     }
   ]
 }
