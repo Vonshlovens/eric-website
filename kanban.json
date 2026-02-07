@@ -53,6 +53,12 @@
       "title": "Implement Skills Marquee",
       "description": "Build the dual-row animated skills marquee per specs-v2/skills-marquee.md — two rows of tech skill chips scrolling in opposite directions with accent dots, hover effects, edge fades, and reduced-motion fallback.",
       "spec": "specs-v2/skills-marquee.md"
+    },
+    {
+      "id": "interests",
+      "title": "Implement Interests / Beyond Code Section",
+      "description": "Build the personal interests card grid per specs-v2/interests.md — 3-column responsive grid of interest cards with Material Symbols icons, descriptions, optional links, and Threadwork design system styling.",
+      "spec": "specs-v2/interests.md"
     }
   ],
   "in_progress": [],
