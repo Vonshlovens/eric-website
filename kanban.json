@@ -131,6 +131,12 @@
       "title": "Implement Contact Form Modal",
       "description": "Build a modal contact form triggered by the Contact CTA button — name/email/message fields, SvelteKit form action backend, client-side validation, success/error states, focus trapping, and system-monitor aesthetic per specs-v2/contact-form.md.",
       "spec": "specs-v2/contact-form.md"
+    },
+    {
+      "id": "skill-radar",
+      "title": "Implement Skill Radar Chart",
+      "description": "Build an interactive SVG radar/spider chart visualizing skill proficiency across 5–7 categories (Frontend, Backend, DevOps, etc.). Pure Svelte + SVG, no charting library. Includes hover tooltips, scroll-reveal draw-in animation, screen-reader fallback table, and responsive layout per specs-v2/skill-radar.md.",
+      "spec": "specs-v2/skill-radar.md"
     }
   ],
   "in_progress": [],
