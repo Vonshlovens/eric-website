@@ -119,6 +119,12 @@
       "title": "Add Dark/Light Theme Toggle",
       "description": "Add a nav-bar theme toggle with a warm parchment light mode alongside the existing dark theme. Includes Svelte store, localStorage persistence, prefers-color-scheme detection, FOUC-prevention script, and light-mode CSS custom properties.",
       "spec": "specs-v2/theme-toggle.md"
+    },
+    {
+      "id": "performance",
+      "title": "Apply Performance Optimizations",
+      "description": "Enable static prerendering, configure image lazy loading and WebP formats, add font preconnect/preload, set caching headers for Deno Deploy, and validate against Lighthouse 90+ target per specs-v2/performance.md.",
+      "spec": "specs-v2/performance.md"
     }
   ],
   "in_progress": [],
