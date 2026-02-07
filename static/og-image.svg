@@ -1,45 +1,29 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background - Loom Black -->
-  <rect width="1200" height="630" fill="#0D0C0B"/>
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#121212"/>
 
-  <!-- Corner Brackets (Loom Frame) -->
-  <!-- Top Left -->
-  <path d="M 40 40 L 40 100 M 40 40 L 100 40" stroke="#4A6FA5" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
-  <!-- Top Right -->
-  <path d="M 1160 40 L 1160 100 M 1160 40 L 1100 40" stroke="#4A6FA5" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
-  <!-- Bottom Left -->
-  <path d="M 40 590 L 40 530 M 40 590 L 100 590" stroke="#4A6FA5" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
-  <!-- Bottom Right -->
-  <path d="M 1160 590 L 1160 530 M 1160 590 L 1100 590" stroke="#4A6FA5" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+  <!-- Corner Brackets -->
+  <path d="M 40 40 L 40 100 M 40 40 L 100 40" stroke="#B80C09" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+  <path d="M 1160 40 L 1160 100 M 1160 40 L 1100 40" stroke="#B80C09" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+  <path d="M 40 590 L 40 530 M 40 590 L 100 590" stroke="#B80C09" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+  <path d="M 1160 590 L 1160 530 M 1160 590 L 1100 590" stroke="#B80C09" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
 
-  <!-- Thread Divider Lines -->
-  <line x1="200" y1="220" x2="1000" y2="220" stroke="#4A6FA5" stroke-width="1" opacity="0.3"/>
-  <circle cx="600" cy="220" r="4" fill="#7B9BC7"/>
+  <!-- Divider Lines -->
+  <line x1="200" y1="220" x2="1000" y2="220" stroke="#B80C09" stroke-width="1" opacity="0.3"/>
+  <circle cx="600" cy="220" r="4" fill="#B80C09"/>
+  <line x1="200" y1="410" x2="1000" y2="410" stroke="#B80C09" stroke-width="1" opacity="0.3"/>
+  <circle cx="600" cy="410" r="4" fill="#B80C09"/>
 
-  <line x1="200" y1="410" x2="1000" y2="410" stroke="#4A6FA5" stroke-width="1" opacity="0.3"/>
-  <circle cx="600" cy="410" r="4" fill="#7B9BC7"/>
-
-  <!-- Main Content -->
   <!-- Name -->
-  <text x="600" y="300" font-family="monospace" font-size="72" font-weight="700" fill="#F7F4F0" text-anchor="middle">
-    Eric Evans
-  </text>
-  <text x="710" y="300" font-family="monospace" font-size="72" font-weight="700" fill="#7B9BC7" text-anchor="start">
-    _
-  </text>
+  <text x="600" y="300" font-family="'Fira Code', monospace" font-size="72" font-weight="700" fill="#FFFFFF" text-anchor="middle">Eric Evans</text>
+  <text x="710" y="300" font-family="'Fira Code', monospace" font-size="72" font-weight="700" fill="#B80C09" text-anchor="start">_</text>
 
   <!-- Tagline -->
-  <text x="600" y="360" font-family="monospace" font-size="24" font-weight="700" fill="#7B9BC7" text-anchor="middle" letter-spacing="2">
-    FULL-STACK DEVELOPER
-  </text>
+  <text x="600" y="360" font-family="'Fira Code', monospace" font-size="24" font-weight="700" fill="#B80C09" text-anchor="middle" letter-spacing="2">SOFTWARE DEVELOPER</text>
 
   <!-- Tech Stack -->
-  <text x="600" y="480" font-family="monospace" font-size="18" fill="#9C9590" text-anchor="middle">
-    TypeScript • Svelte • SvelteKit • Deno • React
-  </text>
+  <text x="600" y="480" font-family="'Fira Code', monospace" font-size="18" fill="#888888" text-anchor="middle">Cloud Infrastructure · AI/ML · Database Systems</text>
 
-  <!-- URL/CTA -->
-  <text x="600" y="540" font-family="monospace" font-size="16" fill="#6B6560" text-anchor="middle">
-    Portfolio &amp; Projects
-  </text>
+  <!-- URL -->
+  <text x="600" y="540" font-family="'Fira Code', monospace" font-size="16" fill="#555555" text-anchor="middle">ericevans.dev</text>
 </svg>

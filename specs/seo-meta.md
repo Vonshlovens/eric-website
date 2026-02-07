@@ -126,8 +126,25 @@ export const prerender = true;
 
 ---
 
+## Implementation Status: DONE
+
+All items implemented:
+
+- **`src/routes/+layout.svelte`**: `<svelte:head>` with title, meta description, Open Graph (og:type/title/description/image/url), Twitter Card (summary_large_image), canonical URL, favicon trio, and JSON-LD Person schema. Values stored in script variables for DRY reuse. OG image URL uses absolute path (`https://ericevans.dev/og-image.png`).
+- **`static/og-image.svg`** + **`static/og-image.png`** (1200x630): Updated to V2 Stitch palette (#B80C09 accent, #121212 bg, Fira Code font). PNG generated via `rsvg-convert`.
+- **`static/favicon.svg`**: Updated to V2 Stitch palette (#121212 bg, #BFB1C1 text, #B80C09 accent bar).
+- **`static/favicon.ico`**: Generated multi-size ICO (16+32) from SVG via ImageMagick.
+- **`static/favicon-32.png`**, **`static/favicon-16.png`**: PNG favicon variants referenced by `app.html` manifest.
+- **`static/apple-touch-icon.png`** (180x180): Generated from favicon.svg.
+- **`static/site.webmanifest`**: Updated theme_color to #B80C09, background_color to #121212.
+- **`static/robots.txt`**: Updated sitemap URL to `https://ericevans.dev/sitemap.xml`.
+- **`src/app.html`**: Removed duplicate favicon `<link>` tags (now in `<svelte:head>` via layout). Kept manifest link.
+- JSON-LD `Person` schema with sameAs links to GitHub (Vonshlovens) and LinkedIn.
+
+---
+
 ## Not Included
 
 - Analytics scripts (Google Analytics, Plausible, etc.) — defer to a separate decision
-- `robots.txt` and `sitemap.xml` — can be added later via SvelteKit adapter or static files
+- `sitemap.xml` — can be added later via SvelteKit adapter or static files
 - Performance meta tags (`dns-prefetch`, `preconnect` for fonts) — covered in design-system.md font loading

@@ -5,4 +5,4 @@ User-agent: *
 Allow: /
 
 # Sitemaps (update with actual domain when deployed)
-Sitemap: https://example.com/sitemap.xml
+Sitemap: https://ericevans.dev/sitemap.xml

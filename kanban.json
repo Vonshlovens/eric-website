@@ -1,12 +1,6 @@
 {
   "todo": [
     {
-      "id": "seo-meta",
-      "title": "Configure SEO & Meta Tags",
-      "description": "Add Open Graph, Twitter Card, favicon, and JSON-LD structured data to the layout per specs/seo-meta.md. Create OG image and favicon assets.",
-      "spec": "specs/seo-meta.md"
-    },
-    {
       "id": "card-stack-scroll",
       "title": "Implement Card-Stack Scroll Animation",
       "description": "Build the full-viewport card-stack scroll interaction per specs/card-stack-scroll.md — pin a section (Engineering Log or Work Experience) and stack cards on scroll, with reduced-motion fallback and mobile-disabled behavior.",
@@ -57,6 +51,12 @@
   ],
   "in_progress": [],
   "done": [
+    {
+      "id": "seo-meta",
+      "title": "Configure SEO & Meta Tags",
+      "description": "Added <svelte:head> in +layout.svelte with HTML title, meta description, Open Graph (og:type, og:title, og:description, og:image, og:url), Twitter Card (summary_large_image), canonical URL, favicon trio (favicon.ico, icon.svg, apple-touch-icon.png), and JSON-LD Person structured data. Updated og-image.svg and favicon.svg to V2 Stitch palette (#B80C09 accent, #121212 bg). Generated og-image.png (1200x630), apple-touch-icon.png (180x180), favicon-32.png, favicon-16.png, favicon.ico from SVGs. Updated site.webmanifest V2 colors, robots.txt with ericevans.dev domain. Removed duplicate favicon refs from app.html (now in svelte:head).",
+      "spec": "specs/seo-meta.md"
+    },
     {
       "id": "animation-toggle",
       "title": "Implement Animation Toggle",

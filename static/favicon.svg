@@ -1,12 +1,5 @@
 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background -->
-  <rect width="32" height="32" rx="4" fill="#0D0C0B"/>
-
-  <!-- Letter E and E (EE) in monospace style -->
-  <text x="16" y="23" font-family="monospace" font-size="18" font-weight="700" fill="#7B9BC7" text-anchor="middle">
-    EE
-  </text>
-
-  <!-- Thread accent -->
-  <rect x="6" y="28" width="20" height="1" fill="#4A6FA5" opacity="0.6"/>
+  <rect width="32" height="32" rx="4" fill="#121212"/>
+  <text x="16" y="23" font-family="'Fira Code', monospace" font-size="18" font-weight="700" fill="#BFB1C1" text-anchor="middle">EE</text>
+  <rect x="6" y="28" width="20" height="1" fill="#B80C09" opacity="0.8"/>
 </svg>
