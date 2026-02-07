@@ -31,12 +31,6 @@
       "spec": "specs/skill-radar.md"
     },
     {
-      "id": "page-transitions",
-      "title": "Implement Page Transitions",
-      "description": "Add smooth cross-fade transitions between routes per specs/page-transitions.md — use SvelteKit onNavigate hook with View Transitions API (progressive enhancement), CSS cross-fade fallback with {#key} block, 200ms ease-out opacity transition, prefers-reduced-motion skip, compositor-friendly opacity-only animation.",
-      "spec": "specs/page-transitions.md"
-    },
-    {
       "id": "loading-screen",
       "title": "Implement Loading / Splash Screen",
       "description": "Build a system-boot themed splash overlay per specs/loading-screen.md — sequential terminal boot lines with staggered reveal, accent-colored 'OK' and 'SYSTEM READY' text, fade-out exit, sessionStorage once-per-session flag, reduced-motion skip, non-blocking ~1.5s total duration.",
@@ -206,6 +200,12 @@
       "title": "Implement XML Sitemap",
       "description": "Implemented /sitemap.xml SvelteKit server route per specs/sitemap.md — prerendered XML Sitemap 0.9 at build time, lists homepage with lastmod (build date), monthly changefreq, priority 1.0. Correct domain (ericevans.dev), application/xml content-type. Routes array ready for future pages. robots.txt already had Sitemap directive.",
       "spec": "specs/sitemap.md"
+    },
+    {
+      "id": "page-transitions",
+      "title": "Implement Page Transitions",
+      "description": "Added View Transitions API cross-fade via SvelteKit onNavigate hook in +layout.svelte. CSS ::view-transition-old/new pseudo-elements with 150ms fade-out / 200ms ease-out fade-in. Progressive enhancement — browsers without View Transitions API get instant navigation. Respects data-reduce-motion attribute (skips transition entirely in JS) and prefers-reduced-motion (suppresses animation in CSS). Compositor-friendly opacity-only animation, no additional JS libraries.",
+      "spec": "specs/page-transitions.md"
     }
   ]
 }

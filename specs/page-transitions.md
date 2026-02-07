@@ -66,3 +66,12 @@ When navigating between routes (e.g. homepage → 404, or any future pages), app
 | Token | Usage |
 |-------|-------|
 | `bg-primary` | Page background (visible during transition) |
+
+## Implementation Status: DONE
+
+Used the View Transitions API approach (progressive enhancement) rather than the `{#key}` block approach.
+
+### Files Modified
+
+- **`src/routes/+layout.svelte`** — Added `onNavigate` hook from `$app/navigation` that calls `document.startViewTransition()`. Skips transition when `data-reduce-motion` attribute is present on `<html>`. Falls back to instant navigation on unsupported browsers.
+- **`src/app.css`** — Added `::view-transition-old(root)` (150ms ease-out fade-out) and `::view-transition-new(root)` (200ms ease-out fade-in) animations. Added view transition suppression rules in both `html[data-reduce-motion]` and `@media (prefers-reduced-motion: reduce)` blocks.

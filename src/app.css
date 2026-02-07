@@ -150,6 +150,29 @@ main section {
 .scroll-reveal-stagger > .scroll-reveal:nth-child(6) { transition-delay: 500ms; }
 
 /* ============================================
+   Page Transitions (View Transitions API)
+   Source of truth: specs/page-transitions.md
+   ============================================ */
+
+::view-transition-old(root) {
+  animation: 150ms ease-out both fade-out;
+}
+
+::view-transition-new(root) {
+  animation: 200ms ease-out both fade-in;
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ============================================
    Reduced Motion
    ============================================ */
 
@@ -173,6 +196,12 @@ html[data-reduce-motion] .scroll-reveal {
   transform: none !important;
 }
 
+/* Suppress view transitions when motion is disabled */
+html[data-reduce-motion]::view-transition-old(root),
+html[data-reduce-motion]::view-transition-new(root) {
+  animation: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -190,6 +219,11 @@ html[data-reduce-motion] .scroll-reveal {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
   }
 }
 

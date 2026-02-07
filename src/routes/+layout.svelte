@@ -1,9 +1,24 @@
 <script>
 	import '../app.css';
+	import { onNavigate } from '$app/navigation';
 	import Navigation from '$lib/components/layout/Navigation.svelte';
 	import Footer from '$lib/components/layout/Footer.svelte';
 
 	let { children } = $props();
+
+	// View Transitions API — progressive enhancement cross-fade
+	// Spec: specs/page-transitions.md
+	onNavigate((navigation) => {
+		if (!document.startViewTransition) return;
+		if (document.documentElement.hasAttribute('data-reduce-motion')) return;
+
+		return new Promise((resolve) => {
+			document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
+		});
+	});
 
 	const title = 'Eric Evans — Software Developer';
 	const description =
