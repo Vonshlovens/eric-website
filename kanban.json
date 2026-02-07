@@ -53,6 +53,12 @@
       "title": "Audit & Enforce Responsive Breakpoints",
       "description": "Audit all sections against specs/responsive-breakpoints.md — verify canonical breakpoint tiers (sm/md/lg/xl), container max-width and padding, grid column counts per breakpoint, typography scaling, 44px minimum touch targets, 320px minimum viewport support, and no horizontal scroll at any breakpoint.",
       "spec": "specs/responsive-breakpoints.md"
+    },
+    {
+      "id": "toast-notifications",
+      "title": "Implement Toast Notifications",
+      "description": "Build a reusable toast notification system per specs/toast-notifications.md — Svelte 5 rune-based store with addToast/dismissToast, ToastContainer component mounted in +layout.svelte, three variants (success/error/info) with terminal-style styling, auto-dismiss with hover pause, slide-in/out animations, aria-live regions, reduced-motion support, responsive positioning.",
+      "spec": "specs/toast-notifications.md"
     }
   ],
   "in_progress": [],

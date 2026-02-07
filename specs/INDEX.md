@@ -30,6 +30,7 @@ Quick-reference list of every specification file in this directory.
 - [Card-Stack Scroll](./card-stack-scroll.md)
 - [Contact Form](./contact-form.md)
 - [Skill Radar Chart](./skill-radar.md)
+- [Toast Notifications](./toast-notifications.md)
 
 ## Accessibility & UX
 - [Accessibility](./accessibility.md)
