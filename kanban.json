@@ -71,6 +71,12 @@
       "title": "Implement Card-Stack Scroll Animation",
       "description": "Build the full-viewport card-stack scroll interaction per specs-v2/card-stack-scroll.md — pin a section (Engineering Log or Work Experience) and stack cards on scroll, with reduced-motion fallback and mobile-disabled behavior.",
       "spec": "specs-v2/card-stack-scroll.md"
+    },
+    {
+      "id": "avatar-hover-reveal",
+      "title": "Implement Name & Avatar Hover Reveal",
+      "description": "Add cursor-proximity reveal effect to the hero avatar and name — a circular mask around the cursor exposes the GitHub identity (Vonshlovens + GitHub PFP) underneath the display identity, with soft feathered edge, mobile-disabled, and reduced-motion fallback.",
+      "spec": "specs-v2/avatar-hover-reveal.md"
     }
   ],
   "in_progress": [],
