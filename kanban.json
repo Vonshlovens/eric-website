@@ -95,6 +95,12 @@
       "title": "Add Resume PDF Download",
       "description": "Serve a static resume PDF from static/resume.pdf. Update the hero primary CTA to link to the resume (opens in new tab with download fallback). Optionally add a 'Download Full Resume' link in the work experience section.",
       "spec": "specs-v2/resume-download.md"
+    },
+    {
+      "id": "scroll-animations",
+      "title": "Implement Scroll-Triggered Entrance Animations",
+      "description": "Build a reusable Svelte action (use:scrollReveal) using Intersection Observer to fade-up sections and stagger grid children on scroll. Respects animation toggle and prefers-reduced-motion. CSS-only transitions on opacity/transform for performance.",
+      "spec": "specs-v2/scroll-animations.md"
     }
   ],
   "in_progress": [],
