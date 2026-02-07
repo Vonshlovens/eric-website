@@ -3,140 +3,140 @@
     {
       "id": "design-system",
       "title": "Configure Design System & Global Theme",
-      "description": "Set up the V2 color palette, typography (Inter + Fira Code), Material Symbols icons, custom scrollbar, selection styles, and Tailwind v4 @theme tokens per specs-v2/design-system.md. This is a prerequisite for all other section implementations.",
-      "spec": "specs-v2/design-system.md"
+      "description": "Set up the V2 color palette, typography (Inter + Fira Code), Material Symbols icons, custom scrollbar, selection styles, and Tailwind v4 @theme tokens per specs/design-system.md. This is a prerequisite for all other section implementations.",
+      "spec": "specs/design-system.md"
     },
     {
       "id": "hero-section",
       "title": "Implement Hero Section",
-      "description": "Build the hero section per specs-v2/hero-section.md — two-column layout with avatar, terminal stats panel, stat cards, and CTAs using Threadwork design system.",
-      "spec": "specs-v2/hero-section.md"
+      "description": "Build the hero section per specs/hero-section.md — two-column layout with avatar, terminal stats panel, stat cards, and CTAs using Threadwork design system.",
+      "spec": "specs/hero-section.md"
     },
     {
       "id": "navigation",
       "title": "Implement Navigation",
-      "description": "Build the sticky navigation bar per specs-v2/navigation.md — system-style branding, live-status indicator, desktop nav links, CTA button, and mobile hamburger menu using Threadwork design system.",
-      "spec": "specs-v2/navigation.md"
+      "description": "Build the sticky navigation bar per specs/navigation.md — system-style branding, live-status indicator, desktop nav links, CTA button, and mobile hamburger menu using Threadwork design system.",
+      "spec": "specs/navigation.md"
     },
     {
       "id": "core-competencies",
       "title": "Implement Core Competencies Section",
-      "description": "Build the 3-column competency grid per specs-v2/core-competencies.md — icon boxes, titles, descriptions with hover effects using Threadwork design system.",
-      "spec": "specs-v2/core-competencies.md"
+      "description": "Build the 3-column competency grid per specs/core-competencies.md — icon boxes, titles, descriptions with hover effects using Threadwork design system.",
+      "spec": "specs/core-competencies.md"
     },
     {
       "id": "engineering-log",
       "title": "Implement Engineering Log Section",
-      "description": "Build the vertically stacked project portfolio per specs-v2/engineering-log.md — horizontal project cards with image (grayscale-to-color on hover), structured narrative sections (Problem, Key Learnings, Tech Stack), category badges, and section header with active project count and status indicator.",
-      "spec": "specs-v2/engineering-log.md"
+      "description": "Build the vertically stacked project portfolio per specs/engineering-log.md — horizontal project cards with image (grayscale-to-color on hover), structured narrative sections (Problem, Key Learnings, Tech Stack), category badges, and section header with active project count and status indicator.",
+      "spec": "specs/engineering-log.md"
     },
     {
       "id": "contact-cta",
       "title": "Implement Contact CTA Section",
-      "description": "Build the full-width contact call-to-action banner per specs-v2/contact-cta.md — headline, description, status badge, primary CTA button, and social icon links with dot-grid texture using Threadwork design system.",
-      "spec": "specs-v2/contact-cta.md"
+      "description": "Build the full-width contact call-to-action banner per specs/contact-cta.md — headline, description, status badge, primary CTA button, and social icon links with dot-grid texture using Threadwork design system.",
+      "spec": "specs/contact-cta.md"
     },
     {
       "id": "footer",
       "title": "Implement Footer",
-      "description": "Build the minimal dark footer per specs-v2/footer.md — branding block, dynamic copyright year, version string, and decorative latency/status indicator using Threadwork design system.",
-      "spec": "specs-v2/footer.md"
+      "description": "Build the minimal dark footer per specs/footer.md — branding block, dynamic copyright year, version string, and decorative latency/status indicator using Threadwork design system.",
+      "spec": "specs/footer.md"
     },
     {
       "id": "work-experience",
       "title": "Implement Work Experience Section",
-      "description": "Build the vertical timeline work history section per specs-v2/work-experience.md — timeline rail with accent dots, experience cards with job title, company, duration, duties list, and tech tags.",
-      "spec": "specs-v2/work-experience.md"
+      "description": "Build the vertical timeline work history section per specs/work-experience.md — timeline rail with accent dots, experience cards with job title, company, duration, duties list, and tech tags.",
+      "spec": "specs/work-experience.md"
     },
     {
       "id": "education",
       "title": "Implement Education & Certifications Section",
-      "description": "Build the education and certifications grid per specs-v2/education.md — 2-column responsive grid of degree and certification cards with category badges, credential links, and Threadwork design system styling.",
-      "spec": "specs-v2/education.md"
+      "description": "Build the education and certifications grid per specs/education.md — 2-column responsive grid of degree and certification cards with category badges, credential links, and Threadwork design system styling.",
+      "spec": "specs/education.md"
     },
     {
       "id": "skills-marquee",
       "title": "Implement Skills Marquee",
-      "description": "Build the dual-row animated skills marquee per specs-v2/skills-marquee.md — two rows of tech skill chips scrolling in opposite directions with accent dots, hover effects, edge fades, and reduced-motion fallback.",
-      "spec": "specs-v2/skills-marquee.md"
+      "description": "Build the dual-row animated skills marquee per specs/skills-marquee.md — two rows of tech skill chips scrolling in opposite directions with accent dots, hover effects, edge fades, and reduced-motion fallback.",
+      "spec": "specs/skills-marquee.md"
     },
     {
       "id": "interests",
       "title": "Implement Interests / Beyond Code Section",
-      "description": "Build the personal interests card grid per specs-v2/interests.md — 3-column responsive grid of interest cards with Material Symbols icons, descriptions, optional links, and Threadwork design system styling.",
-      "spec": "specs-v2/interests.md"
+      "description": "Build the personal interests card grid per specs/interests.md — 3-column responsive grid of interest cards with Material Symbols icons, descriptions, optional links, and Threadwork design system styling.",
+      "spec": "specs/interests.md"
     },
     {
       "id": "seo-meta",
       "title": "Configure SEO & Meta Tags",
-      "description": "Add Open Graph, Twitter Card, favicon, and JSON-LD structured data to the layout per specs-v2/seo-meta.md. Create OG image and favicon assets.",
-      "spec": "specs-v2/seo-meta.md"
+      "description": "Add Open Graph, Twitter Card, favicon, and JSON-LD structured data to the layout per specs/seo-meta.md. Create OG image and favicon assets.",
+      "spec": "specs/seo-meta.md"
     },
     {
       "id": "card-stack-scroll",
       "title": "Implement Card-Stack Scroll Animation",
-      "description": "Build the full-viewport card-stack scroll interaction per specs-v2/card-stack-scroll.md — pin a section (Engineering Log or Work Experience) and stack cards on scroll, with reduced-motion fallback and mobile-disabled behavior.",
-      "spec": "specs-v2/card-stack-scroll.md"
+      "description": "Build the full-viewport card-stack scroll interaction per specs/card-stack-scroll.md — pin a section (Engineering Log or Work Experience) and stack cards on scroll, with reduced-motion fallback and mobile-disabled behavior.",
+      "spec": "specs/card-stack-scroll.md"
     },
     {
       "id": "avatar-hover-reveal",
       "title": "Implement Name & Avatar Hover Reveal",
       "description": "Add cursor-proximity reveal effect to the hero avatar and name — a circular mask around the cursor exposes the GitHub identity (Vonshlovens + GitHub PFP) underneath the display identity, with soft feathered edge, mobile-disabled, and reduced-motion fallback.",
-      "spec": "specs-v2/avatar-hover-reveal.md"
+      "spec": "specs/avatar-hover-reveal.md"
     },
     {
       "id": "animation-toggle",
       "title": "Implement Animation Toggle",
       "description": "Add a nav-bar toggle that disables all page animations and transitions. Respects prefers-reduced-motion as default, persists to localStorage, applies a global CSS override via data-reduce-motion attribute, and exposes a Svelte store for JS-driven animations.",
-      "spec": "specs-v2/animation-toggle.md"
+      "spec": "specs/animation-toggle.md"
     },
     {
       "id": "resume-download",
       "title": "Add Resume PDF Download",
       "description": "Serve a static resume PDF from static/resume.pdf. Update the hero primary CTA to link to the resume (opens in new tab with download fallback). Optionally add a 'Download Full Resume' link in the work experience section.",
-      "spec": "specs-v2/resume-download.md"
+      "spec": "specs/resume-download.md"
     },
     {
       "id": "scroll-animations",
       "title": "Implement Scroll-Triggered Entrance Animations",
       "description": "Build a reusable Svelte action (use:scrollReveal) using Intersection Observer to fade-up sections and stagger grid children on scroll. Respects animation toggle and prefers-reduced-motion. CSS-only transitions on opacity/transform for performance.",
-      "spec": "specs-v2/scroll-animations.md"
+      "spec": "specs/scroll-animations.md"
     },
     {
       "id": "github-stats",
       "title": "Integrate Live GitHub Stats",
       "description": "Fetch live data from the GitHub API via +page.server.ts to populate the hero stat cards and terminal panel with real repo count, commit count, and account age. Includes static fallbacks and optional GITHUB_TOKEN for higher rate limits.",
-      "spec": "specs-v2/github-stats.md"
+      "spec": "specs/github-stats.md"
     },
     {
       "id": "accessibility",
       "title": "Implement Accessibility Standards",
-      "description": "Add skip-to-content link, focus-visible indicators, ARIA attributes, keyboard trap for mobile menu, and verify WCAG AA color contrast across all sections. Run Lighthouse/axe-core audits per specs-v2/accessibility.md.",
-      "spec": "specs-v2/accessibility.md"
+      "description": "Add skip-to-content link, focus-visible indicators, ARIA attributes, keyboard trap for mobile menu, and verify WCAG AA color contrast across all sections. Run Lighthouse/axe-core audits per specs/accessibility.md.",
+      "spec": "specs/accessibility.md"
     },
     {
       "id": "theme-toggle",
       "title": "Add Dark/Light Theme Toggle",
       "description": "Add a nav-bar theme toggle with a warm parchment light mode alongside the existing dark theme. Includes Svelte store, localStorage persistence, prefers-color-scheme detection, FOUC-prevention script, and light-mode CSS custom properties.",
-      "spec": "specs-v2/theme-toggle.md"
+      "spec": "specs/theme-toggle.md"
     },
     {
       "id": "performance",
       "title": "Apply Performance Optimizations",
-      "description": "Enable static prerendering, configure image lazy loading and WebP formats, add font preconnect/preload, set caching headers for Deno Deploy, and validate against Lighthouse 90+ target per specs-v2/performance.md.",
-      "spec": "specs-v2/performance.md"
+      "description": "Enable static prerendering, configure image lazy loading and WebP formats, add font preconnect/preload, set caching headers for Deno Deploy, and validate against Lighthouse 90+ target per specs/performance.md.",
+      "spec": "specs/performance.md"
     },
     {
       "id": "contact-form",
       "title": "Implement Contact Form Modal",
-      "description": "Build a modal contact form triggered by the Contact CTA button — name/email/message fields, SvelteKit form action backend, client-side validation, success/error states, focus trapping, and system-monitor aesthetic per specs-v2/contact-form.md.",
-      "spec": "specs-v2/contact-form.md"
+      "description": "Build a modal contact form triggered by the Contact CTA button — name/email/message fields, SvelteKit form action backend, client-side validation, success/error states, focus trapping, and system-monitor aesthetic per specs/contact-form.md.",
+      "spec": "specs/contact-form.md"
     },
     {
       "id": "skill-radar",
       "title": "Implement Skill Radar Chart",
-      "description": "Build an interactive SVG radar/spider chart visualizing skill proficiency across 5–7 categories (Frontend, Backend, DevOps, etc.). Pure Svelte + SVG, no charting library. Includes hover tooltips, scroll-reveal draw-in animation, screen-reader fallback table, and responsive layout per specs-v2/skill-radar.md.",
-      "spec": "specs-v2/skill-radar.md"
+      "description": "Build an interactive SVG radar/spider chart visualizing skill proficiency across 5–7 categories (Frontend, Backend, DevOps, etc.). Pure Svelte + SVG, no charting library. Includes hover tooltips, scroll-reveal draw-in animation, screen-reader fallback table, and responsive layout per specs/skill-radar.md.",
+      "spec": "specs/skill-radar.md"
     }
   ],
   "in_progress": [],
