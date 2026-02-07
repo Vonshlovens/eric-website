@@ -55,17 +55,11 @@
       "spec": "specs/keyboard-shortcuts.md"
     },
     {
-      "id": "back-to-top",
-      "title": "Implement Back to Top Button",
-      "description": "Build a fixed-position scroll-to-top button per specs/back-to-top.md — appears after 400px scroll, smooth scroll to top, fade+translate entry/exit animations, RAF-throttled scroll listener, system-monitor styled (bg-surface, border-dim, Material Symbols arrow icon), aria-label, focus-visible ring, reduced-motion support, responsive positioning.",
-      "spec": "specs/back-to-top.md"
-    },
-    {
       "id": "analytics",
       "title": "Integrate Privacy-Respecting Analytics",
       "description": "Add lightweight, cookie-free analytics per specs/analytics.md — async script in +layout.svelte <svelte:head>, environment-gated loading, SPA route tracking via afterNavigate, GDPR-compliant with no consent banner, < 5 KB gzipped, no Lighthouse impact.",
       "spec": "specs/analytics.md"
-    },
+    }
   ],
   "in_progress": [],
   "done": [
@@ -206,6 +200,12 @@
       "title": "Implement Page Transitions",
       "description": "Added View Transitions API cross-fade via SvelteKit onNavigate hook in +layout.svelte. CSS ::view-transition-old/new pseudo-elements with 150ms fade-out / 200ms ease-out fade-in. Progressive enhancement — browsers without View Transitions API get instant navigation. Respects data-reduce-motion attribute (skips transition entirely in JS) and prefers-reduced-motion (suppresses animation in CSS). Compositor-friendly opacity-only animation, no additional JS libraries.",
       "spec": "specs/page-transitions.md"
+    },
+    {
+      "id": "back-to-top",
+      "title": "Implement Back to Top Button",
+      "description": "Built fixed-position scroll-to-top button per specs/back-to-top.md — appears after 400px scroll, smooth scroll to top, fade+translate entry/exit animations (200ms ease-out in, 150ms ease-in out), RAF-throttled scroll listener, system-monitor styled (bg-surface, border-dim, Material Symbols keyboard_arrow_up icon), hover effects (border-accent/50, bg-surface-highlight, text-text-main), active scale(0.95), aria-label='Scroll to top', dynamic tabindex, focus-visible accent ring, reduced-motion support (instant opacity, no translate, behavior:'auto'), responsive positioning (bottom-4 right-4 mobile, bottom-6 right-6 desktop). Component: src/lib/components/ui/BackToTop.svelte, mounted in +layout.svelte.",
+      "spec": "specs/back-to-top.md"
     }
   ]
 }

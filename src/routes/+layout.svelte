@@ -3,6 +3,7 @@
 	import { onNavigate } from '$app/navigation';
 	import Navigation from '$lib/components/layout/Navigation.svelte';
 	import Footer from '$lib/components/layout/Footer.svelte';
+	import BackToTop from '$lib/components/ui/BackToTop.svelte';
 
 	let { children } = $props();
 
@@ -76,3 +77,4 @@
 <Navigation />
 {@render children()}
 <Footer />
+<BackToTop />

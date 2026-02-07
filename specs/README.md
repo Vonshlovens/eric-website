@@ -126,6 +126,10 @@ Comprehensive specifications for the portfolio website built with SvelteKit 2, S
 - Intersection Observer `use:scrollReveal` action
 - Fade-up entrance, staggered grid children, CSS-only transitions
 
+#### [Back to Top](./back-to-top.md)
+- Fixed-position scroll-to-top button, appears after 400px scroll
+- RAF-throttled scroll listener, smooth scroll, reduced-motion support
+
 ## Technical & SEO
 
 #### [Performance](./performance.md)
