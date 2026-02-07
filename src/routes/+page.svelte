@@ -5,13 +5,10 @@
   import { interests } from '$lib/data/interests';
   import ProjectCard from '$lib/components/ProjectCard.svelte';
   import SkillsMarquee from '$lib/components/SkillsMarquee.svelte';
-  import ThemeToggle from '$lib/components/ThemeToggle.svelte';
   import SEO from '$lib/components/SEO.svelte';
 
   // Lucide Icons
   import {
-    Menu,
-    X,
     Github,
     Linkedin,
     Twitter,
@@ -34,8 +31,6 @@
     Check
   } from 'svelte-lucide';
 
-  let mobileMenuOpen = $state(false);
-
   // Cursor proximity reveal state
   let mouseX = $state(0);
   let mouseY = $state(0);
@@ -53,20 +48,7 @@
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
-    mobileMenuOpen = false;
   }
-
-  function toggleMobileMenu() {
-    mobileMenuOpen = !mobileMenuOpen;
-  }
-
-  const navLinks = [
-    { label: 'About', href: '#about' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'Education', href: '#education' },
-    { label: 'Contact', href: '#contact' }
-  ];
 
   const featuredProjects = projects.filter(p => p.featured);
   const otherProjects = projects.filter(p => !p.featured);
@@ -111,71 +93,6 @@
     'open source'
   ]}
 />
-
-<!-- Navigation -->
-<nav class="fixed top-0 left-0 right-0 z-50 bg-bg/95 backdrop-blur-sm border-b border-border-muted">
-  <div class="max-w-4xl mx-auto px-6">
-    <div class="flex items-center justify-between h-16">
-      <!-- Logo -->
-      <a href="/" class="font-mono text-xl font-bold text-accent">
-        EE
-      </a>
-
-      <!-- Desktop Nav -->
-      <div class="hidden md:flex items-center gap-6">
-        <ul class="flex items-center gap-8">
-          {#each navLinks as link}
-            <li>
-              <a
-                href={link.href}
-                class="font-mono text-sm text-fg-muted hover:text-accent transition-colors duration-200"
-              >
-                {link.label}
-              </a>
-            </li>
-          {/each}
-        </ul>
-        <ThemeToggle />
-      </div>
-
-      <!-- Mobile Menu Button -->
-      <button
-        onclick={toggleMobileMenu}
-        class="md:hidden p-2 text-fg hover:text-accent transition-colors"
-        aria-label="Toggle menu"
-      >
-        {#if mobileMenuOpen}
-          <X size="24" />
-        {:else}
-          <Menu size="24" />
-        {/if}
-      </button>
-    </div>
-  </div>
-
-  <!-- Mobile Menu -->
-  {#if mobileMenuOpen}
-    <div class="md:hidden bg-bg-muted border-b border-border-muted">
-      <ul class="px-6 py-4 space-y-4">
-        {#each navLinks as link}
-          <li>
-            <a
-              href={link.href}
-              onclick={() => scrollTo(link.href.slice(1))}
-              class="block font-mono text-lg text-fg hover:text-accent transition-colors"
-            >
-              {link.label}
-            </a>
-          </li>
-        {/each}
-        <li class="pt-4 border-t border-border-muted flex items-center justify-between">
-          <span class="font-mono text-sm text-fg-muted">Theme</span>
-          <ThemeToggle />
-        </li>
-      </ul>
-    </div>
-  {/if}
-</nav>
 
 <!-- Main Content -->
 <main class="pt-16">

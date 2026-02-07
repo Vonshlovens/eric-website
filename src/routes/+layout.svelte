@@ -1,7 +1,11 @@
 <script>
 	import '../app.css';
+	import Navigation from '$lib/components/layout/Navigation.svelte';
 
 	let { children } = $props();
 </script>
 
-{@render children()}
+<Navigation />
+<div id="main-content">
+	{@render children()}
+</div>

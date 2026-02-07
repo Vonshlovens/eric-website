@@ -7,12 +7,6 @@
       "spec": "specs/hero-section.md"
     },
     {
-      "id": "navigation",
-      "title": "Implement Navigation",
-      "description": "Build the sticky navigation bar per specs/navigation.md — system-style branding, live-status indicator, desktop nav links, CTA button, and mobile hamburger menu using Threadwork design system.",
-      "spec": "specs/navigation.md"
-    },
-    {
       "id": "core-competencies",
       "title": "Implement Core Competencies Section",
       "description": "Build the 3-column competency grid per specs/core-competencies.md — icon boxes, titles, descriptions with hover effects using Threadwork design system.",
@@ -140,6 +134,12 @@
       "title": "Configure Design System & Global Theme",
       "description": "Set up the V2 color palette, typography (Inter + Fira Code), Material Symbols icons, custom scrollbar, selection styles, and Tailwind v4 @theme tokens per specs/design-system.md. This is a prerequisite for all other section implementations.",
       "spec": "specs/design-system.md"
+    },
+    {
+      "id": "navigation",
+      "title": "Implement Navigation",
+      "description": "Built sticky nav bar per specs/navigation.md — EE_SYS brand, live-status ping indicator, desktop nav links, View Source CTA, mobile hamburger menu with slide-down animation, skip-to-content link, ARIA attributes, Escape-to-close, V2 Stitch design tokens.",
+      "spec": "specs/navigation.md"
     }
   ]
 }
