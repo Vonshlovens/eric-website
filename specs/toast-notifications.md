@@ -78,3 +78,14 @@ Provide a reusable toast/notification system for transient user feedback — for
 | `text-accent` | Error variant accent |
 | `status-ok` | Success variant accent |
 | `font-mono` | All toast text |
+
+## Implementation Status
+
+**Status:** Complete
+
+### Files Created
+- `src/lib/stores/toast.svelte.ts` — Svelte 5 rune-based ToastStore class with `$state<Toast[]>` array, `addToast()` / `dismissToast()` methods, `crypto.randomUUID()` IDs, max 3 toast eviction. Exported convenience functions `addToast` and `dismissToast` for app-wide usage.
+- `src/lib/components/ui/ToastContainer.svelte` — Renders toast stack with per-variant styling (4px left border, colored dot, uppercase label), auto-dismiss timers with hover-pause, animated entry/exit (slide-in 200ms, slide-out 150ms), Escape key dismiss, reduced-motion support.
+
+### Files Modified
+- `src/routes/+layout.svelte` — Added `<ToastContainer />` mount point after `<BackToTop />`.

@@ -5,6 +5,7 @@
 	import Footer from '$lib/components/layout/Footer.svelte';
 	import BackToTop from '$lib/components/ui/BackToTop.svelte';
 	import LoadingScreen from '$lib/components/ui/LoadingScreen.svelte';
+	import ToastContainer from '$lib/components/ui/ToastContainer.svelte';
 
 	let { children } = $props();
 
@@ -80,3 +81,4 @@
 {@render children()}
 <Footer />
 <BackToTop />
+<ToastContainer />
