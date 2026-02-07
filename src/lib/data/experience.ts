@@ -53,15 +53,15 @@ export const experiences: WorkExperience[] = [
   },
   {
     id: 'exp-4',
-    title: 'Web Developer',
-    company: 'Freelance',
-    duration: 'Jan 2017 – May 2018',
-    location: 'Remote',
+    title: 'Summer Student',
+    company: 'Pembina Pipeline Corporation',
+    duration: 'May - August of 2018 - 2021',
+    location: 'Calgary, Alberta',
     duties: [
-      'Delivered custom websites and web applications for small businesses',
-      'Managed client relationships and project timelines',
-      'Handled full project lifecycle from requirements to deployment'
+      'Add development changes to QA environment',
+      'Create analytics applications in the new Fiori UI',
+      'Add new Fiori tiles for the team to test'
     ],
-    technologies: ['WordPress', 'PHP', 'JavaScript', 'CSS', 'MySQL']
+    technologies: ['SAP', 'Fiori', 'ABAP']
   }
 ];
