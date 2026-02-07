@@ -17,6 +17,12 @@
       "title": "Implement Core Competencies Section",
       "description": "Build the 3-column competency grid per specs-v2/core-competencies.md — icon boxes, titles, descriptions with hover effects using Threadwork design system.",
       "spec": "specs-v2/core-competencies.md"
+    },
+    {
+      "id": "contact-cta",
+      "title": "Implement Contact CTA Section",
+      "description": "Build the full-width contact call-to-action banner per specs-v2/contact-cta.md — headline, description, status badge, primary CTA button, and social icon links with dot-grid texture using Threadwork design system.",
+      "spec": "specs-v2/contact-cta.md"
     }
   ],
   "in_progress": [],
