@@ -11,6 +11,12 @@
       "title": "Implement Navigation",
       "description": "Build the sticky navigation bar per specs-v2/navigation.md — system-style branding, live-status indicator, desktop nav links, CTA button, and mobile hamburger menu using Threadwork design system.",
       "spec": "specs-v2/navigation.md"
+    },
+    {
+      "id": "core-competencies",
+      "title": "Implement Core Competencies Section",
+      "description": "Build the 3-column competency grid per specs-v2/core-competencies.md — icon boxes, titles, descriptions with hover effects using Threadwork design system.",
+      "spec": "specs-v2/core-competencies.md"
     }
   ],
   "in_progress": [],
