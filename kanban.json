@@ -37,6 +37,12 @@
       "spec": "specs/404-page.md"
     },
     {
+      "id": "page-transitions",
+      "title": "Implement Page Transitions",
+      "description": "Add smooth cross-fade transitions between routes per specs/page-transitions.md — use SvelteKit onNavigate hook with View Transitions API (progressive enhancement), CSS cross-fade fallback with {#key} block, 200ms ease-out opacity transition, prefers-reduced-motion skip, compositor-friendly opacity-only animation.",
+      "spec": "specs/page-transitions.md"
+    },
+    {
       "id": "loading-screen",
       "title": "Implement Loading / Splash Screen",
       "description": "Build a system-boot themed splash overlay per specs/loading-screen.md — sequential terminal boot lines with staggered reveal, accent-colored 'OK' and 'SYSTEM READY' text, fade-out exit, sessionStorage once-per-session flag, reduced-motion skip, non-blocking ~1.5s total duration.",
