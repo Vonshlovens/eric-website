@@ -113,6 +113,12 @@
       "title": "Implement Accessibility Standards",
       "description": "Add skip-to-content link, focus-visible indicators, ARIA attributes, keyboard trap for mobile menu, and verify WCAG AA color contrast across all sections. Run Lighthouse/axe-core audits per specs-v2/accessibility.md.",
       "spec": "specs-v2/accessibility.md"
+    },
+    {
+      "id": "theme-toggle",
+      "title": "Add Dark/Light Theme Toggle",
+      "description": "Add a nav-bar theme toggle with a warm parchment light mode alongside the existing dark theme. Includes Svelte store, localStorage persistence, prefers-color-scheme detection, FOUC-prevention script, and light-mode CSS custom properties.",
+      "spec": "specs-v2/theme-toggle.md"
     }
   ],
   "in_progress": [],
