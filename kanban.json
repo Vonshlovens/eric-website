@@ -3,6 +3,12 @@
   "in_progress": [],
   "done": [
     {
+      "id": "cleanup-static-assets",
+      "title": "Remove Unused Static Assets",
+      "description": "Removed ~89MB of unused files from static/ directory: IMG_6230.png (87MB random personal photo), how-strong-is-saitama-v0-ls463j4fizle1.webp (44KB unrelated image), and 4 CommitMono font files (1.5MB total — site uses Google Fonts for Inter and Fira Code, not self-hosted CommitMono). None of these files were referenced anywhere in the source code. Empty static/fonts/ directory removed. Build and lint pass clean.",
+      "spec": "specs/performance.md"
+    },
+    {
       "id": "contact-form-toast",
       "title": "Wire Toast Notifications to Contact Form",
       "description": "Connected the existing toast notification system to ContactForm submission results. On success, fires a 'success' toast ('Message sent successfully.') so users see confirmation even after the modal auto-closes. On failure (server error or unexpected result), fires an 'error' toast with the error message. In-modal success/error states remain unchanged as primary feedback; toasts provide persistent supplementary feedback. Import added: addToast from $lib/stores/toast.svelte. Build and lint pass clean.",
