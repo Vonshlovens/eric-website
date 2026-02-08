@@ -3,6 +3,12 @@
   "in_progress": [],
   "done": [
     {
+      "id": "site-config",
+      "title": "Extract Centralized Site Configuration",
+      "description": "Created src/lib/config/site.ts as single source of truth for site identity (name, title, domain, email) and social links (GitHub username/URL, LinkedIn URL). Replaced hardcoded values across 7 files: +layout.svelte (analytics domain, meta title, description, url, JSON-LD name/jobTitle/sameAs), +page.server.ts (GITHUB_USERNAME, email subject domain), sitemap.xml/+server.ts (baseUrl), Hero.svelte (avatar URLs, display name, GitHub username, title, resume filename), Navigation.svelte (View Source hrefs), ContactCTA.svelte (mailto, GitHub href, LinkedIn href), interests.ts (GitHub profile URL). Exported avatarUrl derived from username. Object uses 'as const' for literal type inference. robots.txt remains hardcoded (static file, cannot import TS). Build, lint, and svelte-check pass clean with zero errors/warnings.",
+      "spec": "specs/site-config.md"
+    },
+    {
       "id": "lcp-and-csp-hardening",
       "title": "Add fetchpriority to Hero LCP Image & upgrade-insecure-requests to CSP",
       "description": "Two targeted hardening improvements. (1) Added fetchpriority='high' to the hero display-layer avatar <img> in Hero.svelte — this is the Largest Contentful Paint element and fetchpriority hints the browser to prioritize it in the resource queue, improving LCP scores. (2) Added upgrade-insecure-requests directive to the Content-Security-Policy header in hooks.server.ts — instructs browsers to automatically upgrade any HTTP subresource requests to HTTPS, preventing mixed-content issues on the production HTTPS site. Build and lint pass clean.",

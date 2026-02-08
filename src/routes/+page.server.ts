@@ -2,6 +2,7 @@ import type { PageServerLoad, Actions } from './$types';
 import { fail } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
 import { Resend } from 'resend';
+import { site } from '$lib/config/site';
 
 import type { GitHubStats } from '$lib/types/github';
 export type { GitHubStats };
@@ -39,7 +40,7 @@ const FALLBACK: GitHubStats = {
 	accountAgeSec: 852_037_704
 };
 
-const GITHUB_USERNAME = 'Vonshlovens';
+const GITHUB_USERNAME = site.github.username;
 
 let cached: { stats: GitHubStats; timestamp: number } | null = null;
 const CACHE_TTL = 10 * 60 * 1000; // 10 minutes
@@ -146,7 +147,7 @@ export const actions: Actions = {
 				from: `Portfolio Contact <${env.RESEND_FROM_EMAIL || 'onboarding@resend.dev'}>`,
 				to: contactTo,
 				replyTo: email,
-				subject: `[ericevans.dev] Message from ${name}`,
+				subject: `[${site.domain}] Message from ${name}`,
 				text: `Name: ${name}\nEmail: ${email}\n\n${message}`
 			});
 

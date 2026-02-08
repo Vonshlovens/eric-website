@@ -132,6 +132,11 @@ Comprehensive specifications for the portfolio website built with SvelteKit 2, S
 
 ## Technical & SEO
 
+#### [Site Configuration](./site-config.md)
+- Centralized identity, domain, and social links (`src/lib/config/site.ts`)
+- Single source of truth for name, title, email, GitHub, LinkedIn
+- Consumed by layout, components, server routes, and meta tags
+
 #### [Security Headers](./security-headers.md)
 - CSP, HSTS, X-Frame-Options, X-Content-Type-Options
 - Referrer-Policy, Permissions-Policy
@@ -200,6 +205,7 @@ eric-website/
 │   ├── routes/          # SvelteKit file-based routes
 │   ├── lib/
 │   │   ├── components/  # Reusable Svelte components
+│   │   ├── config/      # Site configuration (identity, URLs)
 │   │   └── data/        # Static data
 │   ├── app.html         # HTML template
 │   └── app.css          # Global styles + Tailwind @theme

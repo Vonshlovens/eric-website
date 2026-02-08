@@ -1,8 +1,9 @@
 import type { RequestHandler } from './$types';
+import { site } from '$lib/config/site';
 
 export const prerender = true;
 
-const baseUrl = 'https://ericevans.dev';
+const baseUrl = site.url;
 
 const routes = [
 	{ path: '/', priority: 1.0, changefreq: 'monthly' }

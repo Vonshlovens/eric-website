@@ -1,6 +1,7 @@
 <script lang="ts">
   import { motionStore } from '$lib/stores/motion.svelte';
   import { themeStore } from '$lib/stores/theme.svelte';
+  import { site } from '$lib/config/site';
   import { tick, onMount, onDestroy } from 'svelte';
 
   let mobileMenuOpen = $state(false);
@@ -157,7 +158,7 @@
 
       <!-- CTA Button -->
       <a
-        href="https://github.com/Vonshlovens"
+        href={site.github.url}
         target="_blank"
         rel="noopener noreferrer"
         class="border border-accent text-accent px-6 py-3 rounded text-xs font-mono font-bold hover:bg-accent hover:text-primary transition-all duration-200 uppercase bg-accent/10 inline-flex items-center"
@@ -238,7 +239,7 @@
         </li>
         <li class="pt-3 mt-3 border-t border-border-dim">
           <a
-            href="https://github.com/Vonshlovens"
+            href={site.github.url}
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center border border-accent text-accent px-6 py-3 rounded text-xs font-mono font-bold hover:bg-accent hover:text-primary transition-all duration-200 uppercase bg-accent/10"

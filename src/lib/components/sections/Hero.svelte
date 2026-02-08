@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { GitHubStats } from '$lib/types/github';
   import { motionStore } from '$lib/stores/motion.svelte';
+  import { site, avatarUrl } from '$lib/config/site';
 
   interface Props {
     githubStats: GitHubStats;
@@ -122,7 +123,7 @@
                 class="relative w-40 h-40 md:w-48 md:h-48 rounded-lg overflow-hidden border-2 border-accent/40 transition-colors duration-500 cursor-crosshair"
               >
                 <img
-                  src="https://github.com/Vonshlovens.png"
+                  src={avatarUrl}
                   alt=""
                   width="192"
                   height="192"
@@ -137,10 +138,10 @@
             <!-- GitHub name -->
             <div class="text-center sm:text-left">
               <p class="font-mono text-2xl sm:text-4xl md:text-6xl font-bold text-text-white tracking-tighter leading-none mb-2">
-                Vonshlovens<span class="animate-pulse text-accent">_</span>
+                {site.github.username}<span class="animate-pulse text-accent">_</span>
               </p>
               <p class="font-mono text-lg text-accent tracking-wide mb-4">
-                @Vonshlovens
+                @{site.github.username}
               </p>
               <div class="flex flex-wrap gap-2 justify-center sm:justify-start">
                 {#each tags as tag}
@@ -167,8 +168,8 @@
                   class="relative w-40 h-40 md:w-48 md:h-48 rounded-lg overflow-hidden border-2 border-border-dim group-hover:border-accent/40 transition-colors duration-500 cursor-crosshair"
                 >
                   <img
-                    src="https://github.com/Vonshlovens.png"
-                    alt="Eric Evans — Software Developer"
+                    src={avatarUrl}
+                    alt="{site.name} — {site.title}"
                     width="192"
                     height="192"
                     fetchpriority="high"
@@ -183,10 +184,10 @@
               <!-- Display name -->
               <div class="text-center sm:text-left">
                 <h1 id="hero-heading" class="font-mono text-2xl sm:text-4xl md:text-6xl font-bold text-text-white tracking-tighter leading-none mb-2">
-                  Eric Evans<span class="animate-pulse text-accent">_</span>
+                  {site.name}<span class="animate-pulse text-accent">_</span>
                 </h1>
                 <p class="font-mono text-lg text-accent tracking-wide mb-4">
-                  Software Developer
+                  {site.title}
                 </p>
                 <div class="flex flex-wrap gap-2 justify-center sm:justify-start">
                   {#each tags as tag}
@@ -230,7 +231,7 @@
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            download="Eric_Evans_Resume.pdf"
+            download="{site.name.replace(' ', '_')}_Resume.pdf"
             class="
               inline-flex items-center gap-2
               px-6 py-3

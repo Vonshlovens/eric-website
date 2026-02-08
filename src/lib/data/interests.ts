@@ -1,3 +1,5 @@
+import { site } from '$lib/config/site';
+
 export interface Interest {
   id: string;
   title: string;
@@ -13,7 +15,7 @@ export const interests: Interest[] = [
     description:
       'Contributing to developer tools and libraries. Believer in building in public and giving back to the community.',
     icon: 'lock_open',
-    links: [{ label: 'GitHub Profile', url: 'https://github.com/Vonshlovens' }]
+    links: [{ label: 'GitHub Profile', url: site.github.url }]
   },
   {
     id: 'interest-2',

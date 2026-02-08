@@ -9,9 +9,10 @@
 	import ToastContainer from '$lib/components/ui/ToastContainer.svelte';
 	import KeyboardShortcuts from '$lib/components/ui/KeyboardShortcuts.svelte';
 	import { themeStore } from '$lib/stores/theme.svelte';
+	import { site } from '$lib/config/site';
 
 	const analyticsEnabled = env.PUBLIC_ANALYTICS_ENABLED === 'true';
-	const analyticsDomain = 'ericevans.dev';
+	const analyticsDomain = site.domain;
 
 	let { children } = $props();
 
@@ -29,19 +30,19 @@
 		});
 	});
 
-	const title = 'Eric Evans — Software Developer';
+	const title = `${site.name} — ${site.title}`;
 	const description =
-		'Portfolio of Eric Evans. Software developer specializing in cloud infrastructure, AI/ML, and database systems.';
-	const url = 'https://ericevans.dev';
+		`Portfolio of ${site.name}. Software developer specializing in cloud infrastructure, AI/ML, and database systems.`;
+	const url = site.url;
 	const image = `${url}/og-image.png`;
 
 	const jsonLd = {
 		'@context': 'https://schema.org',
 		'@type': 'Person',
-		name: 'Eric Evans',
-		jobTitle: 'Software Developer',
+		name: site.name,
+		jobTitle: site.title,
 		url,
-		sameAs: ['https://github.com/Vonshlovens', 'https://linkedin.com/in/ericevans']
+		sameAs: [site.github.url, site.linkedin.url]
 	};
 </script>
 

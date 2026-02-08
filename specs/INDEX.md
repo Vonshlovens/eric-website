@@ -41,6 +41,7 @@ Quick-reference list of every specification file in this directory.
 - [Back to Top](./back-to-top.md)
 
 ## Technical & SEO
+- [Site Configuration](./site-config.md)
 - [Performance](./performance.md)
 - [GitHub Stats](./github-stats.md)
 - [Resume Download](./resume-download.md)

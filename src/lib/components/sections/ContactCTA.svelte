@@ -1,5 +1,6 @@
 <script lang="ts">
   import { scrollReveal } from '$lib/actions/scrollReveal';
+  import { site } from '$lib/config/site';
 
   let { onconnect }: { onconnect?: () => void } = $props();
 
@@ -58,14 +59,14 @@
           <div class="flex gap-2 text-text-muted">
             <a
               class="w-11 h-11 flex items-center justify-center rounded hover:text-accent transition-colors duration-200"
-              href="mailto:eric@ericevans.dev"
+              href="mailto:{site.email}"
               aria-label="Email"
             >
               <span class="material-symbols-outlined text-2xl" aria-hidden="true">mail</span>
             </a>
             <a
               class="w-11 h-11 flex items-center justify-center rounded hover:text-accent transition-colors duration-200"
-              href="https://github.com/Vonshlovens"
+              href={site.github.url}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub (opens in new tab)"
@@ -74,7 +75,7 @@
             </a>
             <a
               class="w-11 h-11 flex items-center justify-center rounded hover:text-accent transition-colors duration-200"
-              href="https://linkedin.com/in/ericevans"
+              href={site.linkedin.url}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn (opens in new tab)"
