@@ -1,5 +1,6 @@
 <script lang="ts">
   import { scrollReveal } from '$lib/actions/scrollReveal';
+  import { skillIcons } from '$lib/data/skill-icons';
 
   const skills = [
     'Python', 'JavaScript', 'TypeScript', 'Svelte', 'Deno',
@@ -23,8 +24,15 @@
       {#each Array(4) as _, i}
         <div class="contents" aria-hidden={i > 0 ? 'true' : undefined}>
           {#each row1 as skill}
-            <div class="flex items-center gap-2 rounded border border-border-dim bg-surface px-4 py-2 md:px-5 md:py-2.5 mx-1.5 shrink-0 hover:border-accent/30 hover:bg-surface-highlight hover:-translate-y-0.5 transition-all duration-200">
-              <span class="w-1.5 h-1.5 rounded-full bg-accent" aria-hidden="true"></span>
+            {@const icon = skillIcons[skill]}
+            <div class="skill-chip flex items-center gap-2 rounded border border-border-dim bg-surface px-4 py-2 md:px-5 md:py-2.5 mx-1.5 shrink-0 hover:border-accent/30 hover:bg-surface-highlight hover:-translate-y-0.5 transition-all duration-200" style="--brand-color: {icon?.color ?? '#BFB1C1'}">
+              {#if icon}
+                <svg class="skill-icon w-3.5 h-3.5 md:w-4 md:h-4 shrink-0 transition-colors duration-200" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d={icon.path} />
+                </svg>
+              {:else}
+                <span class="w-1.5 h-1.5 rounded-full bg-accent" aria-hidden="true"></span>
+              {/if}
               <span class="font-mono text-xs md:text-sm uppercase tracking-wider text-text-main">{skill}</span>
             </div>
           {/each}
@@ -37,8 +45,15 @@
       {#each Array(4) as _, i}
         <div class="contents" aria-hidden={i > 0 ? 'true' : undefined}>
           {#each row2 as skill}
-            <div class="flex items-center gap-2 rounded border border-border-dim bg-surface px-4 py-2 md:px-5 md:py-2.5 mx-1.5 shrink-0 hover:border-accent/30 hover:bg-surface-highlight hover:-translate-y-0.5 transition-all duration-200">
-              <span class="w-1.5 h-1.5 rounded-full bg-accent" aria-hidden="true"></span>
+            {@const icon = skillIcons[skill]}
+            <div class="skill-chip flex items-center gap-2 rounded border border-border-dim bg-surface px-4 py-2 md:px-5 md:py-2.5 mx-1.5 shrink-0 hover:border-accent/30 hover:bg-surface-highlight hover:-translate-y-0.5 transition-all duration-200" style="--brand-color: {icon?.color ?? '#BFB1C1'}">
+              {#if icon}
+                <svg class="skill-icon w-3.5 h-3.5 md:w-4 md:h-4 shrink-0 transition-colors duration-200" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d={icon.path} />
+                </svg>
+              {:else}
+                <span class="w-1.5 h-1.5 rounded-full bg-accent" aria-hidden="true"></span>
+              {/if}
               <span class="font-mono text-xs md:text-sm uppercase tracking-wider text-text-main">{skill}</span>
             </div>
           {/each}
@@ -65,6 +80,15 @@
 
   .animate-marquee-reverse {
     animation: marquee-reverse 30s linear infinite;
+  }
+
+  /* Skill icon: monochrome white by default, brand color on chip hover */
+  .skill-icon {
+    color: var(--color-text-muted, #888888);
+  }
+
+  .skill-chip:hover .skill-icon {
+    color: var(--brand-color);
   }
 
   @media (prefers-reduced-motion: reduce) {

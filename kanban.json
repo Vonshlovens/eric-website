@@ -3,6 +3,12 @@
   "in_progress": [],
   "done": [
     {
+      "id": "skills-marquee-icons",
+      "title": "Add SVG Logos to Skills Marquee Chips (Phase 1)",
+      "description": "Added inline SVG technology logos to each skill chip in the SkillsMarquee component. Created src/lib/data/skill-icons.ts with SkillIcon interface mapping all 20 skills (Python, JavaScript, TypeScript, Svelte, Deno, Node, Go, Azure, GCP, Terraform, Docker, Kubernetes, Tailwind, RabbitMQ, FastAPI, Bun, LLMs, PostgreSQL, Redis, Git) to simplified SVG path data and brand colors. Icons render at w-3.5 h-3.5 (mobile) / w-4 h-4 (desktop) replacing the red accent dot. Default icon color is text-muted (#888888, monochrome); on chip hover, icon transitions to the technology's brand color via CSS custom property --brand-color with 200ms transition. Fallback to accent dot for any skill without an icon entry. Build and lint pass clean.",
+      "spec": "specs/skills-marquee.md"
+    },
+    {
       "id": "engineering-log-images",
       "title": "Add Placeholder Images for Engineering Log Projects",
       "description": "Created 6 system-monitor themed WebP placeholder images for the engineering log projects (cloud-orchestrator, ml-pipeline, realtime-dashboard, api-gateway, db-migration, component-lib). Each image uses the design system aesthetic (#121212 bg, #B80C09 accent, dot-grid texture) with project-relevant visuals: cloud nodes with connections, pipeline stages with data points, realtime line chart, API gateway architecture, database cylinders with migration arrow, and UI component grid. Generated as SVGs then converted to WebP via rsvg-convert + ImageMagick (~2-3 KB each, ~16 KB total). Created static/images/projects/ directory. Eliminates 404 console errors from missing project images. Build passes clean.",

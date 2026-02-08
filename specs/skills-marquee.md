@@ -227,9 +227,5 @@ Single component. No sub-components needed until Phase 2 interactive features ar
 
 ## Future Phases
 
-These are documented in `specs/skills-marquee.md` and remain applicable:
-
-- **Phase 1**: Add SVG logos to each chip (monochrome white, color on hover)
+- **Phase 1** (DONE): Add SVG logos to each chip (monochrome muted, brand color on hover). Implemented via `src/lib/data/skill-icons.ts` with `SkillIcon` interface (`path` + `color`). Icons are 14px mobile / 16px desktop inline SVGs with `fill="currentColor"`. Default color `text-muted`; on `.skill-chip:hover`, color transitions to `--brand-color` CSS custom property (200ms ease). Replaces the accent dot per chip.
 - **Phase 2**: Click-to-expand modal with technology description, experience level, and linked projects (use `bits-ui` Dialog)
-
-No work on future phases is needed for the initial implementation.
