@@ -132,6 +132,11 @@ Comprehensive specifications for the portfolio website built with SvelteKit 2, S
 
 ## Technical & SEO
 
+#### [Security Headers](./security-headers.md)
+- CSP, HSTS, X-Frame-Options, X-Content-Type-Options
+- Referrer-Policy, Permissions-Policy
+- All set via `hooks.server.ts` handle hook
+
 #### [Performance](./performance.md)
 - Static prerendering, image lazy loading, WebP
 - Font preconnect/preload, caching headers, Lighthouse 90+ target

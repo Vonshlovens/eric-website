@@ -3,6 +3,12 @@
   "in_progress": [],
   "done": [
     {
+      "id": "security-headers",
+      "title": "Add Security Headers (CSP, HSTS, X-Frame-Options, etc.)",
+      "description": "Added 6 HTTP security headers to src/hooks.server.ts handle hook. Content-Security-Policy with directives for scripts (self + Plausible), styles (self + Google Fonts), fonts (fonts.gstatic.com), images (self + GitHub avatars), connections (self + Plausible), and blocked frames/objects. X-Frame-Options: DENY to prevent clickjacking. X-Content-Type-Options: nosniff to prevent MIME sniffing. Referrer-Policy: strict-origin-when-cross-origin. Permissions-Policy disabling camera, microphone, geolocation, payment. Strict-Transport-Security with 1-year max-age and includeSubDomains. unsafe-inline required for script-src (FOUC prevention script, JSON-LD injection) and style-src (Svelte scoped styles, inline style attributes). Build and lint pass clean.",
+      "spec": "specs/security-headers.md"
+    },
+    {
       "id": "fix-image-cls",
       "title": "Add Explicit Image Dimensions to Prevent CLS",
       "description": "Added width/height attributes to all 4 <img> tags in the codebase to prevent Cumulative Layout Shift. Hero avatar images (both display and GitHub reveal layers) get width=192 height=192 matching the md:w-48 container (2x retina). Engineering log project images (both card-stack and fallback modes) get width=800 height=600 matching their actual WebP dimensions. These intrinsic dimensions let the browser reserve correct aspect-ratio space before images load, eliminating CLS. Build and lint pass clean.",
