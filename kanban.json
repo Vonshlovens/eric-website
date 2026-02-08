@@ -3,6 +3,12 @@
   "in_progress": [],
   "done": [
     {
+      "id": "ci-cd-deploy",
+      "title": "Add GitHub Actions CI/CD for Deno Deploy",
+      "description": "Created .github/workflows/deploy.yml GitHub Actions workflow for automatic deployment to Deno Deploy on push to main. Uses denoland/setup-deno@v2 with Deno v2.x, runs deno install + deno task build, then deploys via denoland/deployctl@v1 with entrypoint .deno-deploy/server.ts (output of @deno/svelte-adapter). Requires id-token:write permission for OIDC auth and a Deno Deploy project named 'eric-website'. No secrets needed — uses GitHub OIDC token exchange.",
+      "spec": "specs/deno-deploy.md"
+    },
+    {
       "id": "active-section-nav",
       "title": "Implement Active Section Highlighting in Navigation",
       "description": "Added Intersection Observer-based active section highlighting to Navigation.svelte. As the user scrolls, the nav link corresponding to the currently visible section highlights (text-text-white vs text-text-muted). Uses rootMargin '-50% 0px -50% 0px' to trigger when a section crosses the viewport midpoint. Applies to both desktop and mobile nav links. Adds aria-current attribute on active link for accessibility. Observer created on mount and disconnected on destroy. Default active section is 'about' (hero).",

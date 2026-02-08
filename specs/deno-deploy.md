@@ -53,7 +53,7 @@ deno install -A --no-check -r -f https://deno.land/x/deploy/deployctl.ts
 deployctl deploy --project=my-project main.ts
 ```
 
-### 3. GitHub Actions
+### 3. GitHub Actions (Implemented)
 
 ```yaml
 # .github/workflows/deploy.yml
@@ -73,9 +73,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: denoland/setup-deno@v1
+      - uses: denoland/setup-deno@v2
         with:
-          deno-version: v1.x
+          deno-version: v2.x
+
+      - name: Install dependencies
+        run: deno install
 
       - name: Build
         run: deno task build
@@ -83,21 +86,21 @@ jobs:
       - name: Deploy to Deno Deploy
         uses: denoland/deployctl@v1
         with:
-          project: my-project
-          entrypoint: build/index.js
+          project: eric-website
+          entrypoint: .deno-deploy/server.ts
 ```
 
-## SvelteKit Adapter
+## SvelteKit Adapter (Implemented)
 
 ### Installation
 ```bash
-deno add npm:@sveltejs/adapter-deno
+deno install -D npm:@deno/svelte-adapter
 ```
 
 ### Configuration
 ```javascript
 // svelte.config.js
-import adapter from '@sveltejs/adapter-deno';
+import adapter from "@deno/svelte-adapter";
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -105,12 +108,7 @@ const config = {
   preprocess: vitePreprocess(),
 
   kit: {
-    adapter: adapter({
-      // Options
-      out: 'build',
-      precompress: true,
-      envPrefix: 'PUBLIC_'
-    })
+    adapter: adapter()
   }
 };
 
@@ -122,8 +120,8 @@ export default config;
 deno task build
 ```
 
-This generates a `build/` directory with:
-- `index.js` - Server entry point
+This generates a `.deno-deploy/` directory with:
+- `server.ts` - Server entry point
 - Static assets
 - Prerendered pages
 
@@ -426,12 +424,12 @@ deno run --allow-net --allow-read --allow-env build/index.js
 
 ## Deployment Checklist
 
-- [ ] Configure `svelte.config.js` with Deno adapter
-- [ ] Set up environment variables
-- [ ] Test build locally
-- [ ] Configure custom domain (optional)
-- [ ] Set up GitHub integration
-- [ ] Enable automatic deployments
+- [x] Configure `svelte.config.js` with Deno adapter (`@deno/svelte-adapter`)
+- [ ] Set up environment variables (RESEND_API_KEY, CONTACT_EMAIL_TO, GITHUB_TOKEN in Deno Deploy dashboard)
+- [x] Test build locally (`deno task build`)
+- [ ] Configure custom domain (ericevans.dev)
+- [x] Set up GitHub Actions CI/CD (`.github/workflows/deploy.yml`)
+- [x] Enable automatic deployments (on push to main)
 - [ ] Configure branch deployments (main, staging, etc.)
 - [ ] Test deployment in production
 - [ ] Set up monitoring and alerts
