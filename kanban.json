@@ -3,6 +3,12 @@
   "in_progress": [],
   "done": [
     {
+      "id": "active-section-nav",
+      "title": "Implement Active Section Highlighting in Navigation",
+      "description": "Added Intersection Observer-based active section highlighting to Navigation.svelte. As the user scrolls, the nav link corresponding to the currently visible section highlights (text-text-white vs text-text-muted). Uses rootMargin '-50% 0px -50% 0px' to trigger when a section crosses the viewport midpoint. Applies to both desktop and mobile nav links. Adds aria-current attribute on active link for accessibility. Observer created on mount and disconnected on destroy. Default active section is 'about' (hero).",
+      "spec": "specs/navigation.md"
+    },
+    {
       "id": "email-integration",
       "title": "Integrate Resend Email Service for Contact Form",
       "description": "Replaced contact form console.log placeholder with Resend email delivery. Added resend npm dependency. Contact form action in +page.server.ts now sends emails via Resend API when RESEND_API_KEY and CONTACT_EMAIL_TO env vars are configured; falls back to console.log when unconfigured (local dev). Uses $env/dynamic/private for all server env vars (also migrated GITHUB_TOKEN from process.env). Supports optional RESEND_FROM_EMAIL for custom verified sender. Created .env.example documenting all environment variables (GITHUB_TOKEN, RESEND_API_KEY, CONTACT_EMAIL_TO, RESEND_FROM_EMAIL, PUBLIC_ANALYTICS_ENABLED).",

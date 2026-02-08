@@ -1,11 +1,12 @@
 <script lang="ts">
   import { motionStore } from '$lib/stores/motion.svelte';
   import { themeStore } from '$lib/stores/theme.svelte';
-  import { tick } from 'svelte';
+  import { tick, onMount, onDestroy } from 'svelte';
 
   let mobileMenuOpen = $state(false);
   let menuToggleBtn = $state<HTMLButtonElement>();
   let mobileMenuEl = $state<HTMLElement>();
+  let activeSection = $state('about');
 
   const navLinks = [
     { label: 'Dashboard', href: '#about' },
@@ -14,6 +15,32 @@
     { label: 'Education', href: '#education' },
     { label: 'Contact', href: '#contact' }
   ];
+
+  let observer: IntersectionObserver | undefined;
+
+  onMount(() => {
+    const sectionIds = navLinks.map((l) => l.href.slice(1));
+
+    observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            activeSection = entry.target.id;
+          }
+        }
+      },
+      { rootMargin: '-50% 0px -50% 0px' }
+    );
+
+    for (const id of sectionIds) {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    }
+  });
+
+  onDestroy(() => {
+    observer?.disconnect();
+  });
 
   function scrollTo(id: string) {
     const el = document.getElementById(id);
@@ -94,7 +121,8 @@
             <li>
               <a
                 href={link.href}
-                class="text-xs font-mono text-text-muted hover:text-text-white transition-colors duration-200 tracking-widest uppercase py-3 inline-flex items-center"
+                class="text-xs font-mono hover:text-text-white transition-colors duration-200 tracking-widest uppercase py-3 inline-flex items-center {activeSection === link.href.slice(1) ? 'text-text-white' : 'text-text-muted'}"
+                aria-current={activeSection === link.href.slice(1) ? 'true' : undefined}
               >
                 {link.label}
               </a>
@@ -170,7 +198,8 @@
             <a
               href={link.href}
               onclick={() => scrollTo(link.href.slice(1))}
-              class="block py-3 text-xs font-mono text-text-muted hover:text-text-white transition-colors tracking-widest uppercase"
+              class="block py-3 text-xs font-mono hover:text-text-white transition-colors tracking-widest uppercase {activeSection === link.href.slice(1) ? 'text-text-white' : 'text-text-muted'}"
+              aria-current={activeSection === link.href.slice(1) ? 'true' : undefined}
             >
               {link.label}
             </a>

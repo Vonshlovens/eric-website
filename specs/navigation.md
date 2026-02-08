@@ -134,7 +134,7 @@ When toggled, a dropdown or slide-in panel shows the same links vertically. The 
 ## Interaction
 
 - **Scroll**: Header remains fixed at the top as the user scrolls.
-- **Active section**: As the user scrolls through page sections, the corresponding nav link highlights (optional enhancement via Intersection Observer).
+- **Active section**: As the user scrolls through page sections, the corresponding nav link highlights. Uses a shared `IntersectionObserver` with `rootMargin: '-50% 0px -50% 0px'` to detect which section occupies the viewport midpoint. Active link receives `text-text-white` (vs `text-text-muted`) and `aria-current="true"`. Applies to both desktop and mobile nav links. Observer created on mount, disconnected on destroy.
 - **Mobile menu**: Toggles open/close. Closes automatically on navigation.
 
 ---
