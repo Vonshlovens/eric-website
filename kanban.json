@@ -3,6 +3,12 @@
   "in_progress": [],
   "done": [
     {
+      "id": "fix-placeholder-urls",
+      "title": "Fix Placeholder URLs in Data Files",
+      "description": "Fixed placeholder URLs across data files. In interests.ts, corrected the Open Source GitHub Profile link from bare 'https://github.com' to 'https://github.com/Vonshlovens'. In engineering-log.ts, removed the unused `links` optional field from the EngineeringLogEntry interface and stripped all placeholder link objects (6 entries with 'https://github.com' and 2 with 'https://example.com') — the EngineeringLog component never rendered these links, so they were dead data pointing to generic homepages. Build and lint pass clean.",
+      "spec": "specs/engineering-log.md"
+    },
+    {
       "id": "skills-marquee-icons",
       "title": "Add SVG Logos to Skills Marquee Chips (Phase 1)",
       "description": "Added inline SVG technology logos to each skill chip in the SkillsMarquee component. Created src/lib/data/skill-icons.ts with SkillIcon interface mapping all 20 skills (Python, JavaScript, TypeScript, Svelte, Deno, Node, Go, Azure, GCP, Terraform, Docker, Kubernetes, Tailwind, RabbitMQ, FastAPI, Bun, LLMs, PostgreSQL, Redis, Git) to simplified SVG path data and brand colors. Icons render at w-3.5 h-3.5 (mobile) / w-4 h-4 (desktop) replacing the red accent dot. Default icon color is text-muted (#888888, monochrome); on chip hover, icon transitions to the technology's brand color via CSS custom property --brand-color with 200ms transition. Fallback to accent dot for any skill without an icon entry. Build and lint pass clean.",

@@ -13,7 +13,7 @@ export const interests: Interest[] = [
     description:
       'Contributing to developer tools and libraries. Believer in building in public and giving back to the community.',
     icon: 'lock_open',
-    links: [{ label: 'GitHub Profile', url: 'https://github.com' }]
+    links: [{ label: 'GitHub Profile', url: 'https://github.com/Vonshlovens' }]
   },
   {
     id: 'interest-2',

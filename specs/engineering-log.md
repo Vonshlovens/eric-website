@@ -70,11 +70,6 @@ interface EngineeringLogEntry {
   problem: string;         // 1-2 sentence problem statement
   learnings: string;       // 1-2 sentence key takeaway
   techStack: string[];     // list of technologies used
-  links?: {
-    github?: string;
-    demo?: string;
-    caseStudy?: string;
-  };
 }
 ```
 
