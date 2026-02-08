@@ -1,5 +1,13 @@
 <script lang="ts">
   import { scrollReveal } from '$lib/actions/scrollReveal';
+
+  let { onconnect }: { onconnect?: () => void } = $props();
+
+  let ctaBtnEl = $state<HTMLButtonElement>();
+
+  export function getTriggerEl() {
+    return ctaBtnEl;
+  }
 </script>
 
 <section
@@ -38,12 +46,13 @@
 
         <!-- Right: CTA + Social Icons -->
         <div class="flex flex-col items-center gap-6 shrink-0">
-          <a
-            href="mailto:eric@example.com"
-            class="flex items-center justify-center rounded bg-accent text-text-white h-14 px-10 text-xs font-mono font-bold tracking-[0.2em] transition-all duration-200 hover:bg-text-white hover:text-primary shadow-xl shadow-accent/20 uppercase"
+          <button
+            bind:this={ctaBtnEl}
+            onclick={onconnect}
+            class="flex items-center justify-center rounded bg-accent text-text-white h-14 px-10 text-xs font-mono font-bold tracking-[0.2em] transition-all duration-200 hover:bg-text-white hover:text-primary shadow-xl shadow-accent/20 uppercase cursor-pointer"
           >
             Connect.exe
-          </a>
+          </button>
 
           <div class="flex gap-6 text-text-muted">
             <a

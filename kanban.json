@@ -13,12 +13,6 @@
       "spec": "specs/avatar-hover-reveal.md"
     },
     {
-      "id": "contact-form",
-      "title": "Implement Contact Form Modal",
-      "description": "Build a modal contact form triggered by the Contact CTA button — name/email/message fields, SvelteKit form action backend, client-side validation, success/error states, focus trapping, and system-monitor aesthetic per specs/contact-form.md.",
-      "spec": "specs/contact-form.md"
-    },
-    {
       "id": "skill-radar",
       "title": "Implement Skill Radar Chart",
       "description": "Build an interactive SVG radar/spider chart visualizing skill proficiency across 5–7 categories (Frontend, Backend, DevOps, etc.). Pure Svelte + SVG, no charting library. Includes hover tooltips, scroll-reveal draw-in animation, screen-reader fallback table, and responsive layout per specs/skill-radar.md.",
@@ -33,6 +27,12 @@
   ],
   "in_progress": [],
   "done": [
+    {
+      "id": "contact-form",
+      "title": "Implement Contact Form Modal",
+      "description": "Built modal contact form per specs/contact-form.md — triggered by Connect.exe CTA button in ContactCTA section. Terminal-themed modal (> init_contact.sh prompt) with name/email/message fields, client-side validation (required, email format, max length), inline error messages with aria-describedby. SvelteKit form action at ?/contact with server-side validation, use:enhance for progressive enhancement. Success state shows 'Transmission Received' with check_circle icon and auto-close after 3s. Error state with retry option. Focus trap within modal, Escape/backdrop click to close, focus return to CTA trigger. Modal entrance animation (scale 95%→100%, fade in) with reduced-motion support. Page prerender disabled (src/routes/+page.ts) to support form actions. Email delivery pluggable via TODO placeholder (console.log for dev). Component: src/lib/components/ContactForm.svelte.",
+      "spec": "specs/contact-form.md"
+    },
     {
       "id": "analytics",
       "title": "Integrate Privacy-Respecting Analytics",

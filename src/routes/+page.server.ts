@@ -1,4 +1,5 @@
-import type { PageServerLoad } from './$types';
+import type { PageServerLoad, Actions } from './$types';
+import { fail } from '@sveltejs/kit';
 
 export interface GitHubStats {
 	repos: number;
@@ -67,5 +68,39 @@ export const load: PageServerLoad = async ({ fetch, setHeaders }) => {
 		return { githubStats: stats };
 	} catch {
 		return { githubStats: FALLBACK };
+	}
+};
+
+export const actions: Actions = {
+	contact: async ({ request }) => {
+		const data = await request.formData();
+		const name = data.get('name')?.toString().trim();
+		const email = data.get('email')?.toString().trim();
+		const message = data.get('message')?.toString().trim();
+
+		if (!name || !email || !message) {
+			return fail(400, { error: 'All fields are required.' });
+		}
+
+		if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+			return fail(400, { error: 'Invalid email address.' });
+		}
+
+		if (name.length > 100) {
+			return fail(400, { error: 'Name must be under 100 characters.' });
+		}
+
+		if (message.length > 2000) {
+			return fail(400, { error: 'Message must be under 2000 characters.' });
+		}
+
+		try {
+			// TODO: integrate email service (Resend, SendGrid, etc.)
+			// For now, log to console
+			console.log('[Contact Form]', { name, email, message });
+			return { success: true };
+		} catch {
+			return fail(500, { error: 'Failed to send message.' });
+		}
 	}
 };

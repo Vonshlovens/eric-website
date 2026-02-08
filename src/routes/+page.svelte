@@ -8,8 +8,16 @@
   import Education from '$lib/components/sections/Education.svelte';
   import Interests from '$lib/components/sections/Interests.svelte';
   import ContactCTA from '$lib/components/sections/ContactCTA.svelte';
+  import ContactForm from '$lib/components/ContactForm.svelte';
 
   let { data } = $props();
+
+  let contactOpen = $state(false);
+  let ctaComponent = $state<ContactCTA>();
+
+  function openContactForm() {
+    contactOpen = true;
+  }
 </script>
 
 <SEO
@@ -60,8 +68,11 @@
   <Interests />
 
   <!-- Contact CTA -->
-  <ContactCTA />
+  <ContactCTA bind:this={ctaComponent} onconnect={openContactForm} />
 </main>
+
+<!-- Contact Form Modal -->
+<ContactForm bind:open={contactOpen} triggerEl={ctaComponent?.getTriggerEl()} />
 
 <!-- Footer -->
 <footer class="bg-bg border-t border-border-muted py-8">

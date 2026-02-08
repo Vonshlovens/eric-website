@@ -268,5 +268,18 @@ The modal is always vertically centered in the viewport.
 | File | Purpose |
 |------|---------|
 | `src/lib/components/ContactForm.svelte` | Modal + form component |
-| `src/routes/+page.server.ts` | SvelteKit form action for handling submission |
+| `src/lib/components/sections/ContactCTA.svelte` | Updated CTA button to open modal (was mailto link) |
+| `src/routes/+page.server.ts` | SvelteKit form action (`?/contact`) for handling submission |
 | `src/routes/+page.svelte` | Imports ContactForm, passes open state from CTA click |
+| `src/routes/+page.ts` | Disables prerender for page (required for form actions) |
+
+---
+
+## Implementation Notes
+
+- **CTA Trigger**: The `Connect.exe` button in ContactCTA was converted from `<a href="mailto:...">` to a `<button>` with an `onconnect` callback prop. The component exposes `getTriggerEl()` for focus return.
+- **Prerender**: `src/routes/+page.ts` exports `prerender = false` to override the layout-level `prerender = true`, since form actions require server-side handling.
+- **Email Delivery**: The `contact` form action currently logs to console. Integration with an email service (Resend, SendGrid, etc.) is a separate deployment-time configuration via environment variables (`CONTACT_EMAIL_TO`, `RESEND_API_KEY`).
+- **Validation**: Client-side validation runs on submit (and on blur after first attempt). Server-side validation mirrors the same rules as a fallback.
+- **Focus Management**: Focus moves to close button on modal open, returns to CTA button on close. Tab is trapped within the modal.
+- **z-index**: Modal uses `z-[80]` to sit below keyboard shortcuts modal (`z-[90]`) but above all page content.
