@@ -96,9 +96,8 @@ export const actions: Actions = {
 			const contactTo = env.CONTACT_EMAIL_TO;
 
 			if (!apiKey || !contactTo) {
-				// No email service configured — succeed silently (never log PII)
 				console.log('[Contact Form] No RESEND_API_KEY/CONTACT_EMAIL_TO configured, submission discarded.');
-				return { success: true };
+				return fail(503, { error: 'Contact service is not configured. Please try reaching out via email or GitHub instead.' });
 			}
 
 			const resend = new Resend(apiKey);

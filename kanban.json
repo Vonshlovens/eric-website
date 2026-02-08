@@ -3,6 +3,12 @@
   "in_progress": [],
   "done": [
     {
+      "id": "fix-contact-form-silent-failure",
+      "title": "Fix Contact Form Silent Failure When Email Service Unconfigured",
+      "description": "The contact form server action returned { success: true } when RESEND_API_KEY/CONTACT_EMAIL_TO were not configured, causing users to see 'Transmission Received' and a success toast even though their message was silently discarded. Changed to return fail(503) with an informative error message ('Contact service is not configured. Please try reaching out via email or GitHub instead.'), so the client correctly shows the error state and error toast. Build and lint pass clean.",
+      "spec": "specs/contact-form.md"
+    },
+    {
       "id": "fix-placeholder-urls",
       "title": "Fix Placeholder URLs in Data Files",
       "description": "Fixed placeholder URLs across data files. In interests.ts, corrected the Open Source GitHub Profile link from bare 'https://github.com' to 'https://github.com/Vonshlovens'. In engineering-log.ts, removed the unused `links` optional field from the EngineeringLogEntry interface and stripped all placeholder link objects (6 entries with 'https://github.com' and 2 with 'https://example.com') — the EngineeringLog component never rendered these links, so they were dead data pointing to generic homepages. Build and lint pass clean.",
