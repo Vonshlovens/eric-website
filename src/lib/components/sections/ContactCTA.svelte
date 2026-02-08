@@ -49,6 +49,7 @@
           <button
             bind:this={ctaBtnEl}
             onclick={onconnect}
+            aria-label="Open contact form"
             class="flex items-center justify-center rounded bg-accent text-text-white h-14 px-10 text-xs font-mono font-bold tracking-[0.2em] transition-all duration-200 hover:bg-text-white hover:text-primary shadow-xl shadow-accent/20 uppercase cursor-pointer"
           >
             Connect.exe
@@ -57,7 +58,7 @@
           <div class="flex gap-2 text-text-muted">
             <a
               class="w-11 h-11 flex items-center justify-center rounded hover:text-accent transition-colors duration-200"
-              href="mailto:eric@example.com"
+              href="mailto:eric@ericevans.dev"
               aria-label="Email"
             >
               <span class="material-symbols-outlined text-2xl" aria-hidden="true">mail</span>
@@ -73,7 +74,7 @@
             </a>
             <a
               class="w-11 h-11 flex items-center justify-center rounded hover:text-accent transition-colors duration-200"
-              href="https://linkedin.com"
+              href="https://linkedin.com/in/ericevans"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn (opens in new tab)"

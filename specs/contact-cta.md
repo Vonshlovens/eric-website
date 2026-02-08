@@ -132,6 +132,7 @@ A row of icon links for alternative contact methods.
 - Muted by default, accent on hover.
 - Uses Material Symbols icons.
 - Each link opens in a new tab (external) or triggers mailto (email).
+- Actual link values: `mailto:eric@ericevans.dev`, `https://github.com/Vonshlovens`, `https://linkedin.com/in/ericevans` — must stay consistent with JSON-LD structured data in `+layout.svelte`.
 - `aria-label` on each for accessibility.
 
 ---
@@ -173,7 +174,8 @@ A row of icon links for alternative contact methods.
 - Section wrapped in a `<section>` element with `aria-labelledby` pointing to the heading.
 - Heading uses a proper `<h2>`.
 - CTA is a semantic `<a>` or `<button>` element with clear focus ring.
-- Social icons have `aria-label` attributes describing their destination.
+- Social icons have `aria-label` attributes describing their destination (with "(opens in new tab)" suffix for external links).
+- CTA button has `aria-label="Open contact form"` for clarity since "Connect.exe" is thematic, not descriptive.
 - Status badge text is readable by screen readers (no information conveyed by color alone — the word "READY" provides meaning).
 - All text meets WCAG AA contrast on the dark background.
 - Respects `prefers-reduced-motion` (no animations to disable, but hover transitions should be suppressed).

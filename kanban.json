@@ -3,6 +3,12 @@
   "in_progress": [],
   "done": [
     {
+      "id": "fix-contact-cta-links",
+      "title": "Fix Placeholder URLs and Accessibility in ContactCTA",
+      "description": "Fixed 3 issues in ContactCTA.svelte: (1) replaced placeholder email mailto:eric@example.com with mailto:eric@ericevans.dev matching the site domain, (2) replaced bare https://linkedin.com with https://linkedin.com/in/ericevans matching the JSON-LD structured data in +layout.svelte, (3) added aria-label='Open contact form' to the Connect.exe button for screen reader clarity. Build and lint pass clean.",
+      "spec": "specs/contact-cta.md"
+    },
+    {
       "id": "fix-light-theme-text-colors",
       "title": "Fix Light Theme Text Color in Education & Interests Sections",
       "description": "Fixed 3 instances of Tailwind's built-in `text-white` (#fff) that should have been the design system's `text-text-white` (maps to --color-text-white CSS variable). In dark mode both resolve to white, but in light mode `text-text-white` correctly maps to #1A1816 (dark text) while `text-white` stays #fff — rendering headings invisible on light backgrounds. Fixed in Education.svelte (section heading h2 and card heading h3) and Interests.svelte (card heading h3). Build and lint pass clean.",
