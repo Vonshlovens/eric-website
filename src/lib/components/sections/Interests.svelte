@@ -31,7 +31,7 @@
             </span>
           </div>
 
-          <h3 class="text-white font-mono font-bold text-lg mb-3">{interest.title}</h3>
+          <h3 class="text-text-white font-mono font-bold text-lg mb-3">{interest.title}</h3>
           <p class="text-sm text-text-muted font-mono leading-relaxed mb-4">
             {interest.description}
           </p>

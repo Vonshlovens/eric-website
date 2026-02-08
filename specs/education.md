@@ -82,7 +82,7 @@ Data file: `src/lib/data/education.ts`
 
 ### Section Header
 - Material Symbols `school` icon in accent color
-- Title: `text-white text-xl font-mono font-bold uppercase tracking-[0.2em]`
+- Title: `text-text-white text-xl font-mono font-bold uppercase tracking-[0.2em]`
 - Matches the pattern used by Core Competencies and Engineering Log headers
 
 ### Cards
@@ -97,7 +97,7 @@ Data file: `src/lib/data/education.ts`
 - Text: `DEGREE` or `CERTIFICATION`
 
 ### Card Content
-- **Name**: `text-white font-mono font-bold text-lg`
+- **Name**: `text-text-white font-mono font-bold text-lg`
 - **Institution**: `text-text-main text-sm font-mono`
 - **Year**: `text-text-muted text-xs font-mono uppercase tracking-widest`
 - **Honors** (optional): `text-accent text-xs font-mono`

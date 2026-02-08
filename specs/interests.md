@@ -88,7 +88,7 @@ Data file: `src/lib/data/interests.ts`
 - Matches the icon box pattern from Core Competencies
 
 ### Title
-- `text-white font-mono font-bold text-lg`
+- `text-text-white font-mono font-bold text-lg`
 
 ### Description
 - `text-sm text-text-muted font-mono leading-relaxed`

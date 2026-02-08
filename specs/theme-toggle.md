@@ -15,6 +15,7 @@ Dark/light theme toggle in the navigation bar. Visitors switch between the defau
 - Existing `@theme` tokens remain as dark-mode defaults
 - Light-mode overrides applied via `html:not(.dark)` in `app.css`
 - No component markup changes needed — everything is driven by CSS custom property overrides
+- **Important**: All components must use `text-text-white` (design system token) rather than Tailwind's built-in `text-white` for heading/emphasis text. `text-text-white` maps to `--color-text-white` which adapts per theme (#FFFFFF in dark, #1A1816 in light), while `text-white` is always #fff and becomes invisible on light backgrounds
 
 ### Light Mode Palette
 

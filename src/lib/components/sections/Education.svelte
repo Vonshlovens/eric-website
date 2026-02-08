@@ -8,7 +8,7 @@
     <!-- Section Header -->
     <div class="flex items-center gap-2 mb-8" use:scrollReveal>
       <span class="material-symbols-outlined text-accent" aria-hidden="true">school</span>
-      <h2 id="education-heading" class="text-white text-xl font-mono font-bold uppercase tracking-[0.2em]">
+      <h2 id="education-heading" class="text-text-white text-xl font-mono font-bold uppercase tracking-[0.2em]">
         Education & Certifications
       </h2>
     </div>
@@ -23,7 +23,7 @@
           </span>
 
           <!-- Card Content -->
-          <h3 class="text-white font-mono font-bold text-lg mb-2 pr-24">
+          <h3 class="text-text-white font-mono font-bold text-lg mb-2 pr-24">
             {item.name}
           </h3>
           <p class="text-text-main text-sm font-mono mb-1">
