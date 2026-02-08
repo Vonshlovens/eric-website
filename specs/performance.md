@@ -19,6 +19,7 @@ Derived from the "Performance Optimizations" section in `specs/features.md` (lin
 - **Broken anchor fix**: `#projects` links in nav and hero CTA corrected to `#engineering-log`.
 - **Static asset cleanup**: Removed ~89MB of unused files from `static/` — `IMG_6230.png` (87MB unrelated photo), `how-strong-is-saitama-v0-ls463j4fizle1.webp` (44KB unrelated image), and 4 CommitMono font files (1.5MB total, unused — site uses Google Fonts). Empty `static/fonts/` directory removed.
 - **Dead code removal**: Deleted 3 orphaned V1 files — `ProjectCard.svelte` (unused component, never imported), `ThemeToggle.svelte` (superseded by inline toggle in Navigation.svelte), and `projects.ts` (superseded by `engineering-log.ts`). Removed unused `svelte-lucide` dependency (only consumer was the deleted ThemeToggle).
+- **Explicit image dimensions (CLS fix)**: Added `width`/`height` attributes to all 4 `<img>` tags to eliminate Cumulative Layout Shift. Hero avatar images: `width="192" height="192"` (matches md:w-48 container at 2x). Engineering log project images: `width="800" height="600"` (actual WebP dimensions). Browsers use these intrinsic dimensions to reserve aspect-ratio space before images load.
 
 ---
 

@@ -3,6 +3,12 @@
   "in_progress": [],
   "done": [
     {
+      "id": "fix-image-cls",
+      "title": "Add Explicit Image Dimensions to Prevent CLS",
+      "description": "Added width/height attributes to all 4 <img> tags in the codebase to prevent Cumulative Layout Shift. Hero avatar images (both display and GitHub reveal layers) get width=192 height=192 matching the md:w-48 container (2x retina). Engineering log project images (both card-stack and fallback modes) get width=800 height=600 matching their actual WebP dimensions. These intrinsic dimensions let the browser reserve correct aspect-ratio space before images load, eliminating CLS. Build and lint pass clean.",
+      "spec": "specs/performance.md"
+    },
+    {
       "id": "contact-form-spam-protection",
       "title": "Add Rate Limiting & Honeypot Spam Protection to Contact Form",
       "description": "Added two layers of spam protection to the contact form action. (1) In-memory per-IP rate limiter: max 3 submissions per 15-minute sliding window, returns fail(429) with user-friendly error message when exceeded. Uses a Map with periodic cleanup interval to prevent memory growth. Accessed via SvelteKit's getClientAddress(). (2) Honeypot field: hidden 'website' input positioned off-screen (absolute -left-[9999px]) with aria-hidden, tabindex=-1, and autocomplete=off — invisible to humans but auto-filled by bots. Server silently returns { success: true } for honeypot-filled submissions to avoid tipping off bots. Client form also has autocomplete=off on the form element. Build and lint pass clean.",

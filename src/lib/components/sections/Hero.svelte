@@ -124,6 +124,8 @@
                 <img
                   src="https://github.com/Vonshlovens.png"
                   alt=""
+                  width="192"
+                  height="192"
                   decoding="async"
                   class="w-full h-full object-cover"
                 />
@@ -167,6 +169,8 @@
                   <img
                     src="https://github.com/Vonshlovens.png"
                     alt="Eric Evans — Software Developer"
+                    width="192"
+                    height="192"
                     decoding="async"
                     class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                   />

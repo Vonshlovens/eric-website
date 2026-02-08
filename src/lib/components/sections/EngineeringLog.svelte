@@ -145,6 +145,8 @@
                 <img
                   src={entry.image}
                   alt="{entry.name} project screenshot"
+                  width="800"
+                  height="600"
                   class="w-full h-full object-cover grayscale transition-all duration-500"
                   loading="lazy"
                   decoding="async"
@@ -221,6 +223,8 @@
               <img
                 src={entry.image}
                 alt="{entry.name} project screenshot"
+                width="800"
+                height="600"
                 class="w-full h-full object-cover aspect-video lg:aspect-auto lg:absolute lg:inset-0 grayscale group-hover:grayscale-0 transition-all duration-500"
                 loading="lazy"
                 decoding="async"
