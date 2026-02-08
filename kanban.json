@@ -3,6 +3,12 @@
   "in_progress": [],
   "done": [
     {
+      "id": "fix-lint-errors",
+      "title": "Fix Deno Lint Errors",
+      "description": "Fixed 6 deno lint errors across 4 files. Removed unnecessary async from sitemap.xml GET handler (require-await). Replaced window with globalThis for matchMedia calls in motion.svelte.ts (2), theme.svelte.ts (2), and scrollReveal.ts (1) to satisfy no-window lint rule. Updated typeof window checks to typeof globalThis.window for SSR guard consistency. Build and lint both pass clean.",
+      "spec": "specs/deno.md"
+    },
+    {
       "id": "ci-cd-deploy",
       "title": "Add GitHub Actions CI/CD for Deno Deploy",
       "description": "Created .github/workflows/deploy.yml GitHub Actions workflow for automatic deployment to Deno Deploy on push to main. Uses denoland/setup-deno@v2 with Deno v2.x, runs deno install + deno task build, then deploys via denoland/deployctl@v1 with entrypoint .deno-deploy/server.ts (output of @deno/svelte-adapter). Requires id-token:write permission for OIDC auth and a Deno Deploy project named 'eric-website'. No secrets needed — uses GitHub OIDC token exchange.",

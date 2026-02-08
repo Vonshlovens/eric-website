@@ -239,6 +239,30 @@ import { assertEquals } from "std/assert/mod.ts";
 }
 ```
 
+## Lint Conventions
+
+### no-window Rule
+Deno lint forbids bare `window` references. Use `globalThis` instead:
+
+```typescript
+// SSR guard — check if browser environment
+if (typeof globalThis.window !== 'undefined') { ... }
+
+// matchMedia calls
+globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches;
+```
+
+### require-await Rule
+Do not mark functions `async` unless they contain an `await` expression:
+
+```typescript
+// Bad — async with no await
+export const GET: RequestHandler = async () => { return new Response(...); };
+
+// Good
+export const GET: RequestHandler = () => { return new Response(...); };
+```
+
 ## Best Practices
 
 ### 1. Use Permissions Wisely

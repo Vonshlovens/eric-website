@@ -16,9 +16,9 @@ class ThemeStore {
 	current: Theme = $state('dark');
 
 	constructor() {
-		if (typeof window !== 'undefined') {
+		if (typeof globalThis.window !== 'undefined') {
 			const stored = localStorage.getItem('theme');
-			const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+			const prefersLight = globalThis.matchMedia('(prefers-color-scheme: light)').matches;
 
 			if (stored === 'dark' || stored === 'light') {
 				this.current = stored;
@@ -28,7 +28,7 @@ class ThemeStore {
 			this.applyClass(this.current);
 
 			// Listen for OS-level preference changes (only when no explicit override stored)
-			window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+			globalThis.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
 				if (localStorage.getItem('theme') === null) {
 					this.current = e.matches ? 'light' : 'dark';
 					this.applyClass(this.current);

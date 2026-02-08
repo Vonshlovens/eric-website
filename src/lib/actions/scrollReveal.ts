@@ -39,10 +39,10 @@ function getObserver(): IntersectionObserver {
 }
 
 function prefersReducedMotion(): boolean {
-	if (typeof window === 'undefined') return true;
+	if (typeof globalThis.window === 'undefined') return true;
 	// Check animation toggle data attribute
 	if (document.documentElement.dataset.reduceMotion === 'true') return true;
-	return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	return globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
 export const scrollReveal: Action<HTMLElement, ScrollRevealParams | undefined> = (

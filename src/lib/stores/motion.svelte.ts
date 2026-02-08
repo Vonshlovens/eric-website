@@ -14,15 +14,15 @@ class MotionStore {
 	disabled = $state(false);
 
 	constructor() {
-		if (typeof window !== 'undefined') {
+		if (typeof globalThis.window !== 'undefined') {
 			const stored = localStorage.getItem('reduce-motion');
-			const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			const prefersReduced = globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 			this.disabled = stored !== null ? stored === 'true' : prefersReduced;
 			this.applyAttribute(this.disabled);
 
 			// Listen for OS-level preference changes (only applies when no explicit override)
-			window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (e) => {
+			globalThis.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (e) => {
 				if (localStorage.getItem('reduce-motion') === null) {
 					this.disabled = e.matches;
 					this.applyAttribute(this.disabled);

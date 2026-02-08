@@ -8,7 +8,7 @@ const routes = [
 	{ path: '/', priority: 1.0, changefreq: 'monthly' }
 ];
 
-export const GET: RequestHandler = async () => {
+export const GET: RequestHandler = () => {
 	const lastmod = new Date().toISOString().split('T')[0];
 
 	const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
