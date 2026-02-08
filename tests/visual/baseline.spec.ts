@@ -33,9 +33,9 @@ test.beforeEach(async ({ page }) => {
 
 test('full-page baseline screenshot', async ({ page }) => {
   // Scroll to bottom and back to trigger any lazy-loaded content
-  await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+  await page.evaluate(() => globalThis.scrollTo(0, document.body.scrollHeight));
   await page.waitForTimeout(500);
-  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.evaluate(() => globalThis.scrollTo(0, 0));
   await page.waitForTimeout(500);
 
   await expect(page).toHaveScreenshot('full-page.png', {

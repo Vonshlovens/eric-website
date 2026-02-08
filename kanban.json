@@ -1,11 +1,6 @@
 {
   "todo": [
     {
-      "id": "playwright-2b",
-      "title": "2B — Investigate & Fix Known Visual Issues",
-      "description": "Use baseline screenshots + Playwright to investigate scroll jank, broken animations, and misaligned elements. Profile with DevTools, fix issues, re-screenshot to verify."
-    },
-    {
       "id": "playwright-2c",
       "title": "2C — Performance Audit (LCP, CLS, FCP, TBT)",
       "description": "Run Playwright-based Web Vitals capture. Measure LCP (<2.5s), CLS (<0.1), FCP (<1.5s), TBT (<200ms)."
@@ -28,6 +23,11 @@
   ],
   "in_progress": [],
   "done": [
+    {
+      "id": "playwright-2b",
+      "title": "2B — Investigate & Fix Known Visual Issues",
+      "description": "Used Playwright to capture full-page screenshots at desktop (1920x1080), tablet (834x1194), and mobile (390x844) viewports in both light and dark themes. Investigated all 5 scroll jank suspects, 5 animation issues, and 5 alignment areas from the plan. Applied 4 fixes: (1) RAF-gated Hero mousemove handler to prevent getBoundingClientRect() on every mousemove event — captures target/coords synchronously, defers rect calculation to next animation frame with cancellation on mouse leave. (2) RAF-gated SkillRadar tooltip hover handlers with same pattern. (3) Replaced non-standard CSS `transition: points` on SkillRadar polygon with JS-driven requestAnimationFrame interpolation (ease-out cubic, 800ms) for cross-browser compatibility — Safari/Firefox don't support CSS transitions on SVG `points` attribute. (4) Fixed critical motion store bug where `toggleAttribute('data-reduce-motion', false)` followed by `dataset.reduceMotion = 'false'` re-added the attribute, causing CSS selector `html[data-reduce-motion]` to always match and suppress ALL animations permanently. Simplified to setAttribute/removeAttribute pattern. Updated scrollReveal.ts and EngineeringLog.svelte to use `hasAttribute('data-reduce-motion')` instead of `dataset.reduceMotion === 'true'`. Also fixed pre-existing deno lint errors (window → globalThis) in baseline test file. Build, lint, and all 48 Playwright visual tests pass. Baseline snapshots updated."
+    },
     {
       "id": "playwright-2a",
       "title": "2A — Baseline Screenshot Capture",

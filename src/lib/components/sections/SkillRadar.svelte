@@ -108,31 +108,65 @@
 
   // Derived values
   let dataPoints = $derived(categories.map((c) => c.proficiency));
-  let animatedPolygon = $derived(
-    revealed || motionStore.disabled
-      ? getPolygonPoints(dataPoints, 1)
-      : getPolygonPoints(dataPoints, 0)
-  );
+
+  // JS-driven polygon draw-in animation (cross-browser; CSS points transition is non-standard)
+  let animationScale = $state(0);
+  let animRafId = $state(0);
+
+  $effect(() => {
+    if (motionStore.disabled) {
+      animationScale = 1;
+      return;
+    }
+    if (revealed && animationScale < 1) {
+      const start = performance.now();
+      const duration = 800;
+      function animate(now: number) {
+        const elapsed = now - start;
+        const t = Math.min(1, elapsed / duration);
+        // ease-out cubic
+        animationScale = 1 - Math.pow(1 - t, 3);
+        if (t < 1) {
+          animRafId = requestAnimationFrame(animate);
+        }
+      }
+      animRafId = requestAnimationFrame(animate);
+      return () => {
+        if (animRafId) cancelAnimationFrame(animRafId);
+      };
+    }
+  });
+
+  let animatedPolygon = $derived(getPolygonPoints(dataPoints, animationScale));
+
+  let hoverRafId = $state(0);
+
+  function updateTooltipPosition(index: number, clientX: number, clientY: number) {
+    if (hoverRafId) return;
+    hoverRafId = requestAnimationFrame(() => {
+      hoverRafId = 0;
+      hoveredIndex = index;
+      const rect = svgEl?.getBoundingClientRect();
+      if (rect) {
+        tooltipX = clientX - rect.left;
+        tooltipY = clientY - rect.top;
+      }
+    });
+  }
 
   function handleVertexHover(index: number, event: MouseEvent) {
-    hoveredIndex = index;
-    const rect = svgEl?.getBoundingClientRect();
-    if (rect) {
-      tooltipX = event.clientX - rect.left;
-      tooltipY = event.clientY - rect.top;
-    }
+    updateTooltipPosition(index, event.clientX, event.clientY);
   }
 
   function handleLabelHover(index: number, event: MouseEvent) {
-    hoveredIndex = index;
-    const rect = svgEl?.getBoundingClientRect();
-    if (rect) {
-      tooltipX = event.clientX - rect.left;
-      tooltipY = event.clientY - rect.top;
-    }
+    updateTooltipPosition(index, event.clientX, event.clientY);
   }
 
   function clearHover() {
+    if (hoverRafId) {
+      cancelAnimationFrame(hoverRafId);
+      hoverRafId = 0;
+    }
     hoveredIndex = null;
   }
 </script>
@@ -336,17 +370,13 @@
     transition: r 0.2s ease;
   }
 
-  .radar-polygon-animated {
-    transition: points 0.8s ease-out;
-  }
-
   .radar-polygon-animated:not(.radar-polygon-revealed) {
     opacity: 0;
   }
 
   .radar-polygon-animated.radar-polygon-revealed {
     opacity: 1;
-    transition: opacity 0.8s ease-out;
+    transition: opacity 0.4s ease-out;
   }
 
   .radar-tooltip {
@@ -365,7 +395,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     .radar-polygon-animated {
-      transition: none;
+      transition: none !important;
     }
   }
 </style>

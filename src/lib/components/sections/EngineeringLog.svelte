@@ -12,7 +12,7 @@
   // Check if card-stack should be active (md+ screens, motion enabled)
   function shouldUseCardStack(): boolean {
     if (typeof window === 'undefined') return false;
-    if (document.documentElement.dataset.reduceMotion === 'true') return false;
+    if (document.documentElement.hasAttribute('data-reduce-motion')) return false;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false;
     if (!window.matchMedia('(min-width: 1024px)').matches) return false;
     return true;

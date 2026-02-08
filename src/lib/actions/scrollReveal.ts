@@ -41,7 +41,7 @@ function getObserver(): IntersectionObserver {
 function prefersReducedMotion(): boolean {
 	if (typeof globalThis.window === 'undefined') return true;
 	// Check animation toggle data attribute
-	if (document.documentElement.dataset.reduceMotion === 'true') return true;
+	if (document.documentElement.hasAttribute('data-reduce-motion')) return true;
 	return globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 

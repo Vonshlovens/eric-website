@@ -39,8 +39,11 @@ class MotionStore {
 
 	private applyAttribute(value: boolean) {
 		if (typeof document !== 'undefined') {
-			document.documentElement.toggleAttribute('data-reduce-motion', value);
-			document.documentElement.dataset.reduceMotion = String(value);
+			if (value) {
+				document.documentElement.setAttribute('data-reduce-motion', '');
+			} else {
+				document.documentElement.removeAttribute('data-reduce-motion');
+			}
 		}
 	}
 }

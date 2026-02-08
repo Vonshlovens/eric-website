@@ -87,7 +87,19 @@ Capture full-page screenshots at all 4 viewport sizes (desktop 1080p, 720p, tabl
 
 **Completed**: Created `tests/visual/baseline.spec.ts` with 12 test cases × 4 viewports = 48 baseline screenshots. All pass. Snapshots saved to `tests/visual/snapshots/`.
 
-### 2B — Known Issues to Investigate & Fix
+### 2B — Known Issues to Investigate & Fix ✅
+
+**Completed**: Captured screenshots at 3 viewports (desktop 1080p, tablet, mobile) in both themes. Investigated all suspects. Applied 4 fixes:
+1. **RAF-gated Hero mousemove** — getBoundingClientRect deferred to animation frame, prevents forced reflows on every mousemove
+2. **RAF-gated SkillRadar tooltip** — same pattern for hover handlers
+3. **Cross-browser SkillRadar polygon animation** — replaced non-standard CSS `transition: points` with JS-driven rAF interpolation (ease-out cubic, 800ms). Safari/Firefox don't support CSS transitions on SVG `points` attribute
+4. **Fixed motion store attribute conflict** — `toggleAttribute` + `dataset` assignment were conflicting, causing `html[data-reduce-motion]` CSS selector to always match (permanently suppressing all animations). Simplified to setAttribute/removeAttribute
+
+Also fixed: `dataset.reduceMotion === 'true'` checks updated to `hasAttribute('data-reduce-motion')` in scrollReveal.ts and EngineeringLog.svelte. Pre-existing deno lint errors fixed in test file.
+
+**Alignment audit**: No misalignment issues found. All sections use consistent `max-w-6xl mx-auto px-4 sm:px-6 lg:px-8` pattern. Hero 3-col grid, SkillRadar 2-col layout, and footer 3-col flex all center correctly at all breakpoints.
+
+**Scroll jank findings**: EngineeringLog card-stack uses compositor-friendly `translateY` transforms only — no forced reflows during scroll. SkillsMarquee uses CSS keyframe `translate3d` with `will-change-transform` — correctly GPU-composited. `scroll-behavior: smooth` on `<html>` doesn't conflict with card-stack since it only affects anchor navigation.
 
 These are the categories of problems to audit, roughly ordered by user impact:
 

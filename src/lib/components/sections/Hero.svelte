@@ -49,15 +49,28 @@
     }
   });
 
+  let revealRafId = $state(0);
+
   function handleRevealMove(e: MouseEvent) {
     if (!canHover || motionStore.disabled) return;
-    const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-    revealX = e.clientX - rect.left;
-    revealY = e.clientY - rect.top;
-    revealActive = true;
+    if (revealRafId) return; // skip if a frame is already pending
+    const target = e.currentTarget as HTMLElement;
+    const clientX = e.clientX;
+    const clientY = e.clientY;
+    revealRafId = requestAnimationFrame(() => {
+      revealRafId = 0;
+      const rect = target.getBoundingClientRect();
+      revealX = clientX - rect.left;
+      revealY = clientY - rect.top;
+      revealActive = true;
+    });
   }
 
   function handleRevealLeave() {
+    if (revealRafId) {
+      cancelAnimationFrame(revealRafId);
+      revealRafId = 0;
+    }
     revealActive = false;
   }
 
