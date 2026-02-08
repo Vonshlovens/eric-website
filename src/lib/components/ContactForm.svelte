@@ -103,7 +103,7 @@
         {#if serverError}
           <div class="text-center py-4 mb-4" aria-live="polite">
             <p class="text-accent font-mono text-sm mb-4">{serverError}</p>
-            <button onclick={() => { serverError = ''; }} class="text-accent font-mono text-sm underline">Retry</button>
+            <button type="button" onclick={() => { serverError = ''; }} class="text-accent font-mono text-sm underline">Retry</button>
           </div>
         {/if}
 

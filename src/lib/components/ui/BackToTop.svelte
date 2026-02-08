@@ -33,6 +33,7 @@
 </script>
 
 <button
+	type="button"
 	onclick={scrollToTop}
 	class="back-to-top fixed bottom-4 right-4 md:bottom-6 md:right-6 z-40
 		w-10 h-10 rounded-lg

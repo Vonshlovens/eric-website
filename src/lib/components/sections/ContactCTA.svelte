@@ -48,6 +48,7 @@
         <!-- Right: CTA + Social Icons -->
         <div class="flex flex-col items-center gap-6 shrink-0">
           <button
+            type="button"
             bind:this={ctaBtnEl}
             onclick={onconnect}
             aria-label="Open contact form"

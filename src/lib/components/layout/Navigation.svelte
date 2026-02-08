@@ -134,6 +134,7 @@
 
       <!-- Theme Toggle -->
       <button
+        type="button"
         onclick={() => themeStore.toggle()}
         class="w-10 h-10 flex items-center justify-center text-text-muted hover:text-accent border border-border-dim hover:border-accent/50 rounded transition-colors duration-200"
         aria-label={themeStore.isDark ? 'Switch to light mode' : 'Switch to dark mode'}
@@ -145,6 +146,7 @@
 
       <!-- Animation Toggle -->
       <button
+        type="button"
         onclick={() => motionStore.toggle()}
         class="w-10 h-10 flex items-center justify-center text-text-muted hover:text-accent border border-border-dim hover:border-accent/50 rounded transition-colors duration-200"
         aria-label={motionStore.disabled ? 'Enable animations' : 'Disable animations'}
@@ -170,6 +172,7 @@
 
     <!-- Mobile Menu Toggle -->
     <button
+      type="button"
       bind:this={menuToggleBtn}
       onclick={toggleMenu}
       class="lg:hidden text-text-muted hover:text-text-white transition-colors w-10 h-10 flex items-center justify-center"
@@ -208,6 +211,7 @@
         {/each}
         <li class="pt-3 mt-3 border-t border-border-dim">
           <button
+            type="button"
             onclick={() => themeStore.toggle()}
             class="flex items-center gap-3 py-3 w-full text-left min-h-[44px]"
             aria-label={themeStore.isDark ? 'Switch to light mode' : 'Switch to dark mode'}
@@ -223,6 +227,7 @@
         </li>
         <li>
           <button
+            type="button"
             onclick={() => motionStore.toggle()}
             class="flex items-center gap-3 py-3 w-full text-left min-h-[44px]"
             aria-label={motionStore.disabled ? 'Enable animations' : 'Disable animations'}

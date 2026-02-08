@@ -98,6 +98,7 @@
 				<span class="text-text-main truncate">{toast.message}</span>
 			</div>
 			<button
+				type="button"
 				class="toast-dismiss shrink-0 text-text-muted hover:text-text-main transition-colors duration-150 leading-none text-base focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
 				onclick={() => handleDismiss(toast.id)}
 				onkeydown={(e) => handleKeydown(e, toast.id)}

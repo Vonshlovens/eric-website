@@ -3,6 +3,12 @@
   "in_progress": [],
   "done": [
     {
+      "id": "fix-button-types",
+      "title": "Add Explicit type=\"button\" to Non-Submit Buttons",
+      "description": "Added explicit type='button' attribute to 9 interactive buttons across 5 components that were missing it. Without this attribute, HTML buttons default to type='submit', which can cause unintended form submission behavior. Fixed in Navigation.svelte (desktop theme toggle, desktop animation toggle, mobile menu hamburger, mobile theme toggle, mobile animation toggle), ContactCTA.svelte (Connect.exe CTA), BackToTop.svelte (scroll-to-top), ToastContainer.svelte (dismiss notification), and ContactForm.svelte (retry button). The submit button in ContactForm correctly already had type='submit'. Build and lint pass clean.",
+      "spec": "specs/accessibility.md"
+    },
+    {
       "id": "config-cleanup",
       "title": "Clean Up Project Config (package.json name, unused Deno imports)",
       "description": "Fixed package.json name from leftover 'tutorial-with-svelte' to 'eric-website'. Removed unused @oak/oak and @tajpouria/cors JSR imports from deno.json — these were remnants of an earlier Oak-based prototype and are not referenced anywhere in the SvelteKit codebase. Regenerated deno.lock. Build and lint pass clean.",
