@@ -1,6 +1,6 @@
 <script lang="ts">
   import { scrollReveal } from '$lib/actions/scrollReveal';
-  import { motionStore } from '$lib/stores/motion.svelte.ts';
+  import { motionStore } from '$lib/stores/motion.svelte';
   import { skillCategories, type SkillCategory } from '$lib/data/skills';
 
   interface Props {
@@ -198,9 +198,10 @@
               class:radar-polygon-revealed={revealed}
             />
 
-            <!-- Axis labels -->
+            <!-- Axis labels (inside aria-hidden SVG; screen-reader table below) -->
             {#each categories as cat, i}
               {@const pos = getLabelPos(i)}
+              <!-- svelte-ignore a11y_no_static_element_interactions -->
               <text
                 x={pos.x}
                 y={pos.y}
@@ -215,9 +216,10 @@
               </text>
             {/each}
 
-            <!-- Vertex dots (interactive) -->
+            <!-- Vertex dots (inside aria-hidden SVG; screen-reader table below) -->
             {#each categories as cat, i}
               {@const vertex = getVertex(i, cat.proficiency)}
+              <!-- svelte-ignore a11y_no_static_element_interactions -->
               <circle
                 cx={vertex.x}
                 cy={vertex.y}

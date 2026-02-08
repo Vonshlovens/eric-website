@@ -8,20 +8,20 @@
 
   let { githubStats }: Props = $props();
 
-  const formattedCommits = githubStats.commits.toLocaleString();
-  const formattedRepos = githubStats.repos.toLocaleString();
-  const formattedAge = githubStats.accountAgeSec.toLocaleString() + ' s';
+  let formattedCommits = $derived(githubStats.commits.toLocaleString());
+  let formattedRepos = $derived(githubStats.repos.toLocaleString());
+  let formattedAge = $derived(githubStats.accountAgeSec.toLocaleString() + ' s');
 
-  const stats = [
+  let stats = $derived([
     { label: 'Repos', value: formattedRepos, icon: 'folder_open', ariaLabel: `${githubStats.repos} public repositories` },
     { label: 'Commits', value: formattedCommits, icon: 'commit', ariaLabel: `${githubStats.commits} commits` },
     { label: 'Status', value: 'Production', icon: 'radio_button_checked', ariaLabel: 'Status: Production' },
     { label: 'Tier', value: 'Intermediate', icon: 'timeline', ariaLabel: 'Tier: Intermediate' }
-  ];
+  ]);
 
   const tags = ['Full-Stack', 'Cloud', 'DevOps', 'Open Source'];
 
-  const terminalLines = [
+  let terminalLines = $derived([
     { key: 'user', value: 'eric.evans' },
     { key: 'role', value: 'software_engineer' },
     { key: 'notes', value: '1337' },
@@ -29,7 +29,7 @@
     { key: 'age', value: formattedAge },
     { key: '100m', value: '10.56s' },
     { key: '200m', value: '21.64s' }
-  ];
+  ]);
 
   // --- Avatar Hover Reveal ---
   let revealX = $state(0);

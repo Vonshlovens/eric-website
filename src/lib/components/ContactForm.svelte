@@ -109,6 +109,7 @@
   <!-- svelte-ignore a11y_no_static_element_interactions -->
   <div
     class="fixed inset-0 z-[80] flex items-center justify-center bg-primary/80 backdrop-blur-sm p-4"
+    role="presentation"
     onclick={handleBackdropClick}
   >
     <div

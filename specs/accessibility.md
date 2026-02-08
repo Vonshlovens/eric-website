@@ -218,6 +218,11 @@ Before marking any section spec as implementation-complete, verify:
 
 9. **Reduced motion**: Already implemented via animation toggle store + CSS overrides in `app.css` (both `data-reduce-motion` attribute and `prefers-reduced-motion` media query).
 
+10. **Build warning cleanup**: Resolved all Svelte a11y build warnings for a zero-warning build:
+    - SkillRadar: Added `svelte-ignore a11y_no_static_element_interactions` to `<text>` and `<circle>` SVG elements that have mouseenter/mouseleave handlers. These elements are inside an `aria-hidden="true"` SVG with `role="presentation"`, and a screen-reader fallback `<table>` is provided below the chart.
+    - ContactForm: Added `role="presentation"` to modal backdrop overlay to resolve `a11y_click_events_have_key_events` warning. The backdrop is a decorative overlay; Escape key handling exists on `svelte:window`.
+    - SkillRadar: Fixed import path for motion store (removed erroneous `.ts` extension).
+
 ### Color contrast notes
 
 Per audit, `text-muted` (#888888) on `surface` (#1E1E1E) is 3.7:1 — passes for large text only. This is acceptable because `text-muted` on `surface` is only used for labels/metadata in large or bold sizes, or supplementary text that is also conveyed elsewhere. No action needed beyond awareness.

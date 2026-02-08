@@ -3,6 +3,12 @@
   "in_progress": [],
   "done": [
     {
+      "id": "fix-build-warnings",
+      "title": "Fix Build Warnings & Accessibility Issues",
+      "description": "Resolved all Svelte build warnings for a clean zero-warning build. Fixed Hero.svelte state_referenced_locally warnings (5 instances) by converting const declarations to $derived runes for githubStats-dependent values (formattedCommits, formattedRepos, formattedAge, stats, terminalLines). Fixed SkillRadar.svelte import path (removed erroneous .ts extension from motion.svelte import). Suppressed SkillRadar.svelte a11y_no_static_element_interactions warnings on <text> and <circle> SVG elements that are inside an aria-hidden='true' SVG with a screen-reader fallback table. Fixed ContactForm.svelte a11y_click_events_have_key_events warning on modal backdrop by adding role='presentation' (backdrop is decorative; Escape key handling exists on svelte:window).",
+      "spec": "specs/accessibility.md"
+    },
+    {
       "id": "responsive-breakpoints",
       "title": "Audit & Enforce Responsive Breakpoints",
       "description": "Audited and fixed all sections against specs/responsive-breakpoints.md. Corrected container max-width from max-w-7xl to max-w-6xl (1152px) across all 10 section components. Fixed horizontal padding progression to px-4 (mobile) → sm:px-6 → lg:px-8 across Hero, CoreCompetencies, EngineeringLog, WorkExperience, Education, Interests, SkillRadar, ContactCTA, Footer, and Navigation. Fixed Navigation breakpoint from md to lg (desktop nav at lg+, hamburger below lg). Fixed EngineeringLog card-stack activation from min-width:768px to min-width:1024px (lg). Fixed 44px minimum touch targets: Navigation hamburger (w-10 h-10), desktop nav links (py-3), theme/animation toggle buttons (w-10 h-10), CTA buttons (py-3 px-6), mobile menu links (py-3, min-h-[44px]), ContactForm close button (w-10 h-10), ContactCTA social icons (w-11 h-11). Fixed typography scaling: Hero heading text-2xl→sm:text-4xl→md:text-6xl, terminal panel text-xs→sm:text-sm, ContactCTA heading text-2xl→sm:text-3xl. Fixed ContactForm modal responsive padding (p-4→sm:p-6→md:p-8). Updated print stylesheet selector from max-w-7xl to max-w-6xl.",
