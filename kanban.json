@@ -42,15 +42,15 @@
       "description": "Build global keyboard shortcuts with help modal per specs/keyboard-shortcuts.md — ? key opens terminal-styled shortcut reference modal, number keys 1-7 for section navigation, t/m for theme/motion toggle, focus trap, backdrop blur overlay, kbd element styling, form-field suppression, reduced-motion support, desktop-only behavior.",
       "spec": "specs/keyboard-shortcuts.md"
     },
-    {
-      "id": "analytics",
-      "title": "Integrate Privacy-Respecting Analytics",
-      "description": "Add lightweight, cookie-free analytics per specs/analytics.md — async script in +layout.svelte <svelte:head>, environment-gated loading, SPA route tracking via afterNavigate, GDPR-compliant with no consent banner, < 5 KB gzipped, no Lighthouse impact.",
-      "spec": "specs/analytics.md"
-    }
   ],
   "in_progress": [],
   "done": [
+    {
+      "id": "analytics",
+      "title": "Integrate Privacy-Respecting Analytics",
+      "description": "Integrated Plausible Analytics in +layout.svelte <svelte:head> — single deferred <script> tag with data-domain='ericevans.dev', gated by PUBLIC_ANALYTICS_ENABLED env var via $env/dynamic/public. Cookie-free, GDPR-compliant, no consent banner. < 1 KB gzipped script. Plausible handles SPA navigation tracking natively (History API), localhost exclusion (data-domain mismatch), and bot filtering. No afterNavigate hook needed.",
+      "spec": "specs/analytics.md"
+    },
     {
       "id": "resume-download",
       "title": "Add Resume PDF Download",

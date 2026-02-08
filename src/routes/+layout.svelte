@@ -1,11 +1,15 @@
 <script>
 	import '../app.css';
 	import { onNavigate } from '$app/navigation';
+	import { env } from '$env/dynamic/public';
 	import Navigation from '$lib/components/layout/Navigation.svelte';
 	import Footer from '$lib/components/layout/Footer.svelte';
 	import BackToTop from '$lib/components/ui/BackToTop.svelte';
 	import LoadingScreen from '$lib/components/ui/LoadingScreen.svelte';
 	import ToastContainer from '$lib/components/ui/ToastContainer.svelte';
+
+	const analyticsEnabled = env.PUBLIC_ANALYTICS_ENABLED === 'true';
+	const analyticsDomain = 'ericevans.dev';
 
 	let { children } = $props();
 
@@ -66,6 +70,11 @@
 
 	<!-- JSON-LD Structured Data -->
 	{@html `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`}
+
+	<!-- Analytics: Plausible (cookie-free, GDPR-compliant) -->
+	{#if analyticsEnabled}
+		<script defer data-domain={analyticsDomain} src="https://plausible.io/js/script.js"></script>
+	{/if}
 </svelte:head>
 
 <!-- Skip to content (first focusable element) -->

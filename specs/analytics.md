@@ -22,11 +22,12 @@ Integrate a minimal analytics solution to measure site traffic without compromis
 
 ## Implementation
 
-- **Script tag:** single `<script>` in `<svelte:head>` of `+layout.svelte`, loaded with `defer` or `async`
-- **Environment gating:** only load the script when `PUBLIC_ANALYTICS_ENABLED=true` or equivalent env var
-- **Domain lock:** configure the analytics provider to only accept events from `ericevans.dev`
-- **SPA navigation:** use provider's built-in SPA mode or hook into SvelteKit `afterNavigate` for client-side route changes
-- **No impact on Lighthouse:** script must be < 5 KB gzipped and loaded asynchronously
+- **Provider:** [Plausible Analytics](https://plausible.io) — cookie-free, < 1 KB gzipped
+- **Script tag:** single `<script defer>` in `<svelte:head>` of `src/routes/+layout.svelte` with `data-domain="ericevans.dev"`
+- **Environment gating:** script conditionally rendered via `{#if analyticsEnabled}` where `analyticsEnabled` reads `PUBLIC_ANALYTICS_ENABLED` from `$env/dynamic/public`
+- **Domain lock:** Plausible's `data-domain` attribute restricts tracking to `ericevans.dev`; localhost/dev traffic is automatically ignored (hostname mismatch)
+- **SPA navigation:** Plausible's default script tracks History API pushState navigations natively — no `afterNavigate` hook needed
+- **No impact on Lighthouse:** script is < 1 KB gzipped, loaded with `defer`, and fetched from Plausible's CDN
 
 ## Integration
 
