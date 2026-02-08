@@ -1,8 +1,4 @@
 {
-  "imports": {
-    "@oak/oak": "jsr:@oak/oak@^17.1.5",
-    "@tajpouria/cors": "jsr:@tajpouria/cors@^1.2.1"
-  },
   "compilerOptions": {
     "checkJs": true,
     "strict": true

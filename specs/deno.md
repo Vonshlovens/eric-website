@@ -31,27 +31,17 @@ Deno is a modern JavaScript/TypeScript runtime built on V8, Rust, and Tokio. It 
 ### deno.json
 ```json
 {
-  "tasks": {
-    "dev": "deno run --allow-net --allow-read --allow-env --watch main.ts",
-    "build": "deno task build:sveltekit",
-    "build:sveltekit": "vite build",
-    "preview": "deno run --allow-net --allow-read build/index.js"
-  },
-  "imports": {
-    "@sveltejs/kit": "npm:@sveltejs/kit@^2.0.0",
-    "svelte": "npm:svelte@^5.0.0",
-    "$lib": "./src/lib",
-    "$lib/*": "./src/lib/*"
-  },
   "compilerOptions": {
-    "lib": ["deno.window", "dom", "dom.iterable"],
-    "jsx": "react-jsx",
-    "jsxImportSource": "svelte"
+    "checkJs": true,
+    "strict": true
   },
-  "nodeModulesDir": "auto",
-  "lock": false
+  "unstable": [
+    "sloppy-imports"
+  ]
 }
 ```
+
+> **Note:** NPM dependencies are managed via `package.json`, not Deno import maps. The `deno.json` only configures compiler options and unstable flags. Tasks (`dev`, `build`, `preview`) are defined in `package.json` using `deno run -A npm:vite`.
 
 ## Permission Flags
 
