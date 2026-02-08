@@ -1,6 +1,6 @@
 <script lang="ts">
   import { enhance } from '$app/forms';
-  import { tick } from 'svelte';
+  import { Dialog } from 'bits-ui';
 
   let {
     open = $bindable(false),
@@ -10,8 +10,6 @@
     triggerEl?: HTMLElement;
   } = $props();
 
-  let modalEl = $state<HTMLElement>();
-  let closeBtnEl = $state<HTMLButtonElement>();
   let submitting = $state(false);
   let success = $state(false);
   let serverError = $state('');
@@ -25,9 +23,7 @@
   let emailVal = $state('');
   let messageVal = $state('');
 
-  function closeModal() {
-    open = false;
-    // Reset state after close
+  function resetState() {
     setTimeout(() => {
       success = false;
       serverError = '';
@@ -37,7 +33,14 @@
       emailVal = '';
       messageVal = '';
     }, 200);
-    triggerEl?.focus();
+  }
+
+  function handleOpenChange(nextOpen: boolean) {
+    open = nextOpen;
+    if (!nextOpen) {
+      resetState();
+      triggerEl?.focus();
+    }
   }
 
   function validate(): boolean {
@@ -55,90 +58,46 @@
     return Object.keys(e).length === 0;
   }
 
-  function handleBackdropClick(e: MouseEvent) {
-    if (e.target === e.currentTarget) closeModal();
-  }
-
-  function handleKeydown(e: KeyboardEvent) {
-    if (!open) return;
-
-    if (e.key === 'Escape') {
-      e.preventDefault();
-      closeModal();
-      return;
-    }
-
-    // Focus trap
-    if (e.key === 'Tab' && modalEl) {
-      const focusable = modalEl.querySelectorAll<HTMLElement>(
-        'button:not([disabled]), input:not([disabled]), textarea:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'
-      );
-      if (focusable.length === 0) return;
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    }
-  }
-
-  // Focus close button when modal opens
-  $effect(() => {
-    if (open) {
-      tick().then(() => closeBtnEl?.focus());
-    }
-  });
-
   // Auto-close after success
   $effect(() => {
     if (success) {
-      const timer = setTimeout(() => closeModal(), 3000);
+      const timer = setTimeout(() => { open = false; resetState(); triggerEl?.focus(); }, 3000);
       return () => clearTimeout(timer);
     }
   });
 </script>
 
-<svelte:window onkeydown={handleKeydown} />
+<Dialog.Root {open} onOpenChange={handleOpenChange}>
+  <Dialog.Portal>
+    <Dialog.Overlay
+      class="fixed inset-0 z-[80] bg-primary/80 backdrop-blur-sm"
+    />
 
-{#if open}
-  <!-- svelte-ignore a11y_no_static_element_interactions -->
-  <div
-    class="fixed inset-0 z-[80] flex items-center justify-center bg-primary/80 backdrop-blur-sm p-4"
-    role="presentation"
-    onclick={handleBackdropClick}
-  >
-    <div
-      bind:this={modalEl}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="contact-form-title"
-      class="bg-surface border border-border-dim rounded-lg max-w-lg w-full mx-4 p-4 sm:p-6 md:p-8 relative modal-enter"
+    <Dialog.Content
+      class="fixed left-1/2 top-1/2 z-[80] -translate-x-1/2 -translate-y-1/2 bg-surface border border-border-dim rounded-lg max-w-lg w-[calc(100%-2rem)] p-4 sm:p-6 md:p-8 modal-enter"
+      onInteractOutside={(e) => {
+        // Prevent closing while submitting
+        if (submitting) e.preventDefault();
+      }}
     >
       <!-- Close button -->
-      <button
-        bind:this={closeBtnEl}
-        onclick={closeModal}
+      <Dialog.Close
         class="absolute top-3 right-3 w-10 h-10 flex items-center justify-center text-text-muted hover:text-text-main transition-colors duration-150 rounded"
         aria-label="Close contact form"
       >
         <span class="material-symbols-outlined" aria-hidden="true">close</span>
-      </button>
+      </Dialog.Close>
 
       {#if success}
         <!-- Success state -->
         <div class="text-center py-8" aria-live="polite">
           <span class="material-symbols-outlined text-status-ok text-5xl mb-4 block">check_circle</span>
-          <h3 class="text-text-white font-mono font-bold text-xl mb-2">Transmission Received</h3>
+          <Dialog.Title class="text-text-white font-mono font-bold text-xl mb-2">Transmission Received</Dialog.Title>
           <p class="text-text-muted font-mono text-sm">Response time: &lt; 24h</p>
         </div>
       {:else}
         <!-- Terminal prompt -->
-        <div id="contact-form-title" class="font-mono text-accent text-sm mb-6">&gt; init_contact.sh</div>
+        <Dialog.Title class="font-mono text-accent text-sm mb-6">&gt; init_contact.sh</Dialog.Title>
 
         {#if serverError}
           <div class="text-center py-4 mb-4" aria-live="polite">
@@ -236,33 +195,6 @@
           </button>
         </form>
       {/if}
-    </div>
-  </div>
-{/if}
-
-<style>
-  .modal-enter {
-    animation: modal-in 150ms ease-out;
-  }
-
-  @keyframes modal-in {
-    from {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .modal-enter {
-      animation: none;
-    }
-  }
-
-  :global(html[data-reduce-motion]) .modal-enter {
-    animation: none;
-  }
-</style>
+    </Dialog.Content>
+  </Dialog.Portal>
+</Dialog.Root>

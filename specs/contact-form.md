@@ -259,9 +259,9 @@ The modal is always vertically centered in the viewport.
 
 - **SvelteKit 2** form actions (`use:enhance` for progressive enhancement)
 - **Svelte 5** runes for modal open state, form state, errors
+- **Bits UI** `Dialog` primitives (Root, Portal, Overlay, Content, Title, Close) for accessible modal with built-in focus trapping, Escape key handling, outside-click dismissal, scroll lock, and ARIA attributes
 - **Tailwind v4** utility classes
 - **Material Symbols** for icons (close, check_circle)
-- No additional dependencies for the form itself
 
 ---
 
@@ -283,5 +283,7 @@ The modal is always vertically centered in the viewport.
 - **Prerender**: `src/routes/+page.ts` exports `prerender = false` to override the layout-level `prerender = true`, since form actions require server-side handling.
 - **Email Delivery**: The `contact` form action uses Resend (`resend` npm package) to send emails when `RESEND_API_KEY` and `CONTACT_EMAIL_TO` environment variables are set. Falls back to console.log when unconfigured (local dev). Optional `RESEND_FROM_EMAIL` overrides the sender address (defaults to `onboarding@resend.dev`). Emails include the visitor's email as `replyTo`. All server env vars accessed via `$env/dynamic/private`.
 - **Validation**: Client-side validation runs on submit (and on blur after first attempt). Server-side validation mirrors the same rules as a fallback.
-- **Focus Management**: Focus moves to close button on modal open, returns to CTA button on close. Tab is trapped within the modal.
+- **Focus Management**: Bits UI Dialog handles focus trapping automatically (Tab cycling, initial focus, Escape to close). Focus returns to CTA button on close via `onOpenChange` callback with `triggerEl?.focus()`.
+- **Bits UI Dialog**: Modal uses `Dialog.Root` with `open`/`onOpenChange` for controlled state, `Dialog.Portal` for rendering outside component DOM, `Dialog.Overlay` for backdrop, `Dialog.Content` for the modal panel (with built-in focus trap, Escape dismiss, outside-click dismiss), `Dialog.Title` for accessible labeling, and `Dialog.Close` for the close button. `onInteractOutside` prevents closing during form submission.
 - **z-index**: Modal uses `z-[80]` to sit below keyboard shortcuts modal (`z-[90]`) but above all page content.
+- **Animation**: `modal-enter` CSS class with `@keyframes modal-in` lives in `app.css` (global) because `Dialog.Portal` renders content outside the component's scoped CSS boundary.

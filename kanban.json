@@ -3,6 +3,12 @@
   "in_progress": [],
   "done": [
     {
+      "id": "bits-ui-dialog",
+      "title": "Integrate Bits UI Dialog for Modals",
+      "description": "Added bits-ui dependency and refactored both modal components (ContactForm, KeyboardShortcuts) from custom implementations to Bits UI Dialog primitives. Replaced hand-rolled focus traps, Escape key handling, backdrop click dismissal, and ARIA attributes with Dialog.Root/Portal/Overlay/Content/Title/Close. ContactForm uses onOpenChange callback for state reset and trigger focus restoration, onInteractOutside to prevent close during submission. KeyboardShortcuts retains svelte:window onkeydown for global shortcuts (?, t, m, h, 1-7) while delegating modal Escape/Tab/focus-trap to Bits UI. Moved modal-enter animation to app.css (global) since Dialog.Portal renders outside component DOM. Build and lint pass clean with zero warnings.",
+      "spec": "specs/bits-ui.md"
+    },
+    {
       "id": "fix-lint-errors",
       "title": "Fix Deno Lint Errors",
       "description": "Fixed 6 deno lint errors across 4 files. Removed unnecessary async from sitemap.xml GET handler (require-await). Replaced window with globalThis for matchMedia calls in motion.svelte.ts (2), theme.svelte.ts (2), and scrollReveal.ts (1) to satisfy no-window lint rule. Updated typeof window checks to typeof globalThis.window for SSR guard consistency. Build and lint both pass clean.",

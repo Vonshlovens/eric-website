@@ -1,11 +1,9 @@
 <script lang="ts">
   import { themeStore } from '$lib/stores/theme.svelte';
   import { motionStore } from '$lib/stores/motion.svelte';
-  import { tick } from 'svelte';
+  import { Dialog } from 'bits-ui';
 
   let open = $state(false);
-  let closeBtn = $state<HTMLButtonElement>();
-  let modalEl = $state<HTMLElement>();
 
   const shortcuts: { key: string; description: string }[] = [
     { key: '?', description: 'Open this help modal' },
@@ -32,51 +30,16 @@
     return tag === 'INPUT' || tag === 'TEXTAREA' || target.isContentEditable;
   }
 
-  async function openModal() {
-    open = true;
-    await tick();
-    closeBtn?.focus();
-  }
-
-  function closeModal() {
-    open = false;
-  }
-
   function handleKeydown(e: KeyboardEvent) {
     if (isFormField(e.target)) return;
 
-    // Modal-specific keys
-    if (open) {
-      if (e.key === 'Escape') {
-        e.preventDefault();
-        closeModal();
-        return;
-      }
-
-      // Focus trap
-      if (e.key === 'Tab' && modalEl) {
-        const focusable = modalEl.querySelectorAll<HTMLElement>(
-          'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'
-        );
-        if (focusable.length === 0) return;
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-      return;
-    }
+    // When modal is open, let Bits UI handle Escape and Tab (focus trap)
+    if (open) return;
 
     // Global shortcuts (only when modal is closed)
     if (e.key === '?' || (e.key === '/' && e.shiftKey)) {
       e.preventDefault();
-      openModal();
+      open = true;
       return;
     }
 
@@ -91,7 +54,7 @@
     }
 
     if (e.key === 'h') {
-      window.scrollTo({ top: 0, behavior: motionStore.disabled ? 'auto' : 'smooth' });
+      globalThis.window.scrollTo({ top: 0, behavior: motionStore.disabled ? 'auto' : 'smooth' });
       return;
     }
 
@@ -103,48 +66,32 @@
       }
     }
   }
-
-  function handleBackdropClick(e: MouseEvent) {
-    if (e.target === e.currentTarget) {
-      closeModal();
-    }
-  }
 </script>
 
 <svelte:window onkeydown={handleKeydown} />
 
-{#if open}
-  <!-- Backdrop -->
-  <!-- svelte-ignore a11y_no_static_element_interactions -->
-  <div
-    class="fixed inset-0 z-[90] flex items-center justify-center bg-primary/80 backdrop-blur-sm p-4"
-    onclick={handleBackdropClick}
-    onkeydown={(e) => { if (e.key === 'Escape') closeModal(); }}
-  >
-    <!-- Modal -->
-    <div
-      bind:this={modalEl}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="keyboard-shortcuts-title"
-      class="bg-surface border border-border-dim rounded-lg max-w-md w-full p-6 modal-enter"
+<Dialog.Root bind:open>
+  <Dialog.Portal>
+    <Dialog.Overlay
+      class="fixed inset-0 z-[90] bg-primary/80 backdrop-blur-sm"
+    />
+
+    <Dialog.Content
+      class="fixed left-1/2 top-1/2 z-[90] -translate-x-1/2 -translate-y-1/2 bg-surface border border-border-dim rounded-lg max-w-md w-[calc(100%-2rem)] p-6 modal-enter"
     >
       <!-- Header -->
       <div class="flex items-center justify-between mb-4">
-        <h2
-          id="keyboard-shortcuts-title"
+        <Dialog.Title
           class="font-mono text-sm uppercase tracking-widest text-text-muted"
         >
           Keyboard_Shortcuts
-        </h2>
-        <button
-          bind:this={closeBtn}
-          onclick={closeModal}
+        </Dialog.Title>
+        <Dialog.Close
           class="text-text-muted hover:text-text-main transition-colors duration-150 text-lg leading-none p-1"
           aria-label="Close keyboard shortcuts"
         >
           ✕
-        </button>
+        </Dialog.Close>
       </div>
 
       <!-- Divider -->
@@ -165,33 +112,6 @@
           </div>
         {/each}
       </div>
-    </div>
-  </div>
-{/if}
-
-<style>
-  .modal-enter {
-    animation: modal-in 150ms ease-out;
-  }
-
-  @keyframes modal-in {
-    from {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .modal-enter {
-      animation: none;
-    }
-  }
-
-  :global(html[data-reduce-motion]) .modal-enter {
-    animation: none;
-  }
-</style>
+    </Dialog.Content>
+  </Dialog.Portal>
+</Dialog.Root>
