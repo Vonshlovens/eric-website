@@ -140,6 +140,7 @@ All items implemented:
 - **`static/robots.txt`**: Updated sitemap URL to `https://ericevans.dev/sitemap.xml`.
 - **`src/app.html`**: Removed duplicate favicon `<link>` tags (now in `<svelte:head>` via layout). Kept manifest link.
 - JSON-LD `Person` schema with sameAs links to GitHub (Vonshlovens) and LinkedIn.
+- **Cleanup**: Removed duplicate `SEO.svelte` component and its usage from `+page.svelte`. The layout is the single source of truth for all meta tags — no per-page SEO component needed for a single-page portfolio. Also removed duplicate inline footer from `+page.svelte` (layout already mounts `Footer.svelte`). Deleted orphaned `src/lib/components/SEO.svelte`.
 
 ---
 
