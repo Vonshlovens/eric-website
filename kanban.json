@@ -1,7 +1,38 @@
 {
-  "todo": [],
+  "todo": [
+    {
+      "id": "playwright-2b",
+      "title": "2B — Investigate & Fix Known Visual Issues",
+      "description": "Use baseline screenshots + Playwright to investigate scroll jank, broken animations, and misaligned elements. Profile with DevTools, fix issues, re-screenshot to verify."
+    },
+    {
+      "id": "playwright-2c",
+      "title": "2C — Performance Audit (LCP, CLS, FCP, TBT)",
+      "description": "Run Playwright-based Web Vitals capture. Measure LCP (<2.5s), CLS (<0.1), FCP (<1.5s), TBT (<200ms)."
+    },
+    {
+      "id": "playwright-2d",
+      "title": "2D — /frontend-design Redesign Workflow",
+      "description": "For each component Playwright audit reveals as broken/subpar: screenshot, document issues, invoke /frontend-design, re-screenshot to verify."
+    },
+    {
+      "id": "playwright-2e",
+      "title": "2E — Cross-Browser Testing Matrix",
+      "description": "Test across Chromium, Firefox, and WebKit at all viewport sizes. Focus on SVG animations, View Transitions, mask-image support."
+    },
+    {
+      "id": "playwright-3a-3e",
+      "title": "3A-3E — Component Audit Agent",
+      "description": "Run component audit agent with screenshots + code. Produce structured KEEP/SIMPLIFY/MERGE/REMOVE report for all 15 components."
+    }
+  ],
   "in_progress": [],
   "done": [
+    {
+      "id": "playwright-2a",
+      "title": "2A — Baseline Screenshot Capture",
+      "description": "Created tests/visual/baseline.spec.ts with 12 test cases (full-page, hero, core-competencies, skills-marquee, skill-radar, engineering-log, work-experience, education, interests, contact-cta, navigation, footer) running at 4 viewports (desktop-1080p, desktop-720p, tablet, mobile) = 48 total baseline screenshots. Animations disabled via data-reduce-motion, loading screen bypassed via sessionStorage. Updated playwright.config.ts with webServer auto-start, workers:1, and Chromium-forced tablet/mobile projects. All 48 tests pass."
+    },
     {
       "id": "fix-button-types",
       "title": "Add Explicit type=\"button\" to Non-Submit Buttons",
