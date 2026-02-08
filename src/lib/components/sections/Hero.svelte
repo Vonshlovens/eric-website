@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { GitHubStats } from '../../routes/+page.server';
+  import { motionStore } from '$lib/stores/motion.svelte';
 
   interface Props {
     githubStats: GitHubStats;
@@ -29,6 +30,41 @@
     { key: '100m', value: '10.56s' },
     { key: '200m', value: '21.64s' }
   ];
+
+  // --- Avatar Hover Reveal ---
+  let revealX = $state(0);
+  let revealY = $state(0);
+  let revealActive = $state(false);
+  let canHover = $state(false);
+  const revealRadius = 100;
+
+  $effect(() => {
+    if (typeof window !== 'undefined') {
+      const mq = window.matchMedia('(hover: hover)');
+      canHover = mq.matches;
+      const handler = (e: MediaQueryListEvent) => { canHover = e.matches; };
+      mq.addEventListener('change', handler);
+      return () => mq.removeEventListener('change', handler);
+    }
+  });
+
+  function handleRevealMove(e: MouseEvent) {
+    if (!canHover || motionStore.disabled) return;
+    const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+    revealX = e.clientX - rect.left;
+    revealY = e.clientY - rect.top;
+    revealActive = true;
+  }
+
+  function handleRevealLeave() {
+    revealActive = false;
+  }
+
+  let revealMaskStyle = $derived(
+    revealActive && canHover && !motionStore.disabled
+      ? `mask-image: radial-gradient(circle ${revealRadius}px at ${revealX}px ${revealY}px, transparent 60%, black 100%); -webkit-mask-image: radial-gradient(circle ${revealRadius}px at ${revealX}px ${revealY}px, transparent 60%, black 100%); will-change: mask-image;`
+      : ''
+  );
 </script>
 
 <section
@@ -68,47 +104,93 @@
       <!-- Left Column (2/3) -->
       <div class="lg:col-span-2 space-y-8">
 
-        <!-- Avatar + Name + Title + Tags -->
-        <div class="flex flex-col items-center lg:items-start gap-6 sm:flex-row sm:items-start">
-          <!-- Avatar -->
-          <div class="relative group shrink-0">
-            <!-- Glow effect -->
-            <div
-              class="absolute -inset-1 bg-accent/20 rounded-lg blur opacity-0 group-hover:opacity-50 transition-opacity duration-700"
-            ></div>
-            <div
-              class="relative w-40 h-40 md:w-48 md:h-48 rounded-lg overflow-hidden border-2 border-border-dim group-hover:border-accent/40 transition-colors duration-500 cursor-crosshair"
-            >
-              <!-- Default avatar (grayscale) -->
-              <img
-                src="https://github.com/Vonshlovens.png"
-                alt="Eric Evans — Software Developer"
-                decoding="async"
-                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-              />
-
-              <!-- Verified badge -->
-              <div class="absolute bottom-2 right-2 w-7 h-7 bg-accent rounded-full flex items-center justify-center shadow-md border-2 border-primary">
-                <span class="material-symbols-outlined text-text-white text-base">verified</span>
+        <!-- Avatar + Name + Title + Tags (with hover reveal) -->
+        <!-- svelte-ignore a11y_no_static_element_interactions -->
+        <div
+          class="reveal-container relative"
+          onmousemove={handleRevealMove}
+          onmouseleave={handleRevealLeave}
+        >
+          <!-- Bottom layer: GitHub identity (revealed through mask hole) -->
+          <div class="flex flex-col items-center lg:items-start gap-6 sm:flex-row sm:items-start" aria-hidden="true">
+            <!-- GitHub Avatar -->
+            <div class="relative group shrink-0">
+              <div
+                class="absolute -inset-1 bg-accent/20 rounded-lg blur opacity-0 group-hover:opacity-50 transition-opacity duration-700"
+              ></div>
+              <div
+                class="relative w-40 h-40 md:w-48 md:h-48 rounded-lg overflow-hidden border-2 border-accent/40 transition-colors duration-500 cursor-crosshair"
+              >
+                <img
+                  src="https://github.com/Vonshlovens.png"
+                  alt=""
+                  decoding="async"
+                  class="w-full h-full object-cover"
+                />
+                <div class="absolute bottom-2 right-2 w-7 h-7 bg-accent rounded-full flex items-center justify-center shadow-md border-2 border-primary">
+                  <span class="material-symbols-outlined text-text-white text-base">verified</span>
+                </div>
+              </div>
+            </div>
+            <!-- GitHub name -->
+            <div class="text-center sm:text-left">
+              <p class="font-mono text-4xl md:text-6xl font-bold text-text-white tracking-tighter leading-none mb-2">
+                Vonshlovens<span class="animate-pulse text-accent">_</span>
+              </p>
+              <p class="font-mono text-lg text-accent tracking-wide mb-4">
+                @Vonshlovens
+              </p>
+              <div class="flex flex-wrap gap-2 justify-center sm:justify-start">
+                {#each tags as tag}
+                  <span class="text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded bg-surface border border-border-dim text-text-muted">
+                    {tag}
+                  </span>
+                {/each}
               </div>
             </div>
           </div>
 
-          <!-- Name block -->
-          <div class="text-center sm:text-left">
-            <h1 id="hero-heading" class="font-mono text-4xl md:text-6xl font-bold text-text-white tracking-tighter leading-none mb-2">
-              Eric Evans<span class="animate-pulse text-accent">_</span>
-            </h1>
-            <p class="font-mono text-lg text-accent tracking-wide mb-4">
-              Software Developer
-            </p>
-            <!-- Tags -->
-            <div class="flex flex-wrap gap-2 justify-center sm:justify-start">
-              {#each tags as tag}
-                <span class="text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded bg-surface border border-border-dim text-text-muted">
-                  {tag}
-                </span>
-              {/each}
+          <!-- Top layer: Display identity (masked around cursor) -->
+          <div
+            class="reveal-layer-display absolute inset-0"
+            style={revealMaskStyle}
+          >
+            <div class="flex flex-col items-center lg:items-start gap-6 sm:flex-row sm:items-start">
+              <!-- Display Avatar -->
+              <div class="relative group shrink-0">
+                <div
+                  class="absolute -inset-1 bg-accent/20 rounded-lg blur opacity-0 group-hover:opacity-50 transition-opacity duration-700"
+                ></div>
+                <div
+                  class="relative w-40 h-40 md:w-48 md:h-48 rounded-lg overflow-hidden border-2 border-border-dim group-hover:border-accent/40 transition-colors duration-500 cursor-crosshair"
+                >
+                  <img
+                    src="https://github.com/Vonshlovens.png"
+                    alt="Eric Evans — Software Developer"
+                    decoding="async"
+                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                  />
+                  <div class="absolute bottom-2 right-2 w-7 h-7 bg-accent rounded-full flex items-center justify-center shadow-md border-2 border-primary">
+                    <span class="material-symbols-outlined text-text-white text-base">verified</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Display name -->
+              <div class="text-center sm:text-left">
+                <h1 id="hero-heading" class="font-mono text-4xl md:text-6xl font-bold text-text-white tracking-tighter leading-none mb-2">
+                  Eric Evans<span class="animate-pulse text-accent">_</span>
+                </h1>
+                <p class="font-mono text-lg text-accent tracking-wide mb-4">
+                  Software Developer
+                </p>
+                <div class="flex flex-wrap gap-2 justify-center sm:justify-start">
+                  {#each tags as tag}
+                    <span class="text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded bg-surface border border-border-dim text-text-muted">
+                      {tag}
+                    </span>
+                  {/each}
+                </div>
+              </div>
             </div>
           </div>
         </div>

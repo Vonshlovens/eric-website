@@ -148,3 +148,18 @@ Detection: use `@media (hover: hover)` or check `window.matchMedia('(hover: hove
 - The reveal container wraps only the avatar + name area, not the entire hero
 - Keep the existing hero layout and structure from `specs-v2/hero-section.md` intact
 - This is an enhancement layer, not a replacement
+
+---
+
+## Status: DONE
+
+Implemented in `src/lib/components/sections/Hero.svelte`.
+
+- Two-layer stack inside `.reveal-container`: bottom layer (GitHub identity, `aria-hidden="true"`) and top layer (display identity with `h1#hero-heading`)
+- Top layer uses CSS `mask-image: radial-gradient(circle 100px at Xpx Ypx, transparent 60%, black 100%)` with `-webkit-mask-image` vendor prefix
+- Mouse position tracked via `onmousemove`/`onmouseleave` on the container, stored in Svelte 5 `$state` runes
+- `$derived` computes the mask style string only when `revealActive && canHover && !motionStore.disabled`
+- Touch/mobile disabled via `(hover: hover)` media query check
+- Reduced-motion disabled via `motionStore.disabled` (from `$lib/stores/motion.svelte`)
+- `will-change: mask-image` GPU hint applied when mask is active
+- No new files, routes, or dependencies added

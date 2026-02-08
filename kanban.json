@@ -1,12 +1,6 @@
 {
   "todo": [
     {
-      "id": "avatar-hover-reveal",
-      "title": "Implement Name & Avatar Hover Reveal",
-      "description": "Add cursor-proximity reveal effect to the hero avatar and name — a circular mask around the cursor exposes the GitHub identity (Vonshlovens + GitHub PFP) underneath the display identity, with soft feathered edge, mobile-disabled, and reduced-motion fallback.",
-      "spec": "specs/avatar-hover-reveal.md"
-    },
-    {
       "id": "skill-radar",
       "title": "Implement Skill Radar Chart",
       "description": "Build an interactive SVG radar/spider chart visualizing skill proficiency across 5–7 categories (Frontend, Backend, DevOps, etc.). Pure Svelte + SVG, no charting library. Includes hover tooltips, scroll-reveal draw-in animation, screen-reader fallback table, and responsive layout per specs/skill-radar.md.",
@@ -21,6 +15,12 @@
   ],
   "in_progress": [],
   "done": [
+    {
+      "id": "avatar-hover-reveal",
+      "title": "Implement Name & Avatar Hover Reveal",
+      "description": "Added cursor-proximity hover reveal to hero avatar and name per specs/avatar-hover-reveal.md. Two-layer stack: bottom layer shows GitHub identity (full-color avatar + 'Vonshlovens' username + '@Vonshlovens' subtitle), top layer shows display identity ('Eric Evans' + grayscale avatar + 'Software Developer'). Top layer uses CSS radial-gradient mask-image centered on cursor position (100px radius, 60%-100% feather) to punch a circular window revealing the GitHub layer beneath. Mouse tracking via onmousemove/onmouseleave on reveal container with Svelte 5 $state reactivity. Gated by (hover: hover) media query (disables on touch/mobile) and motionStore.disabled (respects reduced-motion preference and animation toggle). Bottom layer has aria-hidden='true', top layer contains the accessible h1#hero-heading. will-change:mask-image hint for GPU compositing. -webkit-mask-image vendor prefix included. No external libraries. Component: src/lib/components/sections/Hero.svelte.",
+      "spec": "specs/avatar-hover-reveal.md"
+    },
     {
       "id": "card-stack-scroll",
       "title": "Implement Card-Stack Scroll Animation",
