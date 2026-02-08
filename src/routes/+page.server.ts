@@ -3,11 +3,8 @@ import { fail } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
 import { Resend } from 'resend';
 
-export interface GitHubStats {
-	repos: number;
-	commits: number;
-	accountAgeSec: number;
-}
+import type { GitHubStats } from '$lib/types/github';
+export type { GitHubStats };
 
 const FALLBACK: GitHubStats = {
 	repos: 43,

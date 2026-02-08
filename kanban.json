@@ -3,6 +3,12 @@
   "in_progress": [],
   "done": [
     {
+      "id": "extract-github-stats-type",
+      "title": "Extract GitHubStats Interface to Shared Types",
+      "description": "Moved GitHubStats interface from src/routes/+page.server.ts to src/lib/types/github.ts. Hero.svelte was importing the type via a fragile relative path ('../../routes/+page.server') that crossed the lib/routes boundary and broke svelte-check type resolution. Now both +page.server.ts and Hero.svelte import from '$lib/types/github'. The server file re-exports the type for backward compatibility. Build and lint pass clean (19 files).",
+      "spec": "specs/github-stats.md"
+    },
+    {
       "id": "remove-dead-code",
       "title": "Remove Dead Code & Unused Dependency",
       "description": "Deleted 3 orphaned V1 files: ProjectCard.svelte (unused component, never imported), ThemeToggle.svelte (superseded by inline toggle in Navigation.svelte, used V1 svelte-lucide icons instead of Material Symbols), and projects.ts (superseded by engineering-log.ts data file). Removed svelte-lucide dependency from package.json (only consumer was the deleted ThemeToggle). Regenerated deno.lock. Build and lint pass clean (18 files, down from 19).",

@@ -1,6 +1,6 @@
 # GitHub Stats Integration
 
-> **Status: IMPLEMENTED** — See `src/routes/+page.server.ts`, `src/routes/+page.svelte`, `src/lib/components/sections/Hero.svelte`.
+> **Status: IMPLEMENTED** — See `src/lib/types/github.ts`, `src/routes/+page.server.ts`, `src/routes/+page.svelte`, `src/lib/components/sections/Hero.svelte`.
 
 ## Summary
 
@@ -66,12 +66,8 @@ Use SvelteKit's `+page.server.ts` load function to fetch GitHub data at build/re
 ```typescript
 // src/routes/+page.server.ts
 import type { PageServerLoad } from './$types';
-
-interface GitHubStats {
-  repos: number;
-  commits: number;
-  accountAgeSec: number;
-}
+import type { GitHubStats } from '$lib/types/github';
+export type { GitHubStats };
 
 const FALLBACK: GitHubStats = {
   repos: 43,
@@ -162,7 +158,8 @@ No change from `specs-v2/hero-section.md`. The stat cards and terminal panel lay
 
 | File | Purpose |
 |------|---------|
-| `src/routes/+page.server.ts` | GitHub API fetch + fallback logic |
+| `src/lib/types/github.ts` | Shared `GitHubStats` interface |
+| `src/routes/+page.server.ts` | GitHub API fetch + fallback logic (re-exports `GitHubStats`) |
 | `src/routes/+page.svelte` | Passes stats to Hero component |
 | `src/lib/components/sections/Hero.svelte` | Renders stat cards and terminal panel with dynamic values |
 

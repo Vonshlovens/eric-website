@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { GitHubStats } from '../../routes/+page.server';
+  import type { GitHubStats } from '$lib/types/github';
   import { motionStore } from '$lib/stores/motion.svelte';
 
   interface Props {
