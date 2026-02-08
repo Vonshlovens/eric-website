@@ -1,12 +1,6 @@
 {
   "todo": [
     {
-      "id": "card-stack-scroll",
-      "title": "Implement Card-Stack Scroll Animation",
-      "description": "Build the full-viewport card-stack scroll interaction per specs/card-stack-scroll.md — pin a section (Engineering Log or Work Experience) and stack cards on scroll, with reduced-motion fallback and mobile-disabled behavior.",
-      "spec": "specs/card-stack-scroll.md"
-    },
-    {
       "id": "avatar-hover-reveal",
       "title": "Implement Name & Avatar Hover Reveal",
       "description": "Add cursor-proximity reveal effect to the hero avatar and name — a circular mask around the cursor exposes the GitHub identity (Vonshlovens + GitHub PFP) underneath the display identity, with soft feathered edge, mobile-disabled, and reduced-motion fallback.",
@@ -27,6 +21,12 @@
   ],
   "in_progress": [],
   "done": [
+    {
+      "id": "card-stack-scroll",
+      "title": "Implement Card-Stack Scroll Animation",
+      "description": "Built full-viewport card-stack scroll interaction on Engineering Log per specs/card-stack-scroll.md. Section container height set to cardCount × 100vh, sticky inner viewport at top:0 with h-screen. Each card positioned absolute with translateY driven by scroll progress (scrollY - sectionTop mapped to per-card viewport ranges). Cards layer via z-index order — later cards stack higher, sliding up from bottom to cover previous. Progress dot indicators (top-right) and card counter (bottom-right) as decorative overlays. Reactive Svelte 5 $effect watches min-width:768px media query, prefers-reduced-motion, and data-reduce-motion attribute (MutationObserver) to toggle between card-stack and fallback modes. Mobile (<md) and reduced-motion fall back to original vertical card list with scrollReveal fade-up animations. will-change:transform and backface-visibility:hidden on .card-stack-card for GPU compositing. Print stylesheet resets card-stack-card to static positioning. No external libraries. Component: src/lib/components/sections/EngineeringLog.svelte.",
+      "spec": "specs/card-stack-scroll.md"
+    },
     {
       "id": "contact-form",
       "title": "Implement Contact Form Modal",

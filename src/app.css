@@ -186,6 +186,16 @@ main section {
 .scroll-reveal-stagger > .scroll-reveal:nth-child(6) { transition-delay: 500ms; }
 
 /* ============================================
+   Card-Stack Scroll Animation
+   Source of truth: specs/card-stack-scroll.md
+   ============================================ */
+
+.card-stack-card {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* ============================================
    Page Transitions (View Transitions API)
    Source of truth: specs/page-transitions.md
    ============================================ */
@@ -432,5 +442,13 @@ html[data-reduce-motion]::view-transition-new(root) {
   /* Remove overflow hidden that can clip content */
   .overflow-hidden {
     overflow: visible !important;
+  }
+
+  /* Card-stack: reset to normal flow for print */
+  .card-stack-card {
+    position: static !important;
+    transform: none !important;
+    height: auto !important;
+    inset: auto !important;
   }
 }

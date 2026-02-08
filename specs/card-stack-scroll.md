@@ -1,5 +1,7 @@
 # Card-Stack Scroll Animation
 
+**Status: Implemented**
+
 ## Summary
 
 A full-viewport scroll interaction where entries in a chosen section (e.g. Engineering Log or Work Experience) are presented as stacked cards. As the user scrolls, each card slides up to cover the previous one — like a deck of playing cards being dealt onto a pile. Once every card has been viewed, normal scrolling resumes.
@@ -150,3 +152,32 @@ for card i:
 - No external library required — achievable with Svelte 5 reactivity + CSS transforms.
 - If the effect feels too complex to get right initially, a simpler "fade-and-slide" transition between cards on scroll is an acceptable MVP.
 - Test on Safari, Chrome, and Firefox — `position: sticky` inside overflow containers can behave differently across engines.
+
+---
+
+## Implementation Details
+
+**Applied to:** Engineering Log section (recommended candidate #1).
+
+**Component:** `src/lib/components/sections/EngineeringLog.svelte`
+
+**Architecture:**
+- Section container height: `cardCount × 100vh` (creates scroll space)
+- Sticky inner div: `position: sticky; top: 0; height: 100vh; overflow: hidden`
+- Cards: `position: absolute; inset: 0` with `translateY((1 - progress) × 100%)` and ascending `z-index`
+- Scroll progress computed per spec formula: `progress = clamp((scrollOffset - start) / viewportHeight, 0, 1)`
+- `sectionTop` tracked via `getBoundingClientRect()` + `window.scrollY`, updated on resize
+
+**Reactive toggle via `$effect`:**
+- Watches `min-width: 768px` media query (md breakpoint)
+- Watches `prefers-reduced-motion: reduce` media query
+- Watches `data-reduce-motion` attribute via MutationObserver
+- Toggles between card-stack mode and standard vertical fallback
+
+**UI overlays (decorative, aria-hidden):**
+- Progress dots (top-right): accent-colored for viewed cards, border-dim for upcoming
+- Card counter (bottom-right): `01 / 06` format in mono text
+
+**CSS:** `.card-stack-card` class in `app.css` with `will-change: transform` and `backface-visibility: hidden` for GPU compositing. Print stylesheet resets to `position: static`.
+
+**Fallback (mobile / reduced-motion):** Original vertical card list with `use:scrollReveal` fade-up animations, identical to pre-implementation layout.
