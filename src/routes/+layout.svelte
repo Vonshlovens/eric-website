@@ -8,6 +8,7 @@
 	import LoadingScreen from '$lib/components/ui/LoadingScreen.svelte';
 	import ToastContainer from '$lib/components/ui/ToastContainer.svelte';
 	import KeyboardShortcuts from '$lib/components/ui/KeyboardShortcuts.svelte';
+	import { themeStore } from '$lib/stores/theme.svelte';
 
 	const analyticsEnabled = env.PUBLIC_ANALYTICS_ENABLED === 'true';
 	const analyticsDomain = 'ericevans.dev';
@@ -68,6 +69,9 @@
 	<link rel="icon" href="/favicon.ico" sizes="any" />
 	<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+	<!-- Theme color — syncs with dark/light toggle for browser chrome -->
+	<meta name="theme-color" content={themeStore.isDark ? '#121212' : '#F9F1CB'} />
 
 	<!-- JSON-LD Structured Data -->
 	{@html `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`}

@@ -140,6 +140,7 @@ All items implemented:
 - **`static/robots.txt`**: Updated sitemap URL to `https://ericevans.dev/sitemap.xml`.
 - **`src/app.html`**: Removed duplicate favicon `<link>` tags (now in `<svelte:head>` via layout). Kept manifest link.
 - JSON-LD `Person` schema with sameAs links to GitHub (Vonshlovens) and LinkedIn.
+- **`<meta name="theme-color">`**: Dynamic theme-color meta tag in `<svelte:head>` that reactively syncs with the dark/light theme toggle via `themeStore.isDark`. Dark mode: `#121212` (page background). Light mode: `#F9F1CB` (warm parchment). Colors the browser address bar / status bar on mobile (Android Chrome, Safari) and PWA window chrome to match the active theme. `themeStore` imported into `+layout.svelte`.
 - **Cleanup**: Removed duplicate `SEO.svelte` component and its usage from `+page.svelte`. The layout is the single source of truth for all meta tags — no per-page SEO component needed for a single-page portfolio. Also removed duplicate inline footer from `+page.svelte` (layout already mounts `Footer.svelte`). Deleted orphaned `src/lib/components/SEO.svelte`.
 
 ---
