@@ -10,7 +10,7 @@ HTTP security headers configured in `src/hooks.server.ts` to harden the site aga
 
 Six security headers added to the existing `hooks.server.ts` cache-control logic:
 
-- **Content-Security-Policy (CSP)**: Restricts resource origins — scripts from `'self'` + Plausible, styles from `'self'` + Google Fonts, fonts from `fonts.gstatic.com`, images from `'self'` + GitHub avatar domains. `'unsafe-inline'` required for Svelte component styles and the FOUC-prevention script in `app.html`. `frame-src` and `object-src` set to `'none'`.
+- **Content-Security-Policy (CSP)**: Restricts resource origins — scripts from `'self'` + Plausible, styles from `'self'` + Google Fonts, fonts from `fonts.gstatic.com`, images from `'self'` + GitHub avatar domains. `'unsafe-inline'` required for Svelte component styles and the FOUC-prevention script in `app.html`. `frame-src` and `object-src` set to `'none'`. `upgrade-insecure-requests` directive auto-upgrades any HTTP subresource requests to HTTPS.
 - **X-Frame-Options**: `DENY` — prevents the site from being embedded in iframes (clickjacking protection).
 - **X-Content-Type-Options**: `nosniff` — prevents browsers from MIME-type sniffing responses.
 - **Referrer-Policy**: `strict-origin-when-cross-origin` — sends origin-only referrer for cross-origin requests, full referrer for same-origin.
@@ -31,6 +31,7 @@ Six security headers added to the existing `hooks.server.ts` cache-control logic
 | `object-src` | `'none'` | No plugins/embeds needed |
 | `base-uri` | `'self'` | Prevent `<base>` tag injection |
 | `form-action` | `'self'` | Contact form submits to same origin only |
+| `upgrade-insecure-requests` | *(present)* | Instructs browsers to auto-upgrade HTTP subresource requests to HTTPS |
 
 ### Notes on `'unsafe-inline'`
 

@@ -3,6 +3,12 @@
   "in_progress": [],
   "done": [
     {
+      "id": "lcp-and-csp-hardening",
+      "title": "Add fetchpriority to Hero LCP Image & upgrade-insecure-requests to CSP",
+      "description": "Two targeted hardening improvements. (1) Added fetchpriority='high' to the hero display-layer avatar <img> in Hero.svelte — this is the Largest Contentful Paint element and fetchpriority hints the browser to prioritize it in the resource queue, improving LCP scores. (2) Added upgrade-insecure-requests directive to the Content-Security-Policy header in hooks.server.ts — instructs browsers to automatically upgrade any HTTP subresource requests to HTTPS, preventing mixed-content issues on the production HTTPS site. Build and lint pass clean.",
+      "spec": "specs/performance.md"
+    },
+    {
       "id": "dynamic-theme-color",
       "title": "Add Dynamic Meta Theme-Color for Browser Chrome",
       "description": "Added <meta name='theme-color'> to +layout.svelte <svelte:head> that reactively syncs with the dark/light theme toggle. Dark mode uses #121212 (page background), light mode uses #F9F1CB (warm parchment). Imported themeStore into +layout.svelte and bound the meta content attribute to themeStore.isDark. This colors the browser address bar and status bar on mobile devices (Android Chrome, Safari) and PWA window chrome to match the active theme. Build and lint pass clean.",

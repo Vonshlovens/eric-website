@@ -171,6 +171,7 @@
                     alt="Eric Evans — Software Developer"
                     width="192"
                     height="192"
+                    fetchpriority="high"
                     decoding="async"
                     class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                   />

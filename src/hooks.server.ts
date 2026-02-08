@@ -33,7 +33,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 		"frame-src 'none'",
 		"object-src 'none'",
 		"base-uri 'self'",
-		"form-action 'self'"
+		"form-action 'self'",
+		"upgrade-insecure-requests"
 	].join('; ');
 	response.headers.set('Content-Security-Policy', csp);
 
