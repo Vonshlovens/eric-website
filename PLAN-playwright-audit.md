@@ -137,16 +137,32 @@ These are the categories of problems to audit, roughly ordered by user impact:
 
 **Fix approach**: Screenshot each section at all 4 breakpoints. Overlay grid lines to check alignment. Use `/frontend-design` to redesign any structurally broken layouts.
 
-### 2C — Performance Audit
+### 2C — Performance Audit ✅
 
-Run Playwright-based Lighthouse or Web Vitals capture:
+**Completed**: Created `tests/visual/performance.spec.ts` with 4 test suites (Core Web Vitals, Layout Shift during scroll, Resource Loading, DOM Complexity) running at 3 viewports (desktop 1080p, tablet, mobile) = 12 tests. All pass.
 
-| Metric | Target | How to Measure |
-|--------|--------|----------------|
-| LCP | < 2.5s | Playwright `page.evaluate()` with PerformanceObserver |
-| CLS | < 0.1 | Playwright CLS measurement during scroll |
-| FCP | < 1.5s | Playwright performance timing API |
-| TBT | < 200ms | DevTools trace via Playwright |
+**Results (dev server, localhost):**
+
+| Metric | Desktop (1920×1080) | Tablet (834×1194) | Mobile (390×664) | Target | Status |
+|--------|--------------------|--------------------|-------------------|--------|--------|
+| FCP | 396ms | 360ms | 320ms | < 1500ms | ✅ |
+| LCP | 396ms | 360ms | 320ms | < 2500ms | ✅ |
+| CLS | 0.0010 | 0.0000 | 0.0000 | < 0.1 | ✅ |
+| TBT | 104ms | 103ms | 101ms | < 200ms | ✅ |
+
+**Additional metrics:**
+
+| Metric | Value | Notes |
+|--------|-------|-------|
+| DOM Nodes | ~1030-1039 | Well under 1500 recommended limit |
+| Max DOM Depth | 13 | Well under 32 limit |
+| Transfer Size | ~729 KB | Under 2 MB budget |
+| Resources | 116 | Dev mode unbundled; production will be fewer |
+| Layout Shifts | 0-2 tiny events | Only on desktop: an anchor link (0.0009) and pulsing status span (0.0001) |
+
+**Largest resource**: `bits-ui.js` at 167 KB (dev mode, unbundled). In production this will be tree-shaken and bundled.
+
+**No fixes required** — all metrics comfortably within targets across all viewports.
 
 ### 2D — `/frontend-design` Redesign Workflow
 

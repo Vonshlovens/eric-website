@@ -1,11 +1,6 @@
 {
   "todo": [
     {
-      "id": "playwright-2c",
-      "title": "2C — Performance Audit (LCP, CLS, FCP, TBT)",
-      "description": "Run Playwright-based Web Vitals capture. Measure LCP (<2.5s), CLS (<0.1), FCP (<1.5s), TBT (<200ms)."
-    },
-    {
       "id": "playwright-2d",
       "title": "2D — /frontend-design Redesign Workflow",
       "description": "For each component Playwright audit reveals as broken/subpar: screenshot, document issues, invoke /frontend-design, re-screenshot to verify."
@@ -23,6 +18,11 @@
   ],
   "in_progress": [],
   "done": [
+    {
+      "id": "playwright-2c",
+      "title": "2C — Performance Audit (LCP, CLS, FCP, TBT)",
+      "description": "Created tests/visual/performance.spec.ts with 4 test suites (Core Web Vitals, Layout Shift during scroll, Resource Loading, DOM Complexity) at 3 viewports (desktop, tablet, mobile) = 12 tests. All pass. Results: FCP 320-396ms (target <1500), LCP 320-396ms (target <2500), CLS 0.0000-0.0010 (target <0.1), TBT 101-104ms (target <200). DOM nodes ~1030 (under 1500 limit), transfer size ~729KB (under 2MB budget), max DOM depth 13 (under 32 limit). Only 2 tiny layout shift events on desktop (a link at 0.0009 and pulsing span at 0.0001), zero on mobile/tablet. Largest resource bits-ui.js at 167KB is dev-mode unbundled; will be tree-shaken in production. No fixes required — all metrics comfortably within targets."
+    },
     {
       "id": "playwright-2b",
       "title": "2B — Investigate & Fix Known Visual Issues",
