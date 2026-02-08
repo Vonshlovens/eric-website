@@ -1,5 +1,7 @@
 import type { PageServerLoad, Actions } from './$types';
 import { fail } from '@sveltejs/kit';
+import { env } from '$env/dynamic/private';
+import { Resend } from 'resend';
 
 export interface GitHubStats {
 	repos: number;
@@ -27,9 +29,7 @@ export const load: PageServerLoad = async ({ fetch, setHeaders }) => {
 
 	try {
 		const headers: Record<string, string> = {};
-		const token = typeof process !== 'undefined'
-			? process.env?.GITHUB_TOKEN
-			: undefined;
+		const token = env.GITHUB_TOKEN;
 		if (token) {
 			headers['Authorization'] = `Bearer ${token}`;
 		}
@@ -95,11 +95,27 @@ export const actions: Actions = {
 		}
 
 		try {
-			// TODO: integrate email service (Resend, SendGrid, etc.)
-			// For now, log to console
-			console.log('[Contact Form]', { name, email, message });
+			const apiKey = env.RESEND_API_KEY;
+			const contactTo = env.CONTACT_EMAIL_TO;
+
+			if (!apiKey || !contactTo) {
+				// No email service configured — log and succeed silently
+				console.log('[Contact Form] No RESEND_API_KEY/CONTACT_EMAIL_TO configured, logging:', { name, email, message });
+				return { success: true };
+			}
+
+			const resend = new Resend(apiKey);
+			await resend.emails.send({
+				from: `Portfolio Contact <${env.RESEND_FROM_EMAIL || 'onboarding@resend.dev'}>`,
+				to: contactTo,
+				replyTo: email,
+				subject: `[ericevans.dev] Message from ${name}`,
+				text: `Name: ${name}\nEmail: ${email}\n\n${message}`
+			});
+
 			return { success: true };
-		} catch {
+		} catch (err) {
+			console.error('[Contact Form] Send failed:', err);
 			return fail(500, { error: 'Failed to send message.' });
 		}
 	}

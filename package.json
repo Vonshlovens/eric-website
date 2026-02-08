@@ -10,6 +10,7 @@
 	},
 	"dependencies": {
 		"@tailwindcss/vite": "^4.1.18",
+		"resend": "^6.9.1",
 		"svelte-lucide": "^3.0.1",
 		"tailwindcss": "^4.1.18"
 	},

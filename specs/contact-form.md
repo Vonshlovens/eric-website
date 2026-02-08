@@ -203,13 +203,15 @@ export const actions: Actions = {
 
 ### Email Service
 
-The actual email delivery is pluggable. Options:
-- **Resend** (recommended for simplicity)
-- **SendGrid**
-- **Simple webhook** (e.g., Discord webhook, Slack webhook)
-- **Console log** for local development
+Email delivery uses **Resend** (`resend` npm package). Configuration via environment variables:
 
-The email service integration is configured via environment variables (`CONTACT_EMAIL_TO`, `RESEND_API_KEY`, etc.) and is not part of this spec — it will be a separate configuration step during deployment.
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `RESEND_API_KEY` | Yes | Resend API key (from https://resend.com) |
+| `CONTACT_EMAIL_TO` | Yes | Recipient email for form submissions |
+| `RESEND_FROM_EMAIL` | No | Verified sender address (defaults to `onboarding@resend.dev`) |
+
+When `RESEND_API_KEY` or `CONTACT_EMAIL_TO` are not set, the form action logs submissions to console and returns success (local development mode). See `.env.example` for all environment variables.
 
 ---
 
@@ -279,7 +281,7 @@ The modal is always vertically centered in the viewport.
 
 - **CTA Trigger**: The `Connect.exe` button in ContactCTA was converted from `<a href="mailto:...">` to a `<button>` with an `onconnect` callback prop. The component exposes `getTriggerEl()` for focus return.
 - **Prerender**: `src/routes/+page.ts` exports `prerender = false` to override the layout-level `prerender = true`, since form actions require server-side handling.
-- **Email Delivery**: The `contact` form action currently logs to console. Integration with an email service (Resend, SendGrid, etc.) is a separate deployment-time configuration via environment variables (`CONTACT_EMAIL_TO`, `RESEND_API_KEY`).
+- **Email Delivery**: The `contact` form action uses Resend (`resend` npm package) to send emails when `RESEND_API_KEY` and `CONTACT_EMAIL_TO` environment variables are set. Falls back to console.log when unconfigured (local dev). Optional `RESEND_FROM_EMAIL` overrides the sender address (defaults to `onboarding@resend.dev`). Emails include the visitor's email as `replyTo`. All server env vars accessed via `$env/dynamic/private`.
 - **Validation**: Client-side validation runs on submit (and on blur after first attempt). Server-side validation mirrors the same rules as a fallback.
 - **Focus Management**: Focus moves to close button on modal open, returns to CTA button on close. Tab is trapped within the modal.
 - **z-index**: Modal uses `z-[80]` to sit below keyboard shortcuts modal (`z-[90]`) but above all page content.

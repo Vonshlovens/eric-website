@@ -3,6 +3,12 @@
   "in_progress": [],
   "done": [
     {
+      "id": "email-integration",
+      "title": "Integrate Resend Email Service for Contact Form",
+      "description": "Replaced contact form console.log placeholder with Resend email delivery. Added resend npm dependency. Contact form action in +page.server.ts now sends emails via Resend API when RESEND_API_KEY and CONTACT_EMAIL_TO env vars are configured; falls back to console.log when unconfigured (local dev). Uses $env/dynamic/private for all server env vars (also migrated GITHUB_TOKEN from process.env). Supports optional RESEND_FROM_EMAIL for custom verified sender. Created .env.example documenting all environment variables (GITHUB_TOKEN, RESEND_API_KEY, CONTACT_EMAIL_TO, RESEND_FROM_EMAIL, PUBLIC_ANALYTICS_ENABLED).",
+      "spec": "specs/contact-form.md"
+    },
+    {
       "id": "fix-build-warnings",
       "title": "Fix Build Warnings & Accessibility Issues",
       "description": "Resolved all Svelte build warnings for a clean zero-warning build. Fixed Hero.svelte state_referenced_locally warnings (5 instances) by converting const declarations to $derived runes for githubStats-dependent values (formattedCommits, formattedRepos, formattedAge, stats, terminalLines). Fixed SkillRadar.svelte import path (removed erroneous .ts extension from motion.svelte import). Suppressed SkillRadar.svelte a11y_no_static_element_interactions warnings on <text> and <circle> SVG elements that are inside an aria-hidden='true' SVG with a screen-reader fallback table. Fixed ContactForm.svelte a11y_click_events_have_key_events warning on modal backdrop by adding role='presentation' (backdrop is decorative; Escape key handling exists on svelte:window).",
