@@ -1,5 +1,6 @@
 <script lang="ts">
   import { motionStore } from '$lib/stores/motion.svelte';
+  import { themeStore } from '$lib/stores/theme.svelte';
   import { tick } from 'svelte';
 
   let mobileMenuOpen = $state(false);
@@ -102,6 +103,17 @@
         </ul>
       </nav>
 
+      <!-- Theme Toggle -->
+      <button
+        onclick={() => themeStore.toggle()}
+        class="p-2 text-text-muted hover:text-accent border border-border-dim hover:border-accent/50 rounded transition-colors duration-200"
+        aria-label={themeStore.isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+      >
+        <span class="material-symbols-outlined text-lg leading-none">
+          {themeStore.isDark ? 'light_mode' : 'dark_mode'}
+        </span>
+      </button>
+
       <!-- Animation Toggle -->
       <button
         onclick={() => motionStore.toggle()}
@@ -165,6 +177,21 @@
           </li>
         {/each}
         <li class="pt-3 mt-3 border-t border-border-dim">
+          <button
+            onclick={() => themeStore.toggle()}
+            class="flex items-center gap-3 py-2 w-full text-left"
+            aria-label={themeStore.isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            <span class="material-symbols-outlined text-lg text-text-muted">
+              {themeStore.isDark ? 'light_mode' : 'dark_mode'}
+            </span>
+            <span class="text-xs font-mono text-text-muted tracking-widest uppercase">Theme</span>
+            <span class="ml-auto text-[10px] font-mono uppercase tracking-widest {themeStore.isDark ? 'text-text-muted' : 'text-status-ok'}">
+              {themeStore.isDark ? 'Dark' : 'Light'}
+            </span>
+          </button>
+        </li>
+        <li>
           <button
             onclick={() => motionStore.toggle()}
             class="flex items-center gap-3 py-2 w-full text-left"

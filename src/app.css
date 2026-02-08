@@ -42,6 +42,42 @@
 }
 
 /* ============================================
+   Light Mode Overrides
+   Source of truth: specs/theme-toggle.md
+   ============================================ */
+
+html:not(.dark) {
+  --color-primary: #F9F1CB;
+  --color-surface: #EDE5B4;
+  --color-surface-highlight: #E0D89E;
+  --color-accent: #B80C09;
+  --color-text-main: #1A1816;
+  --color-text-muted: #5C5650;
+  --color-text-white: #1A1816;
+  --color-border-dim: #C9C0A0;
+  --color-status-ok: #4A7C59;
+}
+
+/* Light-mode scrollbar */
+html:not(.dark) ::-webkit-scrollbar-track {
+  background: #F9F1CB;
+}
+
+html:not(.dark) ::-webkit-scrollbar-thumb {
+  background: #C9C0A0;
+}
+
+html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background: #B80C09;
+}
+
+/* Light-mode selection */
+html:not(.dark) ::selection {
+  background-color: #B80C09;
+  color: #FFFFFF;
+}
+
+/* ============================================
    Material Symbols Configuration
    ============================================ */
 

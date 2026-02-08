@@ -1,59 +1,57 @@
 /**
- * Theme Store - Manages dark/light mode with Svelte 5 runes
+ * Theme Store — Manages dark/light theme toggle with Svelte 5 runes
  *
  * Features:
- * - localStorage persistence
- * - System preference detection
- * - Reactive theme state
+ * - localStorage persistence (key: "theme")
+ * - prefers-color-scheme detection as default
+ * - Syncs `dark` class on <html>
+ * - Reactive state via $state
+ *
+ * Spec: specs/theme-toggle.md
  */
 
 type Theme = 'dark' | 'light';
 
 class ThemeStore {
-  theme = $state<Theme>('dark');
+	current: Theme = $state('dark');
 
-  constructor() {
-    // Initialize theme from localStorage or system preference
-    if (typeof window !== 'undefined') {
-      const stored = localStorage.getItem('theme') as Theme | null;
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+	constructor() {
+		if (typeof window !== 'undefined') {
+			const stored = localStorage.getItem('theme');
+			const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
 
-      this.theme = stored || (prefersDark ? 'dark' : 'light');
-      this.applyTheme(this.theme);
+			if (stored === 'dark' || stored === 'light') {
+				this.current = stored;
+			} else {
+				this.current = prefersLight ? 'light' : 'dark';
+			}
+			this.applyClass(this.current);
 
-      // Listen for system preference changes
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        if (!localStorage.getItem('theme')) {
-          this.setTheme(e.matches ? 'dark' : 'light');
-        }
-      });
-    }
-  }
+			// Listen for OS-level preference changes (only when no explicit override stored)
+			window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+				if (localStorage.getItem('theme') === null) {
+					this.current = e.matches ? 'light' : 'dark';
+					this.applyClass(this.current);
+				}
+			});
+		}
+	}
 
-  setTheme(newTheme: Theme) {
-    this.theme = newTheme;
-    this.applyTheme(newTheme);
+	get isDark(): boolean {
+		return this.current === 'dark';
+	}
 
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('theme', newTheme);
-    }
-  }
+	toggle() {
+		this.current = this.current === 'dark' ? 'light' : 'dark';
+		localStorage.setItem('theme', this.current);
+		this.applyClass(this.current);
+	}
 
-  toggle() {
-    this.setTheme(this.theme === 'dark' ? 'light' : 'dark');
-  }
-
-  private applyTheme(theme: Theme) {
-    if (typeof document !== 'undefined') {
-      const root = document.documentElement;
-
-      if (theme === 'light') {
-        root.classList.add('light');
-      } else {
-        root.classList.remove('light');
-      }
-    }
-  }
+	private applyClass(theme: Theme) {
+		if (typeof document !== 'undefined') {
+			document.documentElement.classList.toggle('dark', theme === 'dark');
+		}
+	}
 }
 
 export const themeStore = new ThemeStore();

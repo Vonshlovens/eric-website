@@ -13,12 +13,6 @@
       "spec": "specs/avatar-hover-reveal.md"
     },
     {
-      "id": "theme-toggle",
-      "title": "Add Dark/Light Theme Toggle",
-      "description": "Add a nav-bar theme toggle with a warm parchment light mode alongside the existing dark theme. Includes Svelte store, localStorage persistence, prefers-color-scheme detection, FOUC-prevention script, and light-mode CSS custom properties.",
-      "spec": "specs/theme-toggle.md"
-    },
-    {
       "id": "contact-form",
       "title": "Implement Contact Form Modal",
       "description": "Build a modal contact form triggered by the Contact CTA button — name/email/message fields, SvelteKit form action backend, client-side validation, success/error states, focus trapping, and system-monitor aesthetic per specs/contact-form.md.",
@@ -206,6 +200,12 @@
       "title": "Implement Toast Notifications",
       "description": "Built reusable toast notification system per specs/toast-notifications.md — Svelte 5 rune-based ToastStore (src/lib/stores/toast.svelte.ts) with $state array, addToast/dismissToast exports, crypto.randomUUID() IDs, max 3 visible toasts with oldest eviction. ToastContainer component (src/lib/components/ui/ToastContainer.svelte) with three variants: success (status-ok green, STATUS: label), error (accent red, ERROR: label), info (text-muted, INFO: label). Left 4px accent border, status dot, uppercase mono label, dismiss button. 4s auto-dismiss with hover-pause timers. Slide-in from right (200ms ease-out) / slide-out (150ms ease-in) animations. Reduced-motion support via data-reduce-motion and prefers-reduced-motion (instant show/hide). role='status' with aria-live='polite' (assertive for errors), aria-label='Dismiss notification' on close button. Responsive: full-width on mobile (bottom-4 inset-x-4), max-w-24rem bottom-right on desktop. Mounted in +layout.svelte.",
       "spec": "specs/toast-notifications.md"
+    },
+    {
+      "id": "theme-toggle",
+      "title": "Add Dark/Light Theme Toggle",
+      "description": "Added dark/light theme toggle per specs/theme-toggle.md — Svelte 5 rune-based ThemeStore (src/lib/stores/theme.svelte.ts) with $state, localStorage persistence (key: 'theme'), prefers-color-scheme detection as default, OS preference change listener. Uses .dark class on <html> with FOUC-prevention blocking script in app.html. Light-mode CSS custom property overrides in app.css (warm parchment #F9F1CB backgrounds, dark text #1A1816, tan borders #C9C0A0, lichen green #4A7C59 status-ok). Accent #B80C09 unchanged across both modes. Toggle button in desktop nav (Material Symbols light_mode/dark_mode icons, border+hover styling matching animation toggle) and mobile menu (labeled row with Dark/Light indicator). Dynamic aria-label describes resulting action. Light-mode scrollbar and selection overrides included.",
+      "spec": "specs/theme-toggle.md"
     }
   ]
 }
