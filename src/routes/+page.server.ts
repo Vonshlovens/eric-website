@@ -96,8 +96,8 @@ export const actions: Actions = {
 			const contactTo = env.CONTACT_EMAIL_TO;
 
 			if (!apiKey || !contactTo) {
-				// No email service configured — log and succeed silently
-				console.log('[Contact Form] No RESEND_API_KEY/CONTACT_EMAIL_TO configured, logging:', { name, email, message });
+				// No email service configured — succeed silently (never log PII)
+				console.log('[Contact Form] No RESEND_API_KEY/CONTACT_EMAIL_TO configured, submission discarded.');
 				return { success: true };
 			}
 
@@ -112,7 +112,7 @@ export const actions: Actions = {
 
 			return { success: true };
 		} catch (err) {
-			console.error('[Contact Form] Send failed:', err);
+			console.error('[Contact Form] Send failed:', err instanceof Error ? err.message : 'unknown error');
 			return fail(500, { error: 'Failed to send message.' });
 		}
 	}

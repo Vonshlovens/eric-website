@@ -3,6 +3,12 @@
   "in_progress": [],
   "done": [
     {
+      "id": "fix-contact-form-pii-logging",
+      "title": "Fix PII Logging in Contact Form",
+      "description": "Removed personally identifiable information (name, email, message) from the console.log in the contact form dev fallback path. When RESEND_API_KEY/CONTACT_EMAIL_TO are not configured, the server previously logged the full form submission including user PII. Now logs only that a submission was discarded. Also sanitized the catch-block console.error to log only err.message instead of the full error object (which could contain request/response data with PII). Build and lint pass clean.",
+      "spec": "specs/contact-form.md"
+    },
+    {
       "id": "extract-github-stats-type",
       "title": "Extract GitHubStats Interface to Shared Types",
       "description": "Moved GitHubStats interface from src/routes/+page.server.ts to src/lib/types/github.ts. Hero.svelte was importing the type via a fragile relative path ('../../routes/+page.server') that crossed the lib/routes boundary and broke svelte-check type resolution. Now both +page.server.ts and Hero.svelte import from '$lib/types/github'. The server file re-exports the type for backward compatibility. Build and lint pass clean (19 files).",

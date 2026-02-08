@@ -211,7 +211,7 @@ Email delivery uses **Resend** (`resend` npm package). Configuration via environ
 | `CONTACT_EMAIL_TO` | Yes | Recipient email for form submissions |
 | `RESEND_FROM_EMAIL` | No | Verified sender address (defaults to `onboarding@resend.dev`) |
 
-When `RESEND_API_KEY` or `CONTACT_EMAIL_TO` are not set, the form action logs submissions to console and returns success (local development mode). See `.env.example` for all environment variables.
+When `RESEND_API_KEY` or `CONTACT_EMAIL_TO` are not set, the form action discards the submission and returns success (local development mode). PII (name, email, message) is never written to server logs. See `.env.example` for all environment variables.
 
 ---
 
@@ -281,7 +281,7 @@ The modal is always vertically centered in the viewport.
 
 - **CTA Trigger**: The `Connect.exe` button in ContactCTA was converted from `<a href="mailto:...">` to a `<button>` with an `onconnect` callback prop. The component exposes `getTriggerEl()` for focus return.
 - **Prerender**: `src/routes/+page.ts` exports `prerender = false` to override the layout-level `prerender = true`, since form actions require server-side handling.
-- **Email Delivery**: The `contact` form action uses Resend (`resend` npm package) to send emails when `RESEND_API_KEY` and `CONTACT_EMAIL_TO` environment variables are set. Falls back to console.log when unconfigured (local dev). Optional `RESEND_FROM_EMAIL` overrides the sender address (defaults to `onboarding@resend.dev`). Emails include the visitor's email as `replyTo`. All server env vars accessed via `$env/dynamic/private`.
+- **Email Delivery**: The `contact` form action uses Resend (`resend` npm package) to send emails when `RESEND_API_KEY` and `CONTACT_EMAIL_TO` environment variables are set. When unconfigured (local dev), submissions are silently discarded — PII is never logged. Optional `RESEND_FROM_EMAIL` overrides the sender address (defaults to `onboarding@resend.dev`). Emails include the visitor's email as `replyTo`. All server env vars accessed via `$env/dynamic/private`.
 - **Validation**: Client-side validation runs on submit (and on blur after first attempt). Server-side validation mirrors the same rules as a fallback.
 - **Focus Management**: Bits UI Dialog handles focus trapping automatically (Tab cycling, initial focus, Escape to close). Focus returns to CTA button on close via `onOpenChange` callback with `triggerEl?.focus()`.
 - **Bits UI Dialog**: Modal uses `Dialog.Root` with `open`/`onOpenChange` for controlled state, `Dialog.Portal` for rendering outside component DOM, `Dialog.Overlay` for backdrop, `Dialog.Content` for the modal panel (with built-in focus trap, Escape dismiss, outside-click dismiss), `Dialog.Title` for accessible labeling, and `Dialog.Close` for the close button. `onInteractOutside` prevents closing during form submission.
