@@ -3,6 +3,12 @@
   "in_progress": [],
   "done": [
     {
+      "id": "contact-form-spam-protection",
+      "title": "Add Rate Limiting & Honeypot Spam Protection to Contact Form",
+      "description": "Added two layers of spam protection to the contact form action. (1) In-memory per-IP rate limiter: max 3 submissions per 15-minute sliding window, returns fail(429) with user-friendly error message when exceeded. Uses a Map with periodic cleanup interval to prevent memory growth. Accessed via SvelteKit's getClientAddress(). (2) Honeypot field: hidden 'website' input positioned off-screen (absolute -left-[9999px]) with aria-hidden, tabindex=-1, and autocomplete=off — invisible to humans but auto-filled by bots. Server silently returns { success: true } for honeypot-filled submissions to avoid tipping off bots. Client form also has autocomplete=off on the form element. Build and lint pass clean.",
+      "spec": "specs/contact-form.md"
+    },
+    {
       "id": "fix-contact-cta-links",
       "title": "Fix Placeholder URLs and Accessibility in ContactCTA",
       "description": "Fixed 3 issues in ContactCTA.svelte: (1) replaced placeholder email mailto:eric@example.com with mailto:eric@ericevans.dev matching the site domain, (2) replaced bare https://linkedin.com with https://linkedin.com/in/ericevans matching the JSON-LD structured data in +layout.svelte, (3) added aria-label='Open contact form' to the Connect.exe button for screen reader clarity. Build and lint pass clean.",

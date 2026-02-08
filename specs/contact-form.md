@@ -201,6 +201,14 @@ export const actions: Actions = {
 };
 ```
 
+### Spam Protection
+
+Two layers of protection prevent abuse:
+
+**1. Honeypot field** — A hidden `website` input field is rendered off-screen (`absolute -left-[9999px]`, `aria-hidden="true"`, `tabindex="-1"`). Humans never see or fill it; bots auto-fill all visible fields. If the field has a value on submission, the server silently returns `{ success: true }` to avoid revealing the detection mechanism.
+
+**2. In-memory rate limiter** — Tracks submissions per client IP using `getClientAddress()`. Max 3 submissions per 15-minute sliding window. Returns `fail(429)` with `'Too many submissions. Please try again later.'` when exceeded. Uses a `Map<string, { count, resetAt }>` with a periodic cleanup interval (`setInterval` at the window duration) to prune expired entries and prevent unbounded memory growth.
+
 ### Email Service
 
 Email delivery uses **Resend** (`resend` npm package). Configuration via environment variables:
@@ -288,3 +296,4 @@ The modal is always vertically centered in the viewport.
 - **z-index**: Modal uses `z-[80]` to sit below keyboard shortcuts modal (`z-[90]`) but above all page content.
 - **Animation**: `modal-enter` CSS class with `@keyframes modal-in` lives in `app.css` (global) because `Dialog.Portal` renders content outside the component's scoped CSS boundary.
 - **Toast Integration**: On successful submission, a success toast ("Message sent successfully.") is fired via `addToast` from `$lib/stores/toast.svelte`. On failure, an error toast with the server error message is fired. Toasts provide persistent feedback that survives the modal auto-close, supplementing the in-modal success/error states.
+- **Spam Protection**: Two server-side defenses: (1) Honeypot hidden `website` field that bots auto-fill — server silently accepts to avoid revealing detection. (2) Per-IP rate limiter (3 submissions / 15 min window) using in-memory Map with periodic cleanup. Rate limit errors surface as a 429 failure with user-friendly message.

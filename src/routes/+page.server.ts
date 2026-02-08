@@ -6,6 +6,33 @@ import { Resend } from 'resend';
 import type { GitHubStats } from '$lib/types/github';
 export type { GitHubStats };
 
+// --- Rate limiter (in-memory, per-IP) ---
+const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
+const RATE_LIMIT_MAX = 3; // max submissions per window
+
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+
+function isRateLimited(ip: string): boolean {
+	const now = Date.now();
+	const entry = rateLimitMap.get(ip);
+
+	if (!entry || now >= entry.resetAt) {
+		rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+		return false;
+	}
+
+	entry.count++;
+	return entry.count > RATE_LIMIT_MAX;
+}
+
+// Periodically prune expired entries to prevent memory growth
+setInterval(() => {
+	const now = Date.now();
+	for (const [ip, entry] of rateLimitMap) {
+		if (now >= entry.resetAt) rateLimitMap.delete(ip);
+	}
+}, RATE_LIMIT_WINDOW_MS);
+
 const FALLBACK: GitHubStats = {
 	repos: 43,
 	commits: 4281,
@@ -69,8 +96,22 @@ export const load: PageServerLoad = async ({ fetch, setHeaders }) => {
 };
 
 export const actions: Actions = {
-	contact: async ({ request }) => {
+	contact: async ({ request, getClientAddress }) => {
 		const data = await request.formData();
+
+		// Honeypot: reject if the hidden field has a value (bots auto-fill it)
+		const honeypot = data.get('website')?.toString() ?? '';
+		if (honeypot) {
+			// Silently accept to avoid tipping off bots
+			return { success: true };
+		}
+
+		// Rate limiting by client IP
+		const ip = getClientAddress();
+		if (isRateLimited(ip)) {
+			return fail(429, { error: 'Too many submissions. Please try again later.' });
+		}
+
 		const name = data.get('name')?.toString().trim();
 		const email = data.get('email')?.toString().trim();
 		const message = data.get('message')?.toString().trim();

@@ -110,6 +110,7 @@
         <form
           method="POST"
           action="?/contact"
+          autocomplete="off"
           use:enhance={({ cancel }) => {
             attempted = true;
             if (!validate()) {
@@ -132,6 +133,14 @@
             };
           }}
         >
+          <!-- Honeypot field — hidden from humans, catches bots -->
+          <div class="absolute -left-[9999px]" aria-hidden="true">
+            <label>
+              <span>Website</span>
+              <input type="text" name="website" tabindex="-1" autocomplete="off" />
+            </label>
+          </div>
+
           <!-- Name -->
           <label class="block mb-4">
             <span class="text-text-muted text-xs font-mono uppercase tracking-widest mb-1 block">Name</span>
