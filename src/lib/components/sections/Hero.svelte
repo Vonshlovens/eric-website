@@ -89,7 +89,7 @@
     );
   "></div>
 
-  <div class="max-w-7xl mx-auto px-6 md:px-12 w-full">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
     <!-- Terminal prompt line -->
     <div class="font-mono text-accent text-sm mb-10 flex items-center gap-2" aria-hidden="true">
       <span class="text-text-muted">~</span>
@@ -134,7 +134,7 @@
             </div>
             <!-- GitHub name -->
             <div class="text-center sm:text-left">
-              <p class="font-mono text-4xl md:text-6xl font-bold text-text-white tracking-tighter leading-none mb-2">
+              <p class="font-mono text-2xl sm:text-4xl md:text-6xl font-bold text-text-white tracking-tighter leading-none mb-2">
                 Vonshlovens<span class="animate-pulse text-accent">_</span>
               </p>
               <p class="font-mono text-lg text-accent tracking-wide mb-4">
@@ -177,7 +177,7 @@
               </div>
               <!-- Display name -->
               <div class="text-center sm:text-left">
-                <h1 id="hero-heading" class="font-mono text-4xl md:text-6xl font-bold text-text-white tracking-tighter leading-none mb-2">
+                <h1 id="hero-heading" class="font-mono text-2xl sm:text-4xl md:text-6xl font-bold text-text-white tracking-tighter leading-none mb-2">
                   Eric Evans<span class="animate-pulse text-accent">_</span>
                 </h1>
                 <p class="font-mono text-lg text-accent tracking-wide mb-4">
@@ -228,7 +228,7 @@
             download="Eric_Evans_Resume.pdf"
             class="
               inline-flex items-center gap-2
-              px-6 py-2.5
+              px-6 py-3
               font-mono font-bold text-xs uppercase tracking-widest
               bg-accent text-text-white
               rounded
@@ -244,7 +244,7 @@
             href="#engineering-log"
             class="
               inline-flex items-center gap-2
-              px-6 py-2.5
+              px-6 py-3
               font-mono font-bold text-xs uppercase tracking-widest
               bg-transparent text-text-main
               border border-border-dim
@@ -275,7 +275,7 @@
           </div>
 
           <!-- Terminal body -->
-          <div class="p-4 font-mono text-sm space-y-2">
+          <div class="p-4 font-mono text-xs sm:text-sm space-y-2">
             <!-- System header -->
             <div class="text-text-muted text-xs mb-3 pb-2 border-b border-border-dim/50">
               <span class="text-accent">ee_sys</span>

@@ -116,13 +116,13 @@
       role="dialog"
       aria-modal="true"
       aria-labelledby="contact-form-title"
-      class="bg-surface border border-border-dim rounded-lg max-w-lg w-full mx-4 p-8 relative modal-enter"
+      class="bg-surface border border-border-dim rounded-lg max-w-lg w-full mx-4 p-4 sm:p-6 md:p-8 relative modal-enter"
     >
       <!-- Close button -->
       <button
         bind:this={closeBtnEl}
         onclick={closeModal}
-        class="absolute top-4 right-4 text-text-muted hover:text-text-main transition-colors duration-150"
+        class="absolute top-3 right-3 w-10 h-10 flex items-center justify-center text-text-muted hover:text-text-main transition-colors duration-150 rounded"
         aria-label="Close contact form"
       >
         <span class="material-symbols-outlined" aria-hidden="true">close</span>

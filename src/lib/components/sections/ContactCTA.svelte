@@ -16,7 +16,7 @@
   aria-labelledby="contact-heading"
   use:scrollReveal
 >
-  <div class="max-w-7xl mx-auto px-6 md:px-12">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="bg-surface rounded border border-border-dim relative overflow-hidden">
       <!-- Dot-grid overlay -->
       <div
@@ -30,7 +30,7 @@
         <div class="text-center md:text-left space-y-4">
           <h2
             id="contact-heading"
-            class="text-text-white text-3xl font-mono font-bold tracking-tight"
+            class="text-text-white text-2xl sm:text-3xl font-mono font-bold tracking-tight"
           >
             Initialize Protocol?
           </h2>
@@ -54,16 +54,16 @@
             Connect.exe
           </button>
 
-          <div class="flex gap-6 text-text-muted">
+          <div class="flex gap-2 text-text-muted">
             <a
-              class="hover:text-accent transition-colors duration-200"
+              class="w-11 h-11 flex items-center justify-center rounded hover:text-accent transition-colors duration-200"
               href="mailto:eric@example.com"
               aria-label="Email"
             >
               <span class="material-symbols-outlined text-2xl" aria-hidden="true">mail</span>
             </a>
             <a
-              class="hover:text-accent transition-colors duration-200"
+              class="w-11 h-11 flex items-center justify-center rounded hover:text-accent transition-colors duration-200"
               href="https://github.com/Vonshlovens"
               target="_blank"
               rel="noopener noreferrer"
@@ -72,7 +72,7 @@
               <span class="material-symbols-outlined text-2xl" aria-hidden="true">terminal</span>
             </a>
             <a
-              class="hover:text-accent transition-colors duration-200"
+              class="w-11 h-11 flex items-center justify-center rounded hover:text-accent transition-colors duration-200"
               href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"

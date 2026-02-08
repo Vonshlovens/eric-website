@@ -344,7 +344,7 @@ html[data-reduce-motion]::view-transition-new(root) {
   }
 
   /* --- Remove max-width constraints --- */
-  main, main section, .max-w-7xl {
+  main, main section, .max-w-6xl {
     max-width: 100% !important;
     width: 100% !important;
     padding-left: 0 !important;

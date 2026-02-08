@@ -14,7 +14,7 @@
     if (typeof window === 'undefined') return false;
     if (document.documentElement.dataset.reduceMotion === 'true') return false;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false;
-    if (!window.matchMedia('(min-width: 768px)').matches) return false;
+    if (!window.matchMedia('(min-width: 1024px)').matches) return false;
     return true;
   }
 
@@ -22,7 +22,7 @@
   $effect(() => {
     useCardStack = shouldUseCardStack();
 
-    const mqSize = window.matchMedia('(min-width: 768px)');
+    const mqSize = window.matchMedia('(min-width: 1024px)');
     const mqMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     const update = () => { useCardStack = shouldUseCardStack(); };
@@ -80,7 +80,7 @@
   id="engineering-log"
   aria-labelledby="engineering-log-heading"
 >
-  <div class="max-w-7xl mx-auto px-6 md:px-12">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section Header -->
     <div class="flex items-center justify-between mb-8 border-b border-border-dim pb-4" use:scrollReveal>
       <div class="flex items-center gap-2">
@@ -209,7 +209,7 @@
     </div>
   {:else}
     <!-- Fallback: standard vertical card list (mobile / reduced-motion) -->
-    <div class="max-w-7xl mx-auto px-6 md:px-12 space-y-6">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
       {#each engineeringLog as entry (entry.id)}
         <article
           use:scrollReveal

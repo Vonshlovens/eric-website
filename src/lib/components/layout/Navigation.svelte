@@ -65,7 +65,7 @@
 <svelte:window onkeydown={handleKeydown} />
 
 <header class="sticky top-0 z-50 h-16 bg-surface/95 backdrop-blur-sm border-b border-border-dim">
-  <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
     <!-- Left: Brand + Divider + Status -->
     <div class="flex items-center gap-4">
       <!-- Brand -->
@@ -87,14 +87,14 @@
     </div>
 
     <!-- Center/Right: Desktop Nav + CTA -->
-    <div class="hidden md:flex items-center gap-8">
+    <div class="hidden lg:flex items-center gap-8">
       <nav aria-label="Main navigation">
         <ul class="flex items-center gap-8">
           {#each navLinks as link}
             <li>
               <a
                 href={link.href}
-                class="text-xs font-mono text-text-muted hover:text-text-white transition-colors duration-200 tracking-widest uppercase"
+                class="text-xs font-mono text-text-muted hover:text-text-white transition-colors duration-200 tracking-widest uppercase py-3 inline-flex items-center"
               >
                 {link.label}
               </a>
@@ -106,7 +106,7 @@
       <!-- Theme Toggle -->
       <button
         onclick={() => themeStore.toggle()}
-        class="p-2 text-text-muted hover:text-accent border border-border-dim hover:border-accent/50 rounded transition-colors duration-200"
+        class="w-10 h-10 flex items-center justify-center text-text-muted hover:text-accent border border-border-dim hover:border-accent/50 rounded transition-colors duration-200"
         aria-label={themeStore.isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       >
         <span class="material-symbols-outlined text-lg leading-none">
@@ -117,7 +117,7 @@
       <!-- Animation Toggle -->
       <button
         onclick={() => motionStore.toggle()}
-        class="p-2 text-text-muted hover:text-accent border border-border-dim hover:border-accent/50 rounded transition-colors duration-200"
+        class="w-10 h-10 flex items-center justify-center text-text-muted hover:text-accent border border-border-dim hover:border-accent/50 rounded transition-colors duration-200"
         aria-label={motionStore.disabled ? 'Enable animations' : 'Disable animations'}
         aria-pressed={motionStore.disabled}
         title={motionStore.disabled ? 'Animations off' : 'Animations on'}
@@ -132,7 +132,7 @@
         href="https://github.com/Vonshlovens"
         target="_blank"
         rel="noopener noreferrer"
-        class="border border-accent text-accent px-4 py-1.5 rounded text-xs font-mono font-bold hover:bg-accent hover:text-primary transition-all duration-200 uppercase bg-accent/10"
+        class="border border-accent text-accent px-6 py-3 rounded text-xs font-mono font-bold hover:bg-accent hover:text-primary transition-all duration-200 uppercase bg-accent/10 inline-flex items-center"
       >
         View Source
         <span class="sr-only">(opens in new tab)</span>
@@ -143,7 +143,7 @@
     <button
       bind:this={menuToggleBtn}
       onclick={toggleMenu}
-      class="md:hidden text-text-muted hover:text-text-white transition-colors p-2"
+      class="lg:hidden text-text-muted hover:text-text-white transition-colors w-10 h-10 flex items-center justify-center"
       aria-label="Toggle menu"
       aria-expanded={mobileMenuOpen}
       aria-controls="mobile-menu"
@@ -161,16 +161,16 @@
     <nav
       bind:this={mobileMenuEl}
       id="mobile-menu"
-      class="md:hidden bg-surface border-b border-border-dim animate-slide-down"
+      class="lg:hidden bg-surface border-b border-border-dim animate-slide-down"
       aria-label="Mobile navigation"
     >
-      <ul class="px-6 py-4 space-y-1">
+      <ul class="px-4 sm:px-6 py-4 space-y-1">
         {#each navLinks as link}
           <li>
             <a
               href={link.href}
               onclick={() => scrollTo(link.href.slice(1))}
-              class="block py-2 text-xs font-mono text-text-muted hover:text-text-white transition-colors tracking-widest uppercase"
+              class="block py-3 text-xs font-mono text-text-muted hover:text-text-white transition-colors tracking-widest uppercase"
             >
               {link.label}
             </a>
@@ -179,7 +179,7 @@
         <li class="pt-3 mt-3 border-t border-border-dim">
           <button
             onclick={() => themeStore.toggle()}
-            class="flex items-center gap-3 py-2 w-full text-left"
+            class="flex items-center gap-3 py-3 w-full text-left min-h-[44px]"
             aria-label={themeStore.isDark ? 'Switch to light mode' : 'Switch to dark mode'}
           >
             <span class="material-symbols-outlined text-lg text-text-muted">
@@ -194,7 +194,7 @@
         <li>
           <button
             onclick={() => motionStore.toggle()}
-            class="flex items-center gap-3 py-2 w-full text-left"
+            class="flex items-center gap-3 py-3 w-full text-left min-h-[44px]"
             aria-label={motionStore.disabled ? 'Enable animations' : 'Disable animations'}
             aria-pressed={motionStore.disabled}
           >
@@ -212,7 +212,7 @@
             href="https://github.com/Vonshlovens"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-block border border-accent text-accent px-4 py-1.5 rounded text-xs font-mono font-bold hover:bg-accent hover:text-primary transition-all duration-200 uppercase bg-accent/10"
+            class="inline-flex items-center border border-accent text-accent px-6 py-3 rounded text-xs font-mono font-bold hover:bg-accent hover:text-primary transition-all duration-200 uppercase bg-accent/10"
           >
             View Source
             <span class="sr-only">(opens in new tab)</span>

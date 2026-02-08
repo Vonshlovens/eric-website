@@ -63,6 +63,12 @@ Tailwind v4 default set, used site-wide:
 - All responsive behavior uses Tailwind utility classes — no custom media queries
 - Components use Tailwind's responsive prefix convention (`md:grid-cols-2`, `lg:flex-row`, etc.)
 - No JavaScript-based responsive logic; CSS-only via Tailwind breakpoints
+  - **Exception:** EngineeringLog card-stack uses `window.matchMedia('(min-width: 1024px)')` for JS-driven scroll animation mode switching (falls back to static cards below lg)
+- Container pattern applied to all sections: `max-w-6xl mx-auto px-4 sm:px-6 lg:px-8`
+- Navigation uses `lg:` breakpoint for desktop/mobile switch (hidden lg:flex / lg:hidden)
+- Touch targets enforced: nav buttons w-10 h-10, CTA buttons py-3 px-6, mobile menu links py-3 min-h-[44px], social icons w-11 h-11
+- Hero heading scales text-2xl → sm:text-4xl → md:text-6xl; terminal panel text-xs → sm:text-sm
+- ContactForm modal padding scales p-4 → sm:p-6 → md:p-8
 
 ## Accessibility
 
