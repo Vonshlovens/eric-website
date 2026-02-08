@@ -1,6 +1,7 @@
 <script lang="ts">
   import { enhance } from '$app/forms';
   import { Dialog } from 'bits-ui';
+  import { addToast } from '$lib/stores/toast.svelte';
 
   let {
     open = $bindable(false),
@@ -120,10 +121,13 @@
               submitting = false;
               if (result.type === 'success') {
                 success = true;
+                addToast({ variant: 'success', message: 'Message sent successfully.' });
               } else if (result.type === 'failure') {
                 serverError = (result.data as { error?: string })?.error ?? 'Transmission failed. Please try again.';
+                addToast({ variant: 'error', message: serverError });
               } else {
                 serverError = 'Transmission failed. Please try again.';
+                addToast({ variant: 'error', message: serverError });
               }
             };
           }}

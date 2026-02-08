@@ -3,6 +3,12 @@
   "in_progress": [],
   "done": [
     {
+      "id": "contact-form-toast",
+      "title": "Wire Toast Notifications to Contact Form",
+      "description": "Connected the existing toast notification system to ContactForm submission results. On success, fires a 'success' toast ('Message sent successfully.') so users see confirmation even after the modal auto-closes. On failure (server error or unexpected result), fires an 'error' toast with the error message. In-modal success/error states remain unchanged as primary feedback; toasts provide persistent supplementary feedback. Import added: addToast from $lib/stores/toast.svelte. Build and lint pass clean.",
+      "spec": "specs/contact-form.md"
+    },
+    {
       "id": "remove-duplicate-seo-footer",
       "title": "Remove Duplicate SEO & Footer from +page.svelte",
       "description": "Removed duplicate inline footer (lines 82-88) from +page.svelte that rendered a second footer below the proper Footer.svelte already mounted in +layout.svelte. Removed duplicate SEO.svelte component import and usage from +page.svelte — the layout already handles all meta tags (title, OG, Twitter, canonical, JSON-LD, favicon) with correct domain (ericevans.dev). The orphaned SEO.svelte component had stale defaults (url: example.com, blue theme-colors) that conflicted with layout meta tags. Deleted src/lib/components/SEO.svelte entirely. Page bundle reduced ~5 kB. Lint and build pass clean.",
