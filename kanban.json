@@ -3,6 +3,12 @@
   "in_progress": [],
   "done": [
     {
+      "id": "engineering-log-images",
+      "title": "Add Placeholder Images for Engineering Log Projects",
+      "description": "Created 6 system-monitor themed WebP placeholder images for the engineering log projects (cloud-orchestrator, ml-pipeline, realtime-dashboard, api-gateway, db-migration, component-lib). Each image uses the design system aesthetic (#121212 bg, #B80C09 accent, dot-grid texture) with project-relevant visuals: cloud nodes with connections, pipeline stages with data points, realtime line chart, API gateway architecture, database cylinders with migration arrow, and UI component grid. Generated as SVGs then converted to WebP via rsvg-convert + ImageMagick (~2-3 KB each, ~16 KB total). Created static/images/projects/ directory. Eliminates 404 console errors from missing project images. Build passes clean.",
+      "spec": "specs/engineering-log.md"
+    },
+    {
       "id": "fix-contact-form-pii-logging",
       "title": "Fix PII Logging in Contact Form",
       "description": "Removed personally identifiable information (name, email, message) from the console.log in the contact form dev fallback path. When RESEND_API_KEY/CONTACT_EMAIL_TO are not configured, the server previously logged the full form submission including user PII. Now logs only that a submission was discarded. Also sanitized the catch-block console.error to log only err.message instead of the full error object (which could contain request/response data with PII). Build and lint pass clean.",

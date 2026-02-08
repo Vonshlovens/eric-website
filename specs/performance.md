@@ -14,7 +14,8 @@ Derived from the "Performance Optimizations" section in `specs/features.md` (lin
 - **Image lazy loading**: Engineering log project images use `loading="lazy"` and `decoding="async"`. Hero avatar uses default eager loading with `decoding="async"`.
 - **Preconnect hints** added in `src/app.html` for `github.com` and `avatars.githubusercontent.com` (hero avatar origin). Google Fonts preconnect was already present.
 - **Caching headers** set via `src/hooks.server.ts`: immutable for hashed JS/CSS bundles, 7-day cache for images, must-revalidate for HTML pages, immutable for self-hosted fonts.
-- **Prerender config** in `svelte.config.js`: `handleHttpError` ignores missing placeholder project images.
+- **Engineering log project images**: 6 system-monitor themed WebP placeholders in `static/images/projects/` (~2-3 KB each). Design-system aesthetic with project-relevant visuals. Generated from SVG via rsvg-convert + ImageMagick.
+- **Prerender config** in `svelte.config.js`: `handleHttpError` ignores missing project images (safety net).
 - **Broken anchor fix**: `#projects` links in nav and hero CTA corrected to `#engineering-log`.
 - **Static asset cleanup**: Removed ~89MB of unused files from `static/` — `IMG_6230.png` (87MB unrelated photo), `how-strong-is-saitama-v0-ls463j4fizle1.webp` (44KB unrelated image), and 4 CommitMono font files (1.5MB total, unused — site uses Google Fonts). Empty `static/fonts/` directory removed.
 - **Dead code removal**: Deleted 3 orphaned V1 files — `ProjectCard.svelte` (unused component, never imported), `ThemeToggle.svelte` (superseded by inline toggle in Navigation.svelte), and `projects.ts` (superseded by `engineering-log.ts`). Removed unused `svelte-lucide` dependency (only consumer was the deleted ThemeToggle).
