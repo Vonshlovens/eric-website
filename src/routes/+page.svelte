@@ -1,5 +1,6 @@
 <script lang="ts">
   import SkillsMarquee from '$lib/components/SkillsMarquee.svelte';
+  import SkillRadar from '$lib/components/sections/SkillRadar.svelte';
   import SEO from '$lib/components/SEO.svelte';
   import Hero from '$lib/components/sections/Hero.svelte';
   import CoreCompetencies from '$lib/components/sections/CoreCompetencies.svelte';
@@ -54,6 +55,9 @@
 
   <!-- Skills Marquee -->
   <SkillsMarquee />
+
+  <!-- Skill Radar -->
+  <SkillRadar />
 
   <!-- Engineering Log -->
   <EngineeringLog />

@@ -1,12 +1,6 @@
 {
   "todo": [
     {
-      "id": "skill-radar",
-      "title": "Implement Skill Radar Chart",
-      "description": "Build an interactive SVG radar/spider chart visualizing skill proficiency across 5–7 categories (Frontend, Backend, DevOps, etc.). Pure Svelte + SVG, no charting library. Includes hover tooltips, scroll-reveal draw-in animation, screen-reader fallback table, and responsive layout per specs/skill-radar.md.",
-      "spec": "specs/skill-radar.md"
-    },
-    {
       "id": "responsive-breakpoints",
       "title": "Audit & Enforce Responsive Breakpoints",
       "description": "Audit all sections against specs/responsive-breakpoints.md — verify canonical breakpoint tiers (sm/md/lg/xl), container max-width and padding, grid column counts per breakpoint, typography scaling, 44px minimum touch targets, 320px minimum viewport support, and no horizontal scroll at any breakpoint.",
@@ -15,6 +9,12 @@
   ],
   "in_progress": [],
   "done": [
+    {
+      "id": "skill-radar",
+      "title": "Implement Skill Radar Chart",
+      "description": "Built interactive SVG radar/spider chart per specs/skill-radar.md — 6 category axes (Frontend, Backend, DevOps, Cloud, Databases, AI/ML) radiating from center with 3 concentric grid rings (Familiar/Proficient/Expert). Pure Svelte 5 + inline SVG, no charting library. Semi-transparent accent fill polygon with solid accent stroke, accent-colored vertex dots. Hover on vertex or axis label highlights category and shows tooltip with skill list (bg-surface-highlight card with shadow). Two-column layout on lg (chart left, breakdown list right), single-column stacked on mobile. Breakdown list shows proficiency bars, percentage, and skill tags per category with hover cross-highlighting to chart. Scroll-reveal draw-in animation via MutationObserver watching for 'revealed' class, respects motionStore.disabled and prefers-reduced-motion. Screen-reader fallback table with category/proficiency/skills data (aria-hidden on decorative SVG). Data in src/lib/data/skills.ts with SkillCategory interface. Component: src/lib/components/sections/SkillRadar.svelte, placed after SkillsMarquee in +page.svelte.",
+      "spec": "specs/skill-radar.md"
+    },
     {
       "id": "avatar-hover-reveal",
       "title": "Implement Name & Avatar Hover Reveal",

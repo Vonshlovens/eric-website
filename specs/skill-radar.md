@@ -74,11 +74,11 @@ Prefer a lightweight SVG-based implementation built directly in Svelte (no chart
 
 ## Acceptance Criteria
 
-- [ ] Radar chart renders with 5–7 axes matching defined skill categories.
-- [ ] Data polygon accurately reflects proficiency values.
-- [ ] Hover on vertex/label shows tooltip with skill list for that category.
-- [ ] Draw-in animation plays on scroll, respects reduced-motion.
-- [ ] Screen-reader-accessible fallback table present.
-- [ ] Matches Threadwork design system colors, fonts, and spacing.
-- [ ] No external charting library — pure Svelte + SVG.
-- [ ] Responsive across all breakpoints.
+- [x] Radar chart renders with 5–7 axes matching defined skill categories.
+- [x] Data polygon accurately reflects proficiency values.
+- [x] Hover on vertex/label shows tooltip with skill list for that category.
+- [x] Draw-in animation plays on scroll, respects reduced-motion.
+- [x] Screen-reader-accessible fallback table present.
+- [x] Matches Threadwork design system colors, fonts, and spacing.
+- [x] No external charting library — pure Svelte + SVG.
+- [x] Responsive across all breakpoints.

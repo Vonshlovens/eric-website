@@ -1,0 +1,369 @@
+<script lang="ts">
+  import { scrollReveal } from '$lib/actions/scrollReveal';
+  import { motionStore } from '$lib/stores/motion.svelte.ts';
+  import { skillCategories, type SkillCategory } from '$lib/data/skills';
+
+  interface Props {
+    categories?: SkillCategory[];
+  }
+
+  let { categories = skillCategories }: Props = $props();
+
+  // Chart geometry
+  const size = 300;
+  const center = size / 2;
+  const rings = 3; // Familiar, Proficient, Expert
+  const maxRadius = 120;
+
+  // Hover state
+  let hoveredIndex = $state<number | null>(null);
+  let tooltipX = $state(0);
+  let tooltipY = $state(0);
+
+  // Draw-in animation state
+  let revealed = $state(false);
+  let svgEl = $state<SVGSVGElement>();
+
+  // Watch for the revealed class on the SVG's parent
+  $effect(() => {
+    if (!svgEl) return;
+    const container = svgEl.closest('.scroll-reveal');
+    if (!container) {
+      revealed = true;
+      return;
+    }
+    if (container.classList.contains('revealed')) {
+      revealed = true;
+      return;
+    }
+    const observer = new MutationObserver(() => {
+      if (container.classList.contains('revealed')) {
+        revealed = true;
+        observer.disconnect();
+      }
+    });
+    observer.observe(container, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  });
+
+  // Calculate polygon points for a given scale (0–1)
+  function getPolygonPoints(values: number[], scale: number = 1): string {
+    const count = values.length;
+    return values
+      .map((val, i) => {
+        const angle = (Math.PI * 2 * i) / count - Math.PI / 2;
+        const r = (val / 100) * maxRadius * scale;
+        const x = center + r * Math.cos(angle);
+        const y = center + r * Math.sin(angle);
+        return `${x},${y}`;
+      })
+      .join(' ');
+  }
+
+  // Get ring polygon (uniform radius)
+  function getRingPoints(radius: number): string {
+    const count = categories.length;
+    return Array.from({ length: count }, (_, i) => {
+      const angle = (Math.PI * 2 * i) / count - Math.PI / 2;
+      const x = center + radius * Math.cos(angle);
+      const y = center + radius * Math.sin(angle);
+      return `${x},${y}`;
+    }).join(' ');
+  }
+
+  // Get axis endpoint
+  function getAxisEnd(index: number): { x: number; y: number } {
+    const angle = (Math.PI * 2 * index) / categories.length - Math.PI / 2;
+    return {
+      x: center + maxRadius * Math.cos(angle),
+      y: center + maxRadius * Math.sin(angle),
+    };
+  }
+
+  // Get label position (just outside the outermost ring)
+  function getLabelPos(index: number): { x: number; y: number; anchor: string } {
+    const angle = (Math.PI * 2 * index) / categories.length - Math.PI / 2;
+    const r = maxRadius + 20;
+    const x = center + r * Math.cos(angle);
+    const y = center + r * Math.sin(angle);
+    // Text anchor based on position
+    const cos = Math.cos(angle);
+    let anchor = 'middle';
+    if (cos > 0.3) anchor = 'start';
+    else if (cos < -0.3) anchor = 'end';
+    return { x, y, anchor };
+  }
+
+  // Get vertex position for data point
+  function getVertex(index: number, proficiency: number): { x: number; y: number } {
+    const angle = (Math.PI * 2 * index) / categories.length - Math.PI / 2;
+    const r = (proficiency / 100) * maxRadius;
+    return {
+      x: center + r * Math.cos(angle),
+      y: center + r * Math.sin(angle),
+    };
+  }
+
+  const ringLabels = ['Familiar', 'Proficient', 'Expert'];
+
+  // Derived values
+  let dataPoints = $derived(categories.map((c) => c.proficiency));
+  let animatedPolygon = $derived(
+    revealed || motionStore.disabled
+      ? getPolygonPoints(dataPoints, 1)
+      : getPolygonPoints(dataPoints, 0)
+  );
+
+  function handleVertexHover(index: number, event: MouseEvent) {
+    hoveredIndex = index;
+    const rect = svgEl?.getBoundingClientRect();
+    if (rect) {
+      tooltipX = event.clientX - rect.left;
+      tooltipY = event.clientY - rect.top;
+    }
+  }
+
+  function handleLabelHover(index: number, event: MouseEvent) {
+    hoveredIndex = index;
+    const rect = svgEl?.getBoundingClientRect();
+    if (rect) {
+      tooltipX = event.clientX - rect.left;
+      tooltipY = event.clientY - rect.top;
+    }
+  }
+
+  function clearHover() {
+    hoveredIndex = null;
+  }
+</script>
+
+<section class="py-16 md:py-20" id="skill-radar" aria-labelledby="skill-radar-heading">
+  <div class="max-w-7xl mx-auto px-6 md:px-12">
+    <!-- Section Header -->
+    <div class="flex items-center gap-2 mb-8" use:scrollReveal>
+      <span class="material-symbols-outlined text-accent" aria-hidden="true">radar</span>
+      <h2 id="skill-radar-heading" class="text-text-white text-xl font-mono font-bold uppercase tracking-[0.2em]">
+        Skill Radar
+      </h2>
+    </div>
+
+    <!-- Two-column layout: chart + breakdown -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start" use:scrollReveal>
+      <!-- Chart Container -->
+      <div class="scroll-reveal bg-surface border border-border-dim rounded-lg p-6 md:p-8 flex justify-center max-w-[500px] mx-auto lg:mx-0 w-full">
+        <div class="relative w-full" style="max-width: 300px;">
+          <!-- SVG Radar Chart (decorative) -->
+          <svg
+            bind:this={svgEl}
+            viewBox="0 0 {size} {size}"
+            class="radar-svg w-full h-auto"
+            aria-hidden="true"
+            role="presentation"
+          >
+            <!-- Grid rings -->
+            {#each Array(rings) as _, ringIdx}
+              {@const radius = (maxRadius / rings) * (ringIdx + 1)}
+              <polygon
+                points={getRingPoints(radius)}
+                fill="none"
+                stroke="var(--color-border-dim)"
+                stroke-width="1"
+                opacity="0.6"
+              />
+            {/each}
+
+            <!-- Axis lines -->
+            {#each categories as _, i}
+              {@const end = getAxisEnd(i)}
+              <line
+                x1={center}
+                y1={center}
+                x2={end.x}
+                y2={end.y}
+                stroke="var(--color-border-dim)"
+                stroke-width="1"
+                opacity="0.4"
+              />
+            {/each}
+
+            <!-- Data polygon -->
+            <polygon
+              points={animatedPolygon}
+              fill="var(--color-accent)"
+              fill-opacity="0.15"
+              stroke="var(--color-accent)"
+              stroke-width="2"
+              class="radar-polygon"
+              class:radar-polygon-animated={!motionStore.disabled}
+              class:radar-polygon-revealed={revealed}
+            />
+
+            <!-- Axis labels -->
+            {#each categories as cat, i}
+              {@const pos = getLabelPos(i)}
+              <text
+                x={pos.x}
+                y={pos.y}
+                text-anchor={pos.anchor}
+                dominant-baseline="middle"
+                class="radar-label"
+                class:radar-label-active={hoveredIndex === i}
+                onmouseenter={(e) => handleLabelHover(i, e)}
+                onmouseleave={clearHover}
+              >
+                {cat.label}
+              </text>
+            {/each}
+
+            <!-- Vertex dots (interactive) -->
+            {#each categories as cat, i}
+              {@const vertex = getVertex(i, cat.proficiency)}
+              <circle
+                cx={vertex.x}
+                cy={vertex.y}
+                r={hoveredIndex === i ? 6 : 4}
+                fill="var(--color-accent)"
+                class="radar-vertex"
+                onmouseenter={(e) => handleVertexHover(i, e)}
+                onmouseleave={clearHover}
+              />
+            {/each}
+          </svg>
+
+          <!-- Tooltip -->
+          {#if hoveredIndex !== null}
+            {@const cat = categories[hoveredIndex]}
+            <div
+              class="radar-tooltip"
+              style="left: {tooltipX}px; top: {tooltipY - 12}px;"
+            >
+              <div class="font-mono text-xs uppercase tracking-wider text-accent mb-1.5">
+                {cat.label}
+                <span class="text-text-muted ml-1">— {cat.proficiency}%</span>
+              </div>
+              <div class="flex flex-wrap gap-1.5">
+                {#each cat.skills as skill}
+                  <span class="text-[11px] font-mono text-text-main bg-primary/50 border border-border-dim rounded px-1.5 py-0.5">
+                    {skill}
+                  </span>
+                {/each}
+              </div>
+            </div>
+          {/if}
+        </div>
+      </div>
+
+      <!-- Category Breakdown List -->
+      <div class="space-y-4 scroll-reveal">
+        {#each categories as cat, i}
+          <div
+            class="group flex items-start gap-4 p-4 rounded border border-border-dim bg-surface transition-all duration-200 hover:border-accent/50 hover:bg-surface-highlight"
+            onmouseenter={() => hoveredIndex = i}
+            onmouseleave={clearHover}
+            role="listitem"
+          >
+            <!-- Proficiency bar -->
+            <div class="shrink-0 w-12 text-right">
+              <span class="font-mono text-sm text-accent font-bold">{cat.proficiency}%</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="font-mono text-sm font-bold text-text-white uppercase tracking-wider mb-1.5">
+                {cat.label}
+              </h3>
+              <div class="w-full bg-primary/50 rounded-full h-1.5 mb-2">
+                <div
+                  class="bg-accent h-1.5 rounded-full transition-all duration-500"
+                  style="width: {revealed || motionStore.disabled ? cat.proficiency : 0}%"
+                ></div>
+              </div>
+              <div class="flex flex-wrap gap-1.5">
+                {#each cat.skills as skill}
+                  <span class="text-[11px] font-mono text-text-muted uppercase tracking-wider">
+                    {skill}{cat.skills.indexOf(skill) < cat.skills.length - 1 ? ',' : ''}
+                  </span>
+                {/each}
+              </div>
+            </div>
+          </div>
+        {/each}
+      </div>
+    </div>
+
+    <!-- Screen-reader accessible fallback table -->
+    <div class="sr-only">
+      <table>
+        <caption>Technical skill proficiency by category</caption>
+        <thead>
+          <tr>
+            <th scope="col">Category</th>
+            <th scope="col">Proficiency</th>
+            <th scope="col">Skills</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#each categories as cat}
+            <tr>
+              <td>{cat.label}</td>
+              <td>{cat.proficiency}%</td>
+              <td>{cat.skills.join(', ')}</td>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<style>
+  .radar-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    fill: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: fill 0.2s ease;
+  }
+
+  .radar-label-active {
+    fill: var(--color-accent);
+  }
+
+  .radar-vertex {
+    cursor: pointer;
+    transition: r 0.2s ease;
+  }
+
+  .radar-polygon-animated {
+    transition: points 0.8s ease-out;
+  }
+
+  .radar-polygon-animated:not(.radar-polygon-revealed) {
+    opacity: 0;
+  }
+
+  .radar-polygon-animated.radar-polygon-revealed {
+    opacity: 1;
+    transition: opacity 0.8s ease-out;
+  }
+
+  .radar-tooltip {
+    position: absolute;
+    transform: translate(-50%, -100%);
+    background: var(--color-surface-highlight);
+    border: 1px solid var(--color-border-dim);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.24), 0 2px 4px rgba(0, 0, 0, 0.16);
+    pointer-events: none;
+    z-index: 20;
+    white-space: nowrap;
+    max-width: 280px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .radar-polygon-animated {
+      transition: none;
+    }
+  }
+</style>
