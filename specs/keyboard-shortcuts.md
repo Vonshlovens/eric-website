@@ -53,14 +53,15 @@ Provide power-user keyboard navigation for the portfolio site. A `?` keypress op
 
 ## Implementation
 
-- **Component:** `src/lib/components/ui/KeyboardShortcuts.svelte`
-- **Action:** `src/lib/actions/keyboardShortcuts.ts` — `svelte:window` `on:keydown` handler
-  - Check `event.target` to skip when inside form fields
-  - Import theme and motion stores to call their toggle functions
-  - Use `document.querySelector` with section IDs for number-key navigation
-  - `scrollIntoView({ behavior: 'smooth' })` for section jumps
+- **Component:** `src/lib/components/ui/KeyboardShortcuts.svelte` — all-in-one component with `svelte:window onkeydown` handler, modal UI, and shortcut logic (no separate action file needed)
+  - Check `event.target` tagName/contentEditable to skip when inside form fields
+  - Import `themeStore` and `motionStore` to call their `.toggle()` methods
+  - Use `document.getElementById` with section IDs for number-key navigation (`about`, `competencies`, `engineering-log`, `experience`, `education`, `interests`, `contact`)
+  - `scrollIntoView({ behavior: 'smooth' })` for section jumps, `'auto'` when motion disabled
+  - `window.scrollTo({ top: 0 })` for `h` key home
 - **Mount point:** render `<KeyboardShortcuts />` once in `+layout.svelte`
 - **State:** local `$state` boolean for modal open/closed (no store needed)
+- **Section IDs added:** `id="competencies"` on CoreCompetencies, `id="interests"` on Interests (previously missing)
 
 ## Accessibility
 

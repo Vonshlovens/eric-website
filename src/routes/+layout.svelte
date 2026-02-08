@@ -7,6 +7,7 @@
 	import BackToTop from '$lib/components/ui/BackToTop.svelte';
 	import LoadingScreen from '$lib/components/ui/LoadingScreen.svelte';
 	import ToastContainer from '$lib/components/ui/ToastContainer.svelte';
+	import KeyboardShortcuts from '$lib/components/ui/KeyboardShortcuts.svelte';
 
 	const analyticsEnabled = env.PUBLIC_ANALYTICS_ENABLED === 'true';
 	const analyticsDomain = 'ericevans.dev';
@@ -91,3 +92,4 @@
 <Footer />
 <BackToTop />
 <ToastContainer />
+<KeyboardShortcuts />

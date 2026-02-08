@@ -3,7 +3,7 @@
   import { scrollReveal } from '$lib/actions/scrollReveal';
 </script>
 
-<section class="py-16 md:py-20" aria-labelledby="interests-heading">
+<section class="py-16 md:py-20" id="interests" aria-labelledby="interests-heading">
   <div class="max-w-7xl mx-auto px-6 md:px-12">
     <!-- Section Header -->
     <div class="flex items-center gap-2 mb-8" use:scrollReveal>

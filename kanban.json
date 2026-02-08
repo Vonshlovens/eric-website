@@ -29,13 +29,7 @@
       "title": "Audit & Enforce Responsive Breakpoints",
       "description": "Audit all sections against specs/responsive-breakpoints.md — verify canonical breakpoint tiers (sm/md/lg/xl), container max-width and padding, grid column counts per breakpoint, typography scaling, 44px minimum touch targets, 320px minimum viewport support, and no horizontal scroll at any breakpoint.",
       "spec": "specs/responsive-breakpoints.md"
-    },
-    {
-      "id": "keyboard-shortcuts",
-      "title": "Implement Keyboard Shortcuts",
-      "description": "Build global keyboard shortcuts with help modal per specs/keyboard-shortcuts.md — ? key opens terminal-styled shortcut reference modal, number keys 1-7 for section navigation, t/m for theme/motion toggle, focus trap, backdrop blur overlay, kbd element styling, form-field suppression, reduced-motion support, desktop-only behavior.",
-      "spec": "specs/keyboard-shortcuts.md"
-    },
+    }
   ],
   "in_progress": [],
   "done": [
@@ -206,6 +200,12 @@
       "title": "Add Dark/Light Theme Toggle",
       "description": "Added dark/light theme toggle per specs/theme-toggle.md — Svelte 5 rune-based ThemeStore (src/lib/stores/theme.svelte.ts) with $state, localStorage persistence (key: 'theme'), prefers-color-scheme detection as default, OS preference change listener. Uses .dark class on <html> with FOUC-prevention blocking script in app.html. Light-mode CSS custom property overrides in app.css (warm parchment #F9F1CB backgrounds, dark text #1A1816, tan borders #C9C0A0, lichen green #4A7C59 status-ok). Accent #B80C09 unchanged across both modes. Toggle button in desktop nav (Material Symbols light_mode/dark_mode icons, border+hover styling matching animation toggle) and mobile menu (labeled row with Dark/Light indicator). Dynamic aria-label describes resulting action. Light-mode scrollbar and selection overrides included.",
       "spec": "specs/theme-toggle.md"
+    },
+    {
+      "id": "keyboard-shortcuts",
+      "title": "Implement Keyboard Shortcuts",
+      "description": "Built global keyboard shortcuts with help modal per specs/keyboard-shortcuts.md — ? key opens terminal-styled modal listing all shortcuts. Shortcuts: ? (help modal), t (theme toggle), m (motion toggle), 1-7 (section navigation via scrollIntoView), h (scroll to top), Escape (close modal). Modal styled as terminal reference card (bg-surface, border-border-dim, mono font, accent-colored kbd elements). Focus trap within modal, backdrop click/Escape to close. Form-field suppression (skips input/textarea/contenteditable). Reduced-motion support (no scale animation, smooth→auto scroll). Added id='competencies' to CoreCompetencies and id='interests' to Interests sections for number-key navigation. Component: src/lib/components/ui/KeyboardShortcuts.svelte, mounted in +layout.svelte.",
+      "spec": "specs/keyboard-shortcuts.md"
     }
   ]
 }
