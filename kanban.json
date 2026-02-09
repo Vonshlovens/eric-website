@@ -14,10 +14,25 @@
       "id": "review-hero-tier-stat",
       "title": "Review 'Tier: Intermediate' Stat Card in Hero",
       "description": "Audit noted: 'The Tier: Intermediate stat card is refreshingly honest but could be a negative signal to some hiring managers.' Consider whether to keep, remove, or rephrase this stat card depending on career goals."
+    },
+    {
+      "id": "review-nav-live-node-indicator",
+      "title": "Review Navigation 'Live Node' Status Indicator",
+      "description": "Audit noted the pinging green dot status indicator in the nav bar is decorative and contributes to terminal aesthetic saturation. Consider whether it adds value or is visual noise in an already busy nav bar."
+    },
+    {
+      "id": "review-project-name-casing",
+      "title": "Review Engineering Log Project Name Casing",
+      "description": "Audit noted project names are snake_case (cloud_orchestrator, ml_data_pipeline) which fits the terminal aesthetic but may be harder to read. Consider whether to switch to Title Case for improved readability."
     }
   ],
   "in_progress": [],
   "done": [
+    {
+      "id": "reduce-engineering-log-projects",
+      "title": "Reduce Engineering Log from 6 to 4 Projects (Audit Recommendation)",
+      "description": "Reduced card-stack scroll distance from 600vh to 400vh by removing 2 of 6 projects. Kept the 4 strongest, most diverse entries (cloud_orchestrator/INFRASTRUCTURE, ml_data_pipeline/AI-ML, realtime_metrics/FRONTEND, api_gateway/BACKEND). Removed schema_migrator (DATABASE) and ui_component_lib (FRONTEND) as the least distinctive entries. Deleted their unused placeholder images (db-migration.webp, component-lib.webp). Added remaining audit design-decision items (nav Live Node indicator, project name casing) to kanban todo. Build passes clean."
+    },
     {
       "id": "update-baseline-snapshots",
       "title": "Regenerate Playwright Baseline Snapshots",
