@@ -103,17 +103,6 @@
         EE_SYS
       </a>
 
-      <!-- Divider -->
-      <div class="h-4 w-px bg-border-dim hidden sm:block"></div>
-
-      <!-- Live Status Indicator -->
-      <div class="hidden sm:flex items-center gap-2" aria-label="Status: active">
-        <span class="relative flex h-2 w-2" aria-hidden="true">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-status-ok opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-status-ok"></span>
-        </span>
-        <span class="text-[10px] text-text-muted font-mono uppercase tracking-widest">Live Node</span>
-      </div>
     </div>
 
     <!-- Center/Right: Desktop Nav + CTA -->

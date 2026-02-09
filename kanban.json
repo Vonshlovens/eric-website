@@ -15,14 +15,14 @@
       "title": "Review 'Tier: Intermediate' Stat Card in Hero",
       "description": "Audit noted: 'The Tier: Intermediate stat card is refreshingly honest but could be a negative signal to some hiring managers.' Consider whether to keep, remove, or rephrase this stat card depending on career goals."
     },
-    {
-      "id": "review-nav-live-node-indicator",
-      "title": "Review Navigation 'Live Node' Status Indicator",
-      "description": "Audit noted the pinging green dot status indicator in the nav bar is decorative and contributes to terminal aesthetic saturation. Consider whether it adds value or is visual noise in an already busy nav bar."
-    },
   ],
   "in_progress": [],
   "done": [
+    {
+      "id": "remove-nav-live-node-indicator",
+      "title": "Remove Navigation 'Live Node' Status Indicator (Audit Recommendation)",
+      "description": "Removed the decorative 'Live Node' pinging green dot and label from the navigation bar. The audit flagged this as visual noise in an already busy nav bar and a contributor to terminal aesthetic oversaturation. The status indicator (divider + animate-ping dot + 'Live Node' label) was purely decorative with no functional purpose. The terminal brand is better communicated through the Hero terminal panel and other contextually appropriate elements. Build passes clean."
+    },
     {
       "id": "update-playwright-snapshots",
       "title": "Update Playwright Baseline Snapshots for EngineeringLog",
