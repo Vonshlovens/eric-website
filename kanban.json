@@ -1,7 +1,33 @@
 {
-  "todo": [],
+  "todo": [
+    {
+      "id": "replace-placeholder-work-experience",
+      "title": "Replace Placeholder Work Experience Data",
+      "description": "Audit flagged that 3 of 4 jobs in experience.ts are placeholder (TechCorp Inc., StartupXYZ, Digital Agency Co.). Only Pembina Pipeline Corporation appears real. Replace placeholder entries with real work history before using the portfolio for job applications."
+    },
+    {
+      "id": "replace-placeholder-education",
+      "title": "Verify/Replace Education & Certification Data",
+      "description": "Audit flagged that education.ts university and certifications may be placeholder. Credential URLs point to generic certification program pages (aws.amazon.com/certification/, cloud.google.com/certification) rather than verified credential pages. Link to actual credential verification pages if real."
+    },
+    {
+      "id": "review-hero-tier-stat",
+      "title": "Review 'Tier: Intermediate' Stat Card in Hero",
+      "description": "Audit noted: 'The Tier: Intermediate stat card is refreshingly honest but could be a negative signal to some hiring managers.' Consider whether to keep, remove, or rephrase this stat card depending on career goals."
+    },
+    {
+      "id": "calibrate-skill-radar-proficiency",
+      "title": "Calibrate SkillRadar Proficiency Numbers",
+      "description": "Audit noted: 'The proficiency numbers (90%, 85%, 80%, etc.) should be calibrated carefully — round numbers at this level look self-assessed. Consider whether showing concrete projects per category would be more credible.'"
+    }
+  ],
   "in_progress": [],
   "done": [
+    {
+      "id": "hero-terminal-sprint-labels",
+      "title": "Clarify Hero Terminal Sprint Times (Audit Recommendation)",
+      "description": "Renamed terminal panel keys from '100m'/'200m' to 'sprint.100m'/'sprint.200m' so visitors can tell these are athletics sprint times rather than ambiguous metrics. Addresses audit suggestion: 'could confuse visitors who don't know they're sprint times'. Also added remaining audit content-related suggestions (placeholder work experience, education credentials, tier stat card, skill radar proficiency calibration) to kanban todo as owner decisions."
+    },
     {
       "id": "post-audit-card-stack-skip-tooltip-fix",
       "title": "Post-Audit Polish: EngineeringLog skip affordance + SkillRadar tooltip mobile fix (Phase 5B)",

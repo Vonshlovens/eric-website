@@ -28,8 +28,8 @@
     { key: 'notes', value: '1337' },
     { key: 'repos', value: formattedRepos },
     { key: 'age', value: formattedAge },
-    { key: '100m', value: '10.56s' },
-    { key: '200m', value: '21.64s' }
+    { key: 'sprint.100m', value: '10.56s' },
+    { key: 'sprint.200m', value: '21.64s' }
   ]);
 
   // --- Avatar Hover Reveal ---
