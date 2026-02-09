@@ -15,9 +15,24 @@
       "title": "Review 'Tier: Intermediate' Stat Card in Hero",
       "description": "Audit noted: 'The Tier: Intermediate stat card is refreshingly honest but could be a negative signal to some hiring managers.' Consider whether to keep, remove, or rephrase this stat card depending on career goals."
     },
+    {
+      "id": "cleanup-skills-marquee-spec",
+      "title": "Update specs/skills-marquee.md After SkillsMarquee Merge",
+      "description": "SkillsMarquee was merged into SkillRadar — the standalone component and spec (specs/skills-marquee.md) are now stale. Update or remove the spec, and update specs/README.md and specs/INDEX.md references."
+    },
+    {
+      "id": "update-baseline-snapshots",
+      "title": "Regenerate Playwright Baseline Snapshots",
+      "description": "After merging SkillsMarquee into SkillRadar, the skill-radar baseline screenshot will have changed (now includes skill chips). Run baseline tests with --update-snapshots to regenerate. The skills-marquee baseline test was removed."
+    }
   ],
   "in_progress": [],
   "done": [
+    {
+      "id": "merge-skills-marquee-into-radar",
+      "title": "Merge SkillsMarquee into SkillRadar (Audit Recommendation)",
+      "description": "Completed the final step of the 'skills shown 3 ways → 1 way' consolidation. Moved the 20 skill chips (with SVG brand-color icons and hover effects) from the standalone SkillsMarquee component into the SkillRadar section, placed between the focus area cards and the radar chart. Deleted SkillsMarquee.svelte, removed its import from +page.svelte, updated baseline and cross-browser tests, updated print stylesheet selector. The site now has a single unified skills section (SkillRadar) containing: focus areas (from merged CoreCompetencies), technology chips (from merged SkillsMarquee), radar chart, and category breakdown. Build passes clean."
+    },
     {
       "id": "contact-cta-mailto-fallback",
       "title": "Add mailto fallback link to ContactCTA (Audit Recommendation)",

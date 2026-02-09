@@ -1,5 +1,4 @@
 <script lang="ts">
-  import SkillsMarquee from '$lib/components/SkillsMarquee.svelte';
   import SkillRadar from '$lib/components/sections/SkillRadar.svelte';
   import Hero from '$lib/components/sections/Hero.svelte';
   import EngineeringLog from '$lib/components/sections/EngineeringLog.svelte';
@@ -23,9 +22,6 @@
 <main class="pt-16" id="main-content">
   <!-- Hero Section -->
   <Hero githubStats={data.githubStats} />
-
-  <!-- Skills Marquee -->
-  <SkillsMarquee />
 
   <!-- Skill Radar -->
   <SkillRadar />

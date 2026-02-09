@@ -65,13 +65,6 @@ test('hero section', async ({ page }) => {
   await expect(hero).toHaveScreenshot('hero.png');
 });
 
-test('skills marquee section', async ({ page }) => {
-  const section = page.locator('section[aria-label="Technical Skills"]');
-  await section.scrollIntoViewIfNeeded();
-  await expect(section).toBeVisible();
-  await expect(section).toHaveScreenshot('skills-marquee.png');
-});
-
 test('skill radar section', async ({ page }) => {
   const section = page.locator('#skill-radar');
   await section.scrollIntoViewIfNeeded();

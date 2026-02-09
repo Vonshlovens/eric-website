@@ -172,16 +172,16 @@ test('skill radar axis labels are not clipped', async ({ page, browserName }) =>
 	}
 });
 
-// --- Skills grid ---
+// --- Skills grid (inside Skill Radar) ---
 
-test('skills grid renders with correct structure', async ({ page, browserName }) => {
-	const skills = page.locator('section[aria-label="Technical Skills"]');
-	await skills.scrollIntoViewIfNeeded();
-	await expect(skills).toBeVisible();
+test('skill chips render within skill radar section', async ({ page, browserName }) => {
+	const radar = page.locator('#skill-radar');
+	await radar.scrollIntoViewIfNeeded();
+	await expect(radar).toBeVisible();
 
-	// Verify skill chips are rendered as a static grid
+	// Verify skill chips are rendered inside skill-radar
 	const gridData = await page.evaluate(() => {
-		const section = document.querySelector('section[aria-label="Technical Skills"]');
+		const section = document.getElementById('skill-radar');
 		if (!section) return null;
 		const chips = section.querySelectorAll('.skill-chip');
 		return {
@@ -189,14 +189,10 @@ test('skills grid renders with correct structure', async ({ page, browserName })
 		};
 	});
 
-	console.log(`  [${browserName}] Skills grid: ${gridData?.chipCount} chips`);
+	console.log(`  [${browserName}] Skill chips in radar: ${gridData?.chipCount} chips`);
 
 	expect(gridData).not.toBeNull();
 	expect(gridData!.chipCount, 'Should have 20 skill chips').toBe(20);
-
-	await expect(skills).toHaveScreenshot('xb-skills-grid.png', {
-		maxDiffPixels: 200,
-	});
 });
 
 // --- View Transitions API ---
