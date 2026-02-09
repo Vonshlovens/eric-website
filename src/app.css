@@ -321,8 +321,8 @@ html[data-reduce-motion]::view-transition-new(root) {
     display: none !important;
   }
 
-  /* Hide Contact CTA button (keep the section text/links) */
-  #contact a.bg-accent {
+  /* Hide Contact CTA button (button element, not anchor) */
+  #contact button {
     display: none !important;
   }
 
@@ -339,6 +339,29 @@ html[data-reduce-motion]::view-transition-new(root) {
   /* Hide icon-only links (material symbols in contact) */
   #contact .material-symbols-outlined {
     display: none !important;
+  }
+
+  /* Hide floating UI elements: back-to-top button, toast notifications, loading overlay */
+  .back-to-top,
+  .toast-container {
+    display: none !important;
+  }
+
+  /* Hide EngineeringLog skip navigation affordance */
+  a[aria-label="Skip to Work Experience section"] {
+    display: none !important;
+  }
+
+  /* Hide Hero mask-reveal GitHub layer (hover-only, not useful in print) */
+  .reveal-container > [aria-hidden="true"] {
+    display: none !important;
+  }
+
+  /* Remove mask/absolute positioning from display layer so it prints normally */
+  .reveal-layer-display {
+    position: static !important;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
   }
 
   /* --- Remove max-width constraints --- */
