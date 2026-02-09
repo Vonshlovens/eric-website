@@ -336,6 +336,36 @@ The agent produces a structured report:
 
 ---
 
+## Phase 4: Implement Audit Recommendations
+
+Act on the KEEP/SIMPLIFY/MERGE/REMOVE verdicts from the component audit report.
+
+### 4A — MERGE CoreCompetencies into SkillRadar ✅
+
+**Completed**: Merged CoreCompetencies' 3 focus areas (Cloud Infrastructure, Artificial Intelligence, Database Admin) into the SkillRadar section as a compact 3-card row below the section header. Each card has the original icon, title, and a tightened description. Deleted `CoreCompetencies.svelte` and removed it from `+page.svelte`.
+
+**Collateral updates:**
+- KeyboardShortcuts: key `2` now maps to `#skill-radar` instead of `#competencies`
+- Baseline tests: removed `core-competencies` test case (was 4 screenshots × 4 viewports)
+- Cross-browser tests: scroll-reveal test now scrolls to `#skill-radar` instead of `#competencies`
+- Deleted 4 stale baseline snapshot PNGs
+
+**Result**: Page now has 2 skill displays (SkillsMarquee + SkillRadar with focus areas) instead of 3. Build passes clean.
+
+### 4B — SIMPLIFY LoadingScreen
+
+Remove fake terminal boot sequence. Replace with a simple fast fade-in (200-300ms) or remove entirely. The site loads in ~400ms — there's no real loading to mask.
+
+### 4C — SIMPLIFY SkillsMarquee
+
+Replace infinite-scroll marquee with a static skill-tag grid. Keep SVG brand-color icons. Removes 160+ cloned DOM nodes and continuous CSS animation overhead.
+
+### 4D — SIMPLIFY Interests
+
+Add specificity to generic descriptions (race times, specific gear, concrete details) or condense into a single line / footer integration.
+
+---
+
 ## Execution Order
 
 ```
@@ -355,6 +385,12 @@ Phase 2 (Audit & Fix)    → iterative
 Phase 3 (Component Audit) → single agent run
   3A-3E: Run component audit agent with screenshots + code
   Produce structured report with KEEP/SIMPLIFY/MERGE/REMOVE verdicts
+
+Phase 4 (Implement Audit Recommendations) → iterative
+  4A: MERGE CoreCompetencies → SkillRadar
+  4B: SIMPLIFY LoadingScreen (remove fake boot sequence)
+  4C: SIMPLIFY SkillsMarquee (static grid instead of infinite scroll)
+  4D: SIMPLIFY Interests (add specificity or condense)
 ```
 
 ---

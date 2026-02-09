@@ -3,6 +3,30 @@
   import { motionStore } from '$lib/stores/motion.svelte';
   import { skillCategories, type SkillCategory } from '$lib/data/skills';
 
+  interface FocusArea {
+    icon: string;
+    title: string;
+    description: string;
+  }
+
+  const focusAreas: FocusArea[] = [
+    {
+      icon: 'cloud_queue',
+      title: 'Cloud Infrastructure',
+      description: 'Resilient architectures on AWS/GCP with Kubernetes, Terraform, and container orchestration.',
+    },
+    {
+      icon: 'psychology',
+      title: 'Artificial Intelligence',
+      description: 'MLOps integration, RAG architecture, and production-ready LLM pipelines.',
+    },
+    {
+      icon: 'database',
+      title: 'Database Admin',
+      description: 'PostgreSQL and NoSQL optimization with data sharding, replication, and high-concurrency tuning.',
+    },
+  ];
+
   interface Props {
     categories?: SkillCategory[];
   }
@@ -181,6 +205,23 @@
       <h2 id="skill-radar-heading" class="text-text-white text-xl font-mono font-bold uppercase tracking-[0.2em]">
         Skill Radar
       </h2>
+    </div>
+
+    <!-- Focus Areas -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8" use:scrollReveal={{ stagger: true }}>
+      {#each focusAreas as area}
+        <div class="scroll-reveal group flex items-start gap-3 bg-surface p-4 rounded border border-border-dim transition-all duration-200 hover:border-accent/50 hover:bg-surface-highlight">
+          <div class="shrink-0 bg-primary/50 w-10 h-10 rounded flex items-center justify-center border border-border-dim group-hover:border-accent/50 transition-colors duration-200">
+            <span class="material-symbols-outlined text-text-muted group-hover:text-accent text-xl transition-colors duration-200" aria-hidden="true">
+              {area.icon}
+            </span>
+          </div>
+          <div class="min-w-0">
+            <h3 class="text-text-white font-mono font-bold text-sm mb-1">{area.title}</h3>
+            <p class="text-xs text-text-muted font-mono leading-relaxed">{area.description}</p>
+          </div>
+        </div>
+      {/each}
     </div>
 
     <!-- Two-column layout: chart + breakdown -->

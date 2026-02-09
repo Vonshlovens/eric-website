@@ -3,6 +3,11 @@
   "in_progress": [],
   "done": [
     {
+      "id": "merge-core-competencies",
+      "title": "Merge CoreCompetencies into SkillRadar (Audit Recommendation)",
+      "description": "Implemented the top audit recommendation: merged CoreCompetencies section into SkillRadar as 'focus areas'. Added a compact 3-card row (Cloud Infrastructure, AI, Database Admin) with icons and descriptions below the Skill Radar section header, above the chart. Deleted CoreCompetencies.svelte and removed it from +page.svelte. Updated KeyboardShortcuts section map (key 2 now targets #skill-radar instead of #competencies). Updated Playwright tests: removed core-competencies baseline test (was 4 screenshots across viewports), updated cross-browser scroll-reveal test to scroll to #skill-radar instead of #competencies. Deleted 4 stale baseline snapshots. Build passes clean. Addresses the 'skills shown 3 ways' redundancy identified as the biggest structural issue in AUDIT-REPORT.md."
+    },
+    {
       "id": "playwright-3a-3e",
       "title": "3A-3E — Component Audit Agent",
       "description": "Ran component audit agent against all 15 components. Read all source files and captured Playwright screenshots at 3 viewports (desktop 1920x1080, tablet 834x1194, mobile 390x844) in both dark and light themes with element-level section captures. Evaluated each component on 5 axes (Purpose, Signal, Polish, Density, Earned Complexity) and produced KEEP/SIMPLIFY/MERGE/REMOVE verdicts. Results: KEEP 8 components (Hero, SkillRadar, EngineeringLog, WorkExperience, Education, ContactCTA, ContactForm, Navigation), KEEP utility 2 (BackToTop, KeyboardShortcuts), SIMPLIFY 3 (LoadingScreen remove fake boot, SkillsMarquee static grid, Interests add specificity), MERGE 1 (CoreCompetencies into SkillRadar). Key findings: skills shown 3 ways is biggest redundancy, loading screen is a junior dev pattern, terminal aesthetic near oversaturation, placeholder data undermines credibility. Full report: AUDIT-REPORT.md."

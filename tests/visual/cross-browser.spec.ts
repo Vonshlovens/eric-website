@@ -323,8 +323,8 @@ test('scroll-reveal elements become visible on scroll', async ({ page, browserNa
 	// Wait a moment for stores to react
 	await page.waitForTimeout(200);
 
-	// Scroll to core competencies
-	const section = page.locator('#competencies');
+	// Scroll to skill radar
+	const section = page.locator('#skill-radar');
 	await section.scrollIntoViewIfNeeded();
 	await page.waitForTimeout(800); // Wait for scroll-reveal animation
 

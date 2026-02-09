@@ -16,7 +16,7 @@
 
   const sectionMap: Record<string, string> = {
     '1': 'about',
-    '2': 'competencies',
+    '2': 'skill-radar',
     '3': 'engineering-log',
     '4': 'experience',
     '5': 'education',
