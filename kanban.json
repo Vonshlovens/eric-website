@@ -1,13 +1,12 @@
 {
-  "todo": [
+  "todo": [],
+  "in_progress": [],
+  "done": [
     {
       "id": "playwright-3a-3e",
       "title": "3A-3E — Component Audit Agent",
-      "description": "Run component audit agent with screenshots + code. Produce structured KEEP/SIMPLIFY/MERGE/REMOVE report for all 15 components."
-    }
-  ],
-  "in_progress": [],
-  "done": [
+      "description": "Ran component audit agent against all 15 components. Read all source files and captured Playwright screenshots at 3 viewports (desktop 1920x1080, tablet 834x1194, mobile 390x844) in both dark and light themes with element-level section captures. Evaluated each component on 5 axes (Purpose, Signal, Polish, Density, Earned Complexity) and produced KEEP/SIMPLIFY/MERGE/REMOVE verdicts. Results: KEEP 8 components (Hero, SkillRadar, EngineeringLog, WorkExperience, Education, ContactCTA, ContactForm, Navigation), KEEP utility 2 (BackToTop, KeyboardShortcuts), SIMPLIFY 3 (LoadingScreen remove fake boot, SkillsMarquee static grid, Interests add specificity), MERGE 1 (CoreCompetencies into SkillRadar). Key findings: skills shown 3 ways is biggest redundancy, loading screen is a junior dev pattern, terminal aesthetic near oversaturation, placeholder data undermines credibility. Full report: AUDIT-REPORT.md."
+    },
     {
       "id": "playwright-2e",
       "title": "2E — Cross-Browser Testing Matrix",
