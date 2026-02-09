@@ -16,7 +16,7 @@ Derived from the "Initialize Protocol?" section in `stitch.html` (lines 297-322)
 │                                                                │
 │  Left                                    Right                 │
 │  ┌──────────────────────────┐   ┌───────────────────────────┐  │
-│  │  Initialize Protocol?    │   │   [ Connect.exe ]  (btn)  │  │
+│  │  Initialize Protocol?    │   │   [ ./connect ]    (btn)  │  │
 │  │                          │   │                           │  │
 │  │  Subtext / description   │   │   [mail] [terminal] [hub] │  │
 │  │                          │   └───────────────────────────┘  │
@@ -100,7 +100,7 @@ A large, prominent accent button.
 
 ```svelte
 <button class="flex items-center justify-center rounded bg-accent text-bg h-14 px-10 text-xs font-mono font-bold tracking-[0.2em] transition-all hover:bg-fg hover:text-bg shadow-xl shadow-accent/20 uppercase">
-  Connect.exe
+  ./connect
 </button>
 ```
 
@@ -108,7 +108,7 @@ A large, prominent accent button.
 - On hover, shifts to foreground color background (light) — high contrast swap.
 - Shadow with accent tint for depth.
 - Uppercase mono, wide tracking.
-- The label is playful ("Connect.exe") — customize as desired.
+- The label is playful ("./connect") — customize as desired.
 - Links to a contact method (mailto, calendar link, or scrolls to a contact form if one exists).
 
 ### 6. Social / Contact Icons
@@ -175,7 +175,7 @@ A row of icon links for alternative contact methods.
 - Heading uses a proper `<h2>`.
 - CTA is a semantic `<a>` or `<button>` element with clear focus ring.
 - Social icons have `aria-label` attributes describing their destination (with "(opens in new tab)" suffix for external links).
-- CTA button has `aria-label="Open contact form"` for clarity since "Connect.exe" is thematic, not descriptive.
+- CTA button has `aria-label="Open contact form"` for clarity since "./connect" is thematic, not descriptive.
 - Status badge text is readable by screen readers (no information conveyed by color alone — the word "READY" provides meaning).
 - All text meets WCAG AA contrast on the dark background.
 - Respects `prefers-reduced-motion` (no animations to disable, but hover transitions should be suppressed).

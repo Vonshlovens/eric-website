@@ -54,7 +54,7 @@
             aria-label="Open contact form"
             class="flex items-center justify-center rounded bg-accent text-text-white h-14 px-10 text-xs font-mono font-bold tracking-[0.2em] transition-all duration-200 hover:bg-text-white hover:text-primary shadow-xl shadow-accent/20 uppercase cursor-pointer"
           >
-            Connect.exe
+            ./connect
           </button>
 
           <a

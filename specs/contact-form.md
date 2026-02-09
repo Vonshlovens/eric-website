@@ -2,7 +2,7 @@
 
 ## Overview
 
-A lightweight contact form triggered by the Contact CTA button ("Connect.exe"). Opens as a modal overlay on top of the page. Visitors fill out name, email, and message fields, which are submitted via a SvelteKit form action. On success the modal shows a confirmation state; on error it shows a retry prompt.
+A lightweight contact form triggered by the Contact CTA button ("./connect"). Opens as a modal overlay on top of the page. Visitors fill out name, email, and message fields, which are submitted via a SvelteKit form action. On success the modal shows a confirmation state; on error it shows a retry prompt.
 
 This feature extends the Contact CTA section (specs-v2/contact-cta.md) by giving the primary CTA button something to open, rather than just linking to a mailto.
 
@@ -225,7 +225,7 @@ When `RESEND_API_KEY` or `CONTACT_EMAIL_TO` are not set, the form action returns
 
 ## Interaction Flow
 
-1. User clicks "Connect.exe" button in the Contact CTA section.
+1. User clicks "./connect" button in the Contact CTA section.
 2. Modal fades in with backdrop.
 3. Focus is trapped inside the modal (keyboard accessibility).
 4. User fills out form and clicks "Send Transmission."
@@ -287,7 +287,7 @@ The modal is always vertically centered in the viewport.
 
 ## Implementation Notes
 
-- **CTA Trigger**: The `Connect.exe` button in ContactCTA was converted from `<a href="mailto:...">` to a `<button>` with an `onconnect` callback prop. The component exposes `getTriggerEl()` for focus return.
+- **CTA Trigger**: The `./connect` button in ContactCTA was converted from `<a href="mailto:...">` to a `<button>` with an `onconnect` callback prop. The component exposes `getTriggerEl()` for focus return.
 - **Prerender**: `src/routes/+page.ts` exports `prerender = false` to override the layout-level `prerender = true`, since form actions require server-side handling.
 - **Email Delivery**: The `contact` form action uses Resend (`resend` npm package) to send emails when `RESEND_API_KEY` and `CONTACT_EMAIL_TO` environment variables are set. When unconfigured, the action returns `fail(503)` with an error message directing the user to alternative contact methods — PII is never logged. Optional `RESEND_FROM_EMAIL` overrides the sender address (defaults to `onboarding@resend.dev`). Emails include the visitor's email as `replyTo`. All server env vars accessed via `$env/dynamic/private`.
 - **Validation**: Client-side validation runs on submit (and on blur after first attempt). Server-side validation mirrors the same rules as a fallback.

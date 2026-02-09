@@ -223,7 +223,7 @@ Before marking any section spec as implementation-complete, verify:
     - ContactForm: Added `role="presentation"` to modal backdrop overlay to resolve `a11y_click_events_have_key_events` warning. The backdrop is a decorative overlay; Escape key handling exists on `svelte:window`.
     - SkillRadar: Fixed import path for motion store (removed erroneous `.ts` extension).
 
-11. **Button type attributes**: Added explicit `type="button"` to all 9 non-submit `<button>` elements across 5 components. Without this attribute, HTML buttons default to `type="submit"`, which can cause unintended form submission. Fixed in Navigation.svelte (5 buttons: desktop theme toggle, desktop animation toggle, mobile hamburger, mobile theme toggle, mobile animation toggle), ContactCTA.svelte (Connect.exe CTA), BackToTop.svelte (scroll-to-top), ToastContainer.svelte (dismiss notification), ContactForm.svelte (retry button). The submit button in ContactForm correctly retains `type="submit"`.
+11. **Button type attributes**: Added explicit `type="button"` to all 9 non-submit `<button>` elements across 5 components. Without this attribute, HTML buttons default to `type="submit"`, which can cause unintended form submission. Fixed in Navigation.svelte (5 buttons: desktop theme toggle, desktop animation toggle, mobile hamburger, mobile theme toggle, mobile animation toggle), ContactCTA.svelte (./connect CTA), BackToTop.svelte (scroll-to-top), ToastContainer.svelte (dismiss notification), ContactForm.svelte (retry button). The submit button in ContactForm correctly retains `type="submit"`.
 
 ### Color contrast notes
 
