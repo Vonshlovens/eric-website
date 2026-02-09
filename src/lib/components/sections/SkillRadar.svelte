@@ -10,7 +10,9 @@
   let { categories = skillCategories }: Props = $props();
 
   // Chart geometry
-  const size = 300;
+  const padding = 50; // Extra space for axis labels
+  const chartSize = 300;
+  const size = chartSize + padding * 2;
   const center = size / 2;
   const rings = 3; // Familiar, Proficient, Expert
   const maxRadius = 120;
@@ -185,7 +187,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start" use:scrollReveal>
       <!-- Chart Container -->
       <div class="scroll-reveal bg-surface border border-border-dim rounded-lg p-6 md:p-8 flex justify-center max-w-[500px] mx-auto lg:mx-0 w-full">
-        <div class="relative w-full" style="max-width: 300px;">
+        <div class="relative w-full" style="max-width: {size}px;">
           <!-- SVG Radar Chart (decorative) -->
           <svg
             bind:this={svgEl}

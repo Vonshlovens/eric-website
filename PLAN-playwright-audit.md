@@ -164,20 +164,16 @@ These are the categories of problems to audit, roughly ordered by user impact:
 
 **No fixes required** — all metrics comfortably within targets across all viewports.
 
-### 2D — `/frontend-design` Redesign Workflow
+### 2D — Visual Audit & Targeted Fixes ✅
 
-For each component that Playwright audit reveals as broken or subpar:
+**Completed**: Captured section-level screenshots at 3 viewports (desktop 1920×1080, tablet 834×1194, mobile 390×844) in both dark and light themes with animations disabled (data-reduce-motion). Systematically reviewed all 9 sections (Hero, Core Competencies, Skills Marquee, Skill Radar, Engineering Log, Work Experience, Education, Interests, Contact CTA).
 
-1. **Screenshot** the current state at all breakpoints
-2. **Document** the specific issues (misalignment, jank, visual bugs)
-3. **Invoke `/frontend-design`** with:
-   - The current component code
-   - Screenshots showing the problems
-   - The design system tokens (colors, fonts, spacing from `app.css` and specs)
-   - Specific constraints (must use Svelte 5, Tailwind v4, existing data structures)
-4. **Get redesigned component** code
-5. **Re-screenshot** to verify the fix
-6. **Visual regression test** to ensure no other sections broke
+**Issues found and fixed:**
+1. **Skill Radar SVG axis label clipping** — All 6 axis labels (FRONTEND, BACKEND, DEVOPS, CLOUD, DATABASES, AI/ML) were truncated at the SVG viewBox boundary. Labels positioned at `maxRadius + 20 = 140px` from center within a `300×300` viewBox left no room for text extending beyond the chart area. Fixed by adding 50px padding to the SVG viewBox (`300×300` → `400×400`), shifting the center point to accommodate labels. Verified at all 3 viewports in both themes.
+
+**No other issues found**: All other sections render correctly. Work Experience timeline dots/rail are present and visible (accent red dots + border-dim rail at md+ breakpoints). All sections maintain consistent `max-w-6xl mx-auto px-4 sm:px-6 lg:px-8` container pattern. Light theme contrast is correct throughout. No components identified as needing `/frontend-design` redesign — the 2B fixes resolved the substantive visual problems.
+
+All 64 Playwright tests pass (48 baseline screenshots + 12 performance + 4 DOM complexity). Baseline snapshots updated.
 
 ### 2E — Cross-Browser Testing Matrix
 

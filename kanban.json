@@ -1,11 +1,6 @@
 {
   "todo": [
     {
-      "id": "playwright-2d",
-      "title": "2D — /frontend-design Redesign Workflow",
-      "description": "For each component Playwright audit reveals as broken/subpar: screenshot, document issues, invoke /frontend-design, re-screenshot to verify."
-    },
-    {
       "id": "playwright-2e",
       "title": "2E — Cross-Browser Testing Matrix",
       "description": "Test across Chromium, Firefox, and WebKit at all viewport sizes. Focus on SVG animations, View Transitions, mask-image support."
@@ -18,6 +13,11 @@
   ],
   "in_progress": [],
   "done": [
+    {
+      "id": "playwright-2d",
+      "title": "2D — Visual Audit & Targeted Fixes",
+      "description": "Captured section-level screenshots at 3 viewports (desktop 1920x1080, tablet 834x1194, mobile 390x844) in both dark and light themes with animations disabled. Systematically reviewed all 9 sections. Found and fixed 1 issue: Skill Radar SVG axis label clipping — all 6 labels (FRONTEND, BACKEND, DEVOPS, CLOUD, DATABASES, AI/ML) were truncated at the SVG viewBox boundary. Labels at maxRadius+20=140px from center within 300x300 viewBox left no room for text. Fixed by adding 50px padding to viewBox (300x300 → 400x400). No other sections needed redesign — 2B fixes had already resolved the substantive visual problems. All 64 Playwright tests pass with updated baseline snapshots."
+    },
     {
       "id": "playwright-2c",
       "title": "2C — Performance Audit (LCP, CLS, FCP, TBT)",
