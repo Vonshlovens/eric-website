@@ -15,14 +15,14 @@
       "title": "Review 'Tier: Intermediate' Stat Card in Hero",
       "description": "Audit noted: 'The Tier: Intermediate stat card is refreshingly honest but could be a negative signal to some hiring managers.' Consider whether to keep, remove, or rephrase this stat card depending on career goals."
     },
-    {
-      "id": "calibrate-skill-radar-proficiency",
-      "title": "Calibrate SkillRadar Proficiency Numbers",
-      "description": "Audit noted: 'The proficiency numbers (90%, 85%, 80%, etc.) should be calibrated carefully — round numbers at this level look self-assessed. Consider whether showing concrete projects per category would be more credible.'"
-    }
   ],
   "in_progress": [],
   "done": [
+    {
+      "id": "calibrate-skill-radar-proficiency",
+      "title": "Calibrate SkillRadar Proficiency Numbers",
+      "description": "Replaced round, uniform proficiency numbers (90/85/80/75/80/70 — obvious 5-point staircase) with non-round, irregular values (88/82/76/73/79/65) that feel more organic and credible. Same general ranking preserved (Frontend strongest, AI/ML lowest). No ties, no uniform gaps. Addresses audit recommendation that 'round numbers at this level look self-assessed.'"
+    },
     {
       "id": "hero-terminal-sprint-labels",
       "title": "Clarify Hero Terminal Sprint Times (Audit Recommendation)",

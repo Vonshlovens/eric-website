@@ -12,32 +12,32 @@ export interface SkillCategory {
 export const skillCategories: SkillCategory[] = [
 	{
 		label: 'Frontend',
-		proficiency: 90,
+		proficiency: 88,
 		skills: ['Svelte', 'React', 'TypeScript', 'Tailwind', 'HTML/CSS'],
 	},
 	{
 		label: 'Backend',
-		proficiency: 85,
+		proficiency: 82,
 		skills: ['Deno', 'Node', 'Go', 'FastAPI', 'Python'],
 	},
 	{
 		label: 'DevOps',
-		proficiency: 80,
+		proficiency: 76,
 		skills: ['Docker', 'Kubernetes', 'Terraform', 'CI/CD', 'Git'],
 	},
 	{
 		label: 'Cloud',
-		proficiency: 75,
+		proficiency: 73,
 		skills: ['Azure', 'GCP', 'AWS', 'Serverless', 'CDN'],
 	},
 	{
 		label: 'Databases',
-		proficiency: 80,
+		proficiency: 79,
 		skills: ['PostgreSQL', 'Redis', 'MongoDB', 'SQLite'],
 	},
 	{
 		label: 'AI / ML',
-		proficiency: 70,
+		proficiency: 65,
 		skills: ['LLMs', 'RAG', 'MLOps', 'Prompt Engineering'],
 	},
 ];
