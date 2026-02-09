@@ -19,6 +19,11 @@
   "in_progress": [],
   "done": [
     {
+      "id": "contact-cta-mailto-fallback",
+      "title": "Add mailto fallback link to ContactCTA (Audit Recommendation)",
+      "description": "Added a visible 'or email directly' mailto text link below the Connect.exe button in ContactCTA, per audit suggestion: 'Consider adding a mailto link as a fallback alongside the form trigger — some visitors prefer email directly.' The mailto icon already existed in the social icons row but was not discoverable as plain text. New link uses site.email from centralized config, styled with mono text-xs tracking-wider and hover:text-accent transition. Build passes clean."
+    },
+    {
       "id": "calibrate-skill-radar-proficiency",
       "title": "Calibrate SkillRadar Proficiency Numbers",
       "description": "Replaced round, uniform proficiency numbers (90/85/80/75/80/70 — obvious 5-point staircase) with non-round, irregular values (88/82/76/73/79/65) that feel more organic and credible. Same general ranking preserved (Frontend strongest, AI/ML lowest). No ties, no uniform gaps. Addresses audit recommendation that 'round numbers at this level look self-assessed.'"

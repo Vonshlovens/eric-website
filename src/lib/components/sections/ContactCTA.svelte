@@ -57,6 +57,13 @@
             Connect.exe
           </button>
 
+          <a
+            href="mailto:{site.email}"
+            class="text-text-muted text-xs font-mono tracking-wider hover:text-accent transition-colors duration-200"
+          >
+            or email directly &rarr;
+          </a>
+
           <div class="flex gap-2 text-text-muted">
             <a
               class="w-11 h-11 flex items-center justify-center rounded hover:text-accent transition-colors duration-200"
