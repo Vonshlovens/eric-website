@@ -131,6 +131,16 @@
           {String(activeCard + 1).padStart(2, '0')} / {String(cardCount).padStart(2, '0')}
         </div>
 
+        <!-- Skip to next section -->
+        <a
+          href="#work-experience"
+          class="absolute bottom-6 left-6 z-50 text-[10px] font-mono text-text-muted uppercase tracking-widest hover:text-accent transition-colors duration-200 flex items-center gap-1"
+          aria-label="Skip to Work Experience section"
+        >
+          <span class="material-symbols-outlined text-sm" aria-hidden="true">keyboard_double_arrow_down</span>
+          Skip
+        </a>
+
         {#each engineeringLog as entry, i (entry.id)}
           {@const progress = getCardProgress(i)}
           <article

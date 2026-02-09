@@ -432,8 +432,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.24), 0 2px 4px rgba(0, 0, 0, 0.16);
     pointer-events: none;
     z-index: 20;
-    white-space: nowrap;
-    max-width: 280px;
+    max-width: min(280px, 80vw);
   }
 
   @media (prefers-reduced-motion: reduce) {

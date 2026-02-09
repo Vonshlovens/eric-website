@@ -3,6 +3,11 @@
   "in_progress": [],
   "done": [
     {
+      "id": "post-audit-card-stack-skip-tooltip-fix",
+      "title": "Post-Audit Polish: EngineeringLog skip affordance + SkillRadar tooltip mobile fix (Phase 5B)",
+      "description": "Addressed two audit recommendations. (1) Added 'Skip' link with keyboard_double_arrow_down icon to the EngineeringLog card-stack sticky viewport (bottom-left, matching card counter styling). Links to #work-experience so users can bypass the 600vh scroll distance (6 projects × 100vh). Includes aria-label, hover:text-accent transition, and font-mono uppercase tracking-widest styling matching existing UI. Only visible in card-stack mode (desktop with motion enabled). (2) Fixed SkillRadar tooltip clipping on mobile — removed white-space:nowrap and changed max-width from fixed 280px to min(280px, 80vw) so tooltip content wraps and stays within viewport on narrow screens (390px mobile)."
+    },
+    {
       "id": "post-audit-footer-polish",
       "title": "Post-Audit Polish: Dynamic Footer Latency & Keyboard Shortcut Hint (Phase 5A)",
       "description": "Addressed two audit recommendations for the Footer component. (1) Replaced hardcoded 'Latency: 14ms' with actual page load time using Navigation Timing API (domContentLoadedEventEnd - startTime), falling back to performance.now(). Shows '--' during SSR, updates on mount. (2) Added subtle 'Press ? for shortcuts' hint (hidden on mobile via hidden sm:inline) to improve keyboard shortcuts discoverability — audit noted that <1% of visitors would discover the ? shortcut without a visible hint. Both changes are lightweight, on-brand (mono uppercase tracking-widest), and aria-hidden on the hint since it's supplementary."

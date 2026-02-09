@@ -399,6 +399,7 @@ Phase 4 (Implement Audit Recommendations) → iterative
 
 Phase 5 (Post-Audit Polish)     → iterative
   5A: Dynamic footer latency + keyboard shortcut hint
+  5B: EngineeringLog skip affordance + SkillRadar tooltip mobile fix
 ```
 
 ---
@@ -414,6 +415,14 @@ Act on the remaining suggestions from the component audit report that weren't fo
 1. **Dynamic latency indicator** — Replaced hardcoded "Latency: 14ms" with actual page load time using the Navigation Timing API (`domContentLoadedEventEnd - startTime`), falling back to `performance.now()`. Shows "--" during SSR, updates to real milliseconds on mount. This addresses the audit finding: "Latency: 14ms is hardcoded — this could be confusing if visitors expect it to be real."
 
 2. **Keyboard shortcut discoverability hint** — Added a subtle "Press ? for shortcuts" hint next to the latency indicator, hidden on mobile (`hidden sm:inline`). Uses `text-border-dim` (dimmer than muted text) so it doesn't compete with the latency readout. `aria-hidden="true"` since it's supplementary information. This addresses the audit finding: "Consider discoverability: a subtle hint somewhere visible (e.g., footer 'Press ? for shortcuts') would increase the signal value."
+
+### 5B — EngineeringLog Skip Affordance & SkillRadar Tooltip Mobile Fix ✅
+
+**Completed**: Addressed two audit recommendations for the EngineeringLog and SkillRadar components.
+
+1. **EngineeringLog skip affordance** — Added a "Skip" link with `keyboard_double_arrow_down` icon to the card-stack sticky viewport (bottom-left, mirroring the card counter position). Links to `#work-experience` so users can bypass the 600vh scroll distance (6 projects × 100vh). Styled with `text-[10px] font-mono text-text-muted uppercase tracking-widest` matching existing card counter. Hover transitions to accent color. Includes `aria-label="Skip to Work Experience section"`. Only visible in card-stack mode (desktop with motion enabled). This addresses the audit finding: "6 projects × 100vh = 600vh of scroll distance on desktop. This is a LOT of scrolling — consider adding a 'skip to next section' affordance."
+
+2. **SkillRadar tooltip mobile fix** — Removed `white-space: nowrap` and changed `max-width` from fixed `280px` to `min(280px, 80vw)` so tooltip content wraps properly and stays within viewport on narrow screens (390px mobile). This addresses the audit finding: "Tooltip max-width of 280px can clip on mobile — test at narrow viewports."
 
 ---
 
