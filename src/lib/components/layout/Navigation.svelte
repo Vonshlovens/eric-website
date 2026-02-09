@@ -15,6 +15,7 @@
     { label: 'Projects', href: '#engineering-log' },
     { label: 'Experience', href: '#experience' },
     { label: 'Education', href: '#education' },
+    { label: 'Interests', href: '#interests' },
     { label: 'Contact', href: '#contact' }
   ];
 
