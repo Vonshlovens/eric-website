@@ -9,9 +9,18 @@
     { key: '?', description: 'Open this help modal' },
     { key: 't', description: 'Toggle theme' },
     { key: 'm', description: 'Toggle motion' },
-    { key: '1-7', description: 'Jump to section' },
     { key: 'h', description: 'Scroll to top' },
     { key: 'Esc', description: 'Close modal' }
+  ];
+
+  const sectionShortcuts: { key: string; description: string }[] = [
+    { key: '1', description: 'Dashboard' },
+    { key: '2', description: 'Skills' },
+    { key: '3', description: 'Projects' },
+    { key: '4', description: 'Experience' },
+    { key: '5', description: 'Education' },
+    { key: '6', description: 'Interests' },
+    { key: '7', description: 'Contact' },
   ];
 
   const sectionMap: Record<string, string> = {
@@ -111,6 +120,27 @@
             </span>
           </div>
         {/each}
+      </div>
+
+      <!-- Section Navigation -->
+      <div class="border-t border-border-dim mt-4 pt-4">
+        <span class="font-mono text-[10px] uppercase tracking-widest text-text-muted mb-3 block">
+          Section_Navigation
+        </span>
+        <div class="space-y-2">
+          {#each sectionShortcuts as shortcut}
+            <div class="flex items-center gap-4">
+              <kbd
+                class="font-mono text-accent bg-primary border border-border-dim rounded px-2 py-0.5 text-sm min-w-[3rem] text-center"
+              >
+                {shortcut.key}
+              </kbd>
+              <span class="font-mono text-sm text-text-muted">
+                {shortcut.description}
+              </span>
+            </div>
+          {/each}
+        </div>
       </div>
     </Dialog.Content>
   </Dialog.Portal>
