@@ -1,0 +1,413 @@
+# Portfolio Overhaul — Task Tracker
+# For cross-agent coordination. Update status as work progresses.
+# Statuses: pending | in-progress | blocked | done
+# Priority: critical | high | medium | low
+
+meta:
+  project: eric-website
+  framework: SvelteKit + Svelte 5
+  styling: Tailwind CSS v4 (@theme tokens)
+  runtime: Deno
+  reference_design: stitch2.html
+  design_tokens:
+    primary: "#121212"
+    surface: "#1E1E1E"
+    accent: "#B80C09"
+    text_main: "#BFB1C1"
+    text_muted: "#888888"
+    border_dim: "#333333"
+    status_ok: "#22C55E"
+    fonts:
+      sans: Inter
+      mono: Fira Code
+
+tasks:
+
+  # ─── 1. HERO SECTION — NAME OVERLAP & HOVER ──────────────────────────
+
+  - id: "1a"
+    group: hero-name
+    title: "Hide Vonshlovens by default"
+    description: >
+      The GitHub username "Vonshlovens" is currently rendered as a visible bottom
+      layer in the avatar+name reveal container (Hero.svelte lines 128-167).
+      It should not be visible at all in the resting state. Remove or hide
+      the bottom-layer GitHub identity div.
+    file: src/lib/components/sections/Hero.svelte
+    lines: "128-167"
+    status: pending
+    priority: critical
+
+  - id: "1b"
+    title: "Show Eric Evans as default name"
+    group: hero-name
+    description: >
+      Ensure "Eric Evans" is the only name visible by default with no
+      masking/overlay trickery. The display layer (lines 169-214) should be
+      the baseline, not an overlay.
+    file: src/lib/components/sections/Hero.svelte
+    lines: "169-214"
+    status: pending
+    priority: critical
+    depends_on: ["1a"]
+
+  - id: "1c"
+    title: "Animate name swap on hover (Eric Evans → Vonshlovens)"
+    group: hero-name
+    description: >
+      On mouse hover over the name area, smoothly animate/morph "Eric Evans"
+      into "Vonshlovens". This replaces the current radial-mask reveal.
+      Consider a text scramble, typewriter, or crossfade animation.
+    file: src/lib/components/sections/Hero.svelte
+    status: pending
+    priority: high
+    depends_on: ["1b"]
+
+  - id: "1d"
+    title: "Reveal clickable vonshlovens.com link on hover"
+    group: hero-name
+    description: >
+      When hovering, reveal a clickable link to vonshlovens.com near the name.
+      Could appear as a subtitle or badge that fades/slides in.
+    file: src/lib/components/sections/Hero.svelte
+    status: pending
+    priority: high
+    depends_on: ["1c"]
+
+  - id: "1e"
+    title: "Remove radial-mask reveal system"
+    group: hero-name
+    description: >
+      Delete the entire reveal mask hover logic: revealX, revealY, revealActive,
+      canHover, revealRadius, handleRevealMove, handleRevealLeave,
+      revealMaskStyle, and the two-layer DOM structure. Replace with the new
+      single-layer hover animation approach.
+    file: src/lib/components/sections/Hero.svelte
+    lines: "35-81, 122-215"
+    status: pending
+    priority: critical
+    depends_on: ["1a"]
+
+  # ─── 2. STAT CARDS & TERMINAL WINDOW ─────────────────────────────────
+
+  - id: "2a"
+    title: "Remove Status Production stat card"
+    group: hero-terminal
+    description: >
+      Remove the { label: 'Status', value: 'Production' } entry from the
+      stats array (Hero.svelte line 19).
+    file: src/lib/components/sections/Hero.svelte
+    lines: "16-21"
+    status: pending
+    priority: high
+
+  - id: "2b"
+    title: "Remove Tier Intermediate stat card"
+    group: hero-terminal
+    description: >
+      Remove the { label: 'Tier', value: 'Intermediate' } entry from the
+      stats array (Hero.svelte line 20).
+    file: src/lib/components/sections/Hero.svelte
+    lines: "16-21"
+    status: pending
+    priority: high
+
+  - id: "2c"
+    title: "Move repos & commits into terminal panel"
+    group: hero-terminal
+    description: >
+      Add repos count and commits count as rows in the terminalLines array
+      (Hero.svelte lines 25-33) so they appear in the right-column terminal
+      stats panel instead of as standalone stat cards.
+    file: src/lib/components/sections/Hero.svelte
+    lines: "25-33"
+    status: pending
+    priority: high
+    depends_on: ["2a", "2b"]
+
+  - id: "2d"
+    title: "Restyle terminal to match stitch2.html"
+    group: hero-terminal
+    description: >
+      Update the terminal panel (Hero.svelte lines 282-327) to match
+      stitch2.html styling:
+      - Header: bg-[#111], window dots, "bash — session_active" title
+      - Body: background image with grayscale contrast, bg-primary/85 overlay
+      - Green text (#22C55E) for terminal output
+      - Bordered rows with flex justify-between layout
+      Reference: stitch2.html lines 139-161
+    file: src/lib/components/sections/Hero.svelte
+    lines: "282-327"
+    reference: stitch2.html:139-161
+    status: pending
+    priority: high
+    depends_on: ["2c"]
+
+  - id: "2e"
+    title: "Add terminal prompt and bordered row styling"
+    group: hero-terminal
+    description: >
+      Add the "> fetch user_stats --detailed" command prompt style and
+      switch from the current arrow-prefixed list to bordered rows with
+      flex justify-between layout matching stitch2.html.
+    file: src/lib/components/sections/Hero.svelte
+    status: pending
+    priority: medium
+    depends_on: ["2d"]
+
+  - id: "2f"
+    title: "Add awaiting input footer with blinking cursor"
+    group: hero-terminal
+    description: >
+      Add the "_ [Awaiting input...]" footer text with an animated
+      blinking cursor, matching stitch2.html line 156-157.
+    file: src/lib/components/sections/Hero.svelte
+    status: pending
+    priority: medium
+    depends_on: ["2d"]
+
+  # ─── 3. ENGINEERING LOG — FULL REDESIGN ──────────────────────────────
+
+  - id: "3a"
+    title: "Remove card-stack scroll animation"
+    group: engineering-log
+    description: >
+      Delete the entire card-stack scroll system: the scrollY binding,
+      sectionRef, sectionTop, getCardProgress, activeCard, the tall
+      container with height={cardCount * 100}vh, and the sticky viewport.
+      This scroll pattern is broken and forces users to scroll through
+      4 full viewport-heights to pass the section.
+    file: src/lib/components/sections/EngineeringLog.svelte
+    lines: "5-73, 109-224"
+    status: pending
+    priority: critical
+
+  - id: "3b"
+    title: "Build new all-visible project layout"
+    group: engineering-log
+    description: >
+      Replace with a layout where all projects are visible at once.
+      Options: bento grid (mixed card sizes), clickable card gallery,
+      or horizontal carousel with visible previews. All projects should
+      be scannable without scrolling through them one-by-one.
+    file: src/lib/components/sections/EngineeringLog.svelte
+    status: pending
+    priority: critical
+    depends_on: ["3a"]
+
+  - id: "3c"
+    title: "Add click-to-expand interaction on project cards"
+    group: engineering-log
+    description: >
+      Each project card should be interactive — clicking opens an expanded
+      view showing the full problem statement, key learnings, and tech stack.
+      Could be a modal, accordion expand, or flip-card approach.
+    file: src/lib/components/sections/EngineeringLog.svelte
+    status: pending
+    priority: high
+    depends_on: ["3b"]
+
+  - id: "3d"
+    title: "Add placeholder image containers"
+    group: engineering-log
+    description: >
+      Project cards need image slots. For now, use styled placeholders
+      (terminal icon, gradient, or pattern) since actual image assets
+      need to be provided by the owner. Make it easy to swap in real
+      images later (just change the src).
+    file: src/lib/components/sections/EngineeringLog.svelte
+    status: pending
+    priority: medium
+    depends_on: ["3b"]
+    blocked_reason: "Needs actual image assets from owner"
+
+  - id: "3e"
+    title: "Preserve all project data fields"
+    group: engineering-log
+    description: >
+      Ensure the new layout still displays: displayName, name (slug),
+      problem, learnings, techStack[], and category for each project.
+      Data source: src/lib/data/engineering-log.ts
+    file: src/lib/data/engineering-log.ts
+    status: pending
+    priority: medium
+    depends_on: ["3b"]
+
+  # ─── 4. PAGE CENTERING & LAYOUT ─────────────────────────────────────
+
+  - id: "4a"
+    title: "Audit all sections for consistent centering"
+    group: layout
+    description: >
+      The page currently hugs the left side. Audit every section component
+      and +page.svelte to ensure content is properly centered. Check for
+      missing mx-auto, inconsistent max-w values, or layout containers
+      that don't center their children.
+    files:
+      - src/routes/+page.svelte
+      - src/lib/components/sections/Hero.svelte
+      - src/lib/components/sections/SkillRadar.svelte
+      - src/lib/components/sections/EngineeringLog.svelte
+      - src/lib/components/sections/WorkExperience.svelte
+      - src/lib/components/sections/Education.svelte
+      - src/lib/components/sections/Interests.svelte
+      - src/lib/components/sections/ContactCTA.svelte
+    status: pending
+    priority: high
+
+  - id: "4b"
+    title: "Standardize max-width and horizontal padding"
+    group: layout
+    description: >
+      All sections should use a consistent max-w (max-w-6xl or max-w-7xl)
+      with mx-auto and matching horizontal padding (px-4 sm:px-6 lg:px-8).
+      Stitch2.html uses max-w-7xl with px-6 md:px-12.
+    files:
+      - src/lib/components/sections/*.svelte
+    status: pending
+    priority: high
+    depends_on: ["4a"]
+
+  - id: "4c"
+    title: "Verify responsive centering at all breakpoints"
+    group: layout
+    description: >
+      Test centering at sm (640px), md (768px), lg (1024px), xl (1280px).
+      Use Playwright or browser dev tools to verify no section drifts left.
+    status: pending
+    priority: medium
+    depends_on: ["4b"]
+
+  # ─── 5. SECTION STYLING & VISUAL SEPARATION ─────────────────────────
+
+  - id: "5a"
+    title: "Add visual dividers between sections"
+    group: styling
+    description: >
+      Currently sections flow into each other with no visual break.
+      Add dividers between major sections — options include:
+      - Subtle border-b lines with border-border-dim
+      - Gradient fade dividers
+      - Decorative elements (dashed lines, terminal-style separators)
+      Apply in +page.svelte or as wrapper styling.
+    file: src/routes/+page.svelte
+    status: pending
+    priority: high
+
+  - id: "5b"
+    title: "Increase vertical spacing between sections"
+    group: styling
+    description: >
+      Add more vertical padding/margins between sections. Current py-16
+      is not enough — consider py-20 md:py-28 or adding mt/mb spacing.
+      Stitch2.html uses mb-16/mb-20 between sections.
+    files:
+      - src/routes/+page.svelte
+      - src/lib/components/sections/*.svelte
+    status: pending
+    priority: high
+
+  - id: "5c"
+    title: "Improve typography hierarchy"
+    group: styling
+    description: >
+      Text feels flat and dull. Improvements:
+      - Increase heading sizes and weights for impact
+      - Improve body text line-height and letter-spacing
+      - Add better contrast between heading, body, and muted text
+      - Consider using Inter for body text (currently most text is mono)
+    files:
+      - src/app.css
+      - src/lib/components/sections/*.svelte
+    status: pending
+    priority: high
+
+  - id: "5d"
+    title: "Add subtle background variation to sections"
+    group: styling
+    description: >
+      Break up the monotony with alternating or varied section backgrounds.
+      Options: alternate between bg-primary and bg-surface, add subtle
+      gradient overlays, or use slight opacity variations.
+    files:
+      - src/routes/+page.svelte
+      - src/app.css
+    status: pending
+    priority: medium
+
+  - id: "5e"
+    title: "Improve color contrast and visual hierarchy"
+    group: styling
+    description: >
+      Review text-main (#BFB1C1) vs text-muted (#888888) contrast.
+      Ensure important elements stand out. Consider stronger accent usage
+      for key interactive elements and headings.
+    file: src/app.css
+    status: pending
+    priority: medium
+
+  # ─── 6. CARD AESTHETICS — EXPERIENCE, EDUCATION, INTERESTS ──────────
+
+  - id: "6a"
+    title: "Redesign Work Experience cards"
+    group: cards
+    description: >
+      Current cards are basic bg-surface boxes with thin borders.
+      Improve with: better border treatment, hover elevation/glow,
+      stronger visual hierarchy between company name, title, and duties.
+      The timeline rail (desktop) could also use polish.
+    file: src/lib/components/sections/WorkExperience.svelte
+    status: pending
+    priority: high
+
+  - id: "6b"
+    title: "Redesign Education cards"
+    group: cards
+    description: >
+      Improve layout and visual treatment. Better badge styling for
+      degree type, clearer hierarchy between institution and degree,
+      honors highlighting.
+    file: src/lib/components/sections/Education.svelte
+    status: pending
+    priority: high
+
+  - id: "6c"
+    title: "Redesign Interest cards"
+    group: cards
+    description: >
+      Make more visually engaging. Better icon treatment (larger,
+      more colorful), improved hover states, potentially add subtle
+      illustrations or background patterns per interest.
+    file: src/lib/components/sections/Interests.svelte
+    status: pending
+    priority: medium
+
+  - id: "6d"
+    title: "Add consistent spacing/gaps between cards"
+    group: cards
+    description: >
+      Ensure uniform gap values across all card grids. Current gaps
+      may be inconsistent between sections. Standardize to gap-6
+      or gap-8 across Work Experience, Education, and Interests.
+    files:
+      - src/lib/components/sections/WorkExperience.svelte
+      - src/lib/components/sections/Education.svelte
+      - src/lib/components/sections/Interests.svelte
+    status: pending
+    priority: high
+
+  - id: "6e"
+    title: "Ensure cohesive card design language"
+    group: cards
+    description: >
+      All cards across the three sections should share a consistent
+      design language: same border radius, border color, hover behavior,
+      padding scale, and shadow treatment. Variations should be intentional
+      (e.g., timeline cards vs grid cards) not accidental.
+    files:
+      - src/lib/components/sections/WorkExperience.svelte
+      - src/lib/components/sections/Education.svelte
+      - src/lib/components/sections/Interests.svelte
+    status: pending
+    priority: medium
+    depends_on: ["6a", "6b", "6c"]

@@ -25,6 +25,7 @@ vite.config.ts.timestamp-*
 # Playwright
 tests/visual/results/
 .playwright/
+.playwright-cli/
 
 # Deno deploy
 .deno-deploy/
