@@ -20,14 +20,14 @@
       "title": "Review Navigation 'Live Node' Status Indicator",
       "description": "Audit noted the pinging green dot status indicator in the nav bar is decorative and contributes to terminal aesthetic saturation. Consider whether it adds value or is visual noise in an already busy nav bar."
     },
-    {
-      "id": "update-playwright-snapshots",
-      "title": "Update Playwright Baseline Snapshots for EngineeringLog",
-      "description": "EngineeringLog heading changed from snake_case to Title Case with subtitle. Baseline and cross-browser snapshots that include EngineeringLog cards will need --update-snapshots."
-    }
   ],
   "in_progress": [],
   "done": [
+    {
+      "id": "update-playwright-snapshots",
+      "title": "Update Playwright Baseline Snapshots for EngineeringLog",
+      "description": "Regenerated all Playwright baseline and cross-browser snapshots after EngineeringLog heading change (snake_case to Title Case with subtitle). Ran --update-snapshots for baseline (40 tests across 4 viewports: desktop-1080p, desktop-720p, tablet, mobile) and cross-browser (28 tests across Firefox desktop/mobile and WebKit desktop/mobile). Verified all 84 tests pass cleanly on re-run without --update-snapshots (40 baseline + 28 cross-browser + 16 performance)."
+    },
     {
       "id": "review-project-name-casing",
       "title": "Engineering Log: Add Readable Display Names (Audit Recommendation)",
