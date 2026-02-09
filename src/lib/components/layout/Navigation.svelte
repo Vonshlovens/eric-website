@@ -11,6 +11,7 @@
 
   const navLinks = [
     { label: 'Dashboard', href: '#about' },
+    { label: 'Skills', href: '#skill-radar' },
     { label: 'Projects', href: '#engineering-log' },
     { label: 'Experience', href: '#experience' },
     { label: 'Education', href: '#education' },
