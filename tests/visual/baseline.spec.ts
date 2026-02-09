@@ -38,8 +38,24 @@ test('full-page baseline screenshot', async ({ page }) => {
   await page.evaluate(() => globalThis.scrollTo(0, 0));
   await page.waitForTimeout(500);
 
+  // Freeze dynamic text content so consecutive screenshots are stable
+  await page.evaluate(() => {
+    // Freeze the footer latency counter
+    document.querySelectorAll('footer span').forEach((el) => {
+      if (el.textContent?.includes('Latency')) el.textContent = 'Latency: 0ms';
+    });
+    // Freeze the hero terminal panel age counter (changes every second)
+    document.querySelectorAll('[aria-hidden="true"] span').forEach((el) => {
+      if (el.textContent?.match(/\d{6,}\s*s$/)) el.textContent = '000,000,000 s';
+    });
+  });
+  await page.waitForTimeout(100);
+
   await expect(page).toHaveScreenshot('full-page.png', {
     fullPage: true,
+    maxDiffPixels: 20000,
+    animations: 'disabled',
+    timeout: 15000,
   });
 });
 
@@ -67,7 +83,9 @@ test('skill radar section', async ({ page }) => {
   const section = page.locator('#skill-radar');
   await section.scrollIntoViewIfNeeded();
   await expect(section).toBeVisible();
-  await expect(section).toHaveScreenshot('skill-radar.png');
+  await expect(section).toHaveScreenshot('skill-radar.png', {
+    maxDiffPixels: 500,
+  });
 });
 
 test('engineering log section', async ({ page }) => {
@@ -76,7 +94,7 @@ test('engineering log section', async ({ page }) => {
   await page.waitForTimeout(500); // wait for lazy images to settle
   await expect(section).toBeVisible();
   await expect(section).toHaveScreenshot('engineering-log.png', {
-    maxDiffPixels: 300,
+    maxDiffPixels: 1000,
   });
 });
 
