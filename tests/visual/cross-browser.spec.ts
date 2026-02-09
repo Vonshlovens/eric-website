@@ -86,7 +86,7 @@ test('hero avatar uses correct mask/reveal structure', async ({ page, browserNam
 			const cs = getComputedStyle(el);
 			return {
 				hasMaskImage: cs.maskImage !== 'none' && cs.maskImage !== '',
-				hasWebkitMaskImage: (cs as Record<string, string>).webkitMaskImage !== undefined,
+				hasWebkitMaskImage: (cs as unknown as Record<string, string>).webkitMaskImage !== undefined,
 			};
 		});
 

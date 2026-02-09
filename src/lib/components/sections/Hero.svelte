@@ -40,8 +40,8 @@
   const revealRadius = 100;
 
   $effect(() => {
-    if (typeof window !== 'undefined') {
-      const mq = window.matchMedia('(hover: hover)');
+    if (typeof globalThis.window !== 'undefined') {
+      const mq = globalThis.matchMedia('(hover: hover)');
       canHover = mq.matches;
       const handler = (e: MediaQueryListEvent) => { canHover = e.matches; };
       mq.addEventListener('change', handler);

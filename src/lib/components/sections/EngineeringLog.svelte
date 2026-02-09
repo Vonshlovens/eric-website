@@ -11,10 +11,10 @@
 
   // Check if card-stack should be active (md+ screens, motion enabled)
   function shouldUseCardStack(): boolean {
-    if (typeof window === 'undefined') return false;
+    if (typeof globalThis.window === 'undefined') return false;
     if (document.documentElement.hasAttribute('data-reduce-motion')) return false;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false;
-    if (!window.matchMedia('(min-width: 1024px)').matches) return false;
+    if (globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches) return false;
+    if (!globalThis.matchMedia('(min-width: 1024px)').matches) return false;
     return true;
   }
 
@@ -22,8 +22,8 @@
   $effect(() => {
     useCardStack = shouldUseCardStack();
 
-    const mqSize = window.matchMedia('(min-width: 1024px)');
-    const mqMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const mqSize = globalThis.matchMedia('(min-width: 1024px)');
+    const mqMotion = globalThis.matchMedia('(prefers-reduced-motion: reduce)');
 
     const update = () => { useCardStack = shouldUseCardStack(); };
     mqSize.addEventListener('change', update);
@@ -49,27 +49,27 @@
 
     const updateTop = () => {
       const rect = sectionRef!.getBoundingClientRect();
-      sectionTop = rect.top + window.scrollY;
+      sectionTop = rect.top + globalThis.scrollY;
     };
 
     updateTop();
-    window.addEventListener('resize', updateTop);
-    return () => window.removeEventListener('resize', updateTop);
+    globalThis.addEventListener('resize', updateTop);
+    return () => globalThis.removeEventListener('resize', updateTop);
   });
 
   function getCardProgress(index: number): number {
     if (!useCardStack) return 1;
     const offset = scrollY - sectionTop;
-    const start = index * window.innerHeight;
-    const end = (index + 1) * window.innerHeight;
+    const start = index * globalThis.innerHeight;
+    const end = (index + 1) * globalThis.innerHeight;
     return Math.min(1, Math.max(0, (offset - start) / (end - start)));
   }
 
   // Derived: which card is currently "active" (most recently fully revealed)
   let activeCard = $derived.by(() => {
-    if (!useCardStack || typeof window === 'undefined') return 0;
+    if (!useCardStack || typeof globalThis.window === 'undefined') return 0;
     const offset = scrollY - sectionTop;
-    return Math.min(cardCount - 1, Math.max(0, Math.floor(offset / window.innerHeight)));
+    return Math.min(cardCount - 1, Math.max(0, Math.floor(offset / globalThis.innerHeight)));
   });
 </script>
 

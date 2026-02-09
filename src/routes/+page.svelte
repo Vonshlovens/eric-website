@@ -2,7 +2,7 @@
   import SkillsMarquee from '$lib/components/SkillsMarquee.svelte';
   import SkillRadar from '$lib/components/sections/SkillRadar.svelte';
   import Hero from '$lib/components/sections/Hero.svelte';
-import EngineeringLog from '$lib/components/sections/EngineeringLog.svelte';
+  import EngineeringLog from '$lib/components/sections/EngineeringLog.svelte';
   import WorkExperience from '$lib/components/sections/WorkExperience.svelte';
   import Education from '$lib/components/sections/Education.svelte';
   import Interests from '$lib/components/sections/Interests.svelte';
