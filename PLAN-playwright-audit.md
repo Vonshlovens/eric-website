@@ -352,9 +352,9 @@ Act on the KEEP/SIMPLIFY/MERGE/REMOVE verdicts from the component audit report.
 
 **Result**: Page now has 2 skill displays (SkillsMarquee + SkillRadar with focus areas) instead of 3. Build passes clean.
 
-### 4B — SIMPLIFY LoadingScreen
+### 4B — SIMPLIFY LoadingScreen ✅
 
-Remove fake terminal boot sequence. Replace with a simple fast fade-in (200-300ms) or remove entirely. The site loads in ~400ms — there's no real loading to mask.
+**Completed**: Removed fake terminal boot sequence (5 sequential boot lines, progress bar, ~1.5s delay). Replaced with a simple opaque `bg-primary` overlay that fades out in 250ms after a 100ms initial pause. Total duration reduced from ~1.5s to ~350ms. Component went from 135 lines to 57 lines — removed all boot line data, `runBootSequence()` async function, `dotsComplete` state, progress bar markup, `line-appear` keyframe animation, and terminal block styling. Retained session-once behavior (`sessionStorage 'boot-shown'`), reduced-motion skip, and aria-hidden on dismiss. Uses `globalThis.matchMedia` instead of `window.matchMedia` per deno lint rules. Build passes clean.
 
 ### 4C — SIMPLIFY SkillsMarquee
 

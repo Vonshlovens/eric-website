@@ -3,6 +3,11 @@
   "in_progress": [],
   "done": [
     {
+      "id": "simplify-loading-screen",
+      "title": "Simplify LoadingScreen (Audit Recommendation 4B)",
+      "description": "Removed fake terminal boot sequence (5 sequential boot lines, progress bar, ~1.5s delay). Replaced with a simple opaque bg-primary overlay that fades out in 250ms after a 100ms pause. Total duration reduced from ~1.5s to ~350ms. Component went from 135 lines to 57 lines — removed all boot line data, runBootSequence() async function, dotsComplete state, progress bar markup, line-appear keyframe animation, and terminal block styling. Retained session-once behavior (sessionStorage 'boot-shown'), reduced-motion skip, and aria-hidden on dismiss. Uses globalThis.matchMedia instead of window.matchMedia per deno lint rules. Updated spec (specs/loading-screen.md) to reflect simplified behavior. Build passes clean."
+    },
+    {
       "id": "merge-core-competencies",
       "title": "Merge CoreCompetencies into SkillRadar (Audit Recommendation)",
       "description": "Implemented the top audit recommendation: merged CoreCompetencies section into SkillRadar as 'focus areas'. Added a compact 3-card row (Cloud Infrastructure, AI, Database Admin) with icons and descriptions below the Skill Radar section header, above the chart. Deleted CoreCompetencies.svelte and removed it from +page.svelte. Updated KeyboardShortcuts section map (key 2 now targets #skill-radar instead of #competencies). Updated Playwright tests: removed core-competencies baseline test (was 4 screenshots across viewports), updated cross-browser scroll-reveal test to scroll to #skill-radar instead of #competencies. Deleted 4 stale baseline snapshots. Build passes clean. Addresses the 'skills shown 3 ways' redundancy identified as the biggest structural issue in AUDIT-REPORT.md."
