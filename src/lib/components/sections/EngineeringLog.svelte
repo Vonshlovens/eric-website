@@ -154,7 +154,7 @@
               <div class="relative w-full h-full bg-primary/50">
                 <img
                   src={entry.image}
-                  alt="{entry.name} project screenshot"
+                  alt="{entry.displayName} project screenshot"
                   width="800"
                   height="600"
                   class="w-full h-full object-cover grayscale transition-all duration-500"
@@ -173,9 +173,12 @@
             <div class="lg:w-2/3 p-8 md:p-12 lg:p-16 flex flex-col justify-center relative">
               <!-- Header Row -->
               <div class="flex items-start justify-between gap-4 mb-5">
-                <h3 class="text-text-white font-mono font-bold text-xl lg:text-2xl uppercase tracking-tight">
-                  {entry.name}
-                </h3>
+                <div>
+                  <h3 class="text-text-white font-mono font-bold text-xl lg:text-2xl tracking-tight">
+                    {entry.displayName}
+                  </h3>
+                  <span class="text-text-muted font-mono text-xs tracking-wider">{entry.name}</span>
+                </div>
                 <span class="flex-shrink-0 bg-accent/20 text-accent text-[10px] font-mono font-bold uppercase tracking-widest px-2.5 py-1 rounded">
                   {entry.category}
                 </span>
@@ -232,7 +235,7 @@
             <div class="relative w-full h-full min-h-[200px] lg:min-h-0 bg-primary/50">
               <img
                 src={entry.image}
-                alt="{entry.name} project screenshot"
+                alt="{entry.displayName} project screenshot"
                 width="800"
                 height="600"
                 class="w-full h-full object-cover aspect-video lg:aspect-auto lg:absolute lg:inset-0 grayscale group-hover:grayscale-0 transition-all duration-500"
@@ -251,9 +254,12 @@
           <div class="lg:w-2/3 p-6 md:p-8 flex flex-col justify-center relative">
             <!-- Header Row -->
             <div class="flex items-start justify-between gap-4 mb-5">
-              <h3 class="text-text-white font-mono font-bold text-lg uppercase tracking-tight">
-                {entry.name}
-              </h3>
+              <div>
+                <h3 class="text-text-white font-mono font-bold text-lg tracking-tight">
+                  {entry.displayName}
+                </h3>
+                <span class="text-text-muted font-mono text-xs tracking-wider">{entry.name}</span>
+              </div>
               <span class="flex-shrink-0 bg-accent/20 text-accent text-[10px] font-mono font-bold uppercase tracking-widest px-2.5 py-1 rounded">
                 {entry.category}
               </span>

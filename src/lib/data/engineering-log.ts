@@ -1,6 +1,7 @@
 export interface EngineeringLogEntry {
   id: string;
   name: string;
+  displayName: string;
   category: string;
   image: string;
   problem: string;
@@ -12,6 +13,7 @@ export const engineeringLog: EngineeringLogEntry[] = [
   {
     id: 'cloud-orchestrator',
     name: 'cloud_orchestrator',
+    displayName: 'Cloud Orchestrator',
     category: 'INFRASTRUCTURE',
     image: '/images/projects/cloud-orchestrator.webp',
     problem:
@@ -23,6 +25,7 @@ export const engineeringLog: EngineeringLogEntry[] = [
   {
     id: 'ml-pipeline',
     name: 'ml_data_pipeline',
+    displayName: 'ML Data Pipeline',
     category: 'AI/ML',
     image: '/images/projects/ml-pipeline.webp',
     problem:
@@ -34,6 +37,7 @@ export const engineeringLog: EngineeringLogEntry[] = [
   {
     id: 'realtime-dashboard',
     name: 'realtime_metrics',
+    displayName: 'Realtime Metrics',
     category: 'FRONTEND',
     image: '/images/projects/realtime-dashboard.webp',
     problem:
@@ -45,6 +49,7 @@ export const engineeringLog: EngineeringLogEntry[] = [
   {
     id: 'api-gateway',
     name: 'api_gateway',
+    displayName: 'API Gateway',
     category: 'BACKEND',
     image: '/images/projects/api-gateway.webp',
     problem:

@@ -21,13 +21,18 @@
       "description": "Audit noted the pinging green dot status indicator in the nav bar is decorative and contributes to terminal aesthetic saturation. Consider whether it adds value or is visual noise in an already busy nav bar."
     },
     {
-      "id": "review-project-name-casing",
-      "title": "Review Engineering Log Project Name Casing",
-      "description": "Audit noted project names are snake_case (cloud_orchestrator, ml_data_pipeline) which fits the terminal aesthetic but may be harder to read. Consider whether to switch to Title Case for improved readability."
+      "id": "update-playwright-snapshots",
+      "title": "Update Playwright Baseline Snapshots for EngineeringLog",
+      "description": "EngineeringLog heading changed from snake_case to Title Case with subtitle. Baseline and cross-browser snapshots that include EngineeringLog cards will need --update-snapshots."
     }
   ],
   "in_progress": [],
   "done": [
+    {
+      "id": "review-project-name-casing",
+      "title": "Engineering Log: Add Readable Display Names (Audit Recommendation)",
+      "description": "Added displayName field to EngineeringLogEntry interface. Project headings now show readable Title Case names (Cloud Orchestrator, ML Data Pipeline, Realtime Metrics, API Gateway) with the original snake_case name (cloud_orchestrator, etc.) as a smaller subtitle beneath. Preserves terminal aesthetic via the subtitle while improving scannability for hiring managers. Updated image alt text to use displayName. Build and lint pass clean."
+    },
     {
       "id": "reduce-engineering-log-projects",
       "title": "Reduce Engineering Log from 6 to 4 Projects (Audit Recommendation)",
