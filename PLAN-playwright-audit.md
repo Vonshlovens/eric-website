@@ -396,7 +396,24 @@ Phase 4 (Implement Audit Recommendations) → iterative
   4B: SIMPLIFY LoadingScreen (remove fake boot sequence)
   4C: SIMPLIFY SkillsMarquee (static grid instead of infinite scroll)
   4D: SIMPLIFY Interests (add specificity or condense)
+
+Phase 5 (Post-Audit Polish)     → iterative
+  5A: Dynamic footer latency + keyboard shortcut hint
 ```
+
+---
+
+## Phase 5: Post-Audit Polish
+
+Act on the remaining suggestions from the component audit report that weren't formal SIMPLIFY/MERGE/REMOVE verdicts but were identified as improvements worth making.
+
+### 5A — Dynamic Footer Latency & Keyboard Shortcut Hint ✅
+
+**Completed**: Addressed two audit recommendations for the Footer component.
+
+1. **Dynamic latency indicator** — Replaced hardcoded "Latency: 14ms" with actual page load time using the Navigation Timing API (`domContentLoadedEventEnd - startTime`), falling back to `performance.now()`. Shows "--" during SSR, updates to real milliseconds on mount. This addresses the audit finding: "Latency: 14ms is hardcoded — this could be confusing if visitors expect it to be real."
+
+2. **Keyboard shortcut discoverability hint** — Added a subtle "Press ? for shortcuts" hint next to the latency indicator, hidden on mobile (`hidden sm:inline`). Uses `text-border-dim` (dimmer than muted text) so it doesn't compete with the latency readout. `aria-hidden="true"` since it's supplementary information. This addresses the audit finding: "Consider discoverability: a subtle hint somewhere visible (e.g., footer 'Press ? for shortcuts') would increase the signal value."
 
 ---
 

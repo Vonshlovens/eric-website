@@ -35,9 +35,9 @@ Three-column on desktop, stacked and centered on mobile.
 
 ### 3. Status Indicator (Right)
 
-- A latency readout: `text-[10px] font-mono text-fg-muted uppercase` showing a static or decorative latency value (e.g. "Latency: 14ms")
+- A latency readout: `text-[10px] font-mono text-fg-muted uppercase` showing the actual page load time via Navigation Timing API (`domContentLoadedEventEnd - startTime`), fallback to `performance.now()`. Shows "--" during SSR, updates on mount
 - A small green dot (`size-2 rounded-full bg-lichen`) to indicate "online" status
-- Purely decorative — no real ping logic
+- A keyboard shortcut hint: "Press ? for shortcuts" in `text-border-dim` — hidden on mobile (`hidden sm:inline`), `aria-hidden="true"` (supplementary)
 
 ---
 
@@ -77,7 +77,7 @@ Three-column on desktop, stacked and centered on mobile.
 
 - **SvelteKit 2** layout component (rendered in `+layout.svelte`)
 - **Tailwind v4** utility classes
-- Static content — no API calls
+- Dynamic latency via Navigation Timing API (`onMount`)
 - Year derived from Svelte reactive expression or inline JS
 
 ---

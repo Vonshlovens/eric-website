@@ -1,5 +1,17 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+
   const year = new Date().getFullYear();
+  let latency = $state('--');
+
+  onMount(() => {
+    // Use Navigation Timing API for actual page load time, fallback to performance.now()
+    const nav = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined;
+    const ms = nav
+      ? Math.round(nav.domContentLoadedEventEnd - nav.startTime)
+      : Math.round(performance.now());
+    latency = `${ms}ms`;
+  });
 </script>
 
 <footer class="border-t border-border-dim bg-[#0A0A0A]">
@@ -21,11 +33,16 @@
     </p>
 
     <!-- Status Indicator -->
-    <div class="flex items-center gap-2">
-      <span class="text-[10px] font-mono text-text-muted uppercase tracking-widest">
-        Latency: 14ms
+    <div class="flex items-center gap-4">
+      <span class="hidden sm:inline text-[10px] font-mono text-border-dim uppercase tracking-widest" aria-hidden="true">
+        Press <kbd class="text-text-muted">?</kbd> for shortcuts
       </span>
-      <span class="size-2 rounded-full bg-status-ok"></span>
+      <div class="flex items-center gap-2">
+        <span class="text-[10px] font-mono text-text-muted uppercase tracking-widest">
+          Latency: {latency}
+        </span>
+        <span class="size-2 rounded-full bg-status-ok"></span>
+      </div>
     </div>
 
   </div>
