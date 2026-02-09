@@ -30,18 +30,12 @@ The v2 version adapts this to the Threadwork design language:
 ├──────────────────────────────────────────────────────┤
 │                                                      │
 │  ┌──────────────┐  ┌──────────────┐  ┌────────────┐ │
-│  │  [icon]       │  │  [icon]       │  │  [icon]    │ │
-│  │  Title        │  │  Title        │  │  Title     │ │
-│  │  Description  │  │  Description  │  │  Desc...   │ │
-│  │  Link →       │  │  Link →       │  │  Link →    │ │
+│  │  [lock_open]  │  │  [run]        │  │  [coffee]  │ │
+│  │  Open Source  │  │  Running      │  │  Coffee    │ │
+│  │  CLI tools,   │  │  HM PR 1:38, │  │  V60 setup │ │
+│  │  200+ stars   │  │  trail ultra  │  │  18g/300g  │ │
+│  │  GitHub →     │  │              │  │            │ │
 │  └──────────────┘  └──────────────┘  └────────────┘ │
-│                                                      │
-│  ┌──────────────┐  ┌──────────────┐                  │
-│  │  [icon]       │  │  [icon]       │                 │
-│  │  Title        │  │  Title        │                 │
-│  │  Description  │  │  Description  │                 │
-│  │  Link →       │  │  Link →       │                 │
-│  └──────────────┘  └──────────────┘                  │
 │                                                      │
 └──────────────────────────────────────────────────────┘
 ```
@@ -137,6 +131,7 @@ This section sits between **Education & Certifications** and the **Contact CTA**
 
 ## Implementation Notes
 
-- Component: inline in `+page.svelte` or extracted to `src/lib/components/sections/Interests.svelte`
+- Component: `src/lib/components/sections/Interests.svelte`
 - Card layout mirrors Core Competencies grid pattern — can share structural styling
 - Icon names are stored as strings in the data file and rendered via `<span class="material-symbols-outlined">`
+- **Simplified (Phase 4D)**: Condensed from 4 cards (Open Source, Running, Photography, Coffee) to 3 (Open Source, Running, Coffee). Photography removed as most generic entry. All descriptions rewritten with concrete, personal details (race times, specific gear, coffee origins) per component audit recommendation. 3 cards fill a clean single row on `lg:grid-cols-3`.

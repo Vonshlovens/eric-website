@@ -3,6 +3,11 @@
   "in_progress": [],
   "done": [
     {
+      "id": "simplify-interests",
+      "title": "Simplify Interests — add specificity, condense to 3 cards (Audit Recommendation 4D)",
+      "description": "Condensed from 4 interest cards to 3 — removed Photography (most generic entry, no link, no differentiating detail). Rewrote all descriptions with concrete, personal details per audit recommendation: Open Source now mentions specific projects (terminal-UI library, 200+ stars, building since 2019), Running includes half-marathon PR (1:38) and current training goal, Coffee specifies exact gear (Hario V60 + Baratza Encore) and bean origins (Ethiopian Yirgacheffe, Colombian Huila, 18g/300g ratio). 3 cards fill a clean single row on lg:grid-cols-3 breakpoint. No component or test changes needed — grid layout and baseline tests are data-driven. Updated spec (specs/interests.md) visual structure and implementation notes. Build passes clean."
+    },
+    {
       "id": "simplify-skills-marquee",
       "title": "Simplify SkillsMarquee — static grid (Audit Recommendation 4C)",
       "description": "Replaced infinite-scroll dual-row marquee with a static wrapped flex grid. Removed all animation infrastructure: 2 CSS @keyframes definitions, animate-marquee/animate-marquee-reverse classes, 4x DOM duplication per row (60 cloned chip elements eliminated), fade-edge gradient overlays, will-change-transform GPU hints, group-hover pause-on-hover, and prefers-reduced-motion CSS fallback (no longer needed). Component went from 102 lines to 42 lines. Added max-w-6xl mx-auto container pattern matching other sections. Kept all 20 skill chips with SVG brand-color icons and hover effects. Cleaned up print stylesheet: removed 20 lines of marquee-specific overrides. Updated cross-browser test from animation/GPU assertions to static grid chip-count validation. Deleted 6 stale baseline snapshots. Updated spec (specs/skills-marquee.md) to reflect static grid layout. Build passes clean."

@@ -360,9 +360,14 @@ Act on the KEEP/SIMPLIFY/MERGE/REMOVE verdicts from the component audit report.
 
 **Completed**: Replaced infinite-scroll marquee with a static wrapped flex grid. Removed all animation infrastructure: 2 CSS `@keyframes` definitions, `animate-marquee` / `animate-marquee-reverse` classes, 4x DOM duplication per row (60 cloned chip elements eliminated), fade-edge gradient overlays, `will-change-transform` GPU hints, `group-hover` pause-on-hover, and `prefers-reduced-motion` CSS fallback (no longer needed — layout is inherently static). Component went from 102 lines to 42 lines. Added `max-w-6xl mx-auto px-4 sm:px-6 lg:px-8` container pattern matching other sections. Kept all 20 skill chips with SVG brand-color icons and hover effects (border-accent/30, bg-surface-highlight, -translate-y-0.5). Cleaned up print stylesheet: removed 20 lines of marquee-specific overrides (overflow, animation:none, flex-wrap, clone hiding, fade-edge hiding) that are no longer needed; kept chip border print styling. Updated cross-browser test from animation/GPU-compositing assertions to static grid chip-count validation. Deleted 6 stale baseline snapshots.
 
-### 4D — SIMPLIFY Interests
+### 4D — SIMPLIFY Interests ✅
 
-Add specificity to generic descriptions (race times, specific gear, concrete details) or condense into a single line / footer integration.
+**Completed**: Condensed from 4 cards to 3 — removed Photography (most generic entry, no link, no specificity). Rewrote all descriptions with concrete, personal details per audit recommendation:
+1. **Open Source** — "Maintain a handful of CLI tools and Deno modules. Most recent: a terminal-UI library with 200+ GitHub stars. Building in public since 2019." (was generic "Contributing to developer tools and libraries")
+2. **Running** — "Half-marathon PR: 1:38. Currently training for a full marathon on mountain trails." (was generic "Training for marathons and trail runs")
+3. **Coffee** — "Home pour-over setup: Hario V60 + Baratza Encore. Current rotation: Ethiopian Yirgacheffe and Colombian Huila. 18g in, 300g out." (was generic "Currently obsessed with pour-over")
+
+3-card layout fills a clean single row on `lg:grid-cols-3`. No component or test changes needed — the grid and baseline tests are data-driven.
 
 ---
 
