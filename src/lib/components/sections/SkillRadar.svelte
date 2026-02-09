@@ -333,7 +333,7 @@
       </div>
 
       <!-- Category Breakdown List -->
-      <div class="space-y-4 scroll-reveal">
+      <div class="space-y-4 scroll-reveal" role="list">
         {#each categories as cat, i}
           <div
             class="group flex items-start gap-4 p-4 rounded border border-border-dim bg-surface transition-all duration-200 hover:border-accent/50 hover:bg-surface-highlight"
