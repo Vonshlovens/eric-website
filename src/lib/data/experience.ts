@@ -55,7 +55,7 @@ export const experiences: WorkExperience[] = [
     id: 'exp-4',
     title: 'Summer Student',
     company: 'Pembina Pipeline Corporation',
-    duration: 'May - August of 2018 - 2021',
+    duration: 'Summers 2018 – 2021',
     location: 'Calgary, Alberta',
     duties: [
       'Add development changes to QA environment',
