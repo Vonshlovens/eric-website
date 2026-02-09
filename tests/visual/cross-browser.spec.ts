@@ -10,7 +10,7 @@ import { test, expect } from '@playwright/test';
  * - View Transitions API (Chromium-only; Firefox/WebKit gracefully degrade)
  * - CSS mask-image on hero avatar reveal (-webkit-mask-image fallback)
  * - Scrollbar styling (::-webkit-scrollbar — WebKit-only)
- * - CSS marquee animations (translate3d GPU compositing)
+ * - Skills grid layout
  * - will-change compositing across engines
  *
  * Screenshot comparisons use per-browser baselines (each browser renders
@@ -75,8 +75,6 @@ test('hero section renders with avatar', async ({ page }) => {
 test('hero avatar uses correct mask/reveal structure', async ({ page, browserName }) => {
 	// The hero has a two-layer avatar: display layer (top) and GitHub layer (bottom)
 	// The display layer uses mask-image / -webkit-mask-image for the reveal effect
-	const displayLayer = page.locator('#about .relative .absolute').first();
-
 	// On desktop with (hover:hover), verify the mask layer structure exists
 	const viewport = page.viewportSize();
 	if (viewport && viewport.width > 1024) {
@@ -174,36 +172,29 @@ test('skill radar axis labels are not clipped', async ({ page, browserName }) =>
 	}
 });
 
-// --- Skills marquee animation ---
+// --- Skills grid ---
 
-test('skills marquee renders with correct structure', async ({ page, browserName }) => {
-	const marquee = page.locator('section[aria-label="Technical Skills"]');
-	await marquee.scrollIntoViewIfNeeded();
-	await expect(marquee).toBeVisible();
+test('skills grid renders with correct structure', async ({ page, browserName }) => {
+	const skills = page.locator('section[aria-label="Technical Skills"]');
+	await skills.scrollIntoViewIfNeeded();
+	await expect(skills).toBeVisible();
 
-	// Verify marquee rows exist and contain skill chips
-	const marqueeData = await page.evaluate(() => {
+	// Verify skill chips are rendered as a static grid
+	const gridData = await page.evaluate(() => {
 		const section = document.querySelector('section[aria-label="Technical Skills"]');
 		if (!section) return null;
-		const rows = section.querySelectorAll('[class*="marquee"]');
-		const chips = section.querySelectorAll('span');
+		const chips = section.querySelectorAll('.skill-chip');
 		return {
-			rowCount: rows.length,
 			chipCount: chips.length,
-			// Verify GPU compositing hint is in place
-			hasWillChange: Array.from(rows).some((row) => {
-				const cs = getComputedStyle(row);
-				return cs.willChange === 'transform' || cs.willChange.includes('transform');
-			}),
 		};
 	});
 
-	console.log(`  [${browserName}] Marquee: ${marqueeData?.rowCount} rows, ${marqueeData?.chipCount} chips, will-change=${marqueeData?.hasWillChange}`);
+	console.log(`  [${browserName}] Skills grid: ${gridData?.chipCount} chips`);
 
-	expect(marqueeData).not.toBeNull();
-	expect(marqueeData!.chipCount, 'Should have skill chips').toBeGreaterThan(10);
+	expect(gridData).not.toBeNull();
+	expect(gridData!.chipCount, 'Should have 20 skill chips').toBe(20);
 
-	await expect(marquee).toHaveScreenshot('xb-skills-marquee.png', {
+	await expect(skills).toHaveScreenshot('xb-skills-grid.png', {
 		maxDiffPixels: 200,
 	});
 });

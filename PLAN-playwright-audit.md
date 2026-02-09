@@ -356,9 +356,9 @@ Act on the KEEP/SIMPLIFY/MERGE/REMOVE verdicts from the component audit report.
 
 **Completed**: Removed fake terminal boot sequence (5 sequential boot lines, progress bar, ~1.5s delay). Replaced with a simple opaque `bg-primary` overlay that fades out in 250ms after a 100ms initial pause. Total duration reduced from ~1.5s to ~350ms. Component went from 135 lines to 57 lines — removed all boot line data, `runBootSequence()` async function, `dotsComplete` state, progress bar markup, `line-appear` keyframe animation, and terminal block styling. Retained session-once behavior (`sessionStorage 'boot-shown'`), reduced-motion skip, and aria-hidden on dismiss. Uses `globalThis.matchMedia` instead of `window.matchMedia` per deno lint rules. Build passes clean.
 
-### 4C — SIMPLIFY SkillsMarquee
+### 4C — SIMPLIFY SkillsMarquee ✅
 
-Replace infinite-scroll marquee with a static skill-tag grid. Keep SVG brand-color icons. Removes 160+ cloned DOM nodes and continuous CSS animation overhead.
+**Completed**: Replaced infinite-scroll marquee with a static wrapped flex grid. Removed all animation infrastructure: 2 CSS `@keyframes` definitions, `animate-marquee` / `animate-marquee-reverse` classes, 4x DOM duplication per row (60 cloned chip elements eliminated), fade-edge gradient overlays, `will-change-transform` GPU hints, `group-hover` pause-on-hover, and `prefers-reduced-motion` CSS fallback (no longer needed — layout is inherently static). Component went from 102 lines to 42 lines. Added `max-w-6xl mx-auto px-4 sm:px-6 lg:px-8` container pattern matching other sections. Kept all 20 skill chips with SVG brand-color icons and hover effects (border-accent/30, bg-surface-highlight, -translate-y-0.5). Cleaned up print stylesheet: removed 20 lines of marquee-specific overrides (overflow, animation:none, flex-wrap, clone hiding, fade-edge hiding) that are no longer needed; kept chip border print styling. Updated cross-browser test from animation/GPU-compositing assertions to static grid chip-count validation. Deleted 6 stale baseline snapshots.
 
 ### 4D — SIMPLIFY Interests
 

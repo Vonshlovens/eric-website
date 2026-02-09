@@ -3,6 +3,11 @@
   "in_progress": [],
   "done": [
     {
+      "id": "simplify-skills-marquee",
+      "title": "Simplify SkillsMarquee — static grid (Audit Recommendation 4C)",
+      "description": "Replaced infinite-scroll dual-row marquee with a static wrapped flex grid. Removed all animation infrastructure: 2 CSS @keyframes definitions, animate-marquee/animate-marquee-reverse classes, 4x DOM duplication per row (60 cloned chip elements eliminated), fade-edge gradient overlays, will-change-transform GPU hints, group-hover pause-on-hover, and prefers-reduced-motion CSS fallback (no longer needed). Component went from 102 lines to 42 lines. Added max-w-6xl mx-auto container pattern matching other sections. Kept all 20 skill chips with SVG brand-color icons and hover effects. Cleaned up print stylesheet: removed 20 lines of marquee-specific overrides. Updated cross-browser test from animation/GPU assertions to static grid chip-count validation. Deleted 6 stale baseline snapshots. Updated spec (specs/skills-marquee.md) to reflect static grid layout. Build passes clean."
+    },
+    {
       "id": "simplify-loading-screen",
       "title": "Simplify LoadingScreen (Audit Recommendation 4B)",
       "description": "Removed fake terminal boot sequence (5 sequential boot lines, progress bar, ~1.5s delay). Replaced with a simple opaque bg-primary overlay that fades out in 250ms after a 100ms pause. Total duration reduced from ~1.5s to ~350ms. Component went from 135 lines to 57 lines — removed all boot line data, runBootSequence() async function, dotsComplete state, progress bar markup, line-appear keyframe animation, and terminal block styling. Retained session-once behavior (sessionStorage 'boot-shown'), reduced-motion skip, and aria-hidden on dismiss. Uses globalThis.matchMedia instead of window.matchMedia per deno lint rules. Updated spec (specs/loading-screen.md) to reflect simplified behavior. Build passes clean."
