@@ -16,11 +16,9 @@ Quick-reference list of every specification file in this directory.
 ## Page Sections
 - [Navigation](./navigation.md)
 - [Hero Section](./hero-section.md)
-- [Core Competencies](./core-competencies.md)
 - [Engineering Log](./engineering-log.md)
 - [Work Experience](./work-experience.md)
 - [Education](./education.md)
-- [Skills Marquee](./skills-marquee.md)
 - [Interests](./interests.md)
 - [Contact CTA](./contact-cta.md)
 - [Footer](./footer.md)

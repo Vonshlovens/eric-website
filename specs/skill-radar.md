@@ -2,15 +2,37 @@
 
 ## Overview
 
-An interactive radar (spider) chart that visualizes technical skill proficiency across key categories. Complements the skills marquee by giving visitors a quick, at-a-glance understanding of strengths and depth rather than just a flat list of technologies.
+The single unified skills section for the portfolio. Combines three previously separate components into one cohesive section:
 
-Referenced from: `specs/features.md` — Phase 2 → "Interactive skill visualization".
+1. **Focus Areas** (merged from CoreCompetencies) — 3-card row highlighting Cloud Infrastructure, AI, and Database Admin as primary specializations
+2. **Technology Chips** (merged from SkillsMarquee) — static flex-wrap grid of 20 skill chips with SVG brand-color icons
+3. **Radar Chart** — interactive SVG radar/spider chart with 6 category axes and proficiency visualization
+4. **Category Breakdown** — sidebar list with proficiency bars and skill tags, cross-highlighted with the chart on hover
+
+This consolidation addresses the "skills shown 3 ways" redundancy identified in the component audit (AUDIT-REPORT.md).
 
 ## Location
 
-Appears as a subsection below the Skills Marquee, or as a tab/toggle alongside it. Wrapped in its own `<section id="skill-radar">` with a Threadwork-style section header.
+Standalone `<section id="skill-radar">` positioned after the Hero section. Contains all skill-related content in one place.
 
 ## Visual Design
+
+### Focus Areas (merged from CoreCompetencies)
+
+- 3-card horizontal row (`grid-cols-1 md:grid-cols-3`) positioned between the section header and technology chips
+- Each card: compact horizontal layout (`flex items-start gap-3`) with icon box (40x40px) + title + description
+- Cards use `bg-surface p-4 rounded border border-border-dim` with hover effects (`hover:border-accent/50 hover:bg-surface-highlight`)
+- Icons: Material Symbols (`cloud_queue`, `psychology`, `database`) in `text-text-muted`, accent on hover
+- Data: inline `focusAreas` array in the component
+
+### Technology Chips (merged from SkillsMarquee)
+
+- Static `flex-wrap justify-center` grid of 20 skill chips, positioned between focus areas and radar chart
+- Each chip: `bg-surface border border-border-dim rounded` with `font-mono text-xs md:text-sm uppercase tracking-wider`
+- SVG brand-color icons (14px mobile / 16px desktop) from `src/lib/data/skill-icons.ts` — monochrome `text-muted` by default, transitions to brand color on hover via `--brand-color` CSS custom property
+- Fallback for skills without icon: small accent dot
+- Hover: `hover:border-accent/30 hover:bg-surface-highlight hover:-translate-y-0.5`
+- No animation — static grid, inherently accessible
 
 ### Chart
 
@@ -43,7 +65,7 @@ interface SkillCategory {
 }
 ```
 
-Data lives in `src/lib/data/skills.ts` alongside or extending the existing skills data used by the marquee.
+Data lives in `src/lib/data/skills.ts`. Technology chip icons live in `src/lib/data/skill-icons.ts`. Focus area data is inline in the component.
 
 ## Implementation Notes
 
@@ -82,3 +104,6 @@ Prefer a lightweight SVG-based implementation built directly in Svelte (no chart
 - [x] Matches Threadwork design system colors, fonts, and spacing.
 - [x] No external charting library — pure Svelte + SVG.
 - [x] Responsive across all breakpoints.
+- [x] Focus areas (from CoreCompetencies) merged as compact 3-card row.
+- [x] Technology chips (from SkillsMarquee) merged as static flex-wrap grid with SVG brand-color icons.
+- [x] Single unified skills section — no redundant skill displays elsewhere on the page.

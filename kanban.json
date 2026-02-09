@@ -16,11 +16,6 @@
       "description": "Audit noted: 'The Tier: Intermediate stat card is refreshingly honest but could be a negative signal to some hiring managers.' Consider whether to keep, remove, or rephrase this stat card depending on career goals."
     },
     {
-      "id": "cleanup-skills-marquee-spec",
-      "title": "Update specs/skills-marquee.md After SkillsMarquee Merge",
-      "description": "SkillsMarquee was merged into SkillRadar — the standalone component and spec (specs/skills-marquee.md) are now stale. Update or remove the spec, and update specs/README.md and specs/INDEX.md references."
-    },
-    {
       "id": "update-baseline-snapshots",
       "title": "Regenerate Playwright Baseline Snapshots",
       "description": "After merging SkillsMarquee into SkillRadar, the skill-radar baseline screenshot will have changed (now includes skill chips). Run baseline tests with --update-snapshots to regenerate. The skills-marquee baseline test was removed."
@@ -28,6 +23,11 @@
   ],
   "in_progress": [],
   "done": [
+    {
+      "id": "cleanup-skills-marquee-spec",
+      "title": "Update specs/skills-marquee.md After SkillsMarquee Merge",
+      "description": "Deleted stale specs/skills-marquee.md and specs/core-competencies.md (both components merged into SkillRadar). Updated specs/skill-radar.md to document the unified section structure: focus areas (from CoreCompetencies), technology chips with SVG icons (from SkillsMarquee), radar chart, and category breakdown. Removed Skills Marquee and Core Competencies entries from specs/README.md and specs/INDEX.md. Updated SkillRadar entry in README.md to reflect its role as the single unified skills section."
+    },
     {
       "id": "merge-skills-marquee-into-radar",
       "title": "Merge SkillsMarquee into SkillRadar (Audit Recommendation)",

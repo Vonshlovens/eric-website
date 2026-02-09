@@ -58,10 +58,6 @@ Comprehensive specifications for the portfolio website built with SvelteKit 2, S
 - Two-column layout: avatar + name / terminal stats panel
 - Stat cards, CTAs, GitHub identity reveal
 
-#### [Core Competencies](./core-competencies.md)
-- 3-column card grid (Cloud, AI, Databases)
-- Icon boxes with hover effects
-
 #### [Engineering Log](./engineering-log.md)
 - Horizontal project cards with problem/learnings/tech narrative
 - Category badges, grayscale-to-color image hover
@@ -73,10 +69,6 @@ Comprehensive specifications for the portfolio website built with SvelteKit 2, S
 #### [Education](./education.md)
 - 2-column grid of degree and certification cards
 - Category badges and credential links
-
-#### [Skills Marquee](./skills-marquee.md)
-- Dual-row animated marquee scrolling in opposite directions
-- Skill chips with accent dots, edge fades, reduced-motion fallback
 
 #### [Interests](./interests.md)
 - "Beyond Code" section with 3-column hobby card grid
@@ -105,7 +97,8 @@ Comprehensive specifications for the portfolio website built with SvelteKit 2, S
 - SvelteKit form action backend, focus trapping
 
 #### [Skill Radar Chart](./skill-radar.md)
-- Interactive SVG radar chart (5-7 skill categories)
+- Unified skills section (merged CoreCompetencies + SkillsMarquee + Radar)
+- Focus area cards, technology chips with SVG icons, interactive SVG radar chart
 - Hover tooltips, draw-in animation, screen-reader fallback table
 
 ## Accessibility & UX
