@@ -14,15 +14,15 @@
       "id": "review-hero-tier-stat",
       "title": "Review 'Tier: Intermediate' Stat Card in Hero",
       "description": "Audit noted: 'The Tier: Intermediate stat card is refreshingly honest but could be a negative signal to some hiring managers.' Consider whether to keep, remove, or rephrase this stat card depending on career goals."
-    },
-    {
-      "id": "update-baseline-snapshots",
-      "title": "Regenerate Playwright Baseline Snapshots",
-      "description": "After merging SkillsMarquee into SkillRadar, the skill-radar baseline screenshot will have changed (now includes skill chips). Run baseline tests with --update-snapshots to regenerate. The skills-marquee baseline test was removed."
     }
   ],
   "in_progress": [],
   "done": [
+    {
+      "id": "update-baseline-snapshots",
+      "title": "Regenerate Playwright Baseline Snapshots",
+      "description": "Regenerated all Playwright baseline and cross-browser snapshots after SkillsMarquee merge into SkillRadar and other audit-driven changes. Ran --update-snapshots for baseline (40 tests across 4 viewports: desktop-1080p, desktop-720p, tablet, mobile) and cross-browser (28 Firefox tests across 2 viewports). Verified all 68 tests pass cleanly on re-run without --update-snapshots. Snapshot directory now reflects current component state: unified SkillRadar with skill chips, simplified LoadingScreen, condensed Interests (3 cards), mailto fallback in ContactCTA, dynamic footer latency, and keyboard shortcut hint."
+    },
     {
       "id": "cleanup-skills-marquee-spec",
       "title": "Update specs/skills-marquee.md After SkillsMarquee Merge",
