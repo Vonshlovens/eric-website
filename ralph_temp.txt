@@ -1,2 +1,0 @@
-~/cwl-api/sc
-ripts/ralph "you are creating specs-v2/. create the folder if it doesn't exist. add **one** feature either from stitch.html (what I want the website to look like) or from specs/ (my original prototype, with some features I like, and the tech stack we will be using) and make a .md document for that feauture. you may add up to one (1) todo(s) in kanban.json as you see fit. once you have added the one feature spec and up to 1 Kanban todo, git add and git commit. then you are done!"
